@@ -7,7 +7,6 @@
   <meta name="description" content="Browse the XFD portfolio and shop the RedBubble store.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
-    /* Absolute Layout Reset & Safe Box Modeling */
     * { box-sizing: border-box; }
 
     :root { 
@@ -31,7 +30,7 @@
     }
 
     /* =========================================
-       PHASE 1: ENCASED CONTROL CENTER HEADER (LOCKED)
+       PHASE 1: ENCASED CONTROL CENTER HEADER
        ========================================= */
     header {
       padding: 20px;
@@ -49,7 +48,7 @@
       max-width: 1400px;
       margin: 0 auto;
       border: 1px solid rgba(255,255,255,0.15);
-      border-bottom: 2px solid var(--wrestling); /* Highlight wrestling red for Designs tab */
+      border-bottom: 2px solid var(--wrestling); 
       border-radius: 20px;
       padding: 10px 30px;
       background: rgba(15, 15, 20, 0.85);
@@ -78,7 +77,6 @@
     
     .pill-nav a.nav-news i { color: var(--anime); }
     .pill-nav a.nav-news:hover { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); background: rgba(138,43,226,0.1); }
-    
     .pill-nav a.nav-origin i { color: var(--blue); }
     .pill-nav a.nav-origin:hover { border-color: var(--blue); box-shadow: 0 0 15px rgba(0,191,255,0.3); background: rgba(0,191,255,0.1); }
     
@@ -110,7 +108,7 @@
     .search-bar input::placeholder { color: #666; }
 
     /* =========================================
-       DESIGN MATRIX LAYOUT
+       LAYOUT CONTAINERS
        ========================================= */
     .section-title {
       font-size: 1.2rem;
@@ -122,13 +120,10 @@
     }
     .section-title span::before { content: '> '; color: var(--wrestling); }
 
-    .shop-layout {
-      display: grid;
-      grid-template-columns: 2.5fr 1fr;
-      gap: 30px;
-      padding: 0 40px;
+    .shop-layout-full {
       max-width: 1450px;
       margin: 0 auto;
+      padding: 0 40px;
     }
 
     .terminal-text { font-family: monospace; font-size: 0.75rem; color: #666; margin-bottom: 8px; }
@@ -142,26 +137,25 @@
       margin-bottom: 40px;
     }
     
-    /* Ad-Block Proof Shop Gallery */
+    /* Native Unblockable Product Showcases */
     .shop-showcase-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
       margin-top: 25px;
     }
     .product-card {
       background: rgba(10,10,15,0.6);
       border: 1px solid #222;
       border-radius: 10px;
-      padding: 15px;
+      padding: 20px;
       text-align: center;
       transition: 0.3s;
     }
     .product-card:hover { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.2); transform: translateY(-3px); }
-    .product-card img { width: 100%; border-radius: 6px; background: #111; margin-bottom: 12px; }
-    .product-card h4 { margin: 0 0 8px 0; font-size: 1rem; }
+    .product-card img { width: 100%; border-radius: 6px; background: #111; margin-bottom: 15px; display: block; }
+    .product-card h4 { margin: 0 0 12px 0; font-size: 1.1rem; }
     
-    /* Buttons / Actions */
     .cta-btn {
       display: inline-flex;
       align-items: center;
@@ -176,66 +170,106 @@
       letter-spacing: 1px;
       transition: 0.3s;
       border: none;
-      cursor: pointer;
     }
     .cta-btn:hover { background: #ff1c4b; box-shadow: 0 0 15px var(--wrestling); }
-    .cta-btn.alt { background: var(--grey-pill); border: 1px solid rgba(255,255,255,0.2); }
+    .cta-btn.alt { background: var(--grey-pill); border: 1px solid rgba(255,255,255,0.2); width: 100%; justify-content: center;}
     .cta-btn.alt:hover { background: rgba(255,255,255,0.15); box-shadow: 0 0 10px white; }
+
+    /* =========================================
+       DYNAMIC VIDEO SLIDER HUB
+       ========================================= */
+    .slider-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .nav-arrow {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      flex-shrink: 0;
+    }
+    .nav-arrow:hover { background: rgba(220,20,60,0.2); border-color: var(--wrestling); box-shadow: 0 0 15px var(--wrestling); }
+
+    .media-slider {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 10px 0;
+      scrollbar-width: none;
+      scroll-behavior: smooth;
+      width: 100%;
+    }
+    .media-slider::-webkit-scrollbar { display: none; }
+    
+    .media-card {
+      flex: 0 0 320px;
+      background: rgba(20,20,25,0.8);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 15px;
+      transition: 0.3s;
+      position: relative;
+    }
+    .media-card:hover { transform: translateY(-5px); }
+    .media-card img { width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); }
+    .media-card .badge {
+      position: absolute;
+      top: 25px; left: 25px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .card-purple:hover { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); }
+    .card-cyan:hover { border-color: var(--tech); box-shadow: 0 0 15px rgba(0,255,255,0.3); }
+    .card-green:hover { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); }
 
     /* =========================================
        PORTFOLIO GRID & LIGHTBOX
        ========================================= */
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 15px;
     }
     .thumb-node {
       background: #0f0f13;
       border: 1px solid #222;
       border-radius: 8px;
-      padding: 8px;
+      padding: 10px;
       cursor: pointer;
       transition: 0.3s;
     }
     .thumb-node:hover { border-color: var(--tech); box-shadow: 0 0 12px rgba(0,255,255,0.3); transform: scale(1.02); }
-    .thumb-node img { width: 100%; height: 140px; object-fit: cover; border-radius: 6px; display: block; }
+    .thumb-node img { width: 100%; height: 160px; object-fit: cover; border-radius: 6px; display: block; }
 
-    /* Sidebar Panels */
-    .sidebar-block {
-      background: rgba(20,20,25,0.8);
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 25px;
-      margin-bottom: 30px;
-    }
-    .sidebar-block strong { display: block; font-size: 1.1rem; margin-bottom: 15px; letter-spacing: 1px; border-bottom: 1px solid #333; padding-bottom: 8px; }
-    .sidebar-block .ql-title { font-family: monospace; font-size: 0.8rem; color: var(--wrestling); margin: 15px 0 8px 0; text-transform: uppercase; }
-    
-    .quick-links { list-style: none; padding: 0; margin: 0; }
-    .quick-links li { margin-bottom: 10px; }
-    .quick-links a { color: #aaa; text-decoration: none; font-size: 0.95rem; transition: 0.3s; }
-    .quick-links a:hover { color: white; text-shadow: 0 0 8px white; padding-left: 4px; }
-
-    /* Lightbox Modal window */
+    /* Lightbox Modal overlay elements */
     .lightbox {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3,3,6,0.95);
       display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px;
     }
-    .lightbox-content { position: relative; max-width: 90px; max-height: 85vh; }
+    .lightbox-content { position: relative; max-width: 800px; width: 100%; text-align: center; }
     .lightbox img { max-width: 100%; max-height: 80vh; border-radius: 12px; border: 1px solid #444; box-shadow: 0 0 30px rgba(0,255,255,0.2); }
     .lightbox-close {
       position: absolute; top: -45px; right: 0; background: transparent; border: none;
-      color: white; font-size: 1.8rem; cursor: pointer; transition: 0.3s;
+      color: white; font-size: 2rem; cursor: pointer; transition: 0.3s;
     }
     .lightbox-close:hover { color: var(--wrestling); }
 
-    @media (max-width: 1100px) {
-      .shop-layout { grid-template-columns: 1fr; }
-    }
     @media (max-width: 850px) {
       .header-encased { flex-direction: column; gap: 20px; }
       .pill-nav { flex-wrap: wrap; justify-content: center; }
+      .shop-layout-full { padding: 0 20px; }
+      .section-title { padding: 0 20px; }
     }
   </style>
 </head>
@@ -270,133 +304,169 @@
     </div>
   </header>
 
-  <main>
-    <div class="section-title">
+  <main class="shop-layout-full">
+    
+    <!-- SECTION 1: MERCHANT STOREFRONT -->
+    <div class="section-title" style="padding: 0;">
       <span>Quantum Merchant // Asset Distribution</span>
     </div>
-
-    <div class="shop-layout">
+    
+    <div class="terminal-text">// initialization: SECURE_MERCH_PORTAL</div>
+    <div class="terminal-block">
+      <h3>Design Shop</h3>
+      <p>Browse collection configurations natively below, or initialize the main engine branch directly on RedBubble for expedited operations.</p>
       
-      <!-- LEFT FIELD: STOREFRONT & PORTFOLIO -->
-      <div class="main-content-stream">
-        
-        <!-- RedBubble Native Unblockable Block -->
-        <div>
-          <div class="terminal-text">// initialization: SECURE_MERCH_PORTAL</div>
-          <div class="terminal-block">
-            <h3>Design Shop</h3>
-            <p>Browse collection configurations natively below, or initialize the main engine branch directly on RedBubble for expedited operations.</p>
-            
-            <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
-              <a class="cta-btn" href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" rel="noopener">
-                <i class="fas fa-shopping-cart"></i> OPEN REDBUBBLE STORE
-              </a>
-            </div>
-
-            <!-- Ad-Block Proof Fallback Showcases -->
-            <div class="shop-showcase-grid">
-              <div class="product-card">
-                <img src="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg" alt="Merch Preview">
-                <h4>Love Bites Print</h4>
-                <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt" style="font-size:0.75rem; padding:6px 12px;">View Item</a>
-              </div>
-              <div class="product-card">
-                <img src="assets/Betty%20Boo%20Vs.png" alt="Merch Preview">
-                <h4>Betty Boo Apparel</h4>
-                <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt" style="font-size:0.75rem; padding:6px 12px;">View Item</a>
-              </div>
-              <div class="product-card">
-                <img src="assets/back-to-the-future-z.jpg" alt="Merch Preview">
-                <h4>Future Z Poster</h4>
-                <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt" style="font-size:0.75rem; padding:6px 12px;">View Item</a>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Portfolio Gallery Engine -->
-        <div>
-          <div class="terminal-text">// sync_feed: PORTFOLIO_IMAGE_MATRIX</div>
-          <div class="terminal-block">
-            <h3>Portfolio Gallery</h3>
-            <p style="color: #666; font-size: 0.9rem; margin-bottom: 20px;">Select visualization sub-node to unpack high-resolution vector format:</p>
-            
-            <div class="portfolio-grid">
-              <div class="thumb-node" onclick="openLightbox('assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg')">
-                <img alt="Love Bites" src="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg" loading="lazy">
-              </div>
-              <div class="thumb-node" onclick="openLightbox('assets/Horor%20its%20self.jpg')">
-                <img alt="Horror Itself" src="assets/Horor%20its%20self.jpg" loading="lazy">
-              </div>
-              <div class="thumb-node" onclick="openLightbox('assets/Darkness%20lighen.jpg')">
-                <img alt="Darkness Lighen" src="assets/Darkness%20lighen.jpg" loading="lazy">
-              </div>
-              <div class="thumb-node" onclick="openLightbox('assets/Sea.jpg')">
-                <img alt="Sea" src="assets/Sea.jpg" loading="lazy">
-              </div>
-              <div class="thumb-node" onclick="openLightbox('assets/Packages.jpg')">
-                <img alt="Packages" src="assets/Packages.jpg" loading="lazy">
-              </div>
-              <div class="thumb-node" onclick="openLightbox('assets/girl%20with%20big%20head.jpg')">
-                <img alt="Girl With Big Head" src="assets/girl%20with%20big%20head.jpg" loading="lazy">
-              </div>
-              <div class="thumb-node" onclick="openLightbox('assets/Betty%20Boo%20Vs.png')">
-                <img alt="Betty Boo Vs" src="assets/Betty%20Boo%20Vs.png" loading="lazy">
-              </div>
-              <div class="thumb-node" onclick="openLightbox('assets/Secrets-of-In-the-mouth-of-Madness.png')">
-                <img alt="In the Mouth of Madness" src="assets/Secrets-of-In-the-mouth-of-Madness.png" loading="lazy">
-              </div>
-              <div class="thumb-node" onclick="openLightbox('assets/back-to-the-future-z.jpg')">
-                <img alt="Back to the Future Z" src="assets/back-to-the-future-z.jpg" loading="lazy">
-              </div>
-              <div class="thumb-node" onclick="openLightbox('assets/Kang.jpg')">
-                <img alt="Kang" src="assets/Kang.jpg" loading="lazy">
-              </div>
-              <div class="thumb-node" onclick="openLightbox('assets/tarus.jpg')">
-                <img alt="Tarus" src="assets/tarus.jpg" loading="lazy">
-              </div>
-            </div>
-
-          </div>
-        </div>
-
+      <div style="margin-bottom: 25px;">
+        <a class="cta-btn" href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" rel="noopener">
+          <i class="fas fa-shopping-cart"></i> OPEN REDBUBBLE STORE
+        </a>
       </div>
 
-      <!-- RIGHT FIELD: SIDEBAR ROUTER PANEL -->
-      <div>
-        <div class="terminal-text">// stream: EXTERNAL_UTILITY_ROUTER</div>
-        <div class="sidebar-block">
-          <strong>Quick Links</strong>
-          
-          <div class="ql-title">Latest Videos</div>
-          <ul class="quick-links">
-            <li><a href="https://www.youtube.com/watch?v=Dynamic1" target="_blank" rel="noopener">Chaos Edit (Short)</a></li>
-            <li><a href="https://www.youtube.com/watch?v=Dynamic2" target="_blank" rel="noopener">Quick Clip</a></li>
-            <li><a href="https://www.youtube.com/watch?v=Dynamic3" target="_blank" rel="noopener">Behind the Scenes</a></li>
-          </ul>
-          
-          <div class="ql-title">News & Updates</div>
-          <ul class="quick-links">
-            <li><a href="design-shop.html">New Design Collection (June 2024)</a></li>
-            <li><a href="https://youtube.com" target="_blank" rel="noopener">10,000 Subscribers (May 2024)</a></li>
-          </ul>
+      <!-- Native Showcases mapping directly to storefront asset endpoints -->
+      <div class="shop-showcase-grid">
+        <div class="product-card">
+          <img src="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg" alt="Love Bites Print">
+          <h4>Love Bites Print</h4>
+          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
+        </div>
+        <div class="product-card">
+          <img src="assets/Betty%20Boo%20Vs.png" alt="Betty Boo Apparel">
+          <h4>Betty Boo Apparel</h4>
+          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
+        </div>
+        <div class="product-card">
+          <img src="assets/back-to-the-future-z.jpg" alt="Future Z Poster">
+          <h4>Future Z Poster</h4>
+          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
         </div>
       </div>
-
     </div>
+
+    <!-- SECTION 2: INTEGRATED TRANSMISSION SLIDER -->
+    <div class="section-title" style="padding: 0;">
+      <span>Sync Feed // Latest Video Transmissions</span>
+    </div>
+    
+    <div class="terminal-text">// sync_feed: YOUTUBE_STREAM_DATA</div>
+    <div class="slider-wrapper">
+      <button class="nav-arrow" onclick="scrollSlider(-1)"><i class="fas fa-chevron-left"></i></button>
+      <div class="media-slider" id="youtube-feed">
+        <div id="loading-message" style="color: #aaa; padding: 20px;">Connecting to transmission source...</div>
+      </div>
+      <button class="nav-arrow" onclick="scrollSlider(1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- SECTION 3: PORTFOLIO IMAGE MATRIX -->
+    <div class="section-title" style="padding: 0;">
+      <span>Asset Archive // Image Matrix</span>
+    </div>
+    
+    <div class="terminal-text">// visual_array: PORTFOLIO_HD_STREAMS</div>
+    <div class="terminal-block">
+      <h3>Portfolio Gallery</h3>
+      <p style="color: #666; font-size: 0.9rem; margin-bottom: 20px;">Select visualization sub-node to unpack high-resolution vector format:</p>
+      
+      <div class="portfolio-grid">
+        <div class="thumb-node" onclick="openLightbox('assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg')">
+          <img alt="Love Bites" src="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg" loading="lazy">
+        </div>
+        <div class="thumb-node" onclick="openLightbox('assets/Horor%20its%20self.jpg')">
+          <img alt="Horror Itself" src="assets/Horor%20its%20self.jpg" loading="lazy">
+        </div>
+        <div class="thumb-node" onclick="openLightbox('assets/Darkness%20lighen.jpg')">
+          <img alt="Darkness Lighen" src="assets/Darkness%20lighen.jpg" loading="lazy">
+        </div>
+        <div class="thumb-node" onclick="openLightbox('assets/Sea.jpg')">
+          <img alt="Sea" src="assets/Sea.jpg" loading="lazy">
+        </div>
+        <div class="thumb-node" onclick="openLightbox('assets/Packages.jpg')">
+          <img alt="Packages" src="assets/Packages.jpg" loading="lazy">
+        </div>
+        <div class="thumb-node" onclick="openLightbox('assets/girl%20with%20big%20head.jpg')">
+          <img alt="Girl With Big Head" src="assets/girl%20with%20big%20head.jpg" loading="lazy">
+        </div>
+        <div class="thumb-node" onclick="openLightbox('assets/Betty%20Boo%20Vs.png')">
+          <img alt="Betty Boo Vs" src="assets/Betty%20Boo%20Vs.png" loading="lazy">
+        </div>
+        <div class="thumb-node" onclick="openLightbox('assets/Secrets-of-In-the-mouth-of-Madness.png')">
+          <img alt="In the Mouth of Madness" src="assets/Secrets-of-In-the-mouth-of-Madness.png" loading="lazy">
+        </div>
+        <div class="thumb-node" onclick="openLightbox('assets/back-to-the-future-z.jpg')">
+          <img alt="Back to the Future Z" src="assets/back-to-the-future-z.jpg" loading="lazy">
+        </div>
+        <div class="thumb-node" onclick="openLightbox('assets/Kang.jpg')">
+          <img alt="Kang" src="assets/Kang.jpg" loading="lazy">
+        </div>
+        <div class="thumb-node" onclick="openLightbox('assets/tarus.jpg')">
+          <img alt="Tarus" src="assets/tarus.jpg" loading="lazy">
+        </div>
+      </div>
+    </div>
+
   </main>
 
-  <!-- LIGHTBOX CONTAINER MODAL -->
+  <!-- LIGHTBOX WINDOW OVERLAY -->
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
     <div class="lightbox-content" onclick="event.stopPropagation()">
       <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-      <img id="lightbox-img" src="" alt="Expanded Node Vector">
+      <img id="lightbox-img" src="" alt="Expanded Vector Matrix">
     </div>
   </div>
 
   <script>
-    // Lightbox Interaction Control Nodes
+    // 1. Slider Scroll Logic
+    const slider = document.getElementById('youtube-feed');
+    function scrollSlider(direction) {
+      const scrollAmount = 340; 
+      slider.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+    }
+
+    // 2. Fetch Automated YouTube Video Streams
+    const myChannelId = 'UCon9odxjxyp_bMh2wkuRbhg'; 
+    async function fetchYouTubeVideos() {
+      try {
+        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${myChannelId}`);
+        const data = await response.json();
+        
+        const loadingText = document.getElementById('loading-message');
+        if (loadingText) loadingText.remove();
+        
+        if (data.status === 'ok') {
+          const borderClasses = ['card-purple', 'card-cyan', 'card-green'];
+          const badgeColors = ['var(--anime)', 'var(--tech)', 'var(--horror)'];
+          const textColors = ['white', 'black', 'black'];
+
+          slider.innerHTML = data.items.map((v, i) => {
+            const dateObj = new Date(v.pubDate.replace(/-/g, '/'));
+            const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            
+            const bClass = borderClasses[i % 3];
+            const bgBadge = badgeColors[i % 3];
+            const txtBadge = textColors[i % 3];
+
+            return `
+              <div class="media-card ${bClass}">
+                <span class="badge" style="background: ${bgBadge}; color: ${txtBadge};">VIDEO</span>
+                <a href="${v.link}" target="_blank" style="text-decoration:none; color:white;">
+                  <img src="${v.thumbnail}" alt="Thumbnail">
+                  <h4 style="margin: 0 0 10px 0; font-size: 1rem; line-height: 1.3;">${v.title}</h4>
+                  <p style="font-size: 0.8rem; color: #888; margin: 0;">${formattedDate}</p>
+                </a>
+              </div>
+            `;
+          }).join("");
+        } else {
+          slider.innerHTML = "<div style='color:#aaa; padding:20px;'>No active stream feeds located.</div>";
+        }
+      } catch (err) {
+        const loadingText = document.getElementById('loading-message');
+        if (loadingText) loadingText.remove();
+        slider.innerHTML = "<div style='color:#aaa; padding:20px;'>Transmission synchronization dropped.</div>";
+      }
+    }
+    fetchYouTubeVideos();
+
+    // 3. Lightbox Modals
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
 
@@ -404,106 +474,13 @@
       lightboxImg.src = src;
       lightbox.style.display = 'flex';
     }
-
     function closeLightbox() {
       lightbox.style.display = 'none';
       lightboxImg.src = '';
     }
-
-    // Escape Key Bind to close open modules
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeLightbox();
     });
   </script>
-</body>
-</html>            <!-- Button to load the heavy embed only on demand -->
-            <button class="cta alt" id="rb-load" type="button" aria-controls="rb-portfolio">Load Store Preview</button>
-          </div>
-
-          <!-- Defer embed until user clicks; optional autoload via IntersectionObserver -->
-          <div id="rb-portfolio"
-               class="redbubble-embed panel"
-               data-rb-store="gr3at1"
-               data-rb-autoload="0"
-               style="margin-top:12px">
-            <p class="subtle">Preview is off by default for speed. Click “Load Store Preview” or open the store in a new tab.</p>
-          </div>
-        </section>
-
-        <!-- Left: Portfolio -->
-        <div class="left">
-          <section class="panel">
-            <h2 class="section-title">Portfolio Gallery</h2>
-            <p class="subtle">Click any thumbnail to view full-size.</p>
-            <div class="portfolio">
-              <div class="thumb" tabindex="0" data-full="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg">
-                <img alt="Love Bites" loading="lazy" decoding="async" src="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg" />
-              </div>
-              <div class="thumb" tabindex="0" data-full="assets/Horor%20its%20self.jpg">
-                <img alt="Horror Itself" loading="lazy" decoding="async" src="assets/Horor%20its%20self.jpg" />
-              </div>
-              <div class="thumb" tabindex="0" data-full="assets/Darkness%20lighen.jpg">
-                <img alt="Darkness Lighen" loading="lazy" decoding="async" src="assets/Darkness%20lighen.jpg" />
-              </div>
-              <div class="thumb" tabindex="0" data-full="assets/Sea.jpg">
-                <img alt="Sea" loading="lazy" decoding="async" src="assets/Sea.jpg" />
-              </div>
-              <div class="thumb" tabindex="0" data-full="assets/Packages.jpg">
-                <img alt="Packages" loading="lazy" decoding="async" src="assets/Packages.jpg" />
-              </div>
-              <div class="thumb" tabindex="0" data-full="assets/girl%20with%20big%20head.jpg">
-                <img alt="Girl With Big Head" loading="lazy" decoding="async" src="assets/girl%20with%20big%20head.jpg" />
-              </div>
-              <div class="thumb" tabindex="0" data-full="assets/Betty%20Boo%20Vs.png">
-                <img alt="Betty Boo Vs" loading="lazy" decoding="async" src="assets/Betty%20Boo%20Vs.png" />
-              </div>
-              <div class="thumb" tabindex="0" data-full="assets/Secrets-of-In-the-mouth-of-Madness.png">
-                <img alt="Secrets of In the Mouth of Madness" loading="lazy" decoding="async" src="assets/Secrets-of-In-the-mouth-of-Madness.png" />
-              </div>
-              <div class="thumb" tabindex="0" data-full="assets/back-to-the-future-z.jpg">
-                <img alt="Back to the Future Z" loading="lazy" decoding="async" src="assets/back-to-the-future-z.jpg" />
-              </div>
-              <div class="thumb" tabindex="0" data-full="assets/Kang.jpg">
-                <img alt="Kang" loading="lazy" decoding="async" src="assets/Kang.jpg" />
-              </div>
-              <div class="thumb" tabindex="0" data-full="assets/tarus.jpg">
-                <img alt="Tarus" loading="lazy" decoding="async" src="assets/tarus.jpg" />
-              </div>
-            </div>
-          </section>
-        </div>
-
-        <!-- Right: Quick Links -->
-        <aside class="right" aria-label="Sidebar">
-          <div class="panel quick-panel">
-            <strong>Quick Links</strong>
-            <div class="ql-title">Latest Videos</div>
-            <ul class="quick-links">
-              <li><a href="https://www.youtube.com/watch?v=HfnMODt7knU" target="_blank" rel="noopener">Chaos Edit (Short)</a></li>
-              <li><a href="https://www.youtube.com/watch?v=TyD6b3aa5lY" target="_blank" rel="noopener">Quick Clip</a></li>
-              <li><a href="https://www.youtube.com/watch?v=q6r_VpG_NT8" target="_blank" rel="noopener">Behind the Scenes</a></li>
-            </ul>
-            <div class="ql-title">News & Updates</div>
-            <ul class="quick-links">
-              <li><a href="design-shop.html">New Design Collection (June 2024)</a></li>
-              <li><a href="https://youtube.com" target="_blank" rel="noopener">10,000 Subscribers (May 2024)</a></li>
-            </ul>
-          </div>
-        </aside>
-      </div>
-    </main>
-
-    <footer>&copy; 2025 XenoFinalDawn (XFD). All rights reserved.</footer>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="modal-content" role="document">
-      <button class="modal-close" id="modalClose" aria-label="Close (Esc)">✕</button>
-      <div id="modalInner"></div>
-    </div>
-  </div>
-
-  <script src="app.js" defer></script>
 </body>
 </html>
