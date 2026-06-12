@@ -12,8 +12,9 @@
       --anime: #8A2BE2; 
       --wrestling: #DC143C; 
       --tech: #00FFFF; 
+      --blue: #00BFFF;
       --fb: #1877F2;
-      --grey-pill: rgba(255, 255, 255, 0.1);
+      --grey-pill: rgba(255, 255, 255, 0.05);
     }
     
     body { 
@@ -25,31 +26,34 @@
       overflow-x: hidden;
     }
 
-    /* Phase 1: Control Center Header */
+    /* =========================================
+       PHASE 1: CONTROL CENTER HEADER
+       ========================================= */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 40px;
       border-bottom: 1px solid rgba(255,255,255,0.05);
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.7);
       backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    .site-logo { max-width: 100px; filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.5)); }
+    .site-logo { max-width: 100px; filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.5)); transition: 0.3s; }
+    .site-logo:hover { filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.9)); transform: scale(1.05); }
 
-    /* Pill Navigation */
-    .pill-nav {
-      display: flex;
-      gap: 15px;
-    }
+    /* Color-Coded Pill Navigation */
+    .pill-nav { display: flex; gap: 15px; }
     .pill-nav a {
       color: white;
       text-decoration: none;
       padding: 10px 20px;
       border-radius: 30px;
       background: var(--grey-pill);
-      border: 1px solid rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.1);
       font-size: 0.85rem;
       letter-spacing: 1px;
       transition: all 0.3s ease;
@@ -57,20 +61,22 @@
       align-items: center;
       gap: 8px;
     }
-    .pill-nav a:hover { background: rgba(255,255,255,0.2); box-shadow: 0 0 15px rgba(255,255,255,0.2); }
+    /* Specific Pill Accents */
+    .pill-nav a.nav-news i { color: var(--anime); }
+    .pill-nav a.nav-news:hover { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); background: rgba(138,43,226,0.1); }
+    
+    .pill-nav a.nav-origin i { color: var(--blue); }
+    .pill-nav a.nav-origin:hover { border-color: var(--blue); box-shadow: 0 0 15px rgba(0,191,255,0.3); background: rgba(0,191,255,0.1); }
+    
+    .pill-nav a.nav-designs i { color: var(--wrestling); }
+    .pill-nav a.nav-designs:hover { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.3); background: rgba(220,20,60,0.1); }
+    
+    .pill-nav a.nav-contact i { color: var(--horror); }
+    .pill-nav a.nav-contact:hover { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); background: rgba(57,255,20,0.1); }
 
-    /* Header Utilities (Search & Socials) */
-    .header-utils {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .social-pills a {
-      color: #aaa;
-      font-size: 1.2rem;
-      margin-left: 10px;
-      transition: 0.3s;
-    }
+    /* Header Utilities */
+    .header-utils { display: flex; align-items: center; gap: 20px; }
+    .social-pills a { color: #aaa; font-size: 1.2rem; margin-left: 10px; transition: 0.3s; }
     .social-pills .yt:hover { color: #FF0000; text-shadow: 0 0 10px #FF0000; }
     .social-pills .fb:hover { color: var(--fb); text-shadow: 0 0 10px var(--fb); }
     .social-pills .tt:hover { color: var(--tech); text-shadow: 0 0 10px var(--tech); }
@@ -80,56 +86,196 @@
       display: flex;
       align-items: center;
       background: var(--grey-pill);
-      border: 1px solid rgba(255,255,255,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 30px;
       padding: 8px 15px;
+      transition: 0.3s;
     }
-    .search-bar input {
-      background: transparent;
-      border: none;
-      color: white;
-      outline: none;
-      padding-right: 10px;
-    }
-    .search-bar input::placeholder { color: #aaa; }
+    .search-bar:focus-within { border-color: var(--tech); box-shadow: 0 0 10px rgba(0,255,255,0.2); }
+    .search-bar input { background: transparent; border: none; color: white; outline: none; padding-right: 10px; font-family: monospace;}
+    .search-bar input::placeholder { color: #666; }
 
-    /* Phase 2: CSS Hero Portal Glow */
+    /* =========================================
+       PHASE 2: HERO PORTAL
+       ========================================= */
     .hero-portal {
       text-align: center;
       padding: 120px 20px;
       position: relative;
-      /* CSS generated portal glow */
-      background: radial-gradient(circle at 50% 50%, rgba(138,43,226,0.35) 0%, rgba(0,255,255,0.1) 30%, rgba(0,0,0,0) 60%);
+      background: radial-gradient(circle at 50% 50%, rgba(138,43,226,0.25) 0%, rgba(0,255,255,0.05) 30%, rgba(0,0,0,0) 60%);
     }
     .hero-portal h1 {
-      font-size: 4rem;
+      font-size: 4.5rem;
       margin: 0;
-      letter-spacing: 5px;
-      text-shadow: 0 0 20px rgba(138,43,226,0.8);
+      letter-spacing: 6px;
+      text-shadow: 0 0 20px rgba(138,43,226,0.8), 0 0 40px rgba(0,255,255,0.4);
     }
     .hero-portal .tagline {
       font-size: 1.2rem;
-      letter-spacing: 3px;
-      color: #ccc;
+      letter-spacing: 4px;
+      color: #aaa;
       margin-top: 10px;
       text-transform: uppercase;
     }
 
+    /* =========================================
+       PHASE 3: TRANSMISSION HUB SLIDER
+       ========================================= */
+    .section-title {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      margin: 20px 0;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+    }
+    .section-title span::before { content: '> '; color: var(--tech); }
+    .view-all { font-size: 0.8rem; color: #aaa; text-decoration: none; transition: 0.3s; letter-spacing: 1px; }
+    .view-all:hover { color: white; text-shadow: 0 0 10px white; }
+
+    .slider-wrapper {
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 15px;
+      margin-bottom: 60px;
+    }
+    .nav-arrow {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      flex-shrink: 0;
+    }
+    .nav-arrow:hover { background: rgba(138,43,226,0.3); border-color: var(--anime); box-shadow: 0 0 15px var(--anime); }
+
+    .media-slider {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 10px;
+      scrollbar-width: none; /* Firefox */
+      scroll-behavior: smooth;
+    }
+    .media-slider::-webkit-scrollbar { display: none; /* Chrome/Safari */ }
+    
+    .media-card {
+      flex: 0 0 320px;
+      background: rgba(20,20,25,0.8);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 15px;
+      transition: 0.3s;
+      position: relative;
+    }
+    .media-card:hover { transform: translateY(-5px); }
+    .media-card img { width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); }
+    .media-card .badge {
+      position: absolute;
+      top: 25px; left: 25px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    /* Dynamic Card Colors */
+    .card-purple:hover { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); }
+    .card-cyan:hover { border-color: var(--tech); box-shadow: 0 0 15px rgba(0,255,255,0.3); }
+    .card-green:hover { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); }
+
+    /* =========================================
+       PHASE 4: CATEGORY GRID
+       ========================================= */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 0 40px 80px 40px;
+    }
+    .terminal-text {
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: #666;
+      margin-bottom: 8px;
+    }
+    .cat-card {
+      background: rgba(20,20,25,0.8);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: 0.3s;
+    }
+    .cat-card i { font-size: 2.5rem; }
+    .cat-card h3 { margin: 0 0 5px 0; font-size: 1.1rem; letter-spacing: 1px; }
+    .cat-card p { margin: 0; font-size: 0.8rem; color: #aaa; }
+    .btn-view {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 15px;
+      border: 1px solid #555;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+      letter-spacing: 1px;
+    }
+
+    /* Category Specific Glows */
+    .cat-horror { border-color: rgba(138,43,226,0.3); }
+    .cat-horror i { color: var(--anime); text-shadow: 0 0 10px var(--anime); }
+    .cat-horror:hover { box-shadow: inset 0 0 20px rgba(138,43,226,0.2), 0 0 15px rgba(138,43,226,0.4); border-color: var(--anime); }
+    .cat-horror .btn-view:hover { background: var(--anime); border-color: var(--anime); color: white; box-shadow: 0 0 10px var(--anime); }
+
+    .cat-anime { border-color: rgba(0,191,255,0.3); }
+    .cat-anime i { color: var(--blue); text-shadow: 0 0 10px var(--blue); }
+    .cat-anime:hover { box-shadow: inset 0 0 20px rgba(0,191,255,0.2), 0 0 15px rgba(0,191,255,0.4); border-color: var(--blue); }
+    .cat-anime .btn-view:hover { background: var(--blue); border-color: var(--blue); color: black; box-shadow: 0 0 10px var(--blue); }
+
+    .cat-wrestling { border-color: rgba(220,20,60,0.3); }
+    .cat-wrestling i { color: var(--wrestling); text-shadow: 0 0 10px var(--wrestling); }
+    .cat-wrestling:hover { box-shadow: inset 0 0 20px rgba(220,20,60,0.2), 0 0 15px rgba(220,20,60,0.4); border-color: var(--wrestling); }
+    .cat-wrestling .btn-view:hover { background: var(--wrestling); border-color: var(--wrestling); color: white; box-shadow: 0 0 10px var(--wrestling); }
+
+    .cat-tech { border-color: rgba(57,255,20,0.3); }
+    .cat-tech i { color: var(--horror); text-shadow: 0 0 10px var(--horror); }
+    .cat-tech:hover { box-shadow: inset 0 0 20px rgba(57,255,20,0.2), 0 0 15px rgba(57,255,20,0.4); border-color: var(--horror); }
+    .cat-tech .btn-view:hover { background: var(--horror); border-color: var(--horror); color: black; box-shadow: 0 0 10px var(--horror); }
+
+    /* Responsive Grid for smaller screens */
+    @media (max-width: 1100px) {
+      .category-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .category-grid { grid-template-columns: 1fr; }
+      header { flex-direction: column; gap: 20px; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- PHASE 1: Control Center Header -->
+  <!-- HEADER -->
   <header>
     <div class="logo">
       <a href="index.html"><img src="assets/NEW%20LOGO.png" alt="XFD Logo" class="site-logo"></a>
     </div>
     
     <nav class="pill-nav">
-      <a href="index.html"><i class="fas fa-newspaper"></i> NEWS</a>
-      <a href="about.html"><i class="fas fa-microchip"></i> ORIGIN</a>
-      <a href="designs.html"><i class="fas fa-pen-nib"></i> DESIGNS</a>
-      <a href="contact.html"><i class="fas fa-envelope"></i> CONTACT</a>
+      <a href="index.html" class="nav-news"><i class="fas fa-newspaper"></i> NEWS</a>
+      <a href="about.html" class="nav-origin"><i class="fas fa-microchip"></i> ORIGIN</a>
+      <a href="designs.html" class="nav-designs"><i class="fas fa-pen-nib"></i> DESIGNS</a>
+      <a href="contact.html" class="nav-contact"><i class="fas fa-envelope"></i> CONTACT</a>
     </nav>
 
     <div class="header-utils">
@@ -141,20 +287,143 @@
       </div>
       <div class="search-bar">
         <input type="text" placeholder="Search the portal...">
-        <i class="fas fa-search"></i>
+        <i class="fas fa-search" style="color: #666;"></i>
       </div>
     </div>
   </header>
 
-  <!-- PHASE 2: Hero Portal -->
+  <!-- HERO -->
   <main>
     <section class="hero-portal">
       <h1>XENOFINALDAWN</h1>
       <p class="tagline">One portal. Infinite possibilities.</p>
     </section>
+
+    <!-- TRANSMISSION HUB SLIDER -->
+    <div class="section-title">
+      <span>The Transmission Hub</span>
+      <a href="#" class="view-all">VIEW ALL <i class="fas fa-arrow-right"></i></a>
+    </div>
     
-    <!-- Phases 3 & 4 (Sliders and Grids) will go here next -->
+    <div class="slider-wrapper">
+      <button class="nav-arrow" onclick="scrollSlider(-1)"><i class="fas fa-chevron-left"></i></button>
+      
+      <div class="media-slider" id="youtube-feed">
+        <div style="color: #aaa; padding: 20px;">Establishing connection to transmission feed...</div>
+      </div>
+      
+      <button class="nav-arrow" onclick="scrollSlider(1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- CATEGORY GRID -->
+    <div class="section-title">
+      <span>News & Updates</span>
+    </div>
+    
+    <div class="category-grid">
+      <div>
+        <div class="terminal-text">// subject: EVIL_DEAD_LORE</div>
+        <div class="cat-card cat-horror">
+          <i class="fas fa-skull"></i>
+          <div>
+            <h3>HORROR</h3>
+            <p>Enter the unknown.</p>
+            <a href="#" class="btn-view">VIEW NEWS <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <div class="terminal-text">// edit_workflow: FINAL_CUT_PRO</div>
+        <div class="cat-card cat-anime">
+          <i class="fas fa-khanda"></i>
+          <div>
+            <h3>ANIME</h3>
+            <p>Epic battles await.</p>
+            <a href="#" class="btn-view">VIEW NEWS <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <div class="terminal-text">// update: WWE_AEW_NEWS</div>
+        <div class="cat-card cat-wrestling">
+          <i class="fas fa-ring"></i>
+          <div>
+            <h3>WRESTLING</h3>
+            <p>Champions collide.</p>
+            <a href="#" class="btn-view">VIEW NEWS <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <div class="terminal-text">// system: HOME_LAB_STATUS</div>
+        <div class="cat-card cat-tech">
+          <i class="fas fa-gamepad"></i>
+          <div>
+            <h3>TECH/GAMING</h3>
+            <p>Level up your world.</p>
+            <a href="#" class="btn-view">VIEW NEWS <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
+  <!-- SCRIPTS -->
+  <script>
+    // 1. Slider Navigation Logic
+    const slider = document.getElementById('youtube-feed');
+    function scrollSlider(direction) {
+      const scrollAmount = 340; // Card width + gap
+      slider.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+    }
+
+    // 2. Fetch YouTube Data
+    const myChannelId = 'UCon9odxjxyp_bMh2wkuRbhg'; 
+    async function fetchYouTubeVideos() {
+      try {
+        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${myChannelId}`);
+        const data = await response.json();
+        
+        if (data.status === 'ok') {
+          // Arrays to cycle through card styles
+          const borderClasses = ['card-purple', 'card-cyan', 'card-green'];
+          const badgeColors = ['var(--anime)', 'var(--tech)', 'var(--horror)'];
+          const textColors = ['white', 'black', 'black'];
+
+          slider.innerHTML = data.items.map((v, i) => {
+            // Format the date (e.g., "May 12, 2024")
+            const dateObj = new Date(v.pubDate.replace(/-/g, '/'));
+            const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            
+            // Cycle styles
+            const bClass = borderClasses[i % 3];
+            const bgBadge = badgeColors[i % 3];
+            const txtBadge = textColors[i % 3];
+
+            return `
+              <div class="media-card ${bClass}">
+                <span class="badge" style="background: ${bgBadge}; color: ${txtBadge};">NEWS</span>
+                <a href="${v.link}" target="_blank" style="text-decoration:none; color:white;">
+                  <img src="${v.thumbnail}" alt="Thumbnail">
+                  <h4 style="margin: 0 0 10px 0; font-size: 1rem; line-height: 1.3;">${v.title}</h4>
+                  <p style="font-size: 0.8rem; color: #888; margin: 0;">${formattedDate}</p>
+                </a>
+              </div>
+            `;
+          }).join("");
+        } else {
+          slider.innerHTML = "<div style='color:#aaa; padding:20px;'>No transmissions found. Check API limit.</div>";
+        }
+      } catch (err) {
+        slider.innerHTML = "<div style='color:#aaa; padding:20px;'>Connection error. Unable to load feed.</div>";
+      }
+    }
+    
+    // Execute Fetch
+    fetchYouTubeVideos();
+  </script>
 </body>
 </html>
