@@ -3,103 +3,158 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>XENOFINALDAWN</title>
+  <title>XENOFINALDAWN - CYBER TERMINAL</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
-    :root { --dark: #0F0F13; --horror: #39FF14; --anime: #8A2BE2; --wrestling: #DC143C; --tech: #00FFFF; }
-    body { background-color: var(--dark); color: white; font-family: sans-serif; margin: 0; padding: 0; }
-
-    /* The "Portal" Background Effect (CSS Generated, No Image) */
-    .hero-portal { 
-        height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center;
-        background: radial-gradient(circle, rgba(138,43,226,0.2) 0%, rgba(15,15,19,1) 70%);
-        border-bottom: 1px solid #333;
+    :root { 
+      --bg: #05050A; 
+      --horror: #39FF14; 
+      --anime: #8A2BE2; 
+      --wrestling: #DC143C; 
+      --tech: #00FFFF; 
+      --fb: #1877F2;
+      --grey-pill: rgba(255, 255, 255, 0.1);
+    }
+    
+    body { 
+      background-color: var(--bg); 
+      color: white; 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      margin: 0; 
+      padding: 0; 
+      overflow-x: hidden;
     }
 
-    /* Horizontal Nav Pill */
-    .nav-pill { display: flex; justify-content: center; gap: 15px; padding: 20px; }
-    .nav-btn { 
-        background: #1a1a20; padding: 10px 20px; border-radius: 50px; border: 1px solid #444; 
-        text-decoration: none; color: white; transition: 0.3s; 
+    /* Phase 1: Control Center Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px);
     }
-    .nav-btn:hover { border-color: var(--tech); box-shadow: 0 0 10px var(--tech); }
 
-    /* Category Grid (4 Column) */
-    .cat-grid { 
-        display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-        gap: 20px; padding: 20px; max-width: 1000px; margin: auto;
-    }
-    .cat-card { 
-        background: rgba(20,20,25,0.8); padding: 20px; border: 1px solid #333; 
-        border-radius: 12px; transition: 0.3s;
-    }
-    .cat-card:hover { border-color: var(--tech); }
-    .cat-card i { font-size: 2rem; margin-bottom: 15px; }
+    .site-logo { max-width: 100px; filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.5)); }
 
-    /* Transmission Hub */
-    .hub-section { padding: 40px 20px; max-width: 1000px; margin: auto; }
-    .hub-slider { display: flex; gap: 20px; overflow-x: auto; }
-    .card { flex: 0 0 280px; background: #1a1a20; padding: 15px; border-radius: 12px; }
+    /* Pill Navigation */
+    .pill-nav {
+      display: flex;
+      gap: 15px;
+    }
+    .pill-nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      background: var(--grey-pill);
+      border: 1px solid rgba(255,255,255,0.2);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pill-nav a:hover { background: rgba(255,255,255,0.2); box-shadow: 0 0 15px rgba(255,255,255,0.2); }
+
+    /* Header Utilities (Search & Socials) */
+    .header-utils {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .social-pills a {
+      color: #aaa;
+      font-size: 1.2rem;
+      margin-left: 10px;
+      transition: 0.3s;
+    }
+    .social-pills .yt:hover { color: #FF0000; text-shadow: 0 0 10px #FF0000; }
+    .social-pills .fb:hover { color: var(--fb); text-shadow: 0 0 10px var(--fb); }
+    .social-pills .tt:hover { color: var(--tech); text-shadow: 0 0 10px var(--tech); }
+    .social-pills .ig:hover { color: #FF00AF; text-shadow: 0 0 10px #FF00AF; }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: var(--grey-pill);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 30px;
+      padding: 8px 15px;
+    }
+    .search-bar input {
+      background: transparent;
+      border: none;
+      color: white;
+      outline: none;
+      padding-right: 10px;
+    }
+    .search-bar input::placeholder { color: #aaa; }
+
+    /* Phase 2: CSS Hero Portal Glow */
+    .hero-portal {
+      text-align: center;
+      padding: 120px 20px;
+      position: relative;
+      /* CSS generated portal glow */
+      background: radial-gradient(circle at 50% 50%, rgba(138,43,226,0.35) 0%, rgba(0,255,255,0.1) 30%, rgba(0,0,0,0) 60%);
+    }
+    .hero-portal h1 {
+      font-size: 4rem;
+      margin: 0;
+      letter-spacing: 5px;
+      text-shadow: 0 0 20px rgba(138,43,226,0.8);
+    }
+    .hero-portal .tagline {
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      color: #ccc;
+      margin-top: 10px;
+      text-transform: uppercase;
+    }
+
   </style>
 </head>
 <body>
 
-  <!-- Header/Nav -->
+  <!-- PHASE 1: Control Center Header -->
   <header>
-      <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px;">
-          <img src="assets/NEW%20LOGO.png" style="width: 50px;">
-          <nav class="nav-pill">
-              <a href="#" class="nav-btn"><i class="fa fa-newspaper"></i> NEWS</a>
-              <a href="#" class="nav-btn"><i class="fa fa-bolt"></i> ORIGIN</a>
-              <a href="#" class="nav-btn"><i class="fa fa-pen"></i> DESIGNS</a>
-              <a href="#" class="nav-btn"><i class="fa fa-envelope"></i> CONTACT</a>
-          </nav>
-          <div><i class="fa fa-search"></i> &nbsp; <i class="fa fa-user"></i></div>
+    <div class="logo">
+      <a href="index.html"><img src="assets/NEW%20LOGO.png" alt="XFD Logo" class="site-logo"></a>
+    </div>
+    
+    <nav class="pill-nav">
+      <a href="index.html"><i class="fas fa-newspaper"></i> NEWS</a>
+      <a href="about.html"><i class="fas fa-microchip"></i> ORIGIN</a>
+      <a href="designs.html"><i class="fas fa-pen-nib"></i> DESIGNS</a>
+      <a href="contact.html"><i class="fas fa-envelope"></i> CONTACT</a>
+    </nav>
+
+    <div class="header-utils">
+      <div class="social-pills">
+        <a href="#" class="yt"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="fb"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="tt"><i class="fab fa-tiktok"></i></a>
+        <a href="#" class="ig"><i class="fab fa-instagram"></i></a>
       </div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search the portal...">
+        <i class="fas fa-search"></i>
+      </div>
+    </div>
   </header>
 
-  <!-- Hero Portal -->
-  <section class="hero-portal">
-      <h1 style="font-size: 4rem; letter-spacing: 5px; margin: 0;">XENOFINALDAWN</h1>
-      <p style="font-style: italic; color: #888;">ONE PORTAL. INFINITE POSSIBILITIES.</p>
-  </section>
+  <!-- PHASE 2: Hero Portal -->
+  <main>
+    <section class="hero-portal">
+      <h1>XENOFINALDAWN</h1>
+      <p class="tagline">One portal. Infinite possibilities.</p>
+    </section>
+    
+    <!-- Phases 3 & 4 (Sliders and Grids) will go here next -->
+  </main>
 
-  <!-- Hub -->
-  <section class="hub-section">
-      <h2>> THE TRANSMISSION HUB</h2>
-      <div class="hub-slider" id="youtube-feed">Loading...</div>
-  </section>
-
-  <!-- Category Grid -->
-  <section class="cat-grid">
-      <div class="cat-card" style="border-left: 4px solid var(--horror);">
-          <i class="fa fa-skull" style="color:var(--horror)"></i>
-          <h3>HORROR</h3>
-          <p>Enter the unknown.</p>
-          <a href="#" style="color:var(--horror)">VIEW NEWS -></a>
-      </div>
-      <div class="cat-card" style="border-left: 4px solid var(--anime);">
-          <i class="fa fa-sword" style="color:var(--anime)"></i>
-          <h3>ANIME</h3>
-          <p>Epic battles await.</p>
-          <a href="#" style="color:var(--anime)">VIEW NEWS -></a>
-      </div>
-      <div class="cat-card" style="border-left: 4px solid var(--wrestling);">
-          <i class="fa fa-hand-fist" style="color:var(--wrestling)"></i>
-          <h3>WRESTLING</h3>
-          <p>Champions collide.</p>
-          <a href="#" style="color:var(--wrestling)">VIEW NEWS -></a>
-      </div>
-      <div class="cat-card" style="border-left: 4px solid var(--tech);">
-          <i class="fa fa-gamepad" style="color:var(--tech)"></i>
-          <h3>TECH/GAMING</h3>
-          <p>Level up your world.</p>
-          <a href="#" style="color:var(--tech)">VIEW NEWS -></a>
-      </div>
-  </section>
-
-  <script>
-      // Keep your existing fetchYouTubeVideos function here to populate the Hub
-  </script>
 </body>
 </html>
