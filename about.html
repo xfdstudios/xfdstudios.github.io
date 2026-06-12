@@ -6,26 +6,191 @@
   <title>ORIGIN // XENOFINALDAWN</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
-    /* Global Terminal Variables & Reset - Same as Index */
-    :root { --bg: #05050A; --horror: #39FF14; --anime: #8A2BE2; --wrestling: #DC143C; --tech: #00FFFF; --blue: #00BFFF; --grey-pill: rgba(255, 255, 255, 0.05); }
-    body { background-color: var(--bg); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+    /* Absolute Layout Mirroring from Index */
     * { box-sizing: border-box; }
 
-    /* Header & Board - Copied from Master */
-    header { padding: 20px; position: sticky; top: 0; z-index: 100; background: linear-gradient(to bottom, rgba(5,5,10,1) 40%, rgba(5,5,10,0) 100%); }
-    .header-encased { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1400px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.15); border-bottom: 2px solid var(--blue); border-radius: 20px; padding: 10px 30px; background: rgba(15, 15, 20, 0.85); backdrop-filter: blur(15px); box-shadow: 0 10px 30px rgba(0,0,0,0.9); }
-    .site-logo { max-width: 100px; }
+    :root { 
+      --bg: #05050A; 
+      --horror: #39FF14; 
+      --anime: #8A2BE2; 
+      --wrestling: #DC143C; 
+      --tech: #00FFFF; 
+      --blue: #00BFFF;
+      --fb: #1877F2;
+      --grey-pill: rgba(255, 255, 255, 0.05);
+    }
+    
+    body { 
+      background-color: var(--bg); 
+      color: white; 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      margin: 0; 
+      padding: 0; 
+      overflow-x: hidden;
+    }
 
-    /* Origin Specific Styling */
-    .origin-container { max-width: 900px; margin: 60px auto; padding: 40px; background: rgba(20, 20, 25, 0.8); border: 1px solid #333; border-radius: 20px; border-left: 4px solid var(--blue); }
-    h2 { font-size: 1.8rem; letter-spacing: 2px; color: var(--blue); margin-top: 0; }
-    h2::before { content: '// ORIGIN_INITIALIZATION: '; font-family: monospace; font-size: 1rem; color: #666; margin-right: 10px; }
-    .content-text { line-height: 1.6; color: #ccc; font-size: 1.1rem; }
+    /* =========================================
+       PHASE 1: ENCASED CONTROL CENTER HEADER (LOCKED)
+       ========================================= */
+    header {
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(to bottom, rgba(5,5,10,1) 40%, rgba(5,5,10,0) 100%);
+    }
+
+    .header-encased {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-bottom: 2px solid var(--blue); /* Highlight blue for Origin tab */
+      border-radius: 20px;
+      padding: 10px 30px;
+      background: rgba(15, 15, 20, 0.85);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(0,255,255,0.05);
+    }
+
+    .site-logo { max-width: 100px; filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.5)); transition: 0.3s; }
+    .site-logo:hover { filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.9)); transform: scale(1.05); }
+
+    /* Color-Coded Pill Navigation */
+    .pill-nav { display: flex; gap: 15px; }
+    .pill-nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      background: var(--grey-pill);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .pill-nav a.nav-news i { color: var(--anime); }
+    .pill-nav a.nav-news:hover { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); background: rgba(138,43,226,0.1); }
+    
+    /* Origin Active State Styling */
+    .pill-nav a.nav-origin { border-color: var(--blue); background: rgba(0,191,255,0.15); box-shadow: 0 0 15px rgba(0,191,255,0.2); }
+    .pill-nav a.nav-origin i { color: var(--blue); }
+    
+    .pill-nav a.nav-designs i { color: var(--wrestling); }
+    .pill-nav a.nav-designs:hover { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.3); background: rgba(220,20,60,0.1); }
+    
+    .pill-nav a.nav-contact i { color: var(--horror); }
+    .pill-nav a.nav-contact:hover { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); background: rgba(57,255,20,0.1); }
+
+    /* Header Utilities */
+    .header-utils { display: flex; align-items: center; gap: 20px; }
+    .social-pills a { color: #aaa; font-size: 1.2rem; margin-left: 10px; transition: 0.3s; }
+    .social-pills .yt:hover { color: #FF0000; text-shadow: 0 0 10px #FF0000; }
+    .social-pills .fb:hover { color: var(--fb); text-shadow: 0 0 10px var(--fb); }
+    .social-pills .tt:hover { color: var(--tech); text-shadow: 0 0 10px var(--tech); }
+    .social-pills .ig:hover { color: #FF00AF; text-shadow: 0 0 10px #FF00AF; }
+    .social-pills .ln:hover { color: #0077B5; text-shadow: 0 0 10px #0077B5; }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 30px;
+      padding: 8px 15px;
+      transition: 0.3s;
+    }
+    .search-bar:focus-within { border-color: var(--tech); box-shadow: 0 0 10px rgba(0,255,255,0.2); }
+    .search-bar input { background: transparent; border: none; color: white; outline: none; padding-right: 10px; font-family: monospace; width: 150px;}
+    .search-bar input::placeholder { color: #666; }
+
+    /* =========================================
+       ORIGIN SECTION LAYOUT
+       ========================================= */
+    .section-title {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      margin: 40px auto 20px auto;
+      text-transform: uppercase;
+      padding: 0 40px;
+      max-width: 1450px;
+    }
+    .section-title span::before { content: '> '; color: var(--blue); }
+
+    .origin-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+      padding: 0 40px 80px 40px;
+      max-width: 1450px;
+      margin: 0 auto;
+    }
+
+    .terminal-text { font-family: monospace; font-size: 0.75rem; color: #666; margin-bottom: 8px; }
+    
+    /* Standardized Data Terminal Container Block */
+    .terminal-block {
+      background: rgba(20,20,25,0.8);
+      border: 1px solid #333;
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 30px;
+      transition: 0.3s;
+    }
+    .terminal-block:hover { border-color: var(--blue); box-shadow: inset 0 0 20px rgba(0,191,255,0.05), 0 0 15px rgba(0,191,255,0.1); }
+    
+    .terminal-block h3 {
+      margin: 0 0 15px 0;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      color: white;
+    }
+    .terminal-block p {
+      margin: 0 0 20px 0;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #ccc;
+    }
+    .terminal-block p:last-child { margin-bottom: 0; }
+
+    /* Creator Profile Specifics */
+    .profile-card { text-align: center; }
+    .profile-card h3 { font-size: 1.6rem; margin-bottom: 5px; color: white; }
+    .profile-role { color: var(--blue); font-family: monospace; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 20px; }
+    
+    .profile-socials {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .profile-socials a {
+      color: #aaa;
+      font-size: 1.4rem;
+      transition: 0.3s;
+    }
+
+    @media (max-width: 1100px) {
+      .origin-layout { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 850px) {
+      .header-encased { flex-direction: column; gap: 20px; }
+      .pill-nav { flex-wrap: wrap; justify-content: center; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- HEADER (Locked Design) -->
+  <!-- HEADER (Identical to Master Index) -->
   <header>
     <div class="header-encased">
       <div class="logo">
@@ -33,20 +198,74 @@
       </div>
       
       <nav class="pill-nav">
-        <a href="index.html"><i class="fas fa-newspaper"></i> NEWS</a>
-        <a href="about.html" style="border-color: var(--blue); background: rgba(0,191,255,0.1);"><i class="fas fa-microchip"></i> ORIGIN</a>
-        <a href="designs.html"><i class="fas fa-pen-nib"></i> DESIGNS</a>
-        <a href="contact.html"><i class="fas fa-envelope"></i> CONTACT</a>
+        <a href="index.html" class="nav-news"><i class="fas fa-newspaper"></i> NEWS</a>
+        <a href="about.html" class="nav-origin"><i class="fas fa-microchip"></i> ORIGIN</a>
+        <a href="designs.html" class="nav-designs"><i class="fas fa-pen-nib"></i> DESIGNS</a>
+        <a href="contact.html" class="nav-contact"><i class="fas fa-envelope"></i> CONTACT</a>
       </nav>
+
+      <div class="header-utils">
+        <div class="social-pills">
+          <a href="#" class="yt"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="fb"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="tt"><i class="fab fa-tiktok"></i></a>
+          <a href="#" class="ig"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="search-bar">
+          <input type="text" placeholder="Search portal...">
+          <i class="fas fa-search" style="color: #666;"></i>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- ORIGIN CONTENT -->
-  <main class="origin-container">
-    <h2>XFD_FILE_001</h2>
-    <div class="content-text">
-      <p>This is where the Origin story lives. What is the history of XENOFINALDAWN? Is this a record of your creative journey, a manifestation of the brand, or the lore behind the portal?</p>
-      <p>You can add paragraphs, images, or even terminal-style code snippets here to explain the history of your brand.</p>
+  <main>
+    <div class="section-title">
+      <span>System Archive // Brand Origin</span>
+    </div>
+
+    <!-- MAIN ORIGIN LAYOUT -->
+    <div class="origin-layout">
+      
+      <!-- Narrative Stream (Left Side) -->
+      <div class="story-stream">
+        <div>
+          <div class="terminal-text">// initialization: CORE_IDENTITY_MANIFEST</div>
+          <div class="terminal-block" style="margin-bottom: 30px;">
+            <h3>What is XFD?</h3>
+            <p>XFD—short for Xeno Final Dawn—is a dynamic creative platform blending sci-fi, fantasy, anime, horror, games, and tech into one brand and portfolio.</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="terminal-text">// archive_data: CHRONICLES_OF_INFLUENCE</div>
+          <div class="terminal-block">
+            <h3>The Story of XFD…</h3>
+            <p>From the solitude of childhood to a tapestry of influences — American animation, anime, horror, sci-fi, and fantasy — XFD is a celebration of nostalgia meeting visionary creativity.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Identity Node / Profile (Right Side) -->
+      <div>
+        <div class="terminal-text">// node_status: OWNER_CREDENTIALS</div>
+        <div class="terminal-block profile-card">
+          <div style="width: 100px; height: 100px; background: #222; border: 2px solid var(--blue); border-radius: 50%; margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(0,191,255,0.2);">
+            <i class="fas fa-user-shield" style="font-size: 2.5rem; color: var(--blue);"></i>
+          </div>
+          <h3>O. Calhoun</h3>
+          <div class="profile-role">Owner / Creator</div>
+          <p style="font-size: 0.9rem; color: #888; text-align: center;">Direct link transmissions authorized below.</p>
+          
+          <div class="profile-socials">
+            <a href="#" class="ln" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="yt" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="fb" title="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="ig" title="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
 
