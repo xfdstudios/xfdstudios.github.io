@@ -138,28 +138,6 @@
     .terminal-block.gallery-block { border-left-color: var(--tech); }
     .terminal-block.video-block { border-left-color: var(--anime); }
     
-    /* Storefront Grid System (9 Slots Balanced) */
-    .shop-showcase-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      margin-top: 25px;
-    }
-    .product-card {
-      background: rgba(10,10,15,0.6);
-      border: 1px solid #222;
-      border-radius: 10px;
-      padding: 20px;
-      text-align: center;
-      transition: 0.3s;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .product-card:hover { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.2); transform: translateY(-3px); }
-    .product-card img { width: 100%; border-radius: 6px; background: #111; margin-bottom: 15px; display: block; }
-    .product-card h4 { margin: 0 0 12px 0; font-size: 1.1rem; letter-spacing: 0.5px; }
-    
     .cta-btn {
       display: inline-flex;
       align-items: center;
@@ -177,8 +155,16 @@
       justify-content: center;
     }
     .cta-btn:hover { background: #ff1c4b; box-shadow: 0 0 15px var(--wrestling); }
-    .cta-btn.alt { background: var(--grey-pill); border: 1px solid rgba(255,255,255,0.2); width: 100%; }
-    .cta-btn.alt:hover { background: rgba(255,255,255,0.15); box-shadow: 0 0 10px white; }
+
+    /* Custom Redbubble Embed Container */
+    .rb-embed-container {
+      margin-top: 25px;
+      background: rgba(10,10,15,0.6);
+      border: 1px solid #222;
+      border-radius: 10px;
+      padding: 20px;
+      min-height: 200px; /* Gives the script space to load */
+    }
 
     /* =========================================
        DYNAMIC TRANSMISSION SLIDER HUB
@@ -362,7 +348,7 @@
     <div class="terminal-text">// initialization: SECURE_MERCH_PORTAL</div>
     <div class="terminal-block">
       <h3>Design Shop</h3>
-      <p>Browse collection configurations natively below, or initialize the main engine branch directly on RedBubble for expedited operations.</p>
+      <p>Browse collection configurations directly below, or initialize the main engine branch on RedBubble for expedited operations.</p>
       
       <div style="margin-bottom: 25px;">
         <a class="cta-btn" href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" rel="noopener">
@@ -370,53 +356,17 @@
         </a>
       </div>
 
-      <!-- Native Showcases (Expanded to 9 Consistent slots) -->
-      <div class="shop-showcase-grid">
-        <div class="product-card">
-          <img src="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg" alt="Product Frame">
-          <h4>Love Bites Print</h4>
-          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
-        </div>
-        <div class="product-card">
-          <img src="assets/Betty%20Boo%20Vs.png" alt="Product Frame">
-          <h4>Betty Boo Apparel</h4>
-          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
-        </div>
-        <div class="product-card">
-          <img src="assets/back-to-the-future-z.jpg" alt="Product Frame">
-          <h4>Future Z Poster</h4>
-          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
-        </div>
-        <div class="product-card">
-          <img src="assets/Horor%20its%20self.jpg" alt="Product Frame">
-          <h4>Horror Itself Print</h4>
-          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
-        </div>
-        <div class="product-card">
-          <img src="assets/Darkness%20lighen.jpg" alt="Product Frame">
-          <h4>Darkness Lighten Card</h4>
-          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
-        </div>
-        <div class="product-card">
-          <img src="assets/Secrets-of-In-the-mouth-of-Madness.png" alt="Product Frame">
-          <h4>In the Mouth of Madness</h4>
-          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
-        </div>
-        <div class="product-card">
-          <img src="assets/Kang.jpg" alt="Product Frame">
-          <h4>Kang Collector Sticker</h4>
-          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
-        </div>
-        <div class="product-card">
-          <img src="assets/tarus.jpg" alt="Product Frame">
-          <h4>Taurus Apparel Node</h4>
-          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
-        </div>
-        <div class="product-card">
-          <img src="assets/Sea.jpg" alt="Product Frame">
-          <h4>Sea Landscape Print</h4>
-          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
-        </div>
+      <!-- REDBUBBLE 5x5 DYNAMIC EMBED SCRIPT -->
+      <div class="rb-embed-container">
+        <script type="text/javascript" src="https://www.redbubble.com/assets/external_portfolio.js"></script>
+        <script id="rb-xzfcxvzx" type="text/javascript">new RBExternalPortfolio('www.redbubble.com', 'gr3at1', 5, 5).renderIframe();</script>
+        
+        <!-- Fallback message just in case an ad-blocker hides the script above -->
+        <noscript>
+          <div style="color: #aaa; text-align: center; padding: 20px;">
+            Your browser settings or ad-blocker has prevented the live gallery script from loading. Please click the button above to view the store directly!
+          </div>
+        </noscript>
       </div>
     </div>
 
