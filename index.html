@@ -24,9 +24,12 @@
     .nav-btn.designs img { border-color: var(--wrestling); box-shadow: 0 0 15px var(--wrestling); }
     .nav-btn.contact img { border-color: var(--horror); box-shadow: 0 0 15px var(--horror); }
 
-    /* Expandable Sections */
-    section { margin-bottom: 40px; padding: 20px; border: 1px solid #333; border-radius: 8px; transition: all 0.3s ease; }
-    section:hover { border-color: var(--tech); }
+    /* Data-Terminal Section Style */
+    section { margin-bottom: 40px; padding: 25px; background: rgba(20, 20, 25, 0.8); border: 1px solid #333; border-left: 4px solid #555; position: relative; transition: all 0.4s ease; }
+    section:hover { border-color: var(--tech); box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.1); }
+    
+    h2 { font-size: 1.2rem; letter-spacing: 2px; margin-top: 0; display: flex; align-items: center; }
+    h2::before { content: '>'; margin-right: 10px; color: var(--tech); }
 
     /* Tabs & Media */
     .media-slider { display: flex; overflow-x: auto; gap: 20px; padding: 20px 0; cursor: grab; }
