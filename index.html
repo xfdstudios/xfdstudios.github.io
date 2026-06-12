@@ -4,18 +4,126 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>New XFD Website</title>
+  
+  <!-- SEO Description for search engines and link sharing -->
+  <meta name="description" content="One portal. Infinite possibilities. The official central hub for XenoFinalDawn (XFD) featuring the latest artwork, designs, and videos.">
+  
+  <!-- FontAwesome CDN (Latest Version) for free, automatic social media icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
   <link rel="stylesheet" href="styles.css">
   <meta name="theme-color" content="#652D91">
-  <!-- If JS disabled, ensure content is visible (override FOUC guard) -->
-  <noscript><style>html.fouc-guard body{visibility:visible}</style></noscript>
+  
+  <style>
+    /* TRENDY HYBRID SLIDER & UPDATED STYLES */
+    html.fouc-guard body{visibility:visible}
+    
+    .socials a { 
+      color: white; 
+      font-size: 24px; 
+      text-decoration: none; 
+      transition: color 0.3s ease; 
+      margin-right: 15px;
+    }
+    .socials a:hover { color: #652D91; }
+
+    .hybrid-slider-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+    }
+    
+    .hybrid-slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      gap: 20px;
+      padding: 10px 0 20px 0;
+      scrollbar-width: none; /* Hide scrollbar Firefox */
+      width: 100%;
+    }
+    .hybrid-slider::-webkit-scrollbar { display: none; /* Hide scrollbar Chrome/Safari */ }
+    
+    .hybrid-card {
+      flex: 0 0 320px;
+      background: #1e1e24; /* Deep dark background */
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(101, 45, 145, 0.3); /* Subtle brand color border */
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .hybrid-card:hover {
+      transform: translateY(-5px);
+      border-color: #652D91; /* Brand color pop */
+      box-shadow: 0 8px 20px rgba(101, 45, 145, 0.4);
+    }
+    
+    .hybrid-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-bottom: 2px solid #2a2a35;
+    }
+    
+    .hybrid-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .hybrid-content h3 { margin: 0 0 10px 0; font-size: 1.2em; color: #ffffff; }
+    .hybrid-content p { font-size: 0.95em; color: #b3b3b3; margin: 0 0 20px 0; line-height: 1.4; }
+    
+    .tag {
+      display: inline-block;
+      font-size: 0.75em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: rgba(101, 45, 145, 0.2);
+      color: #d1a3ff;
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    
+    .hybrid-btn {
+      display: inline-block;
+      padding: 10px 15px;
+      background: #652D91;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .hybrid-btn:hover { background: #7a36af; color: #fff;}
+    
+    .slider-nav-btn {
+      background: #652D91;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      position: absolute;
+      z-index: 10;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+    .slider-nav-btn:hover { background: #7a36af; transform: scale(1.1); }
+    .slider-nav-btn.left { left: -22px; }
+    .slider-nav-btn.right { right: -22px; }
+
+    .full-span { grid-column: 1 / -1; }
+  </style>
 </head>
 <body>
-  <noscript><div class="noscript-warning">This site needs JavaScript for video modals and carousels. Please enable JavaScript.</div></noscript>
-  <div id="ab-warning" class="banner hidden" role="status" aria-live="polite">
-    Heads up: An ad-blocker may be blocking YouTube or social embeds. Some features might not work.
-    <button id="ab-dismiss" class="banner-dismiss" aria-label="Dismiss">✕</button>
-  </div>
-
   <div class="wrap" role="document">
     <header>
       <div class="brand">
@@ -26,9 +134,10 @@
           <div class="site-title">New XFD Website</div>
           <div class="site-sub">One portal. Infinite possibilities.</div>
           <div class="socials">
-            <a data-external href="https://youtube.com" aria-label="YouTube"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.8-2.3c-.7-.9-1.5-.9-1.9-1C17.8 2.5 12 2.5 12 2.5s-5.8 0-8.8.4c-.4 0-1.2.1-1.9 1C.7 4.6.5 6.2.5 6.2S.2 8.4.2 10.6v2.8c0 2.2.3 4.4.3 4.4s.2 1.6.8 2.3c.7.9 1.6.9 2 1 1.4.2 6.3.4 9.2.4 2.9 0 7.8-.2 9.2-.4.4 0 1.3-.1 2-1 .6-.7.8-2.3.8-2.3s.3-2.2.3-4.4v-2.8c0-2.2-.3-4.4-.3-4.4zM9.8 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
-            <a data-external href="https://instagram.com" aria-label="Instagram"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 7.3a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM18.5 6.2a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></a>
-            <a data-external href="https://facebook.com" aria-label="Facebook"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.1 5.66 21.18 10.44 21.95v-6.98H7.9v-2.9h2.54v-2.21c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.62.77-1.62 1.56v1.86h2.77l-.44 2.9h-2.33v6.98C18.34 21.18 22 17.1 22 12.07z"/></svg></a>
+            <!-- Modern FontAwesome Icons -->
+            <a data-external href="https://youtube.com" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+            <a data-external href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a data-external href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
           </div>
         </div>
       </div>
@@ -47,106 +156,182 @@
 
     <main>
       <div class="grid">
-        <!-- Full-width: Latest Updates -->
+        
+        <!-- AUTOMATED YOUTUBE FEED -->
         <section class="panel full-span" aria-labelledby="updates-title">
-          <h1 id="updates-title" class="section-title">Latest Updates</h1>
-          <div class="subtle">Quick glance at recent videos, new works, and posts.</div>
+          <h1 id="updates-title" class="section-title">Latest Videos</h1>
+          <div class="subtle">Automatically fetching the newest cuts from the channel.</div>
 
-          <div style="margin-top:10px">
-            <h2 class="mini-title">Recent Videos</h2>
-            <div class="video-carousel" role="list">
-              <a class="video-card" role="listitem" tabindex="0" href="https://www.youtube.com/watch?v=HfnMODt7knU" target="_blank" rel="noopener">
+          <div style="margin-top:20px">
+            <div class="video-carousel" id="youtube-feed" role="list">
+              <!-- Placeholders (Replaced by JS if Channel ID is provided) -->
+              <a class="video-card" role="listitem" tabindex="0" href="https://www.youtube.com/watch?v=HfnMODt7knU" target="_blank" rel="noopener noreferrer">
                 <img class="video-thumb" alt="Video 1 thumbnail" loading="lazy" src="https://img.youtube.com/vi/HfnMODt7knU/hqdefault.jpg" />
                 <div class="video-meta"><h3>New Cut: Chaos Edit</h3><p class="subtle">Shorts + highlights.</p></div>
               </a>
-              <a class="video-card" role="listitem" tabindex="0" href="https://www.youtube.com/watch?v=TyD6b3aa5lY" target="_blank" rel="noopener">
+              <a class="video-card" role="listitem" tabindex="0" href="https://www.youtube.com/watch?v=TyD6b3aa5lY" target="_blank" rel="noopener noreferrer">
                 <img class="video-thumb" alt="Shorts thumbnail" loading="lazy" src="https://img.youtube.com/vi/TyD6b3aa5lY/hqdefault.jpg" />
                 <div class="video-meta"><h3>Shorts: Quick Clip</h3><p class="subtle">Jump into the cut.</p></div>
               </a>
-              <a class="video-card" role="listitem" tabindex="0" href="https://www.youtube.com/watch?v=q6r_VpG_NT8" target="_blank" rel="noopener">
-                <img class="video-thumb" alt="Short thumbnail" loading="lazy" src="https://img.youtube.com/vi/q6r_VpG_NT8/hqdefault.jpg" />
-                <div class="video-meta"><h3>Behind the Scenes</h3><p class="subtle">Studio edits + story time.</p></div>
-              </a>
-            </div>
-            <div class="carousel-controls" style="margin-top:10px">
-              <button class="btn" id="scrollPrev" aria-label="Scroll videos left">◀</button>
-              <button class="btn" id="scrollNext" aria-label="Scroll videos right">▶</button>
             </div>
           </div>
         </section>
 
-        <!-- Left column: Recent Works + News -->
-        <div class="left">
-          <section class="panel" aria-labelledby="works-title">
-            <h2 id="works-title" class="section-title">Recent Works</h2>
-            <div class="subtle">Tap to view full-size.</div>
-
-            <div class="portfolio">
-              <div class="thumb" tabindex="0" data-full="assets/Back%20to%20the%20furture%20z.jpg" aria-label="Open: Back to the Future">
+        <!-- HYBRID WORKS & NEWS SLIDER -->
+        <section class="panel full-span">
+          <h2 class="section-title">Recent Works & Updates</h2>
+          <div class="subtle">Swipe or click through the latest art and announcements.</div>
+          
+          <div class="hybrid-slider-wrapper">
+            <button class="slider-nav-btn left" onclick="slideHybrid('left')" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+            
+            <div class="hybrid-slider" id="hybridSlider">
+              
+              <!-- Card 1: Art -->
+              <div class="hybrid-card">
                 <img alt="Back to the Future design" loading="lazy" src="assets/back-to-the-future-z.jpg" />
+                <div class="hybrid-content">
+                  <div>
+                    <span class="tag">New Art</span>
+                    <h3>Back to the Future Z</h3>
+                    <p>High-resolution conceptual piece blending retro aesthetics with modern vector work.</p>
+                  </div>
+                  <a href="assets/back-to-the-future-z.jpg" target="_blank" rel="noopener noreferrer" class="hybrid-btn">View Full Size</a>
+                </div>
               </div>
-              <div class="thumb" tabindex="0" data-full="assets/Kang.jpg" aria-label="Open: Kang">
+
+              <!-- Card 2: News -->
+              <div class="hybrid-card">
+                <div style="height: 220px; background: #2a2a35; display: flex; align-items: center; justify-content: center; font-size: 3em; color: #652D91; border-bottom: 2px solid #1e1e24;">
+                  <i class="fas fa-store"></i>
+                </div>
+                <div class="hybrid-content">
+                  <div>
+                    <span class="tag">News Drop</span>
+                    <h3>New Design Collection</h3>
+                    <p>June 2024 - Discover our brand new space-inspired merchandise now available in the Redbubble Design Shop.</p>
+                  </div>
+                  <a href="design-shop.html" class="hybrid-btn">Shop the Collection</a>
+                </div>
+              </div>
+
+              <!-- Card 3: Art -->
+              <div class="hybrid-card">
                 <img alt="Kang design" loading="lazy" src="assets/Kang.jpg" />
+                <div class="hybrid-content">
+                  <div>
+                    <span class="tag">New Art</span>
+                    <h3>The Kang Project</h3>
+                    <p>Character design exploration focusing on dynamic lighting and bold color grading.</p>
+                  </div>
+                  <a href="assets/Kang.jpg" target="_blank" rel="noopener noreferrer" class="hybrid-btn">View Full Size</a>
+                </div>
               </div>
-              <div class="thumb" tabindex="0" data-full="assets/tarus.jpg" aria-label="Open: Tarus">
+
+              <!-- Card 4: News -->
+              <div class="hybrid-card">
+                <div style="height: 220px; background: #2a2a35; display: flex; align-items: center; justify-content: center; font-size: 3em; color: #ff0000; border-bottom: 2px solid #1e1e24;">
+                  <i class="fab fa-youtube"></i>
+                </div>
+                <div class="hybrid-content">
+                  <div>
+                    <span class="tag">Milestone</span>
+                    <h3>10,000 Subscribers</h3>
+                    <p>May 2024 - We officially crossed the 10k mark! Huge thank you to the community for supporting the channel.</p>
+                  </div>
+                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="hybrid-btn">Visit Channel</a>
+                </div>
+              </div>
+
+              <!-- Card 5: Art -->
+              <div class="hybrid-card">
                 <img alt="Tarus design" loading="lazy" src="assets/tarus.jpg" />
+                <div class="hybrid-content">
+                  <div>
+                    <span class="tag">New Art</span>
+                    <h3>Tarus</h3>
+                    <p>A recent visual experiment bridging the gap between digital painting and 3D space.</p>
+                  </div>
+                  <a href="assets/tarus.jpg" target="_blank" rel="noopener noreferrer" class="hybrid-btn">View Full Size</a>
+                </div>
               </div>
+
             </div>
-          </section>
+            <button class="slider-nav-btn right" onclick="slideHybrid('right')" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </section>
 
-          <section class="panel" aria-labelledby="news-title">
-            <h2 id="news-title" class="section-title">News & Posts</h2>
-            <article>
-              <div class="row-between">
-                <strong>New Design Collection Launch</strong>
-                <small class="subtle">June 2024</small>
-              </div>
-              <p class="subtle" style="margin-top:8px">Discover space-inspired merchandise now in the Design Shop.</p>
-              <a href="design-shop.html" class="cta">View the Collection</a>
-            </article>
-            <hr class="divider">
-            <article>
-              <div class="row-between">
-                <strong>YouTube Milestone Reached</strong>
-                <small class="subtle">May 2024</small>
-              </div>
-              <p class="subtle" style="margin-top:8px">We surpassed 10,000 subscribers — thank you to the community.</p>
-              <a href="https://youtube.com" class="cta" target="_blank" rel="noopener">Watch Video</a>
-            </article>
-          </section>
-        </div>
-
-        <!-- Right column: Quick Links -->
-        <aside class="right" aria-label="Sidebar">
-          <section class="panel quick-panel">
-            <strong>Quick Links</strong>
-            <div class="ql-title">Latest Videos</div>
-            <ul class="quick-links">
-              <li><a href="https://www.youtube.com/watch?v=HfnMODt7knU" target="_blank" rel="noopener">Chaos Edit (Short)</a></li>
-              <li><a href="https://www.youtube.com/watch?v=TyD6b3aa5lY" target="_blank" rel="noopener">Quick Clip</a></li>
-              <li><a href="https://www.youtube.com/watch?v=q6r_VpG_NT8" target="_blank" rel="noopener">Behind the Scenes</a></li>
-            </ul>
-            <div class="ql-title">News & Updates</div>
-            <ul class="quick-links">
-              <li><a href="design-shop.html">New Design Collection (June 2024)</a></li>
-              <li><a href="https://youtube.com" target="_blank" rel="noopener">10,000 Subscribers (May 2024)</a></li>
-            </ul>
-          </section>
-        </aside>
       </div>
     </main>
 
-    <footer>&copy; 2025 XenoFinalDawn (XFD). All rights reserved.</footer>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="modal-content" role="document">
-      <button class="modal-close" id="modalClose" aria-label="Close (Esc)">✕</button>
-      <div id="modalInner"></div>
-    </div>
+    <footer>&copy; 2026 XenoFinalDawn (XFD). All rights reserved.</footer>
   </div>
 
   <script src="app.js" defer></script>
+  
+  <!-- NEW JAVASCRIPT FOR SLIDER & YOUTUBE -->
+  <script>
+    // 1. Logic for the Hybrid Carousel
+    function slideHybrid(direction) {
+      const slider = document.getElementById('hybridSlider');
+      const scrollAmount = 340; // The width of a card + gap
+      if(direction === 'left') {
+        slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      } else {
+        slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    }
+
+    // 2. Automated YouTube Video Fetcher
+    async function fetchYouTubeVideos() {
+      // ---> IMPORTANT: PUT YOUR YOUTUBE CHANNEL ID HERE! <---
+      // It usually starts with "UC..."
+      const channelId = "UCYOUR_CHANNEL_ID_HERE";
+
+      // If the ID hasn't been changed yet, stop and just show the placeholder videos
+      if (channelId === "UCYOUR_CHANNEL_ID_HERE") {
+        console.log("Waiting for YouTube Channel ID to load dynamic videos.");
+        return; 
+      }
+
+      const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        if (data.status === 'ok') {
+          const feedContainer = document.getElementById('youtube-feed');
+          feedContainer.innerHTML = ''; // Clears the placeholder videos
+
+          // Grab the 3 newest videos
+          const videos = data.items.slice(0, 3);
+
+          videos.forEach(video => {
+            // Reformat the date to look clean
+            const dateObj = new Date(video.pubDate);
+            const dateStr = dateObj.toLocaleDateString();
+
+            const videoCard = `
+              <a class="video-card" role="listitem" tabindex="0" href="${video.link}" target="_blank" rel="noopener noreferrer">
+                <img class="video-thumb" alt="${video.title}" loading="lazy" src="${video.thumbnail}" />
+                <div class="video-meta">
+                  <h3>${video.title}</h3>
+                  <p class="subtle">Uploaded: ${dateStr}</p>
+                </div>
+              </a>
+            `;
+            feedContainer.innerHTML += videoCard;
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching YouTube feed:', error);
+      }
+    }
+    
+    // Run the fetcher when the page loads
+    fetchYouTubeVideos();
+  </script>
 </body>
 </html>
