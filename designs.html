@@ -30,7 +30,7 @@
     }
 
     /* =========================================
-       PHASE 1: ENCASED CONTROL CENTER HEADER
+       PHASE 1: ENCASED CONTROL CENTER HEADER (LOCKED)
        ========================================= */
     header {
       padding: 20px;
@@ -118,6 +118,8 @@
       max-width: 1400px;
     }
     .section-title span::before { content: '> '; color: var(--wrestling); }
+    .section-title.video-title span::before { color: var(--anime); }
+    .section-title.gallery-title span::before { color: var(--tech); }
 
     .shop-layout-full {
       max-width: 1400px;
@@ -133,11 +135,13 @@
       padding: 30px;
       margin-bottom: 40px;
     }
+    .terminal-block.gallery-block { border-left-color: var(--tech); }
+    .terminal-block.video-block { border-left-color: var(--anime); }
     
-    /* Storefront Showcases Grid */
+    /* Storefront Grid System (9 Slots Balanced) */
     .shop-showcase-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 25px;
       margin-top: 25px;
     }
@@ -148,10 +152,13 @@
       padding: 20px;
       text-align: center;
       transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .product-card:hover { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.2); transform: translateY(-3px); }
     .product-card img { width: 100%; border-radius: 6px; background: #111; margin-bottom: 15px; display: block; }
-    .product-card h4 { margin: 0 0 12px 0; font-size: 1.1rem; }
+    .product-card h4 { margin: 0 0 12px 0; font-size: 1.1rem; letter-spacing: 0.5px; }
     
     .cta-btn {
       display: inline-flex;
@@ -167,9 +174,10 @@
       letter-spacing: 1px;
       transition: 0.3s;
       border: none;
+      justify-content: center;
     }
     .cta-btn:hover { background: #ff1c4b; box-shadow: 0 0 15px var(--wrestling); }
-    .cta-btn.alt { background: var(--grey-pill); border: 1px solid rgba(255,255,255,0.2); width: 100%; justify-content: center;}
+    .cta-btn.alt { background: var(--grey-pill); border: 1px solid rgba(255,255,255,0.2); width: 100%; }
     .cta-btn.alt:hover { background: rgba(255,255,255,0.15); box-shadow: 0 0 10px white; }
 
     /* =========================================
@@ -179,7 +187,7 @@
       display: flex;
       align-items: center;
       gap: 15px;
-      margin-bottom: 40px;
+      margin-top: 15px;
     }
     .nav-arrow {
       background: rgba(255,255,255,0.05);
@@ -192,7 +200,7 @@
       transition: 0.3s;
       flex-shrink: 0;
     }
-    .nav-arrow:hover { background: rgba(220,20,60,0.2); border-color: var(--wrestling); box-shadow: 0 0 15px var(--wrestling); }
+    .nav-arrow:hover { background: rgba(138,43,226,0.2); border-color: var(--anime); box-shadow: 0 0 15px var(--anime); }
 
     .media-slider {
       display: flex;
@@ -207,8 +215,8 @@
     
     .media-card {
       flex: 0 0 320px;
-      background: rgba(20,20,25,0.8);
-      border: 1px solid #333;
+      background: rgba(10,10,15,0.6);
+      border: 1px solid #222;
       border-radius: 12px;
       padding: 15px;
       transition: 0.3s;
@@ -230,26 +238,33 @@
     .card-green:hover { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); }
 
     /* =========================================
-       PORTFOLIO GRID & LIGHTBOX SYSTEM
+       UNIFORM PORTFOLIO GRID SYSTEM
        ========================================= */
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 25px;
       margin-top: 15px;
     }
     .thumb-node {
-      background: #0f0f13;
+      background: rgba(10,10,15,0.6);
       border: 1px solid #222;
-      border-radius: 8px;
-      padding: 10px;
+      border-radius: 12px;
+      padding: 15px;
       cursor: pointer;
       transition: 0.3s;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    .thumb-node:hover { border-color: var(--tech); box-shadow: 0 0 12px rgba(0,255,255,0.3); transform: scale(1.02); }
-    .thumb-node img { width: 100%; height: 160px; object-fit: cover; border-radius: 6px; display: block; }
+    .thumb-node:hover { border-color: var(--tech); box-shadow: 0 0 15px rgba(0,255,255,0.2); transform: translateY(-3px); }
+    .thumb-node img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; display: block; }
+    .thumb-node .gallery-info-btn { background: var(--grey-pill); border: 1px solid rgba(255,255,255,0.1); width: 100%; pointer-events: none; }
 
-    /* Lightbox Master Layer Constraints */
+    /* =========================================
+       LIGHTBOX CONTAINER OVERLAY
+       ========================================= */
     .lightbox {
       position: fixed; 
       top: 0; left: 0; 
@@ -287,7 +302,6 @@
     }
     .lightbox-close:hover { color: var(--wrestling); }
 
-    /* FOOTER STYLING */
     .site-footer {
       text-align: center;
       padding: 40px 20px;
@@ -298,6 +312,8 @@
       font-size: 0.85rem;
       letter-spacing: 1px;
     }
+
+    .terminal-text { font-family: monospace; font-size: 0.75rem; color: #666; margin-bottom: 8px; }
 
     @media (max-width: 850px) {
       .header-encased { flex-direction: column; gap: 20px; }
@@ -338,11 +354,12 @@
 
   <main class="shop-layout-full">
     
-    <!-- SECTION 1: MERCHANT STOREFRONT -->
+    <!-- PHASE 1: MERCHANT STOREFRONT -->
     <div class="section-title">
       <span>Quantum Merchant // Asset Distribution</span>
     </div>
     
+    <div class="terminal-text">// initialization: SECURE_MERCH_PORTAL</div>
     <div class="terminal-block">
       <h3>Design Shop</h3>
       <p>Browse collection configurations natively below, or initialize the main engine branch directly on RedBubble for expedited operations.</p>
@@ -353,108 +370,167 @@
         </a>
       </div>
 
+      <!-- Native Showcases (Expanded to 9 Consistent slots) -->
       <div class="shop-showcase-grid">
         <div class="product-card">
-          <img src="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg" alt="Love Bites Print">
+          <img src="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg" alt="Product Frame">
           <h4>Love Bites Print</h4>
           <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
         </div>
         <div class="product-card">
-          <img src="assets/Betty%20Boo%20Vs.png" alt="Betty Boo Apparel">
+          <img src="assets/Betty%20Boo%20Vs.png" alt="Product Frame">
           <h4>Betty Boo Apparel</h4>
           <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
         </div>
         <div class="product-card">
-          <img src="assets/back-to-the-future-z.jpg" alt="Future Z Poster">
+          <img src="assets/back-to-the-future-z.jpg" alt="Product Frame">
           <h4>Future Z Poster</h4>
+          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
+        </div>
+        <div class="product-card">
+          <img src="assets/Horor%20its%20self.jpg" alt="Product Frame">
+          <h4>Horror Itself Print</h4>
+          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
+        </div>
+        <div class="product-card">
+          <img src="assets/Darkness%20lighen.jpg" alt="Product Frame">
+          <h4>Darkness Lighten Card</h4>
+          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
+        </div>
+        <div class="product-card">
+          <img src="assets/Secrets-of-In-the-mouth-of-Madness.png" alt="Product Frame">
+          <h4>In the Mouth of Madness</h4>
+          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
+        </div>
+        <div class="product-card">
+          <img src="assets/Kang.jpg" alt="Product Frame">
+          <h4>Kang Collector Sticker</h4>
+          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
+        </div>
+        <div class="product-card">
+          <img src="assets/tarus.jpg" alt="Product Frame">
+          <h4>Taurus Apparel Node</h4>
+          <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
+        </div>
+        <div class="product-card">
+          <img src="assets/Sea.jpg" alt="Product Frame">
+          <h4>Sea Landscape Print</h4>
           <a href="https://www.redbubble.com/people/gr3at1/shop" target="_blank" class="cta-btn alt">View Item</a>
         </div>
       </div>
     </div>
 
-    <!-- SECTION 2: TRANSMISSION SLIDER HUB -->
-    <div class="section-title">
-      <span>Sync Feed // Latest Video Transmissions</span>
-    </div>
-    
-    <div class="slider-wrapper">
-      <button class="nav-arrow" onclick="scrollSlider(-1)"><i class="fas fa-chevron-left"></i></button>
-      <div class="media-slider" id="youtube-feed">
-        <div id="loading-message" style="color: #aaa; padding: 20px;">Connecting to transmission source...</div>
-      </div>
-      <button class="nav-arrow" onclick="scrollSlider(1)"><i class="fas fa-chevron-right"></i></button>
-    </div>
-
-    <!-- SECTION 3: PORTFOLIO GALLERY MATRIX -->
-    <div class="section-title">
+    <!-- PHASE 2: BALANCED PORTFOLIO GALLERY MATRIX -->
+    <div class="section-title gallery-title">
       <span>Asset Archive // Image Matrix</span>
     </div>
     
-    <div class="terminal-block">
+    <div class="terminal-text">// visual_array: PORTFOLIO_HD_STREAMS</div>
+    <div class="terminal-block gallery-block">
       <h3>Portfolio Gallery</h3>
-      <p style="color: #666; font-size: 0.9rem; margin-bottom: 20px;">Select visualization sub-node to unpack high-resolution vector format:</p>
+      <p style="color: #666; font-size: 0.9rem; margin-bottom: 25px;">Select visualization sub-node to unpack high-resolution vector format configuration:</p>
       
       <div class="portfolio-grid">
         <div class="thumb-node" onclick="openLightbox('assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg')">
           <img alt="Love Bites" src="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg" loading="lazy">
+          <h4>Love Bites</h4>
+          <span class="cta-btn alt gallery-info-btn">Expand View</span>
         </div>
         <div class="thumb-node" onclick="openLightbox('assets/Horor%20its%20self.jpg')">
           <img alt="Horror Itself" src="assets/Horor%20its%20self.jpg" loading="lazy">
+          <h4>Horror Itself</h4>
+          <span class="cta-btn alt gallery-info-btn">Expand View</span>
         </div>
         <div class="thumb-node" onclick="openLightbox('assets/Darkness%20lighen.jpg')">
           <img alt="Darkness Lighen" src="assets/Darkness%20lighen.jpg" loading="lazy">
+          <h4>Darkness Lighten</h4>
+          <span class="cta-btn alt gallery-info-btn">Expand View</span>
         </div>
         <div class="thumb-node" onclick="openLightbox('assets/Sea.jpg')">
           <img alt="Sea" src="assets/Sea.jpg" loading="lazy">
+          <h4>Sea Horizon</h4>
+          <span class="cta-btn alt gallery-info-btn">Expand View</span>
         </div>
         <div class="thumb-node" onclick="openLightbox('assets/Packages.jpg')">
           <img alt="Packages" src="assets/Packages.jpg" loading="lazy">
+          <h4>Packages Configuration</h4>
+          <span class="cta-btn alt gallery-info-btn">Expand View</span>
         </div>
         <div class="thumb-node" onclick="openLightbox('assets/girl%20with%20big%20head.jpg')">
           <img alt="Girl With Big Head" src="assets/girl%20with%20big%20head.jpg" loading="lazy">
+          <h4>Girl With Big Head</h4>
+          <span class="cta-btn alt gallery-info-btn">Expand View</span>
         </div>
         <div class="thumb-node" onclick="openLightbox('assets/Betty%20Boo%20Vs.png')">
           <img alt="Betty Boo Vs" src="assets/Betty%20Boo%20Vs.png" loading="lazy">
+          <h4>Betty Boo Vs</h4>
+          <span class="cta-btn alt gallery-info-btn">Expand View</span>
         </div>
         <div class="thumb-node" onclick="openLightbox('assets/Secrets-of-In-the-mouth-of-Madness.png')">
           <img alt="In the Mouth of Madness" src="assets/Secrets-of-In-the-mouth-of-Madness.png" loading="lazy">
+          <h4>Mouth of Madness</h4>
+          <span class="cta-btn alt gallery-info-btn">Expand View</span>
         </div>
         <div class="thumb-node" onclick="openLightbox('assets/back-to-the-future-z.jpg')">
           <img alt="Back to the Future Z" src="assets/back-to-the-future-z.jpg" loading="lazy">
+          <h4>Back to the Future Z</h4>
+          <span class="cta-btn alt gallery-info-btn">Expand View</span>
         </div>
         <div class="thumb-node" onclick="openLightbox('assets/Kang.jpg')">
           <img alt="Kang" src="assets/Kang.jpg" loading="lazy">
+          <h4>Kang Engine</h4>
+          <span class="cta-btn alt gallery-info-btn">Expand View</span>
         </div>
         <div class="thumb-node" onclick="openLightbox('assets/tarus.jpg')">
           <img alt="Tarus" src="assets/tarus.jpg" loading="lazy">
+          <h4>Taurus Vector</h4>
+          <span class="cta-btn alt gallery-info-btn">Expand View</span>
         </div>
+      </div>
+    </div>
+
+    <!-- PHASE 3: INTEGRATED ENCLOSED VIDEO SLIDER TRANSMISSIONS -->
+    <div class="section-title video-title">
+      <span>Sync Feed // Latest Video Transmissions</span>
+    </div>
+    
+    <div class="terminal-text">// sync_feed: YOUTUBE_STREAM_DATA</div>
+    <div class="terminal-block video-block">
+      <h3>Video Transmissions</h3>
+      <p style="color: #666; font-size: 0.9rem; margin-bottom: 5px;">Broadcast arrays decrypted directly from localized network channels:</p>
+      
+      <div class="slider-wrapper">
+        <button class="nav-arrow" onclick="scrollSlider(-1)"><i class="fas fa-chevron-left"></i></button>
+        <div class="media-slider" id="youtube-feed">
+          <div id="loading-message" style="color: #aaa; padding: 20px;">Connecting to transmission source stream...</div>
+        </div>
+        <button class="nav-arrow" onclick="scrollSlider(1)"><i class="fas fa-chevron-right"></i></button>
       </div>
     </div>
 
   </main>
 
-  <!-- TERMINAL FOOTER -->
   <footer class="site-footer">
-    // SYSTEM_OFFLINE // &copy; 2026 XenoFinalDawn (XFD). All rights reserved.
+    // SYSTEM_ACTIVE // &copy; 2026 XenoFinalDawn (XFD). All rights reserved.
   </footer>
 
-  <!-- LIGHTBOX CONTAINER MODAL OVERLAY -->
+  <!-- LIGHTBOX WINDOW -->
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
     <div class="lightbox-content" onclick="event.stopPropagation()">
       <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-      <img id="lightbox-img" src="" alt="Expanded Vector Matrix">
+      <img id="lightbox-img" src="" alt="Expanded Vector Overlay">
     </div>
   </div>
 
   <script>
-    // 1. Slider Scroll Logic
+    // 1. Slider Scroll Controls
     const slider = document.getElementById('youtube-feed');
     function scrollSlider(direction) {
       const scrollAmount = 340; 
       slider.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
     }
 
-    // 2. Fetch Automated YouTube Video Streams
+    // 2. YouTube Synchronization Logic Engine
     const myChannelId = 'UCon9odxjxyp_bMh2wkuRbhg'; 
     async function fetchYouTubeVideos() {
       try {
@@ -499,7 +575,7 @@
     }
     fetchYouTubeVideos();
 
-    // 3. Lightbox Interactivity Layer Engine
+    // 3. Modal Layer Operations
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
 
