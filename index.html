@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" class="fouc-guard">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>New XFD Website</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="theme-color" content="#652D91">
+  <!-- If JS disabled, ensure content is visible (override FOUC guard) -->
+  <noscript><style>html.fouc-guard body{visibility:visible}</style></noscript>
+</head>
+<body>
+  <noscript><div class="noscript-warning">This site needs JavaScript for video modals and carousels. Please enable JavaScript.</div></noscript>
+  <div id="ab-warning" class="banner hidden" role="status" aria-live="polite">
+    Heads up: An ad-blocker may be blocking YouTube or social embeds. Some features might not work.
+    <button id="ab-dismiss" class="banner-dismiss" aria-label="Dismiss">✕</button>
+  </div>
+
+  <div class="wrap" role="document">
+    <header>
+      <div class="brand">
+        <a href="index.html" aria-label="XFD Home">
+          <img src="assets/NEW%20LOGO.png" alt="XFD logo" class="logo" onerror="this.classList.add('img-missing')" />
+        </a>
+        <div class="brand-text">
+          <div class="site-title">New XFD Website</div>
+          <div class="site-sub">One portal. Infinite possibilities.</div>
+          <div class="socials">
+            <a data-external href="https://youtube.com" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.8-2.3c-.7-.9-1.5-.9-1.9-1C17.8 2.5 12 2.5 12 2.5s-5.8 0-8.8.4c-.4 0-1.2.1-1.9 1C.7 4.6.5 6.2.5 6.2S.2 8.4.2 10.6v2.8c0 2.2.3 4.4.3 4.4s.2 1.6.8 2.3c.7.9 1.6.9 2 1 1.4.2 6.3.4 9.2.4 2.9 0 7.8-.2 9.2-.4.4 0 1.3-.1 2-1 .6-.7.8-2.3.8-2.3s.3-2.2.3-4.4v-2.8c0-2.2-.3-4.4-.3-4.4zM9.8 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+            <a data-external href="https://instagram.com" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 7.3a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM18.5 6.2a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></a>
+            <a data-external href="https://facebook.com" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.1 5.66 21.18 10.44 21.95v-6.98H7.9v-2.9h2.54v-2.21c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.62.77-1.62 1.56v1.86h2.77l-.44 2.9h-2.33v6.98C18.34 21.18 22 17.1 22 12.07z"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <nav aria-label="Primary Navigation">
+          <ul class="nav-list">
+            <li><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="about.html">The Story</a></li>
+            <li><a href="design-shop.html">Design Shop</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="grid">
+        <!-- Full-width: Latest Updates -->
+        <section class="panel full-span" aria-labelledby="updates-title">
+          <h1 id="updates-title" class="section-title">Latest Updates</h1>
+          <div class="subtle">Quick glance at recent videos, new works, and posts.</div>
+
+          <div style="margin-top:10px">
+            <h2 class="mini-title">Recent Videos</h2>
+            <div class="video-carousel" role="list">
+              <a class="video-card" role="listitem" tabindex="0" href="https://www.youtube.com/watch?v=HfnMODt7knU" target="_blank" rel="noopener">
+                <img class="video-thumb" alt="Video 1 thumbnail" loading="lazy" src="https://img.youtube.com/vi/HfnMODt7knU/hqdefault.jpg" />
+                <div class="video-meta"><h3>New Cut: Chaos Edit</h3><p class="subtle">Shorts + highlights.</p></div>
+              </a>
+              <a class="video-card" role="listitem" tabindex="0" href="https://www.youtube.com/watch?v=TyD6b3aa5lY" target="_blank" rel="noopener">
+                <img class="video-thumb" alt="Shorts thumbnail" loading="lazy" src="https://img.youtube.com/vi/TyD6b3aa5lY/hqdefault.jpg" />
+                <div class="video-meta"><h3>Shorts: Quick Clip</h3><p class="subtle">Jump into the cut.</p></div>
+              </a>
+              <a class="video-card" role="listitem" tabindex="0" href="https://www.youtube.com/watch?v=q6r_VpG_NT8" target="_blank" rel="noopener">
+                <img class="video-thumb" alt="Short thumbnail" loading="lazy" src="https://img.youtube.com/vi/q6r_VpG_NT8/hqdefault.jpg" />
+                <div class="video-meta"><h3>Behind the Scenes</h3><p class="subtle">Studio edits + story time.</p></div>
+              </a>
+            </div>
+            <div class="carousel-controls" style="margin-top:10px">
+              <button class="btn" id="scrollPrev" aria-label="Scroll videos left">◀</button>
+              <button class="btn" id="scrollNext" aria-label="Scroll videos right">▶</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Left column: Recent Works + News -->
+        <div class="left">
+          <section class="panel" aria-labelledby="works-title">
+            <h2 id="works-title" class="section-title">Recent Works</h2>
+            <div class="subtle">Tap to view full-size.</div>
+
+            <div class="portfolio">
+              <div class="thumb" tabindex="0" data-full="assets/Back%20to%20the%20furture%20z.jpg" aria-label="Open: Back to the Future">
+                <img alt="Back to the Future design" loading="lazy" src="assets/back-to-the-future-z.jpg" />
+              </div>
+              <div class="thumb" tabindex="0" data-full="assets/Kang.jpg" aria-label="Open: Kang">
+                <img alt="Kang design" loading="lazy" src="assets/Kang.jpg" />
+              </div>
+              <div class="thumb" tabindex="0" data-full="assets/tarus.jpg" aria-label="Open: Tarus">
+                <img alt="Tarus design" loading="lazy" src="assets/tarus.jpg" />
+              </div>
+            </div>
+          </section>
+
+          <section class="panel" aria-labelledby="news-title">
+            <h2 id="news-title" class="section-title">News & Posts</h2>
+            <article>
+              <div class="row-between">
+                <strong>New Design Collection Launch</strong>
+                <small class="subtle">June 2024</small>
+              </div>
+              <p class="subtle" style="margin-top:8px">Discover space-inspired merchandise now in the Design Shop.</p>
+              <a href="design-shop.html" class="cta">View the Collection</a>
+            </article>
+            <hr class="divider">
+            <article>
+              <div class="row-between">
+                <strong>YouTube Milestone Reached</strong>
+                <small class="subtle">May 2024</small>
+              </div>
+              <p class="subtle" style="margin-top:8px">We surpassed 10,000 subscribers — thank you to the community.</p>
+              <a href="https://youtube.com" class="cta" target="_blank" rel="noopener">Watch Video</a>
+            </article>
+          </section>
+        </div>
+
+        <!-- Right column: Quick Links -->
+        <aside class="right" aria-label="Sidebar">
+          <section class="panel quick-panel">
+            <strong>Quick Links</strong>
+            <div class="ql-title">Latest Videos</div>
+            <ul class="quick-links">
+              <li><a href="https://www.youtube.com/watch?v=HfnMODt7knU" target="_blank" rel="noopener">Chaos Edit (Short)</a></li>
+              <li><a href="https://www.youtube.com/watch?v=TyD6b3aa5lY" target="_blank" rel="noopener">Quick Clip</a></li>
+              <li><a href="https://www.youtube.com/watch?v=q6r_VpG_NT8" target="_blank" rel="noopener">Behind the Scenes</a></li>
+            </ul>
+            <div class="ql-title">News & Updates</div>
+            <ul class="quick-links">
+              <li><a href="design-shop.html">New Design Collection (June 2024)</a></li>
+              <li><a href="https://youtube.com" target="_blank" rel="noopener">10,000 Subscribers (May 2024)</a></li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <footer>&copy; 2025 XenoFinalDawn (XFD). All rights reserved.</footer>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" role="document">
+      <button class="modal-close" id="modalClose" aria-label="Close (Esc)">✕</button>
+      <div id="modalInner"></div>
+    </div>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

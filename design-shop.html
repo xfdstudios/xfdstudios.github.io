@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" class="fouc-guard">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Design Shop — New XFD Website</title>
+  <meta name="description" content="Browse the XFD portfolio and shop the RedBubble store.">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="theme-color" content="#652D91">
+  <!-- Performance: speed up DNS/TLS to RedBubble -->
+  <link rel="preconnect" href="https://www.redbubble.com" crossorigin>
+  <link rel="dns-prefetch" href="//www.redbubble.com">
+  <noscript><style>html.fouc-guard body{visibility:visible}</style></noscript>
+</head>
+<body>
+  <noscript><div class="noscript-warning">This page uses JavaScript for image modals and the store embed. Please enable JavaScript.</div></noscript>
+  <div id="ab-warning" class="banner hidden" role="status" aria-live="polite">
+    Heads up: An ad-blocker may be blocking embeds. Some features might not work.
+    <button id="ab-dismiss" class="banner-dismiss" aria-label="Dismiss">✕</button>
+  </div>
+
+  <div class="wrap" role="document">
+    <header>
+      <div class="brand">
+        <a href="index.html" aria-label="XFD Home">
+          <img src="assets/NEW%20LOGO.png" alt="XFD logo" class="logo" onerror="this.classList.add('img-missing')" />
+        </a>
+        <div class="brand-text">
+          <div class="site-title">New XFD Website</div>
+          <div class="site-sub">One portal. Infinite possibilities.</div>
+          <div class="socials">
+            <a data-external href="https://youtube.com" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.8-2.3c-.7-.9-1.5-.9-1.9-1C17.8 2.5 12 2.5 12 2.5s-5.8 0-8.8.4c-.4 0-1.2.1-1.9 1C.7 4.6.5 6.2.5 6.2S.2 8.4.2 10.6v2.8c0 2.2.3 4.4.3 4.4s.2 1.6.8 2.3c.7.9 1.6.9 2 1 1.4.2 6.3.4 9.2.4 2.9 0 7.8-.2 9.2-.4.4 0 1.3-.1 2-1 .6-.7.8-2.3.8-2.3s.3-2.2.3-4.4v-2.8c0-2.2-.3-4.4-.3-4.4zM9.8 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+            <a data-external href="https://instagram.com" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 7.3a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM18.5 6.2a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></a>
+            <a data-external href="https://facebook.com" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.1 5.66 21.18 10.44 21.95v-6.98H7.9v-2.9h2.54v-2.21c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.62.77-1.62 1.56v1.86h2.77l-.44 2.9h-2.33v6.98C18.34 21.18 22 17.1 22 12.07z"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <nav aria-label="Primary Navigation">
+          <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">The Story</a></li>
+            <li><a href="design-shop.html" aria-current="page">Design Shop</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="grid">
+        <!-- Full-width: Design Shop intro + RedBubble -->
+        <section class="panel full-span" aria-labelledby="shop-title">
+          <h1 id="shop-title" class="section-title">Design Shop</h1>
+          <p class="subtle">Browse the gallery below or open the store in a new tab for the fastest experience.</p>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin:10px 0">
+           <a class="cta red" href="https://www.redbubble.com/people/gr3at1" target="_blank" rel="noopener">
+  Open RedBubble Store
+</a>
+            <!-- Button to load the heavy embed only on demand -->
+            <button class="cta alt" id="rb-load" type="button" aria-controls="rb-portfolio">Load Store Preview</button>
+          </div>
+
+          <!-- Defer embed until user clicks; optional autoload via IntersectionObserver -->
+          <div id="rb-portfolio"
+               class="redbubble-embed panel"
+               data-rb-store="gr3at1"
+               data-rb-autoload="0"
+               style="margin-top:12px">
+            <p class="subtle">Preview is off by default for speed. Click “Load Store Preview” or open the store in a new tab.</p>
+          </div>
+        </section>
+
+        <!-- Left: Portfolio -->
+        <div class="left">
+          <section class="panel">
+            <h2 class="section-title">Portfolio Gallery</h2>
+            <p class="subtle">Click any thumbnail to view full-size.</p>
+            <div class="portfolio">
+              <div class="thumb" tabindex="0" data-full="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg">
+                <img alt="Love Bites" loading="lazy" decoding="async" src="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg" />
+              </div>
+              <div class="thumb" tabindex="0" data-full="assets/Horor%20its%20self.jpg">
+                <img alt="Horror Itself" loading="lazy" decoding="async" src="assets/Horor%20its%20self.jpg" />
+              </div>
+              <div class="thumb" tabindex="0" data-full="assets/Darkness%20lighen.jpg">
+                <img alt="Darkness Lighen" loading="lazy" decoding="async" src="assets/Darkness%20lighen.jpg" />
+              </div>
+              <div class="thumb" tabindex="0" data-full="assets/Sea.jpg">
+                <img alt="Sea" loading="lazy" decoding="async" src="assets/Sea.jpg" />
+              </div>
+              <div class="thumb" tabindex="0" data-full="assets/Packages.jpg">
+                <img alt="Packages" loading="lazy" decoding="async" src="assets/Packages.jpg" />
+              </div>
+              <div class="thumb" tabindex="0" data-full="assets/girl%20with%20big%20head.jpg">
+                <img alt="Girl With Big Head" loading="lazy" decoding="async" src="assets/girl%20with%20big%20head.jpg" />
+              </div>
+              <div class="thumb" tabindex="0" data-full="assets/Betty%20Boo%20Vs.png">
+                <img alt="Betty Boo Vs" loading="lazy" decoding="async" src="assets/Betty%20Boo%20Vs.png" />
+              </div>
+              <div class="thumb" tabindex="0" data-full="assets/Secrets-of-In-the-mouth-of-Madness.png">
+                <img alt="Secrets of In the Mouth of Madness" loading="lazy" decoding="async" src="assets/Secrets-of-In-the-mouth-of-Madness.png" />
+              </div>
+              <div class="thumb" tabindex="0" data-full="assets/back-to-the-future-z.jpg">
+                <img alt="Back to the Future Z" loading="lazy" decoding="async" src="assets/back-to-the-future-z.jpg" />
+              </div>
+              <div class="thumb" tabindex="0" data-full="assets/Kang.jpg">
+                <img alt="Kang" loading="lazy" decoding="async" src="assets/Kang.jpg" />
+              </div>
+              <div class="thumb" tabindex="0" data-full="assets/tarus.jpg">
+                <img alt="Tarus" loading="lazy" decoding="async" src="assets/tarus.jpg" />
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right: Quick Links -->
+        <aside class="right" aria-label="Sidebar">
+          <div class="panel quick-panel">
+            <strong>Quick Links</strong>
+            <div class="ql-title">Latest Videos</div>
+            <ul class="quick-links">
+              <li><a href="https://www.youtube.com/watch?v=HfnMODt7knU" target="_blank" rel="noopener">Chaos Edit (Short)</a></li>
+              <li><a href="https://www.youtube.com/watch?v=TyD6b3aa5lY" target="_blank" rel="noopener">Quick Clip</a></li>
+              <li><a href="https://www.youtube.com/watch?v=q6r_VpG_NT8" target="_blank" rel="noopener">Behind the Scenes</a></li>
+            </ul>
+            <div class="ql-title">News & Updates</div>
+            <ul class="quick-links">
+              <li><a href="design-shop.html">New Design Collection (June 2024)</a></li>
+              <li><a href="https://youtube.com" target="_blank" rel="noopener">10,000 Subscribers (May 2024)</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer>&copy; 2025 XenoFinalDawn (XFD). All rights reserved.</footer>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" role="document">
+      <button class="modal-close" id="modalClose" aria-label="Close (Esc)">✕</button>
+      <div id="modalInner"></div>
+    </div>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
