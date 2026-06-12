@@ -6,119 +6,100 @@
   <title>XENOFINALDAWN</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
-    :root { --dark: #0F0F13; --horror: #39FF14; --anime: #8A2BE2; --wrestling: #DC143C; --tech: #00FFFF; --fb: #1877F2; }
-    body { background-color: var(--dark); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.35L25 30.6V17.9L13.99 11.55 3 17.9zM13.99 1.25l13 7.5v15l-13 7.5L1 23.75v-15l12.99-7.5z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); color: white; font-family: sans-serif; margin: 0; padding: 20px; }
-    
-    /* Header Spacing */
-    .site-logo { max-width: 120px; display: block; margin: 0 auto; filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); }
-    h1 { margin: 10px 0 0; font-size: 2.5rem; letter-spacing: 2px; }
-    .tagline { margin: 5px 0 20px; font-style: italic; color: #888; }
+    :root { --dark: #0F0F13; --horror: #39FF14; --anime: #8A2BE2; --wrestling: #DC143C; --tech: #00FFFF; }
+    body { background-color: var(--dark); color: white; font-family: sans-serif; margin: 0; padding: 0; }
 
-    /* Nav & Glow Logic */
-    .nav-grid { display: flex; justify-content: center; gap: 20px; list-style: none; padding: 0; margin-bottom: 40px; }
-    .nav-btn { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; transition: 0.3s; }
-    .nav-btn img { width: 70px; height: 70px; border-radius: 50%; border: 3px solid transparent; transition: 0.3s; }
-    .nav-btn:hover { transform: translateY(-5px); }
-    .nav-btn.news img { border-color: var(--tech); box-shadow: 0 0 15px var(--tech); }
-    .nav-btn.origin img { border-color: var(--anime); box-shadow: 0 0 15px var(--anime); }
-    .nav-btn.designs img { border-color: var(--wrestling); box-shadow: 0 0 15px var(--wrestling); }
-    .nav-btn.contact img { border-color: var(--horror); box-shadow: 0 0 15px var(--horror); }
+    /* The "Portal" Background Effect (CSS Generated, No Image) */
+    .hero-portal { 
+        height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center;
+        background: radial-gradient(circle, rgba(138,43,226,0.2) 0%, rgba(15,15,19,1) 70%);
+        border-bottom: 1px solid #333;
+    }
 
-    /* Data-Terminal Section Style */
-    section { margin-bottom: 40px; padding: 25px; background: rgba(20, 20, 25, 0.8); border: 1px solid #333; border-left: 4px solid #555; position: relative; transition: all 0.4s ease; }
-    section:hover { border-color: var(--tech); box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.1); }
-    
-    h2 { font-size: 1.2rem; letter-spacing: 2px; margin-top: 0; display: flex; align-items: center; }
-    h2::before { content: '>'; margin-right: 10px; color: var(--tech); }
+    /* Horizontal Nav Pill */
+    .nav-pill { display: flex; justify-content: center; gap: 15px; padding: 20px; }
+    .nav-btn { 
+        background: #1a1a20; padding: 10px 20px; border-radius: 50px; border: 1px solid #444; 
+        text-decoration: none; color: white; transition: 0.3s; 
+    }
+    .nav-btn:hover { border-color: var(--tech); box-shadow: 0 0 10px var(--tech); }
 
-    /* Tabs & Media */
-    .media-slider { display: flex; overflow-x: auto; gap: 20px; padding: 20px 0; cursor: grab; }
-    .media-card { flex: 0 0 300px; background: #1a1a20; padding: 15px; border-radius: 8px; border: 1px solid #333; }
-    .tabs { display: flex; gap: 10px; margin-bottom: 10px; }
-    .tab-btn { background: #222; border: 1px solid #444; color: white; padding: 10px 20px; cursor: pointer; }
-    .content-box { background: #1a1a20; padding: 20px; border-radius: 8px; border-left: 5px solid var(--tech); }
+    /* Category Grid (4 Column) */
+    .cat-grid { 
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+        gap: 20px; padding: 20px; max-width: 1000px; margin: auto;
+    }
+    .cat-card { 
+        background: rgba(20,20,25,0.8); padding: 20px; border: 1px solid #333; 
+        border-radius: 12px; transition: 0.3s;
+    }
+    .cat-card:hover { border-color: var(--tech); }
+    .cat-card i { font-size: 2rem; margin-bottom: 15px; }
 
-    /* Social Terminal */
-    .social-terminal { text-align: center; padding: 40px; }
-    .social-terminal a { font-size: 2rem; margin: 0 20px; color: #555; transition: 0.3s; }
-    .yt:hover { color: #FF0000; text-shadow: 0 0 15px #FF0000; }
-    .tt:hover { color: #00F2EA; text-shadow: 0 0 15px #00F2EA; }
-    .ig:hover { color: #FF00AF; text-shadow: 0 0 15px #FF00AF; }
-    .fb:hover { color: var(--fb); text-shadow: 0 0 15px var(--fb); }
+    /* Transmission Hub */
+    .hub-section { padding: 40px 20px; max-width: 1000px; margin: auto; }
+    .hub-slider { display: flex; gap: 20px; overflow-x: auto; }
+    .card { flex: 0 0 280px; background: #1a1a20; padding: 15px; border-radius: 12px; }
   </style>
 </head>
 <body>
 
-  <header style="text-align:center; padding: 20px 20px 0;">
-    <a href="index.html"><img src="assets/NEW%20LOGO.png" class="site-logo"></a>
-    <h1>XENOFINALDAWN</h1>
-    <p class="tagline">One portal. Infinite possibilities.</p>
-    <nav>
-      <ul class="nav-grid">
-        <li><a href="index.html" class="nav-btn news"><img src="assets/avatar.10252441.140x140.jpg"><span>NEWS</span></a></li>
-        <li><a href="about.html" class="nav-btn origin"><img src="assets/avatar.10252441.140x140.jpg"><span>ORIGIN</span></a></li>
-        <li><a href="designs.html" class="nav-btn designs"><img src="assets/avatar.10252441.140x140.jpg"><span>DESIGNS</span></a></li>
-        <li><a href="contact.html" class="nav-btn contact"><img src="assets/avatar.10252441.140x140.jpg"><span>CONTACT</span></a></li>
-      </ul>
-    </nav>
+  <!-- Header/Nav -->
+  <header>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px;">
+          <img src="assets/NEW%20LOGO.png" style="width: 50px;">
+          <nav class="nav-pill">
+              <a href="#" class="nav-btn"><i class="fa fa-newspaper"></i> NEWS</a>
+              <a href="#" class="nav-btn"><i class="fa fa-bolt"></i> ORIGIN</a>
+              <a href="#" class="nav-btn"><i class="fa fa-pen"></i> DESIGNS</a>
+              <a href="#" class="nav-btn"><i class="fa fa-envelope"></i> CONTACT</a>
+          </nav>
+          <div><i class="fa fa-search"></i> &nbsp; <i class="fa fa-user"></i></div>
+      </div>
   </header>
 
-  <main style="max-width: 900px; margin: auto;">
-    <section>
-      <h2>THE TRANSMISSION HUB</h2>
-      <div class="media-slider" id="youtube-feed">Loading feed...</div>
-    </section>
+  <!-- Hero Portal -->
+  <section class="hero-portal">
+      <h1 style="font-size: 4rem; letter-spacing: 5px; margin: 0;">XENOFINALDAWN</h1>
+      <p style="font-style: italic; color: #888;">ONE PORTAL. INFINITE POSSIBILITIES.</p>
+  </section>
 
-    <section>
-      <h2>THE FINAL WORD</h2>
-      <div class="tabs">
-        <button class="tab-btn" onclick="showTab('horror')">Horror</button>
-        <button class="tab-btn" onclick="showTab('anime')">Anime</button>
-        <button class="tab-btn" onclick="showTab('wrestling')">Wrestling</button>
-        <button class="tab-btn" onclick="showTab('tech')">Tech/Gaming</button>
+  <!-- Hub -->
+  <section class="hub-section">
+      <h2>> THE TRANSMISSION HUB</h2>
+      <div class="hub-slider" id="youtube-feed">Loading...</div>
+  </section>
+
+  <!-- Category Grid -->
+  <section class="cat-grid">
+      <div class="cat-card" style="border-left: 4px solid var(--horror);">
+          <i class="fa fa-skull" style="color:var(--horror)"></i>
+          <h3>HORROR</h3>
+          <p>Enter the unknown.</p>
+          <a href="#" style="color:var(--horror)">VIEW NEWS -></a>
       </div>
-      <div id="tab-content" class="content-box">Select a category to view transmissions.</div>
-    </section>
-
-    <div class="social-terminal">
-      <a href="#" class="yt"><i class="fab fa-youtube"></i></a>
-      <a href="#" class="tt"><i class="fab fa-tiktok"></i></a>
-      <a href="#" class="ig"><i class="fab fa-instagram"></i></a>
-      <a href="#" class="fb"><i class="fab fa-facebook"></i></a>
-    </div>
-  </main>
+      <div class="cat-card" style="border-left: 4px solid var(--anime);">
+          <i class="fa fa-sword" style="color:var(--anime)"></i>
+          <h3>ANIME</h3>
+          <p>Epic battles await.</p>
+          <a href="#" style="color:var(--anime)">VIEW NEWS -></a>
+      </div>
+      <div class="cat-card" style="border-left: 4px solid var(--wrestling);">
+          <i class="fa fa-hand-fist" style="color:var(--wrestling)"></i>
+          <h3>WRESTLING</h3>
+          <p>Champions collide.</p>
+          <a href="#" style="color:var(--wrestling)">VIEW NEWS -></a>
+      </div>
+      <div class="cat-card" style="border-left: 4px solid var(--tech);">
+          <i class="fa fa-gamepad" style="color:var(--tech)"></i>
+          <h3>TECH/GAMING</h3>
+          <p>Level up your world.</p>
+          <a href="#" style="color:var(--tech)">VIEW NEWS -></a>
+      </div>
+  </section>
 
   <script>
-    const myChannelId = 'UCon9odxjxyp_bMh2wkuRbhg'; 
-
-    // Fetch and display YouTube feed
-    async function fetchYouTubeVideos() {
-      const feed = document.getElementById("youtube-feed");
-      try {
-        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${myChannelId}`);
-        const data = await response.json();
-        if (data.status === 'ok') {
-          feed.innerHTML = data.items.map(v => `
-            <div class="media-card">
-              <a href="${v.link}" target="_blank" style="text-decoration:none; color:white;">
-                <img src="${v.thumbnail}" style="width:100%; border-radius:5px;">
-                <p style="font-size: 0.8rem; margin-top: 10px;">${v.title}</p>
-              </a>
-            </div>
-          `).join("");
-        }
-      } catch (err) {
-        feed.innerHTML = "Unable to load transmissions.";
-      }
-    }
-    fetchYouTubeVideos();
-
-    function showTab(cat) {
-      const colors = { horror: 'var(--horror)', anime: 'var(--anime)', wrestling: 'var(--wrestling)', tech: 'var(--tech)' };
-      const box = document.getElementById('tab-content');
-      box.style.borderLeftColor = colors[cat];
-      box.innerHTML = `<h3>${cat.toUpperCase()} FEED</h3><p>Loading the latest transmission for ${cat}...</p>`;
-    }
+      // Keep your existing fetchYouTubeVideos function here to populate the Hub
   </script>
 </body>
 </html>
