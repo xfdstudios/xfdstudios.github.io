@@ -6,7 +6,6 @@
   <title>ORIGIN // XENOFINALDAWN</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
-    /* Absolute Layout Mirroring from Index */
     * { box-sizing: border-box; }
 
     :root { 
@@ -17,6 +16,7 @@
       --tech: #00FFFF; 
       --blue: #00BFFF;
       --fb: #1877F2;
+      --linkedin: #0077B5;
       --grey-pill: rgba(255, 255, 255, 0.05);
     }
     
@@ -30,7 +30,7 @@
     }
 
     /* =========================================
-       PHASE 1: ENCASED CONTROL CENTER HEADER (LOCKED)
+       PHASE 1: ENCASED CONTROL CENTER HEADER
        ========================================= */
     header {
       padding: 20px;
@@ -48,7 +48,7 @@
       max-width: 1400px;
       margin: 0 auto;
       border: 1px solid rgba(255,255,255,0.15);
-      border-bottom: 2px solid var(--blue); /* Highlight blue for Origin tab */
+      border-bottom: 2px solid var(--blue); 
       border-radius: 20px;
       padding: 10px 30px;
       background: rgba(15, 15, 20, 0.85);
@@ -59,7 +59,6 @@
     .site-logo { max-width: 100px; filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.5)); transition: 0.3s; }
     .site-logo:hover { filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.9)); transform: scale(1.05); }
 
-    /* Color-Coded Pill Navigation */
     .pill-nav { display: flex; gap: 15px; }
     .pill-nav a {
       color: white;
@@ -79,7 +78,6 @@
     .pill-nav a.nav-news i { color: var(--anime); }
     .pill-nav a.nav-news:hover { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); background: rgba(138,43,226,0.1); }
     
-    /* Origin Active State Styling */
     .pill-nav a.nav-origin { border-color: var(--blue); background: rgba(0,191,255,0.15); box-shadow: 0 0 15px rgba(0,191,255,0.2); }
     .pill-nav a.nav-origin i { color: var(--blue); }
     
@@ -89,14 +87,12 @@
     .pill-nav a.nav-contact i { color: var(--horror); }
     .pill-nav a.nav-contact:hover { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); background: rgba(57,255,20,0.1); }
 
-    /* Header Utilities */
     .header-utils { display: flex; align-items: center; gap: 20px; }
     .social-pills a { color: #aaa; font-size: 1.2rem; margin-left: 10px; transition: 0.3s; }
     .social-pills .yt:hover { color: #FF0000; text-shadow: 0 0 10px #FF0000; }
     .social-pills .fb:hover { color: var(--fb); text-shadow: 0 0 10px var(--fb); }
     .social-pills .tt:hover { color: var(--tech); text-shadow: 0 0 10px var(--tech); }
     .social-pills .ig:hover { color: #FF00AF; text-shadow: 0 0 10px #FF00AF; }
-    .social-pills .ln:hover { color: #0077B5; text-shadow: 0 0 10px #0077B5; }
 
     .search-bar {
       display: flex;
@@ -112,7 +108,7 @@
     .search-bar input::placeholder { color: #666; }
 
     /* =========================================
-       ORIGIN SECTION LAYOUT
+       ORIGIN MAIN LAYOUT ARCHITECTURE
        ========================================= */
     .section-title {
       font-size: 1.2rem;
@@ -128,14 +124,13 @@
       display: grid;
       grid-template-columns: 2fr 1fr;
       gap: 30px;
-      padding: 0 40px 80px 40px;
+      padding: 0 40px;
       max-width: 1450px;
       margin: 0 auto;
     }
 
     .terminal-text { font-family: monospace; font-size: 0.75rem; color: #666; margin-bottom: 8px; }
     
-    /* Standardized Data Terminal Container Block */
     .terminal-block {
       background: rgba(20,20,25,0.8);
       border: 1px solid #333;
@@ -146,23 +141,13 @@
     }
     .terminal-block:hover { border-color: var(--blue); box-shadow: inset 0 0 20px rgba(0,191,255,0.05), 0 0 15px rgba(0,191,255,0.1); }
     
-    .terminal-block h3 {
-      margin: 0 0 15px 0;
-      font-size: 1.4rem;
-      letter-spacing: 1px;
-      color: white;
-    }
-    .terminal-block p {
-      margin: 0 0 20px 0;
-      font-size: 1.05rem;
-      line-height: 1.6;
-      color: #ccc;
-    }
+    .terminal-block h3 { margin: 0 0 15px 0; font-size: 1.4rem; letter-spacing: 1px; color: white; }
+    .terminal-block p { margin: 0 0 20px 0; font-size: 1.05rem; line-height: 1.6; color: #ccc; }
     .terminal-block p:last-child { margin-bottom: 0; }
 
-    /* Creator Profile Specifics */
-    .profile-card { text-align: center; }
-    .profile-card h3 { font-size: 1.6rem; margin-bottom: 5px; color: white; }
+    /* Interactive Social Target Nodes (Fighter Select Look) */
+    .profile-card { text-align: center; height: auto; position: sticky; top: 120px; }
+    .profile-card h3 { font-size: 1.6rem; margin-bottom: 5px; }
     .profile-role { color: var(--blue); font-family: monospace; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 20px; }
     
     .profile-socials {
@@ -170,27 +155,67 @@
       justify-content: center;
       gap: 15px;
       margin-top: 20px;
-      padding-top: 20px;
+      padding-top: 25px;
       border-top: 1px solid rgba(255,255,255,0.1);
     }
+    
     .profile-socials a {
-      color: #aaa;
-      font-size: 1.4rem;
+      color: white;
+      text-decoration: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.4);
+      border: 2px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .profile-socials a:hover { transform: translateY(-4px); }
+    
+    /* Individual Color Injection Targets */
+    .profile-socials a.p-ln:hover { border-color: var(--linkedin); box-shadow: 0 0 15px var(--linkedin); color: var(--linkedin); }
+    .profile-socials a.p-yt:hover { border-color: #FF0000; box-shadow: 0 0 15px #FF0000; color: #FF0000; }
+    .profile-socials a.p-fb:hover { border-color: var(--fb); box-shadow: 0 0 15px var(--fb); color: var(--fb); }
+    .profile-socials a.p-ig:hover { border-color: #FF00AF; box-shadow: 0 0 15px #FF00AF; color: #FF00AF; }
+
+    /* =========================================
+       HISTORICAL ARCHIVE & DEPLOYMENT GRID
+       ========================================= */
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      padding: 40px 40px 80px 40px;
+      max-width: 1450px;
+      margin: 0 auto;
+    }
+    .archive-card {
+      background: rgba(15,15,20,0.6);
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 25px;
       transition: 0.3s;
     }
+    .archive-card:hover { border-color: rgba(255,255,255,0.2); }
+    .archive-meta { font-family: monospace; font-size: 0.8rem; color: var(--blue); margin-bottom: 10px; }
+    .archive-card h4 { margin: 0 0 10px 0; font-size: 1.2rem; }
+    .archive-card p { color: #888; font-size: 0.95rem; line-height: 1.5; margin: 0 0 15px 0; }
+    .btn-decrypt { display: inline-flex; align-items: center; gap: 8px; font-family: monospace; color: white; text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; }
+    .btn-decrypt:hover { color: var(--blue); text-shadow: 0 0 8px var(--blue); }
 
     @media (max-width: 1100px) {
       .origin-layout { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 850px) {
-      .header-encased { flex-direction: column; gap: 20px; }
-      .pill-nav { flex-wrap: wrap; justify-content: center; }
+      .archive-grid { grid-template-columns: 1fr; }
+      .profile-card { position: relative; top: 0; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER (Identical to Master Index) -->
+  <!-- HEADER (Locked Design Vector) -->
   <header>
     <div class="header-encased">
       <div class="logo">
@@ -221,13 +246,13 @@
 
   <main>
     <div class="section-title">
-      <span>System Archive // Brand Origin</span>
+      <span>System Archive // Core Matrix</span>
     </div>
 
-    <!-- MAIN ORIGIN LAYOUT -->
+    <!-- MAIN ORIGIN INTERFACE -->
     <div class="origin-layout">
       
-      <!-- Narrative Stream (Left Side) -->
+      <!-- Narrative Blocks -->
       <div class="story-stream">
         <div>
           <div class="terminal-text">// initialization: CORE_IDENTITY_MANIFEST</div>
@@ -246,26 +271,52 @@
         </div>
       </div>
 
-      <!-- Identity Node / Profile (Right Side) -->
+      <!-- Creator Controller Unit (Interactive Social Nodes) -->
       <div>
-        <div class="terminal-text">// node_status: OWNER_CREDENTIALS</div>
+        <div class="terminal-text">// node_status: IDENTITY_ACCESS_LOCKED</div>
         <div class="terminal-block profile-card">
-          <div style="width: 100px; height: 100px; background: #222; border: 2px solid var(--blue); border-radius: 50%; margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(0,191,255,0.2);">
+          <div style="width: 100px; height: 100px; background: #0F0F13; border: 2px solid var(--blue); border-radius: 50%; margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(0,191,255,0.2);">
             <i class="fas fa-user-shield" style="font-size: 2.5rem; color: var(--blue);"></i>
           </div>
           <h3>O. Calhoun</h3>
           <div class="profile-role">Owner / Creator</div>
-          <p style="font-size: 0.9rem; color: #888; text-align: center;">Direct link transmissions authorized below.</p>
+          <p style="font-size: 0.9rem; color: #666; text-align: center; margin-bottom: 0;">Select authorization port to link outward:</p>
           
           <div class="profile-socials">
-            <a href="#" class="ln" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="yt" title="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="#" class="fb" title="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="#" class="ig" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com" class="p-ln" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://youtube.com" class="p-yt" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://facebook.com" class="p-fb" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com" class="p-ig" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
       </div>
+    </div>
 
+    <!-- TRANSMISSIONS ARCHIVE SECTION -->
+    <div class="section-title">
+      <span>Historical Transmissions // Links</span>
+    </div>
+
+    <div class="archive-grid">
+      <div>
+        <div class="terminal-text">// storage_sector: NOTE_LOG_01</div>
+        <div class="archive-card">
+          <div class="archive-meta">OCT 2024 // BRANDING_INTEL</div>
+          <h4>Finding the XFD Tone</h4>
+          <p>Balancing anime energy with clean composition—the way I approach client branding and stylistic setups.</p>
+          <a href="designs.html" class="btn-decrypt">DECRYPT FILE [XFD_TONE] ➔</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="terminal-text">// storage_sector: NOTE_LOG_02</div>
+        <div class="archive-card">
+          <div class="archive-meta">AUG 2024 // GRAPHIC_WORKFLOW</div>
+          <h4>Designing for Story</h4>
+          <p>Why every graphic should feel like a scene—introducing motion elements and depth even into completely still frames.</p>
+          <a href="designs.html" class="btn-decrypt">DECRYPT FILE [STORY_DSGN] ➔</a>
+        </div>
+      </div>
     </div>
   </main>
 
