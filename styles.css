@@ -1,239 +1,221 @@
-/* ===== FOUC guard (hide until fully loaded; noscript overrides in HTML head) ===== */
-html.fouc-guard body { visibility: hidden; }
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DESIGN SHOP // XENOFINALDAWN</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    :root { 
+      --bg: #05050A; 
+      --horror: #39FF14; 
+      --anime: #8A2BE2; 
+      --wrestling: #DC143C; 
+      --tech: #00FFFF; 
+      --blue: #00BFFF; 
+      --fb: #1877F2; 
+      --ig: #E1306C; 
+      --rb: #E31421; 
+      --grey-pill: rgba(255, 255, 255, 0.05); 
+    }
+    body { background-color: var(--bg); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
 
-/* ===== Base / Theme ===== */
-:root{
-  --font: system-ui,-apple-system,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+    header { padding: 20px; position: sticky; top: 0; z-index: 100; background: linear-gradient(to bottom, rgba(5,5,10,1) 40%, rgba(5,5,10,0) 100%); }
+    
+    /* FIXED: The slash has been removed so the header loads correctly */
+    .header-encased { 
+      display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1400px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.15); 
+      border-bottom: 2px solid var(--wrestling); /* RED */
+      border-radius: 20px; padding: 10px 30px; background: rgba(15, 15, 20, 0.85); backdrop-filter: blur(15px); 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(220,20,60,0.05); /* RED GLOW */
+    }
 
-  /* Brand colors from your logo */
-  --accent-green:#38B24A;
-  --accent-purple:#652D91;
-  --accent-blue:#1B75BA;
+    .site-logo { max-width: 100px; filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.5)); transition: 0.3s; }
+    .site-logo:hover { filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.9)); transform: scale(1.05); }
 
-  /* Theme */
-  --bg-top:#171329;           /* indigo */
-  --bg-bottom:#0d1320;        /* midnight blue */
-  --panel:#121a2a;            /* blue-slate panel */
-  --muted:#b6bcc6;
+    .pill-nav { display: flex; gap: 15px; }
+    .pill-nav a { color: white; text-decoration: none; padding: 10px 20px; border-radius: 30px; background: var(--grey-pill); border: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+    .pill-nav a.nav-news i { color: var(--anime); }
+    .pill-nav a.nav-news:hover, .pill-nav a.nav-news.active { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); background: rgba(138,43,226,0.1); }
+    .pill-nav a.nav-origin i { color: var(--blue); }
+    .pill-nav a.nav-origin:hover, .pill-nav a.nav-origin.active { border-color: var(--blue); box-shadow: 0 0 15px rgba(0,191,255,0.3); background: rgba(0,191,255,0.1); }
+    .pill-nav a.nav-designs i { color: var(--wrestling); }
+    .pill-nav a.nav-designs:hover, .pill-nav a.nav-designs.active { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.3); background: rgba(220,20,60,0.1); }
+    .pill-nav a.nav-contact i { color: var(--horror); }
+    .pill-nav a.nav-contact:hover, .pill-nav a.nav-contact.active { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); background: rgba(57,255,20,0.1); }
 
-  --radius:14px;
-  --max-width:1200px;
-  --gap:18px;
-  --sidebar-w:360px;          /* Sidebar width */
-}
+    .header-utils { display: flex; align-items: center; gap: 20px; }
+    .social-pills { display: flex; align-items: center; gap: 5px; }
+    .social-pills a { color: #aaa; font-size: 1.2rem; margin-left: 8px; transition: 0.3s; text-decoration: none; }
+    .social-pills .yt:hover { color: #FF0000; text-shadow: 0 0 10px #FF0000; transform: translateY(-2px); }
+    .social-pills .fb:hover { color: var(--fb); text-shadow: 0 0 10px var(--fb); transform: translateY(-2px); }
+    .social-pills .tt:hover { color: var(--tech); text-shadow: 0 0 10px var(--tech); transform: translateY(-2px); }
+    .social-pills .ig:hover { color: var(--ig); text-shadow: 0 0 10px var(--ig); transform: translateY(-2px); }
+    .social-pills .th:hover { color: white; text-shadow: 0 0 10px white; transform: translateY(-2px); }
+    .social-pills .rb:hover { color: var(--rb); text-shadow: 0 0 10px var(--rb); transform: translateY(-2px); }
 
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{
-  font-family:var(--font);
-  background:linear-gradient(180deg,var(--bg-top),var(--bg-bottom) 60%);
-  color:#fff;
-  padding:24px;
-  -webkit-font-smoothing:antialiased;
-}
+    /* RED SEARCH BAR GLOW */
+    .search-bar { display: flex; align-items: center; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 8px 15px; transition: 0.3s; }
+    .search-bar:focus-within { border-color: var(--wrestling); box-shadow: 0 0 10px rgba(220,20,60,0.2); }
+    .search-bar input { background: transparent; border: none; color: white; outline: none; padding-right: 10px; font-family: monospace; width: 130px;}
+    .search-bar input::placeholder { color: #666; }
 
-.wrap{max-width:var(--max-width);margin:0 auto}
+    .section-title { font-size: 1.2rem; letter-spacing: 2px; margin: 40px auto 20px auto; text-transform: uppercase; padding: 0 20px; max-width: 1400px; display: flex; align-items: center; }
+    .section-title span::before { content: '> '; color: var(--wrestling); }
+    
+    .shop-layout-full { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+    .terminal-block { background: rgba(20,20,25,0.8); border: 1px solid #333; border-left: 4px solid var(--wrestling); border-radius: 12px; padding: 30px; margin-bottom: 40px; }
+    .terminal-text { font-family: monospace; font-size: 0.75rem; color: #666; margin-bottom: 8px; }
 
-/* ===== Notices ===== */
-.hidden{display:none}
-.banner{background:#2c223f;border:1px solid rgba(255,255,255,0.1);color:#fff;padding:10px 14px;border-radius:10px;margin-bottom:12px}
-.banner-dismiss{float:right;background:transparent;border:0;color:#fff;font-size:18px;cursor:pointer}
-.noscript-warning{background:#3a0e0e;border-left:4px solid #f44336;padding:10px 12px;margin-bottom:12px;border-radius:6px}
+    .tabs { display: flex; gap: 15px; margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 10px; flex-wrap: wrap; }
+    .tab-btn { background: transparent; border: none; color: #888; font-family: 'Segoe UI', sans-serif; font-size: 1.1rem; font-weight: bold; letter-spacing: 1px; cursor: pointer; padding: 5px 10px; transition: 0.3s; text-transform: uppercase; }
+    .tab-btn:hover { color: white; }
+    .tab-btn.active { color: white; border-bottom: 3px solid var(--wrestling); text-shadow: 0 0 10px rgba(220,20,60,0.5); }
+    .tab-content { display: none; animation: fadeIn 0.4s ease-in; }
+    .tab-content.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ===== Header (social icons under the tagline; blue) ===== */
-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
-.brand{display:flex;align-items:flex-start;gap:16px}
-.logo{width:120px;height:auto;display:block}
-.img-missing{background:linear-gradient(135deg,#2d2d2d,#444);width:120px;height:120px;display:inline-block;border-radius:10px}
+    .cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--wrestling); color: white; text-decoration: none; padding: 10px 24px; border-radius: 30px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; transition: 0.3s; border: none; justify-content: center; margin-bottom: 20px; }
+    .cta-btn:hover { background: #ff1c4b; box-shadow: 0 0 15px var(--wrestling); }
+    
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; margin-top: 15px; }
+    .thumb-node { background: rgba(10,10,15,0.6); border: 1px solid #222; border-radius: 12px; padding: 15px; cursor: pointer; transition: 0.3s; text-align: center; display: flex; flex-direction: column; justify-content: space-between; }
+    .thumb-node:hover { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.2); transform: translateY(-3px); }
+    .thumb-node img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; display: block; }
 
-.brand-text{display:flex;flex-direction:column;gap:6px}
-.site-title{font-weight:800;color:var(--accent-green);font-size:22px;letter-spacing:0.2px}
-.site-sub{font-size:12px;color:var(--muted)}
+    .rb-embed-container { background: rgba(10,10,15,0.6); border: 1px solid #222; border-radius: 10px; padding: 20px; max-height: 450px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--wrestling) rgba(0,0,0,0.3); }
+    .rb-embed-container::-webkit-scrollbar { width: 8px; }
+    .rb-embed-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); border-radius: 10px; }
+    .rb-embed-container::-webkit-scrollbar-thumb { background: var(--wrestling); border-radius: 10px; }
 
-.socials{
-  display:flex;
-  gap:12px;            /* even spacing */
-  margin-top:8px;      /* below tagline */
-}
-.socials a{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:38px;height:38px;border-radius:8px;
-  color:var(--accent-blue);                     /* currentColor → blue SVG */
-  border:1px solid rgba(27,117,186,0.35);
-  background:transparent;
-  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-}
-.socials a:hover{
-  transform:translateY(-2px);
-  box-shadow:0 0 0 2px rgba(27,117,186,0.18) inset;
-  background:rgba(27,117,186,0.08);
-}
+    .slider-wrapper { display: flex; align-items: center; gap: 15px; margin-top: 15px; }
+    .nav-arrow { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; width: 45px; height: 45px; color: white; cursor: pointer; transition: 0.3s; flex-shrink: 0; }
+    .nav-arrow:hover { background: rgba(138,43,226,0.3); border-color: var(--anime); box-shadow: 0 0 15px var(--anime); }
+    .media-slider { display: flex; overflow-x: auto; gap: 20px; padding: 10px 0; scrollbar-width: none; scroll-behavior: smooth; width: 100%; }
+    .media-slider::-webkit-scrollbar { display: none; }
+    .media-card { flex: 0 0 320px; background: rgba(20,20,25,0.8); border: 1px solid #333; border-radius: 12px; padding: 15px; transition: 0.3s; position: relative; }
+    .media-card:hover { transform: translateY(-5px); }
+    .media-card img { width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); }
+    .media-card .badge { position: absolute; top: 25px; left: 25px; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; letter-spacing: 1px; }
 
-/* ===== Nav ===== */
-.nav-list{display:flex;gap:10px;list-style:none}
-.nav-list a{
-  text-decoration:none;color:#fff;padding:8px 12px;border-radius:10px;
-  background:linear-gradient(90deg, rgba(27,117,186,0.12), rgba(101,45,145,0.12));
-  font-weight:700
-}
-.nav-list a:hover{transform:translateY(-3px);transition:transform .15s ease}
+    .card-purple:hover { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); }
+    .card-cyan:hover { border-color: var(--tech); box-shadow: 0 0 15px rgba(0,255,255,0.3); }
+    .card-green:hover { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); }
 
-/* ===== Layout ===== */
-.grid{
-  display:grid;
-  grid-template-columns:1fr var(--sidebar-w);
-  gap:var(--gap);
-}
-.left{display:flex;flex-direction:column;gap:20px}
-.right{position:sticky;top:24px;display:flex;flex-direction:column;gap:12px}
+    .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3, 3, 6, 0.95); display: none; align-items: center; justify-content: center; z-index: 99999; padding: 20px; }
+    .lightbox-content { position: relative; max-width: 90vw; max-height: 85vh; text-align: center; }
+    .lightbox img { max-width: 100%; max-height: 75vh; border-radius: 12px; border: 1px solid #444; box-shadow: 0 0 40px rgba(220, 20, 60, 0.4); object-fit: contain; }
+    .lightbox-close { position: absolute; top: -45px; right: 0; background: transparent; border: none; color: white; font-size: 2.2rem; cursor: pointer; transition: 0.3s; }
+    .lightbox-close:hover { color: var(--wrestling); }
 
-/* Utility: let a section span across both columns (full header/container width) */
-.full-span{ grid-column: 1 / -1; }
+    .site-footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); font-family: monospace; color: #555; margin-top: 50px;}
+    @media (max-width: 850px) { .header-encased { flex-direction: column; gap: 20px; } .pill-nav { flex-wrap: wrap; justify-content: center; } .header-utils { flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-encased">
+      <div class="logo"><a href="index.html"><img src="assets/NEW%20LOGO.png" alt="XFD Logo" class="site-logo"></a></div>
+      <nav class="pill-nav">
+        <a href="index.html" class="nav-news"><i class="fas fa-newspaper"></i> NEWS</a>
+        <a href="about.html" class="nav-origin"><i class="fas fa-microchip"></i> ORIGIN</a>
+        <a href="designs.html" class="nav-designs active"><i class="fas fa-pen-nib"></i> DESIGNS</a>
+        <a href="contact.html" class="nav-contact"><i class="fas fa-envelope"></i> CONTACT</a>
+      </nav>
+      <div class="header-utils">
+        <div class="social-pills">
+          <a href="https://www.youtube.com/@Xenofinaldawn" class="yt" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.facebook.com/XFDTV/" class="fb" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.tiktok.com/@xenofinaldawn" class="tt" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://www.instagram.com/xenofinaldawn/" class="ig" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.threads.com/@xenofinaldawn" class="th" target="_blank"><i class="fas fa-at"></i></a>
+          <a href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" class="rb" target="_blank"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+        <div class="search-bar"><input type="text" placeholder="Search portal..."><i class="fas fa-search" style="color: #666;"></i></div>
+      </div>
+    </div>
+  </header>
 
-/* Tiny utility used in a couple spots */
-.row-between{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  <main class="shop-layout-full">
+    <div class="section-title"><span>Quantum Archive // Asset Distribution</span></div>
+    <div class="terminal-text">// initialization: SECURE_MERCH_AND_PORTFOLIO</div>
+    <div class="terminal-block">
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('tab-portfolio', this)">Portfolio Gallery</button>
+        <button class="tab-btn" onclick="switchTab('tab-shop', this)">RedBubble Storefront</button>
+      </div>
 
-/* ===== Panels ===== */
-.panel{
-  background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.08));
-  padding:18px;border-radius:var(--radius);
-  border:1px solid rgba(255,255,255,0.08);
-  box-shadow:0 8px 24px rgba(0,0,0,0.35)
-}
-.section-title{font-size:22px;color:var(--accent-green);margin-bottom:10px}
-.mini-title{font-size:16px;margin-bottom:8px;color:#fff}
-.subtle{color:var(--muted);font-size:14px}
+      <div id="tab-portfolio" class="tab-content active">
+        <p style="color: #ccc; margin-bottom: 20px;">Select visualization sub-node to unpack high-resolution vector format configuration:</p>
+        <div class="portfolio-grid">
+          <div class="thumb-node" onclick="openLightbox('assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg')"><img alt="Love Bites" src="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg" loading="lazy"><h4>Love Bites</h4></div>
+          <div class="thumb-node" onclick="openLightbox('assets/Horor%20its%20self.jpg')"><img alt="Horror" src="assets/Horor%20its%20self.jpg" loading="lazy"><h4>Horror Itself</h4></div>
+          <div class="thumb-node" onclick="openLightbox('assets/Darkness%20lighen.jpg')"><img alt="Darkness" src="assets/Darkness%20lighen.jpg" loading="lazy"><h4>Darkness Lighten</h4></div>
+          <div class="thumb-node" onclick="openLightbox('assets/Sea.jpg')"><img alt="Sea" src="assets/Sea.jpg" loading="lazy"><h4>Sea Horizon</h4></div>
+          <div class="thumb-node" onclick="openLightbox('assets/Packages.jpg')"><img alt="Packages" src="assets/Packages.jpg" loading="lazy"><h4>Packages</h4></div>
+          <div class="thumb-node" onclick="openLightbox('assets/girl%20with%20big%20head.jpg')"><img alt="Girl" src="assets/girl%20with%20big%20head.jpg" loading="lazy"><h4>Girl With Big Head</h4></div>
+          <div class="thumb-node" onclick="openLightbox('assets/Betty%20Boo%20Vs.png')"><img alt="Betty Boo" src="assets/Betty%20Boo%20Vs.png" loading="lazy"><h4>Betty Boo Vs</h4></div>
+          <div class="thumb-node" onclick="openLightbox('assets/Secrets-of-In-the-mouth-of-Madness.png')"><img alt="Madness" src="assets/Secrets-of-In-the-mouth-of-Madness.png" loading="lazy"><h4>Mouth of Madness</h4></div>
+          <div class="thumb-node" onclick="openLightbox('assets/back-to-the-future-z.jpg')"><img alt="BTTF" src="assets/back-to-the-future-z.jpg" loading="lazy"><h4>Back to the Future Z</h4></div>
+          <div class="thumb-node" onclick="openLightbox('assets/Kang.jpg')"><img alt="Kang" src="assets/Kang.jpg" loading="lazy"><h4>Kang Engine</h4></div>
+          <div class="thumb-node" onclick="openLightbox('assets/tarus.jpg')"><img alt="Tarus" src="assets/tarus.jpg" loading="lazy"><h4>Taurus Vector</h4></div>
+        </div>
+      </div>
 
-/* ===== Buttons ===== */
-.cta{
-  display:inline-block;padding:12px 14px;border-radius:12px;text-decoration:none;color:#fff;
-  background:linear-gradient(90deg,var(--accent-green),var(--accent-blue));font-weight:800
-}
-.cta.alt{background:linear-gradient(90deg,var(--accent-blue),var(--accent-purple))}
-/* Red variant for the RedBubble button */
-.cta.red{
-  background: linear-gradient(90deg, #ff3b30, #d90429);
-}
-.cta.red:hover{
-  filter: brightness(1.05);
-  transform: translateY(-2px);
-}
-/* ===== Video carousel ===== */
-.video-carousel{display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory;padding-bottom:6px;-webkit-overflow-scrolling:touch}
-.video-card{flex:0 0 300px;scroll-snap-align:center;border-radius:12px;overflow:hidden;background:#0f1725;border:1px solid rgba(255,255,255,0.08);cursor:pointer;min-height:170px}
-.video-card:hover{transform:translateY(-6px);box-shadow:0 12px 36px rgba(0,0,0,0.45)}
-.video-thumb{width:100%;height:170px;object-fit:cover;display:block}
-.video-meta{padding:10px}
-.video-meta h3{font-size:15px;margin-bottom:6px}
-.video-meta p{font-size:13px;color:var(--muted);margin:0}
-.carousel-controls{display:flex;gap:8px;margin-top:8px}
-.btn{
-  background:linear-gradient(90deg,var(--accent-green),var(--accent-blue));
-  border:none;color:#fff;padding:10px 12px;border-radius:10px;cursor:pointer;font-weight:800
-}
+      <div id="tab-shop" class="tab-content">
+        <p style="color: #ccc; margin-bottom: 20px;">Browse configurations below, or initialize the main engine branch on RedBubble.</p>
+        <a class="cta-btn" href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" target="_blank"><i class="fas fa-shopping-cart"></i> OPEN REDBUBBLE STORE</a>
+        <div class="rb-embed-container">
+          <script type="text/javascript" src="https://www.redbubble.com/assets/external_portfolio.js"></script>
+          <script id="rb-xzfcxvzx" type="text/javascript">new RBExternalPortfolio('www.redbubble.com', 'gr3at1', 5, 5).renderIframe();</script>
+          <noscript><div style="color: #aaa; text-align: center; padding: 20px;">Script blocked by browser. Please click the button above!</div></noscript>
+        </div>
+      </div>
+    </div>
 
-/* ===== Portfolio grid ===== */
-.portfolio{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:8px}
-.thumb{background:#0f1725;border-radius:12px;overflow:hidden;height:160px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(255,255,255,0.08)}
-.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    <div class="section-title"><span>Studio Feed // Video Design</span></div>
+    <div class="terminal-text">// sync_feed: CREATIVE_WORKFLOW_DATA</div>
+    <div class="terminal-block">
+      <h3 style="margin-top:0;">Video Design</h3>
+      <p style="color: #666; font-size: 0.9rem; margin-bottom: 5px;">Visualizing the design process, time-lapses, and creative workflows natively:</p>
+      <div class="slider-wrapper">
+        <button class="nav-arrow" onclick="scrollSlider(-1)"><i class="fas fa-chevron-left"></i></button>
+        <div class="media-slider" id="youtube-feed"><div id="loading-message" style="color: #aaa; padding: 20px;">Connecting to studio transmission stream...</div></div>
+        <button class="nav-arrow" onclick="scrollSlider(1)"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </main>
 
-/* ===== Creator Card (About page) ===== */
-.creator-card{
-  background:linear-gradient(180deg,#262626,#161616);
-  padding:14px;border-radius:18px;
-  border:1px solid rgba(255,255,255,0.08);
-  width:100%;
-}
-.creator-photo{
-  width:100%;
-  height:auto;
-  display:block;
-  border-radius:16px;
-  background:#222;
-  margin-bottom:12px;
-}
-.creator-name{font-size:26px;line-height:1.2;font-weight:900;text-align:center}
-.creator-role{font-size:16px;line-height:1.35;color:#d9d9d9;margin-top:6px;margin-bottom:12px;text-align:center}
-.creator-buttons{display:flex;flex-direction:column;gap:12px}
+  <footer class="site-footer">// SYSTEM_ACTIVE // &copy; 2026 XenoFinalDawn (XFD). All rights reserved.</footer>
 
-.social-btn{
-  display:flex;align-items:center;justify-content:center;
-  height:54px;border-radius:16px;font-weight:900;
-  text-decoration:none;color:#fff;border:0;gap:10px;
-  box-shadow: 0 2px 0 rgba(0,0,0,0.35) inset, 0 6px 22px rgba(0,0,0,0.35);
-  transition: transform .12s ease, filter .12s ease;
-}
-.social-btn svg{width:20px;height:20px;flex:0 0 20px;fill:#fff}
-.social-btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
-.social-btn.linkedin{background:#0A66C2}
-.social-btn.youtube{background:#FF0000}
-.social-btn.facebook{background:#1877F2}
-.social-btn.instagram{background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF,#515BD4)}
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()"><div class="lightbox-content" onclick="event.stopPropagation()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img id="lightbox-img" src="" alt="Expanded Vector Overlay"></div></div>
 
-/* ===== Quick Links panel ===== */
-.quick-panel .ql-title{margin-top:10px;margin-bottom:6px;font-weight:800;color:#fff}
-.quick-links{list-style:none;padding-left:0;margin-top:8px}
-.quick-links li{margin:6px 0}
-.quick-links a{text-decoration:none;color:#fff}
-.divider{border:none;border-top:1px solid rgba(255,255,255,0.12);margin:12px 0}
-
-/* ===== Modal ===== */
-.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.85);z-index:2000;padding:20px}
-.modal.show{display:flex}
-.modal-content{width:100%;max-width:1100px;border-radius:12px;overflow:hidden;position:relative;background:#000}
-.modal-close{position:absolute;top:8px;right:8px;background:transparent;border:none;color:#fff;font-size:26px;cursor:pointer;padding:8px}
-.modal-iframe{width:100%;height:65vh;border:0;display:block}
-.modal-image{max-width:90vw;max-height:80vh;display:block;width:auto;height:auto}
-
-/* ===== Responsive ===== */
-@media (max-width:980px){
-  .grid{grid-template-columns:1fr}
-  .right{position:relative;top:0}
-  .video-card{flex:0 0 260px}
-  .full-span{grid-column:auto}
-}
-@media (max-width:420px){
-  header{flex-direction:column;align-items:flex-start;gap:10px}
-  .nav-list{flex-wrap:wrap}
-  .video-card{flex:0 0 220px;height:auto}
-  .video-thumb{height:130px}
-}
-
-/* ===== About-only overrides ===== */
-.about-page .creator-card{ width: 100%; padding:14px; border-radius:18px; }
-.about-page .creator-photo{ width:100%; height:auto; margin-bottom:12px; }
-.about-page .creator-name{ font-size:26px; }
-.about-page .creator-role{ font-size:16px; margin-bottom:12px; }
-.about-page .creator-buttons{ display:flex; }
-
-/* ===== Contact page: container + left main / right sidebar ===== */
-.contact-page .left{ position: static; }        /* main left */
-.contact-page .right{ position: sticky; top:24px; }  /* quick links right, sticky */
-
-.contact-container .section-title{ margin-bottom: 8px; }
-
-/* Readable, left-justified intro text */
-.contact-intro{
-  text-align: left;
-  font-size: 16.5px;
-  line-height: 1.7;
-  color: var(--muted);
-  max-width: 70ch;
-}
-
-/* Centered form hierarchy under the intro */
-.form-centered{
-  max-width: 560px;
-  margin: 18px auto 0;
-  display: grid;
-  gap: 14px;
-}
-.form-field{ display:flex; flex-direction:column; gap:6px; }
-.form-field label{ font-weight:700; font-size:14px; color:#fff; }
-.form-input,.form-textarea{
-  width:100%; padding:12px;
-  border-radius:10px; border:1px solid rgba(255,255,255,0.10);
-  background:#0f1725; color:#fff;
-}
-.form-textarea{ min-height:140px; resize:vertical; }
-.form-actions{ display:flex; justify-content:center; margin-top:6px; }
+  <script>
+    function switchTab(tabId, btnElement) { document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active')); document.getElementById(tabId).classList.add('active'); btnElement.classList.add('active'); }
+    const slider = document.getElementById('youtube-feed');
+    function scrollSlider(direction) { slider.scrollBy({ left: 340 * direction, behavior: 'smooth' }); }
+    const myChannelId = 'UCon9odxjxyp_bMh2wkuRbhg'; 
+    async function fetchYouTubeVideos() {
+      try {
+        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${myChannelId}`);
+        const data = await response.json();
+        const loadingText = document.getElementById('loading-message'); if (loadingText) loadingText.remove();
+        if (data.status === 'ok') {
+          const borderClasses = ['card-purple', 'card-cyan', 'card-green']; const badgeColors = ['var(--anime)', 'var(--tech)', 'var(--horror)']; const textColors = ['white', 'black', 'black'];
+          const generatedHTML = data.items.map((v, i) => {
+            const dateObj = new Date(v.pubDate.replace(/-/g, '/')); const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            return `<div class="media-card ${borderClasses[i % 3]}"><span class="badge" style="background: ${badgeColors[i % 3]}; color: ${textColors[i % 3]};">VIDEO</span><a href="${v.link}" target="_blank" style="text-decoration:none; color:white;"><img src="${v.thumbnail}" alt="Thumbnail"><h4 style="margin: 0 0 10px 0; font-size: 1rem; line-height: 1.3;">${v.title}</h4><p style="font-size: 0.8rem; color: #888; margin: 0;">${formattedDate}</p></a></div>`;
+          }).join("");
+          slider.insertAdjacentHTML('beforeend', generatedHTML);
+        } else { slider.insertAdjacentHTML('beforeend', "<div style='color:#aaa; padding:20px;'>No transmissions found.</div>"); }
+      } catch (err) { const loadingText = document.getElementById('loading-message'); if (loadingText) loadingText.remove(); slider.insertAdjacentHTML('beforeend', "<div style='color:#aaa; padding:20px;'>Transmission sync dropped.</div>"); }
+    }
+    fetchYouTubeVideos();
+    const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img');
+    function openLightbox(src) { lightboxImg.src = src; lightbox.style.display = 'flex'; }
+    function closeLightbox() { lightbox.style.display = 'none'; lightboxImg.src = ''; }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+</body>
+</html>
