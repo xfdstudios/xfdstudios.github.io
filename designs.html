@@ -25,106 +25,310 @@
     }
 
     /* HEADER */
-    header { padding: 20px; position: sticky; top: 0; z-index: 100; background: linear-gradient(to bottom, rgba(5,5,10,1) 40%, rgba(5,5,10,0) 100%); }
-    .header-encased { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1400px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.15); border-bottom: 2px solid var(--wrestling); border-radius: 20px; padding: 10px 30px; background: rgba(15, 15, 20, 0.85); backdrop-filter: blur(15px); }
-    .site-logo { max-width: 100px; }
-    .pill-nav { display: flex; gap: 15px; }
-    .pill-nav a { color: white; text-decoration: none; padding: 10px 20px; border-radius: 30px; background: var(--grey-pill); border: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; }
-    .pill-nav a.nav-designs { border-color: var(--wrestling); background: rgba(220,20,60,0.15); }
-    
-    /* LAYOUT */
-    .shop-layout-full { max-width: 1400px; margin: 0 auto; padding: 20px; }
-    .section-title { font-size: 1.2rem; letter-spacing: 2px; margin: 40px 0 20px 0; text-transform: uppercase; color: var(--wrestling); }
-    .terminal-block { background: rgba(20,20,25,0.8); border: 1px solid #333; border-left: 4px solid var(--wrestling); border-radius: 12px; padding: 30px; margin-bottom: 40px; }
-    
-    /* TABS */
-    .tabs { display: flex; gap: 15px; margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 10px; }
-    .tab-btn { background: transparent; border: none; color: #888; font-weight: bold; cursor: pointer; text-transform: uppercase; padding: 5px; }
-    .tab-btn.active { color: white; border-bottom: 3px solid var(--wrestling); }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
+    header {
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(to bottom, rgba(5,5,10,1) 40%, rgba(5,5,10,0) 100%);
+    }
 
-    /* Grids */
-    .grid-3x3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    .item-card { background: rgba(10,10,15,0.6); border: 1px solid #222; border-radius: 10px; padding: 15px; text-align: center; }
-    .item-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
-    .cta-btn { display: block; background: var(--wrestling); color: white; text-decoration: none; padding: 10px; border-radius: 20px; margin-top: 10px; font-weight: bold; }
+    .header-encased {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-bottom: 2px solid var(--wrestling); 
+      border-radius: 20px;
+      padding: 10px 30px;
+      background: rgba(15, 15, 20, 0.85);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+    }
+
+    .site-logo { max-width: 100px; transition: 0.3s; }
+    .site-logo:hover { transform: scale(1.05); }
+
+    .pill-nav { display: flex; gap: 15px; }
+    .pill-nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      background: var(--grey-pill);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
     
-    /* Sliders & Footer */
-    .slider-wrapper { display: flex; align-items: center; gap: 15px; }
-    .nav-arrow { background: var(--grey-pill); border: 1px solid #333; color: white; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; }
-    .media-slider { display: flex; overflow-x: auto; gap: 20px; scrollbar-width: none; }
-    .media-card { flex: 0 0 320px; background: rgba(10,10,15,0.6); border: 1px solid #222; border-radius: 12px; padding: 15px; }
-    .site-footer { text-align: center; padding: 40px; color: #555; font-family: monospace; }
+    .pill-nav a:hover, .pill-nav a.active { 
+      border-color: var(--wrestling); 
+      background: rgba(220,20,60,0.15); 
+      box-shadow: 0 0 15px rgba(220,20,60,0.2); 
+    }
+
+    .social-pills { display: flex; gap: 10px; }
+    .social-pills a { color: #aaa; font-size: 1.2rem; transition: 0.3s; }
+    .social-pills a:hover { color: var(--wrestling); text-shadow: 0 0 10px var(--wrestling); transform: translateY(-2px); }
+
+    /* LAYOUT CONTAINERS */
+    .shop-layout-full { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+    .section-title { font-size: 1.2rem; letter-spacing: 2px; margin: 40px auto 20px auto; text-transform: uppercase; color: var(--wrestling); }
+    .terminal-text { font-family: monospace; font-size: 0.75rem; color: #666; margin-bottom: 8px; }
+    .terminal-block { background: rgba(20,20,25,0.8); border: 1px solid #333; border-left: 4px solid var(--wrestling); border-radius: 12px; padding: 30px; margin-bottom: 40px; }
+
+    /* TABS */
+    .tabs { display: flex; gap: 15px; margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 10px; flex-wrap: wrap; }
+    .tab-btn { background: transparent; border: none; color: #888; font-family: 'Segoe UI', sans-serif; font-size: 1.1rem; font-weight: bold; letter-spacing: 1px; cursor: pointer; padding: 5px 10px; transition: 0.3s; text-transform: uppercase; }
+    .tab-btn:hover { color: white; }
+    .tab-btn.active { color: white; border-bottom: 3px solid var(--wrestling); text-shadow: 0 0 10px rgba(220,20,60,0.5); }
+    .tab-content { display: none; animation: fadeIn 0.4s ease-in; }
+    .tab-content.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* BUTTONS & GRID */
+    .cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--wrestling); color: white; text-decoration: none; padding: 10px 24px; border-radius: 30px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; transition: 0.3s; border: none; justify-content: center; }
+    .cta-btn:hover { background: #ff1c4b; box-shadow: 0 0 15px var(--wrestling); }
+    
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; margin-top: 15px; }
+    .thumb-node { background: rgba(10,10,15,0.6); border: 1px solid #222; border-radius: 12px; padding: 15px; cursor: pointer; transition: 0.3s; text-align: center; display: flex; flex-direction: column; justify-content: space-between; }
+    .thumb-node:hover { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.2); transform: translateY(-3px); }
+    .thumb-node img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; display: block; }
+
+    /* SLIDER */
+    .slider-wrapper { display: flex; align-items: center; gap: 15px; margin-top: 15px; }
+    .nav-arrow { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; width: 45px; height: 45px; color: white; cursor: pointer; transition: 0.3s; flex-shrink: 0; }
+    .nav-arrow:hover { background: rgba(220,20,60,0.2); border-color: var(--wrestling); box-shadow: 0 0 15px var(--wrestling); }
+    .media-slider { display: flex; overflow-x: auto; gap: 20px; padding: 10px 0; scrollbar-width: none; scroll-behavior: smooth; width: 100%; }
+    .media-slider::-webkit-scrollbar { display: none; }
+    .media-card { flex: 0 0 320px; background: rgba(10,10,15,0.6); border: 1px solid #222; border-radius: 12px; padding: 15px; transition: 0.3s; position: relative; }
+    .media-card:hover { transform: translateY(-5px); border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.2); }
+    .media-card img { width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); }
+
+    /* LIGHTBOX */
+    .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3, 3, 6, 0.95); display: none; align-items: center; justify-content: center; z-index: 99999; padding: 20px; }
+    .lightbox-content { position: relative; max-width: 90vw; max-height: 85vh; text-align: center; }
+    .lightbox img { max-width: 100%; max-height: 75vh; border-radius: 12px; border: 1px solid #444; box-shadow: 0 0 40px rgba(220, 20, 60, 0.4); object-fit: contain; }
+    .lightbox-close { position: absolute; top: -45px; right: 0; background: transparent; border: none; color: white; font-size: 2.2rem; cursor: pointer; transition: 0.3s; }
+    .lightbox-close:hover { color: var(--wrestling); }
+
+    .site-footer { text-align: center; padding: 40px 20px; margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.05); font-family: monospace; color: #555; font-size: 0.85rem; letter-spacing: 1px; }
+
+    @media (max-width: 850px) {
+      .header-encased { flex-direction: column; gap: 20px; }
+      .pill-nav { flex-wrap: wrap; justify-content: center; }
+    }
   </style>
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
     <div class="header-encased">
-      <div class="logo"><a href="index.html"><img src="assets/NEW%20LOGO.png" alt="XFD Logo" class="site-logo"></a></div>
+      <div class="logo">
+        <a href="index.html"><img src="assets/NEW%20LOGO.png" alt="XFD Logo" class="site-logo"></a>
+      </div>
+      
       <nav class="pill-nav">
-        <a href="index.html" class="nav-news">NEWS</a>
-        <a href="about.html" class="nav-origin">ORIGIN</a>
-        <a href="designs.html" class="nav-designs">DESIGNS</a>
-        <a href="contact.html" class="nav-contact">CONTACT</a>
+        <a href="index.html"><i class="fas fa-newspaper"></i> NEWS</a>
+        <a href="about.html"><i class="fas fa-microchip"></i> ORIGIN</a>
+        <a href="designs.html" class="active"><i class="fas fa-pen-nib"></i> DESIGNS</a>
+        <a href="contact.html"><i class="fas fa-envelope"></i> CONTACT</a>
       </nav>
+
+      <div class="header-utils">
+        <div class="social-pills">
+          <a href="https://www.youtube.com/@Xenofinaldawn" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.facebook.com/XFDTV/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.tiktok.com/@xenofinaldawn" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://www.instagram.com/xenofinaldawn/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.threads.com/@xenofinaldawn" target="_blank" title="Threads"><i class="fas fa-at"></i></a>
+          <a href="https://www.linkedin.com/in/orlando-joshua-calh86/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
     </div>
   </header>
 
   <main class="shop-layout-full">
-    <div class="section-title">> Quantum Archive</div>
     
+    <div class="section-title">
+      <span>> Quantum Archive // Asset Distribution</span>
+    </div>
+    
+    <div class="terminal-text">// initialization: SECURE_MERCH_AND_PORTFOLIO</div>
     <div class="terminal-block">
+      
       <div class="tabs">
         <button class="tab-btn active" onclick="switchTab('tab-portfolio', this)">Portfolio Gallery</button>
-        <button class="tab-btn" onclick="switchTab('tab-shop', this)">RedBubble Store</button>
+        <button class="tab-btn" onclick="switchTab('tab-shop', this)">RedBubble Storefront</button>
       </div>
 
-      <!-- PORTFOLIO -->
+      <!-- TAB 1: PORTFOLIO -->
       <div id="tab-portfolio" class="tab-content active">
-        <div class="grid-3x3">
-            <div class="item-card"><img src="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg" alt="Love Bites"><h4>Love Bites</h4></div>
-            <div class="item-card"><img src="assets/Horor%20its%20self.jpg" alt="Horror"><h4>Horror Itself</h4></div>
-            <div class="item-card"><img src="assets/Darkness%20lighen.jpg" alt="Darkness"><h4>Darkness Lighten</h4></div>
-            <div class="item-card"><img src="assets/Sea.jpg" alt="Sea"><h4>Sea</h4></div>
-            <div class="item-card"><img src="assets/Packages.jpg" alt="Packages"><h4>Packages</h4></div>
-            <div class="item-card"><img src="assets/girl%20with%20big%20head.jpg" alt="Girl"><h4>Girl With Big Head</h4></div>
+        <p style="color: #ccc; margin-bottom: 20px;">Select visualization sub-node to unpack high-resolution vector format configuration:</p>
+        
+        <div class="portfolio-grid">
+          <div class="thumb-node" onclick="openLightbox('assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg')">
+            <img alt="Love Bites" src="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg" loading="lazy">
+            <h4>Love Bites</h4>
+          </div>
+          <div class="thumb-node" onclick="openLightbox('assets/Horor%20its%20self.jpg')">
+            <img alt="Horror Itself" src="assets/Horor%20its%20self.jpg" loading="lazy">
+            <h4>Horror Itself</h4>
+          </div>
+          <div class="thumb-node" onclick="openLightbox('assets/Darkness%20lighen.jpg')">
+            <img alt="Darkness Lighen" src="assets/Darkness%20lighen.jpg" loading="lazy">
+            <h4>Darkness Lighten</h4>
+          </div>
+          <div class="thumb-node" onclick="openLightbox('assets/Sea.jpg')">
+            <img alt="Sea" src="assets/Sea.jpg" loading="lazy">
+            <h4>Sea Horizon</h4>
+          </div>
+          <div class="thumb-node" onclick="openLightbox('assets/Packages.jpg')">
+            <img alt="Packages" src="assets/Packages.jpg" loading="lazy">
+            <h4>Packages Configuration</h4>
+          </div>
+          <div class="thumb-node" onclick="openLightbox('assets/girl%20with%20big%20head.jpg')">
+            <img alt="Girl With Big Head" src="assets/girl%20with%20big%20head.jpg" loading="lazy">
+            <h4>Girl With Big Head</h4>
+          </div>
+          <div class="thumb-node" onclick="openLightbox('assets/Betty%20Boo%20Vs.png')">
+            <img alt="Betty Boo Vs" src="assets/Betty%20Boo%20Vs.png" loading="lazy">
+            <h4>Betty Boo Vs</h4>
+          </div>
+          <div class="thumb-node" onclick="openLightbox('assets/Secrets-of-In-the-mouth-of-Madness.png')">
+            <img alt="In the Mouth of Madness" src="assets/Secrets-of-In-the-mouth-of-Madness.png" loading="lazy">
+            <h4>Mouth of Madness</h4>
+          </div>
+          <div class="thumb-node" onclick="openLightbox('assets/back-to-the-future-z.jpg')">
+            <img alt="Back to the Future Z" src="assets/back-to-the-future-z.jpg" loading="lazy">
+            <h4>Back to the Future Z</h4>
+          </div>
+          <div class="thumb-node" onclick="openLightbox('assets/Kang.jpg')">
+            <img alt="Kang" src="assets/Kang.jpg" loading="lazy">
+            <h4>Kang Engine</h4>
+          </div>
+          <div class="thumb-node" onclick="openLightbox('assets/tarus.jpg')">
+            <img alt="Tarus" src="assets/tarus.jpg" loading="lazy">
+            <h4>Taurus Vector</h4>
+          </div>
         </div>
       </div>
 
-      <!-- SHOP -->
+      <!-- TAB 2: SHOP -->
       <div id="tab-shop" class="tab-content">
-        <div class="grid-3x3">
-            <div class="item-card"><img src="assets/kang.jpg" alt="Merch"><a href="#" class="cta-btn">View Item</a></div>
-            <div class="item-card"><img src="assets/tarus.jpg" alt="Merch"><a href="#" class="cta-btn">View Item</a></div>
-            <div class="item-card"><img src="assets/Betty%20Boo%20Vs.png" alt="Merch"><a href="#" class="cta-btn">View Item</a></div>
+        <p style="color: #ccc; margin-bottom: 20px;">Browse configurations below, or initialize the main engine branch on RedBubble for expedited operations.</p>
+        <a class="cta-btn" href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" target="_blank" rel="noopener">
+          <i class="fas fa-shopping-cart"></i> OPEN REDBUBBLE STORE
+        </a>
+
+        <!-- Static Image Grid for Reliability -->
+        <div class="portfolio-grid" style="margin-top: 25px;">
+          <div class="thumb-node"><img src="assets/Kang.jpg" alt="Merch Item"><a href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" class="cta-btn" style="padding: 5px 10px;" target="_blank">View Item</a></div>
+          <div class="thumb-node"><img src="assets/tarus.jpg" alt="Merch Item"><a href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" class="cta-btn" style="padding: 5px 10px;" target="_blank">View Item</a></div>
+          <div class="thumb-node"><img src="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg" alt="Merch Item"><a href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" class="cta-btn" style="padding: 5px 10px;" target="_blank">View Item</a></div>
         </div>
+      </div>
+      
+    </div>
+
+    <!-- VIDEO DESIGN SECTION -->
+    <div class="section-title">
+      <span>> Studio Feed // Video Design</span>
+    </div>
+    
+    <div class="terminal-text">// sync_feed: CREATIVE_WORKFLOW_DATA</div>
+    <div class="terminal-block">
+      <h3 style="margin-top:0;">Video Design</h3>
+      <p style="color: #666; font-size: 0.9rem; margin-bottom: 5px;">Visualizing the design process, time-lapses, and creative workflows natively:</p>
+      
+      <div class="slider-wrapper">
+        <button class="nav-arrow" onclick="scrollSlider(-1)"><i class="fas fa-chevron-left"></i></button>
+        <div class="media-slider" id="youtube-feed">
+          <div id="loading-message" style="color: #aaa; padding: 20px;">Connecting to studio transmission stream...</div>
+        </div>
+        <button class="nav-arrow" onclick="scrollSlider(1)"><i class="fas fa-chevron-right"></i></button>
       </div>
     </div>
 
-    <!-- VIDEO DESIGN -->
-    <div class="section-title">> Studio Feed // Video Design</div>
-    <div class="terminal-block">
-      <div class="slider-wrapper">
-        <button class="nav-arrow" onclick="document.getElementById('youtube-feed').scrollBy(-340,0)"><i class="fas fa-chevron-left"></i></button>
-        <div class="media-slider" id="youtube-feed">
-             <p>Loading studio production logs...</p>
-        </div>
-        <button class="nav-arrow" onclick="document.getElementById('youtube-feed').scrollBy(340,0)"><i class="fas fa-chevron-right"></i></button>
-      </div>
-    </div>
   </main>
 
-  <footer class="site-footer">&copy; 2026 XenoFinalDawn.</footer>
+  <footer class="site-footer">
+    // SYSTEM_ACTIVE // &copy; 2026 XenoFinalDawn (XFD). All rights reserved.
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <img id="lightbox-img" src="" alt="Expanded Vector Overlay">
+    </div>
+  </div>
 
   <script>
-    function switchTab(tabId, btn) {
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    // Tab Logic
+    function switchTab(tabId, btnElement) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
-      btn.classList.add('active');
+      btnElement.classList.add('active');
     }
+
+    // Slider Logic
+    const slider = document.getElementById('youtube-feed');
+    function scrollSlider(direction) {
+      const scrollAmount = 340; 
+      slider.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+    }
+
+    // YouTube Fetch Logic
+    const myChannelId = 'UCon9odxjxyp_bMh2wkuRbhg'; 
+    async function fetchYouTubeVideos() {
+      try {
+        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${myChannelId}`);
+        const data = await response.json();
+        const loadingText = document.getElementById('loading-message');
+        if (loadingText) loadingText.remove();
+        
+        if (data.status === 'ok') {
+          slider.innerHTML = data.items.map((v) => {
+            const dateObj = new Date(v.pubDate.replace(/-/g, '/'));
+            const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            return `
+              <div class="media-card">
+                <span style="position: absolute; top: 25px; left: 25px; background: var(--wrestling); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; letter-spacing: 1px;">VIDEO</span>
+                <a href="${v.link}" target="_blank" style="text-decoration:none; color:white;">
+                  <img src="${v.thumbnail}" alt="Thumbnail">
+                  <h4 style="margin: 0 0 10px 0; font-size: 1rem; line-height: 1.3;">${v.title}</h4>
+                  <p style="font-size: 0.8rem; color: #888; margin: 0;">${formattedDate}</p>
+                </a>
+              </div>
+            `;
+          }).join("");
+        } else {
+          slider.innerHTML = "<div style='color:#aaa; padding:20px;'>No active studio feeds located.</div>";
+        }
+      } catch (err) {
+        const loadingText = document.getElementById('loading-message');
+        if (loadingText) loadingText.remove();
+        slider.innerHTML = "<div style='color:#aaa; padding:20px;'>Transmission synchronization dropped.</div>";
+      }
+    }
+    fetchYouTubeVideos();
+
+    // Lightbox Logic
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    function openLightbox(src) { lightboxImg.src = src; lightbox.style.display = 'flex'; }
+    function closeLightbox() { lightbox.style.display = 'none'; lightboxImg.src = ''; }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
   </script>
 </body>
 </html>
