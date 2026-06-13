@@ -95,8 +95,13 @@
     .cat-tech .btn-view:hover { background: var(--horror); border-color: var(--horror); color: black; box-shadow: 0 0 10px var(--horror); }
 
     .site-footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); font-family: monospace; color: #555; }
+    
     @media (max-width: 1100px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 850px) { .header-encased { flex-direction: column; gap: 20px; } .pill-nav { flex-wrap: wrap; justify-content: center; } .header-utils { flex-direction: column; } }
+    @media (max-width: 850px) { 
+      .header-encased { flex-direction: column; gap: 20px; } 
+      .pill-nav { flex-wrap: wrap; justify-content: center; } 
+      .header-utils { flex-direction: column; } 
+    }
     @media (max-width: 600px) { .category-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -131,14 +136,7 @@
       <p class="tagline">One portal. Infinite possibilities.</p>
     </section>
 
-    <div class="section-title"><span>The Transmission Hub</span><a href="designs.html" class="view-all">VIEW ALL <i class="fas fa-arrow-right"></i></a></div>
-    
-    <div class="slider-wrapper">
-      <button class="nav-arrow" onclick="scrollSlider(-1)"><i class="fas fa-chevron-left"></i></button>
-      <div class="media-slider" id="youtube-feed"><div id="loading-message" style="color: #aaa; padding: 20px; width:100%;">Connecting to video feed...</div></div>
-      <button class="nav-arrow" onclick="scrollSlider(1)"><i class="fas fa-chevron-right"></i></button>
-    </div>
-
+    <!-- MOVED UP: CATEGORY GRID -->
     <div class="section-title"><span>News & Updates</span></div>
     
     <div class="category-grid">
@@ -171,6 +169,16 @@
         </div>
       </div>
     </div>
+
+    <!-- MOVED DOWN: TRANSMISSION HUB SLIDER -->
+    <div class="section-title"><span>The Transmission Hub</span><a href="designs.html" class="view-all">VIEW ALL <i class="fas fa-arrow-right"></i></a></div>
+    
+    <div class="slider-wrapper">
+      <button class="nav-arrow" onclick="scrollSlider(-1)"><i class="fas fa-chevron-left"></i></button>
+      <div class="media-slider" id="youtube-feed"><div id="loading-message" style="color: #aaa; padding: 20px; width:100%;">Connecting to video feed...</div></div>
+      <button class="nav-arrow" onclick="scrollSlider(1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
   </main>
 
   <footer class="site-footer">// SYSTEM_ACTIVE // &copy; 2026 XenoFinalDawn (XFD). All rights reserved.</footer>
