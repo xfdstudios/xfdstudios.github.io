@@ -7,71 +7,30 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     * { box-sizing: border-box; }
+    :root { --bg: #05050A; --horror: #39FF14; --anime: #8A2BE2; --wrestling: #DC143C; --tech: #00FFFF; --blue: #00BFFF; --fb: #1877F2; --ig: #E1306C; --rb: #E31421; --grey-pill: rgba(255, 255, 255, 0.05); }
+    body { background-color: var(--bg); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
 
-    :root { 
-      --bg: #05050A; 
-      --horror: #39FF14; 
-      --anime: #8A2BE2; 
-      --wrestling: #DC143C; 
-      --tech: #00FFFF; 
-      --blue: #00BFFF;
-      --fb: #1877F2;
-      --ig: #E1306C;
-      --rb: #E31421;
-      --grey-pill: rgba(255, 255, 255, 0.05);
-    }
+    header { padding: 20px; position: sticky; top: 0; z-index: 100; background: linear-gradient(to bottom, rgba(5,5,10,1) 40%, rgba(5,5,10,0) 100%); }
     
-    body { 
-      background-color: var(--bg); color: white; 
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-      margin: 0; padding: 0; overflow-x: hidden;
-    }
-
-    /* =========================================
-       ENCASED HEADER (Matches Screenshot)
-       ========================================= */
-    header {
-      padding: 20px; position: sticky; top: 0; z-index: 100;
-      background: linear-gradient(to bottom, rgba(5,5,10,1) 40%, rgba(5,5,10,0) 100%);
-    }
-
-    .header-encased {
-      display: flex; justify-content: space-between; align-items: center;
-      width: 100%; max-width: 1400px; margin: 0 auto;
-      border: 1px solid rgba(255,255,255,0.15); border-bottom: 2px solid var(--tech);
-      border-radius: 20px; padding: 10px 30px;
-      background: rgba(15, 15, 20, 0.85); backdrop-filter: blur(15px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(0,255,255,0.05);
-    }
-
+    /* PURPLE HEADER BORDER & GLOW */
+    .header-encased { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1400px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.15); border-bottom: 2px solid var(--anime); border-radius: 20px; padding: 10px 30px; background: rgba(15, 15, 20, 0.85); backdrop-filter: blur(15px); box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(138,43,226,0.05); }
     .site-logo { max-width: 100px; filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.5)); transition: 0.3s; }
     .site-logo:hover { filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.9)); transform: scale(1.05); }
 
     .pill-nav { display: flex; gap: 15px; }
-    .pill-nav a {
-      color: white; text-decoration: none; padding: 10px 20px; border-radius: 30px;
-      background: var(--grey-pill); border: 1px solid rgba(255,255,255,0.1);
-      font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease;
-      display: flex; align-items: center; gap: 8px;
-    }
-    
-    /* Hover & Active States */
+    .pill-nav a { color: white; text-decoration: none; padding: 10px 20px; border-radius: 30px; background: var(--grey-pill); border: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
     .pill-nav a.nav-news i { color: var(--anime); }
     .pill-nav a.nav-news:hover, .pill-nav a.nav-news.active { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); background: rgba(138,43,226,0.1); }
-    
     .pill-nav a.nav-origin i { color: var(--blue); }
     .pill-nav a.nav-origin:hover, .pill-nav a.nav-origin.active { border-color: var(--blue); box-shadow: 0 0 15px rgba(0,191,255,0.3); background: rgba(0,191,255,0.1); }
-    
     .pill-nav a.nav-designs i { color: var(--wrestling); }
     .pill-nav a.nav-designs:hover, .pill-nav a.nav-designs.active { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.3); background: rgba(220,20,60,0.1); }
-    
     .pill-nav a.nav-contact i { color: var(--horror); }
     .pill-nav a.nav-contact:hover, .pill-nav a.nav-contact.active { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); background: rgba(57,255,20,0.1); }
 
     .header-utils { display: flex; align-items: center; gap: 20px; }
     .social-pills { display: flex; align-items: center; gap: 5px; }
     .social-pills a { color: #aaa; font-size: 1.2rem; margin-left: 8px; transition: 0.3s; text-decoration: none; }
-    
     .social-pills .yt:hover { color: #FF0000; text-shadow: 0 0 10px #FF0000; transform: translateY(-2px); }
     .social-pills .fb:hover { color: var(--fb); text-shadow: 0 0 10px var(--fb); transform: translateY(-2px); }
     .social-pills .tt:hover { color: var(--tech); text-shadow: 0 0 10px var(--tech); transform: translateY(-2px); }
@@ -79,44 +38,27 @@
     .social-pills .th:hover { color: white; text-shadow: 0 0 10px white; transform: translateY(-2px); }
     .social-pills .rb:hover { color: var(--rb); text-shadow: 0 0 10px var(--rb); transform: translateY(-2px); }
 
-    .search-bar {
-      display: flex; align-items: center; background: rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.1); border-radius: 30px;
-      padding: 8px 15px; transition: 0.3s;
-    }
-    .search-bar:focus-within { border-color: var(--tech); box-shadow: 0 0 10px rgba(0,255,255,0.2); }
+    /* PURPLE SEARCH BAR GLOW */
+    .search-bar { display: flex; align-items: center; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 8px 15px; transition: 0.3s; }
+    .search-bar:focus-within { border-color: var(--anime); box-shadow: 0 0 10px rgba(138,43,226,0.2); }
     .search-bar input { background: transparent; border: none; color: white; outline: none; padding-right: 10px; font-family: monospace; width: 130px;}
     .search-bar input::placeholder { color: #666; }
 
-    /* =========================================
-       HERO & LAYOUT CONTAINERS
-       ========================================= */
-    .hero-portal {
-      text-align: center; padding: 60px 20px 100px 20px; position: relative;
-      background: radial-gradient(circle at 50% 50%, rgba(138,43,226,0.25) 0%, rgba(0,255,255,0.05) 30%, rgba(0,0,0,0) 60%);
-    }
+    .hero-portal { text-align: center; padding: 60px 20px 100px 20px; position: relative; background: radial-gradient(circle at 50% 50%, rgba(138,43,226,0.25) 0%, rgba(0,255,255,0.05) 30%, rgba(0,0,0,0) 60%); }
     .hero-portal h1 { font-size: 4.5rem; margin: 0; letter-spacing: 6px; text-shadow: 0 0 20px rgba(138,43,226,0.8), 0 0 40px rgba(0,255,255,0.4); }
     .hero-portal .tagline { font-size: 1.2rem; letter-spacing: 4px; color: #aaa; margin-top: 10px; text-transform: uppercase; }
 
-    .section-title {
-      font-size: 1.2rem; letter-spacing: 2px; margin: 20px 0; text-transform: uppercase;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0 40px; max-width: 1450px; margin-left: auto; margin-right: auto;
-    }
-    .section-title span::before { content: '> '; color: var(--tech); }
+    .section-title { font-size: 1.2rem; letter-spacing: 2px; margin: 20px 0; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; max-width: 1450px; margin-left: auto; margin-right: auto; }
+    .section-title span::before { content: '> '; color: var(--anime); }
     .view-all { font-size: 0.8rem; color: #aaa; text-decoration: none; transition: 0.3s; letter-spacing: 1px; }
     .view-all:hover { color: white; text-shadow: 0 0 10px white; }
 
-    .slider-wrapper {
-      display: flex; align-items: center; padding: 0 20px; gap: 15px; margin-bottom: 60px;
-      max-width: 1500px; margin-left: auto; margin-right: auto;
-    }
+    .slider-wrapper { display: flex; align-items: center; padding: 0 20px; gap: 15px; margin-bottom: 60px; max-width: 1500px; margin-left: auto; margin-right: auto; }
     .nav-arrow { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; width: 45px; height: 45px; color: white; cursor: pointer; transition: 0.3s; flex-shrink: 0; }
     .nav-arrow:hover { background: rgba(138,43,226,0.3); border-color: var(--anime); box-shadow: 0 0 15px var(--anime); }
 
     .media-slider { display: flex; overflow-x: auto; gap: 20px; padding: 10px; scrollbar-width: none; scroll-behavior: smooth; flex-grow: 1; }
     .media-slider::-webkit-scrollbar { display: none; }
-    
     .media-card { flex: 0 0 320px; background: rgba(20,20,25,0.8); border: 1px solid #333; border-radius: 12px; padding: 15px; transition: 0.3s; position: relative; }
     .media-card:hover { transform: translateY(-5px); }
     .media-card img { width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); }
@@ -139,24 +81,20 @@
     .cat-horror i { color: var(--anime); text-shadow: 0 0 10px var(--anime); }
     .cat-horror:hover { box-shadow: inset 0 0 20px rgba(138,43,226,0.2), 0 0 15px rgba(138,43,226,0.4); border-color: var(--anime); }
     .cat-horror .btn-view:hover { background: var(--anime); border-color: var(--anime); color: white; box-shadow: 0 0 10px var(--anime); }
-
     .cat-anime { border-color: rgba(0,191,255,0.3); }
     .cat-anime i { color: var(--blue); text-shadow: 0 0 10px var(--blue); }
     .cat-anime:hover { box-shadow: inset 0 0 20px rgba(0,191,255,0.2), 0 0 15px rgba(0,191,255,0.4); border-color: var(--blue); }
     .cat-anime .btn-view:hover { background: var(--blue); border-color: var(--blue); color: black; box-shadow: 0 0 10px var(--blue); }
-
     .cat-wrestling { border-color: rgba(220,20,60,0.3); }
     .cat-wrestling i { color: var(--wrestling); text-shadow: 0 0 10px var(--wrestling); }
     .cat-wrestling:hover { box-shadow: inset 0 0 20px rgba(220,20,60,0.2), 0 0 15px rgba(220,20,60,0.4); border-color: var(--wrestling); }
     .cat-wrestling .btn-view:hover { background: var(--wrestling); border-color: var(--wrestling); color: white; box-shadow: 0 0 10px var(--wrestling); }
-
     .cat-tech { border-color: rgba(57,255,20,0.3); }
     .cat-tech i { color: var(--horror); text-shadow: 0 0 10px var(--horror); }
     .cat-tech:hover { box-shadow: inset 0 0 20px rgba(57,255,20,0.2), 0 0 15px rgba(57,255,20,0.4); border-color: var(--horror); }
     .cat-tech .btn-view:hover { background: var(--horror); border-color: var(--horror); color: black; box-shadow: 0 0 10px var(--horror); }
 
     .site-footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); font-family: monospace; color: #555; }
-
     @media (max-width: 1100px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 850px) { .header-encased { flex-direction: column; gap: 20px; } .pill-nav { flex-wrap: wrap; justify-content: center; } .header-utils { flex-direction: column; } }
     @media (max-width: 600px) { .category-grid { grid-template-columns: 1fr; } }
@@ -164,62 +102,44 @@
 </head>
 <body>
 
-  <!-- ENCASED HEADER -->
   <header>
     <div class="header-encased">
-      <div class="logo">
-        <a href="index.html"><img src="assets/NEW%20LOGO.png" alt="XFD Logo" class="site-logo"></a>
-      </div>
-      
-      <!-- NAV PILLS (News is ACTIVE) -->
+      <div class="logo"><a href="index.html"><img src="assets/NEW%20LOGO.png" alt="XFD Logo" class="site-logo"></a></div>
       <nav class="pill-nav">
         <a href="index.html" class="nav-news active"><i class="fas fa-newspaper"></i> NEWS</a>
         <a href="about.html" class="nav-origin"><i class="fas fa-microchip"></i> ORIGIN</a>
         <a href="designs.html" class="nav-designs"><i class="fas fa-pen-nib"></i> DESIGNS</a>
         <a href="contact.html" class="nav-contact"><i class="fas fa-envelope"></i> CONTACT</a>
       </nav>
-
       <div class="header-utils">
         <div class="social-pills">
-          <a href="https://www.youtube.com/@Xenofinaldawn" class="yt" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.facebook.com/XFDTV/" class="fb" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-          <a href="https://www.tiktok.com/@xenofinaldawn" class="tt" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-          <a href="https://www.instagram.com/xenofinaldawn/" class="ig" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.threads.com/@xenofinaldawn" class="th" target="_blank" title="Threads"><i class="fas fa-at"></i></a>
-          <a href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" class="rb" target="_blank" title="RedBubble Shop"><i class="fas fa-shopping-cart"></i></a>
+          <a href="https://www.youtube.com/@Xenofinaldawn" class="yt" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.facebook.com/XFDTV/" class="fb" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.tiktok.com/@xenofinaldawn" class="tt" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://www.instagram.com/xenofinaldawn/" class="ig" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.threads.com/@xenofinaldawn" class="th" target="_blank"><i class="fas fa-at"></i></a>
+          <a href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" class="rb" target="_blank"><i class="fas fa-shopping-cart"></i></a>
         </div>
-        
-        <div class="search-bar">
-          <input type="text" placeholder="Search portal...">
-          <i class="fas fa-search" style="color: #666;"></i>
-        </div>
+        <div class="search-bar"><input type="text" placeholder="Search portal..."><i class="fas fa-search" style="color: #666;"></i></div>
       </div>
     </div>
   </header>
 
-  <!-- CONTENT -->
   <main>
     <section class="hero-portal">
       <h1>XENOFINALDAWN</h1>
       <p class="tagline">One portal. Infinite possibilities.</p>
     </section>
 
-    <div class="section-title">
-      <span>The Transmission Hub</span>
-      <a href="designs.html" class="view-all">VIEW ALL <i class="fas fa-arrow-right"></i></a>
-    </div>
+    <div class="section-title"><span>The Transmission Hub</span><a href="designs.html" class="view-all">VIEW ALL <i class="fas fa-arrow-right"></i></a></div>
     
     <div class="slider-wrapper">
       <button class="nav-arrow" onclick="scrollSlider(-1)"><i class="fas fa-chevron-left"></i></button>
-      <div class="media-slider" id="youtube-feed">
-        <div id="loading-message" style="color: #aaa; padding: 20px; width:100%;">Connecting to video feed...</div>
-      </div>
+      <div class="media-slider" id="youtube-feed"><div id="loading-message" style="color: #aaa; padding: 20px; width:100%;">Connecting to video feed...</div></div>
       <button class="nav-arrow" onclick="scrollSlider(1)"><i class="fas fa-chevron-right"></i></button>
     </div>
 
-    <div class="section-title">
-      <span>News & Updates</span>
-    </div>
+    <div class="section-title"><span>News & Updates</span></div>
     
     <div class="category-grid">
       <div>
@@ -253,53 +173,26 @@
     </div>
   </main>
 
-  <footer class="site-footer">
-    // SYSTEM_ACTIVE // &copy; 2026 XenoFinalDawn (XFD). All rights reserved.
-  </footer>
+  <footer class="site-footer">// SYSTEM_ACTIVE // &copy; 2026 XenoFinalDawn (XFD). All rights reserved.</footer>
 
   <script>
     const slider = document.getElementById('youtube-feed');
     function scrollSlider(direction) { slider.scrollBy({ left: 340 * direction, behavior: 'smooth' }); }
-
     const myChannelId = 'UCon9odxjxyp_bMh2wkuRbhg'; 
     async function fetchYouTubeVideos() {
       try {
         const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${myChannelId}`);
         const data = await response.json();
-        const loadingText = document.getElementById('loading-message');
-        if (loadingText) loadingText.remove();
-        
+        const loadingText = document.getElementById('loading-message'); if (loadingText) loadingText.remove();
         if (data.status === 'ok') {
-          const borderClasses = ['card-purple', 'card-cyan', 'card-green'];
-          const badgeColors = ['var(--anime)', 'var(--tech)', 'var(--horror)'];
-          const textColors = ['white', 'black', 'black'];
-
+          const borderClasses = ['card-purple', 'card-cyan', 'card-green']; const badgeColors = ['var(--anime)', 'var(--tech)', 'var(--horror)']; const textColors = ['white', 'black', 'black'];
           const generatedHTML = data.items.map((v, i) => {
-            const dateObj = new Date(v.pubDate.replace(/-/g, '/'));
-            const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-            const bClass = borderClasses[i % 3];
-            const bgBadge = badgeColors[i % 3];
-            const txtBadge = textColors[i % 3];
-
-            return `
-              <div class="media-card ${bClass}">
-                <span class="badge" style="background: ${bgBadge}; color: ${txtBadge};">VIDEO</span>
-                <a href="${v.link}" target="_blank" style="text-decoration:none; color:white;">
-                  <img src="${v.thumbnail}" alt="Thumbnail">
-                  <h4 style="margin: 0 0 10px 0; font-size: 1rem; line-height: 1.3;">${v.title}</h4>
-                  <p style="font-size: 0.8rem; color: #888; margin: 0;">${formattedDate}</p>
-                </a>
-              </div>`;
+            const dateObj = new Date(v.pubDate.replace(/-/g, '/')); const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            return `<div class="media-card ${borderClasses[i % 3]}"><span class="badge" style="background: ${badgeColors[i % 3]}; color: ${textColors[i % 3]};">VIDEO</span><a href="${v.link}" target="_blank" style="text-decoration:none; color:white;"><img src="${v.thumbnail}" alt="Thumbnail"><h4 style="margin: 0 0 10px 0; font-size: 1rem; line-height: 1.3;">${v.title}</h4><p style="font-size: 0.8rem; color: #888; margin: 0;">${formattedDate}</p></a></div>`;
           }).join("");
           slider.insertAdjacentHTML('beforeend', generatedHTML);
-        } else {
-          slider.insertAdjacentHTML('beforeend', "<div style='color:#aaa; padding:20px;'>No transmissions found.</div>");
-        }
-      } catch (err) {
-        const loadingText = document.getElementById('loading-message');
-        if (loadingText) loadingText.remove();
-        slider.insertAdjacentHTML('beforeend', "<div style='color:#aaa; padding:20px;'>Transmission error.</div>");
-      }
+        } else { slider.insertAdjacentHTML('beforeend', "<div style='color:#aaa; padding:20px;'>No transmissions found.</div>"); }
+      } catch (err) { const loadingText = document.getElementById('loading-message'); if (loadingText) loadingText.remove(); slider.insertAdjacentHTML('beforeend', "<div style='color:#aaa; padding:20px;'>Transmission error.</div>"); }
     }
     fetchYouTubeVideos();
   </script>
