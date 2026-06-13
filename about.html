@@ -211,11 +211,20 @@
 
     .site-footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); font-family: monospace; color: #555; }
 
-    @media (max-width: 1100px) {
-      .origin-layout { grid-template-columns: 1fr; }
-      .archive-grid { grid-template-columns: 1fr; }
-      .profile-card { position: relative; top: 0; }
+    @media (max-width: 850px) { 
+      .header-encased { 
+        flex-direction: column; 
+        gap: 20px; 
+      } 
+      .pill-nav { 
+        flex-wrap: wrap; 
+        justify-content: center; 
+      } 
+      .header-utils { 
+        flex-direction: column; 
+      } 
     }
+    
   </style>
 </head>
 <body>
