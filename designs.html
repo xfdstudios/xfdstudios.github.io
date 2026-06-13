@@ -4,14 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>DESIGN SHOP // XENOFINALDAWN</title>
-  <meta name="description" content="Browse the XFD portfolio and shop the RedBubble store.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     * { box-sizing: border-box; }
 
     :root { 
       --bg: #05050A; 
-      --wrestling: #DC143C; /* Unified Red Theme */
+      --horror: #39FF14; 
+      --anime: #8A2BE2; 
+      --wrestling: #DC143C; 
+      --tech: #00FFFF; 
+      --blue: #00BFFF;
+      --fb: #1877F2;
+      --ig: #E1306C;
+      --rb: #E31421;
       --grey-pill: rgba(255, 255, 255, 0.05);
     }
     
@@ -25,7 +31,7 @@
     }
 
     /* =========================================
-       PHASE 1: ENCASED CONTROL CENTER HEADER
+       HEADER & NAVIGATION (Multi-Color Theme)
        ========================================= */
     header {
       padding: 20px;
@@ -43,16 +49,16 @@
       max-width: 1400px;
       margin: 0 auto;
       border: 1px solid rgba(255,255,255,0.15);
-      border-bottom: 2px solid var(--wrestling); 
+      border-bottom: 2px solid var(--tech);
       border-radius: 20px;
       padding: 10px 30px;
       background: rgba(15, 15, 20, 0.85);
       backdrop-filter: blur(15px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(220,20,60,0.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(0,255,255,0.05);
     }
 
-    .site-logo { max-width: 100px; filter: drop-shadow(0 0 10px rgba(220, 20, 60, 0.3)); transition: 0.3s; }
-    .site-logo:hover { filter: drop-shadow(0 0 20px rgba(220, 20, 60, 0.8)); transform: scale(1.05); }
+    .site-logo { max-width: 100px; filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.5)); transition: 0.3s; }
+    .site-logo:hover { filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.9)); transform: scale(1.05); }
 
     .pill-nav { display: flex; gap: 15px; }
     .pill-nav a {
@@ -70,15 +76,30 @@
       gap: 8px;
     }
     
-    .pill-nav a:hover, .pill-nav a.active { 
-      border-color: var(--wrestling); 
-      background: rgba(220,20,60,0.15); 
-      box-shadow: 0 0 15px rgba(220,20,60,0.2); 
-    }
+    /* Specific Color Hovers */
+    .pill-nav a.nav-news i { color: var(--anime); }
+    .pill-nav a.nav-news:hover { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); background: rgba(138,43,226,0.1); }
+    
+    .pill-nav a.nav-origin i { color: var(--blue); }
+    .pill-nav a.nav-origin:hover { border-color: var(--blue); box-shadow: 0 0 15px rgba(0,191,255,0.3); background: rgba(0,191,255,0.1); }
+    
+    /* Designs is Active on this page */
+    .pill-nav a.nav-designs { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.3); background: rgba(220,20,60,0.1); }
+    .pill-nav a.nav-designs i { color: var(--wrestling); }
+    
+    .pill-nav a.nav-contact i { color: var(--horror); }
+    .pill-nav a.nav-contact:hover { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); background: rgba(57,255,20,0.1); }
 
     .header-utils { display: flex; align-items: center; gap: 20px; }
-    .social-pills a { color: #aaa; font-size: 1.2rem; margin-left: 10px; transition: 0.3s; }
-    .social-pills a:hover { color: var(--wrestling); text-shadow: 0 0 10px var(--wrestling); transform: translateY(-2px); }
+    .social-pills { display: flex; align-items: center; gap: 5px; }
+    .social-pills a { color: #aaa; font-size: 1.2rem; margin-left: 8px; transition: 0.3s; text-decoration: none; }
+    
+    .social-pills .yt:hover { color: #FF0000; text-shadow: 0 0 10px #FF0000; transform: translateY(-2px); }
+    .social-pills .fb:hover { color: var(--fb); text-shadow: 0 0 10px var(--fb); transform: translateY(-2px); }
+    .social-pills .tt:hover { color: var(--tech); text-shadow: 0 0 10px var(--tech); transform: translateY(-2px); }
+    .social-pills .ig:hover { color: var(--ig); text-shadow: 0 0 10px var(--ig); transform: translateY(-2px); }
+    .social-pills .th:hover { color: white; text-shadow: 0 0 10px white; transform: translateY(-2px); }
+    .social-pills .rb:hover { color: var(--rb); text-shadow: 0 0 10px var(--rb); transform: translateY(-2px); }
 
     .search-bar {
       display: flex;
@@ -89,8 +110,8 @@
       padding: 8px 15px;
       transition: 0.3s;
     }
-    .search-bar:focus-within { border-color: var(--wrestling); box-shadow: 0 0 10px rgba(220,20,60,0.2); }
-    .search-bar input { background: transparent; border: none; color: white; outline: none; padding-right: 10px; font-family: monospace; width: 150px;}
+    .search-bar:focus-within { border-color: var(--tech); box-shadow: 0 0 10px rgba(0,255,255,0.2); }
+    .search-bar input { background: transparent; border: none; color: white; outline: none; padding-right: 10px; font-family: monospace; width: 130px;}
     .search-bar input::placeholder { color: #666; }
 
     /* =========================================
@@ -101,10 +122,12 @@
       letter-spacing: 2px;
       margin: 40px auto 20px auto;
       text-transform: uppercase;
-      padding: 0;
+      padding: 0 20px;
       max-width: 1400px;
+      display: flex;
+      align-items: center;
     }
-    .section-title span::before { content: '> '; color: var(--wrestling); }
+    .section-title span::before { content: '> '; color: var(--tech); }
 
     .shop-layout-full { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
     .terminal-block { background: rgba(20,20,25,0.8); border: 1px solid #333; border-left: 4px solid var(--wrestling); border-radius: 12px; padding: 30px; margin-bottom: 40px; }
@@ -122,7 +145,7 @@
     .tab-content.active { display: block; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-    .cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--wrestling); color: white; text-decoration: none; padding: 10px 24px; border-radius: 30px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; transition: 0.3s; border: none; justify-content: center; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--wrestling); color: white; text-decoration: none; padding: 10px 24px; border-radius: 30px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; transition: 0.3s; border: none; justify-content: center; margin-bottom: 20px; }
     .cta-btn:hover { background: #ff1c4b; box-shadow: 0 0 15px var(--wrestling); }
 
     .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; margin-top: 15px; }
@@ -130,44 +153,41 @@
     .thumb-node:hover { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.2); transform: translateY(-3px); }
     .thumb-node img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; display: block; }
 
-    /* RedBubble Script Container */
+    /* REDBUBBLE EMBED CONTAINER */
     .rb-embed-container {
-      margin-top: 25px;
-      background: rgba(10,10,15,0.6);
-      border: 1px solid #222;
-      border-radius: 10px;
-      padding: 20px;
-      max-height: 400px; 
-      overflow-y: auto;  
-      scrollbar-width: thin;
-      scrollbar-color: var(--wrestling) rgba(0,0,0,0.3);
+      background: rgba(10,10,15,0.6); border: 1px solid #222; border-radius: 10px; padding: 20px; max-height: 450px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--wrestling) rgba(0,0,0,0.3);
     }
     .rb-embed-container::-webkit-scrollbar { width: 8px; }
     .rb-embed-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); border-radius: 10px; }
     .rb-embed-container::-webkit-scrollbar-thumb { background: var(--wrestling); border-radius: 10px; }
 
     /* =========================================
-       DYNAMIC VIDEO SLIDER
+       DYNAMIC VIDEO SLIDER (Multi-color match)
        ========================================= */
     .slider-wrapper { display: flex; align-items: center; gap: 15px; margin-top: 15px; }
     .nav-arrow { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; width: 45px; height: 45px; color: white; cursor: pointer; transition: 0.3s; flex-shrink: 0; }
-    .nav-arrow:hover { background: rgba(220,20,60,0.2); border-color: var(--wrestling); box-shadow: 0 0 15px var(--wrestling); }
+    .nav-arrow:hover { background: rgba(138,43,226,0.3); border-color: var(--anime); box-shadow: 0 0 15px var(--anime); }
+    
     .media-slider { display: flex; overflow-x: auto; gap: 20px; padding: 10px 0; scrollbar-width: none; scroll-behavior: smooth; width: 100%; }
     .media-slider::-webkit-scrollbar { display: none; }
-    .media-card { flex: 0 0 320px; background: rgba(10,10,15,0.6); border: 1px solid #222; border-radius: 12px; padding: 15px; transition: 0.3s; position: relative; }
-    .media-card:hover { transform: translateY(-5px); border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.2); }
+    
+    .media-card { flex: 0 0 320px; background: rgba(20,20,25,0.8); border: 1px solid #333; border-radius: 12px; padding: 15px; transition: 0.3s; position: relative; }
+    .media-card:hover { transform: translateY(-5px); }
     .media-card img { width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); }
+    .media-card .badge { position: absolute; top: 25px; left: 25px; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; letter-spacing: 1px; }
 
-    /* =========================================
-       LIGHTBOX OVERLAY
-       ========================================= */
+    .card-purple:hover { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); }
+    .card-cyan:hover { border-color: var(--tech); box-shadow: 0 0 15px rgba(0,255,255,0.3); }
+    .card-green:hover { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); }
+
+    /* LIGHTBOX OVERLAY */
     .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3, 3, 6, 0.95); display: none; align-items: center; justify-content: center; z-index: 99999; padding: 20px; }
     .lightbox-content { position: relative; max-width: 90vw; max-height: 85vh; text-align: center; }
     .lightbox img { max-width: 100%; max-height: 75vh; border-radius: 12px; border: 1px solid #444; box-shadow: 0 0 40px rgba(220, 20, 60, 0.4); object-fit: contain; }
     .lightbox-close { position: absolute; top: -45px; right: 0; background: transparent; border: none; color: white; font-size: 2.2rem; cursor: pointer; transition: 0.3s; }
     .lightbox-close:hover { color: var(--wrestling); }
 
-    .site-footer { text-align: center; padding: 40px 20px; margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.05); font-family: monospace; color: #555; font-size: 0.85rem; letter-spacing: 1px; }
+    .site-footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); font-family: monospace; color: #555; margin-top: 50px;}
 
     @media (max-width: 850px) {
       .header-encased { flex-direction: column; gap: 20px; }
@@ -178,33 +198,32 @@
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- ENCASED CONTROL CENTER HEADER -->
   <header>
     <div class="header-encased">
       <div class="logo">
         <a href="index.html"><img src="assets/NEW%20LOGO.png" alt="XFD Logo" class="site-logo"></a>
       </div>
       
-      <!-- FIXED NAVIGATION -->
       <nav class="pill-nav">
-        <a href="index.html"><i class="fas fa-newspaper"></i> NEWS</a>
-        <a href="about.html"><i class="fas fa-microchip"></i> ORIGIN</a>
-        <a href="designs.html" class="active"><i class="fas fa-pen-nib"></i> DESIGNS</a>
-        <a href="contact.html"><i class="fas fa-envelope"></i> CONTACT</a>
+        <a href="index.html" class="nav-news"><i class="fas fa-newspaper"></i> NEWS</a>
+        <a href="about.html" class="nav-origin"><i class="fas fa-microchip"></i> ORIGIN</a>
+        <a href="designs.html" class="nav-designs active"><i class="fas fa-pen-nib"></i> DESIGNS</a>
+        <a href="contact.html" class="nav-contact"><i class="fas fa-envelope"></i> CONTACT</a>
       </nav>
 
       <div class="header-utils">
-        <!-- FIXED SOCIAL MEDIA LINKS -->
         <div class="social-pills">
-          <a href="https://www.youtube.com/@Xenofinaldawn" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.facebook.com/XFDTV/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-          <a href="https://www.tiktok.com/@xenofinaldawn" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-          <a href="https://www.instagram.com/xenofinaldawn/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.threads.com/@xenofinaldawn" target="_blank" title="Threads"><i class="fas fa-at"></i></a>
-          <a href="https://www.linkedin.com/in/orlando-joshua-calh86/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <!-- LIVE SOCIAL LINKS & BRAND COLORS -->
+          <a href="https://www.youtube.com/@Xenofinaldawn" class="yt" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.facebook.com/XFDTV/" class="fb" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.tiktok.com/@xenofinaldawn" class="tt" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://www.instagram.com/xenofinaldawn/" class="ig" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.threads.com/@xenofinaldawn" class="th" target="_blank" title="Threads"><i class="fas fa-at"></i></a>
+          <a href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" class="rb" target="_blank" title="RedBubble Shop"><i class="fas fa-shopping-cart"></i></a>
         </div>
         
-        <!-- RESTORED SEARCH BAR -->
+        <!-- SEARCH BAR -->
         <div class="search-bar">
           <input type="text" placeholder="Search portal...">
           <i class="fas fa-search" style="color: #666;"></i>
@@ -215,7 +234,7 @@
 
   <main class="shop-layout-full">
     
-    <!-- PHASE 1: MERGED ASSET MATRIX (SHOP & PORTFOLIO) -->
+    <!-- PHASE 1: ASSET DISTRIBUTION -->
     <div class="section-title">
       <span>Quantum Archive // Asset Distribution</span>
     </div>
@@ -229,7 +248,7 @@
         <button class="tab-btn" onclick="switchTab('tab-shop', this)">RedBubble Storefront</button>
       </div>
 
-      <!-- TAB 1: Portfolio Image Matrix -->
+      <!-- TAB 1: Portfolio Matrix -->
       <div id="tab-portfolio" class="tab-content active">
         <p style="color: #ccc; margin-bottom: 20px;">Select visualization sub-node to unpack high-resolution vector format configuration:</p>
         
@@ -281,21 +300,20 @@
         </div>
       </div>
 
-      <!-- TAB 2: RESTORED REDBUBBLE SCRIPT -->
+      <!-- TAB 2: LIVE REDBUBBLE SCRIPT -->
       <div id="tab-shop" class="tab-content">
-        <p style="color: #ccc; margin-bottom: 20px;">Browse configurations below, or initialize the main engine branch on RedBubble for expedited operations.</p>
+        <p style="color: #ccc; margin-bottom: 20px;">Browse configurations below, or initialize the main engine branch on RedBubble.</p>
         <a class="cta-btn" href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" target="_blank" rel="noopener">
           <i class="fas fa-shopping-cart"></i> OPEN REDBUBBLE STORE
         </a>
 
-        <!-- Live 5x5 Redbubble Script (Height Constrained) -->
+        <!-- Live Redbubble Embed -->
         <div class="rb-embed-container">
           <script type="text/javascript" src="https://www.redbubble.com/assets/external_portfolio.js"></script>
           <script id="rb-xzfcxvzx" type="text/javascript">new RBExternalPortfolio('www.redbubble.com', 'gr3at1', 5, 5).renderIframe();</script>
-          
           <noscript>
             <div style="color: #aaa; text-align: center; padding: 20px;">
-              Your browser settings or ad-blocker has prevented the live gallery script from loading. Please click the button above to view the store directly!
+              Script blocked by browser. Please click the button above to view store directly!
             </div>
           </noscript>
         </div>
@@ -303,13 +321,13 @@
       
     </div>
 
-    <!-- PHASE 2: VIDEO DESIGN -->
+    <!-- PHASE 2: VIDEO DESIGN FEED -->
     <div class="section-title">
-      <span>> Studio Feed // Video Design</span>
+      <span>Studio Feed // Video Design</span>
     </div>
     
     <div class="terminal-text">// sync_feed: CREATIVE_WORKFLOW_DATA</div>
-    <div class="terminal-block">
+    <div class="terminal-block" style="border-left-color: var(--tech);">
       <h3 style="margin-top:0;">Video Design</h3>
       <p style="color: #666; font-size: 0.9rem; margin-bottom: 5px;">Visualizing the design process, time-lapses, and creative workflows natively:</p>
       
@@ -337,7 +355,7 @@
   </div>
 
   <script>
-    // 1. Tab Switching Logic
+    // 1. Tab Logic
     function switchTab(tabId, btnElement) {
       document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -345,14 +363,14 @@
       btnElement.classList.add('active');
     }
 
-    // 2. Slider Scroll Controls
+    // 2. Slider Controls
     const slider = document.getElementById('youtube-feed');
     function scrollSlider(direction) {
       const scrollAmount = 340; 
       slider.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
     }
 
-    // 3. YouTube Synchronization Logic Engine
+    // 3. Multi-Color YouTube Feed Sync
     const myChannelId = 'UCon9odxjxyp_bMh2wkuRbhg'; 
     async function fetchYouTubeVideos() {
       try {
@@ -363,12 +381,21 @@
         if (loadingText) loadingText.remove();
         
         if (data.status === 'ok') {
-          slider.innerHTML = data.items.map((v) => {
+          const borderClasses = ['card-purple', 'card-cyan', 'card-green'];
+          const badgeColors = ['var(--anime)', 'var(--tech)', 'var(--horror)'];
+          const textColors = ['white', 'black', 'black'];
+
+          const generatedHTML = data.items.map((v, i) => {
             const dateObj = new Date(v.pubDate.replace(/-/g, '/'));
             const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            
+            const bClass = borderClasses[i % 3];
+            const bgBadge = badgeColors[i % 3];
+            const txtBadge = textColors[i % 3];
+
             return `
-              <div class="media-card">
-                <span style="position: absolute; top: 25px; left: 25px; background: var(--wrestling); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; letter-spacing: 1px;">VIDEO</span>
+              <div class="media-card ${bClass}">
+                <span class="badge" style="background: ${bgBadge}; color: ${txtBadge};">VIDEO</span>
                 <a href="${v.link}" target="_blank" style="text-decoration:none; color:white;">
                   <img src="${v.thumbnail}" alt="Thumbnail">
                   <h4 style="margin: 0 0 10px 0; font-size: 1rem; line-height: 1.3;">${v.title}</h4>
@@ -377,31 +404,25 @@
               </div>
             `;
           }).join("");
+          
+          slider.insertAdjacentHTML('beforeend', generatedHTML);
         } else {
-          slider.innerHTML = "<div style='color:#aaa; padding:20px;'>No active studio feeds located.</div>";
+          slider.insertAdjacentHTML('beforeend', "<div style='color:#aaa; padding:20px;'>No transmissions found.</div>");
         }
       } catch (err) {
         const loadingText = document.getElementById('loading-message');
         if (loadingText) loadingText.remove();
-        slider.innerHTML = "<div style='color:#aaa; padding:20px;'>Transmission synchronization dropped.</div>";
+        slider.insertAdjacentHTML('beforeend', "<div style='color:#aaa; padding:20px;'>Transmission sync dropped.</div>");
       }
     }
     fetchYouTubeVideos();
 
-    // 4. Modal Layer Operations
+    // 4. Lightbox Functions
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
-    function openLightbox(src) {
-      lightboxImg.src = src;
-      lightbox.style.display = 'flex';
-    }
-    function closeLightbox() {
-      lightbox.style.display = 'none';
-      lightboxImg.src = '';
-    }
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightbox();
-    });
+    function openLightbox(src) { lightboxImg.src = src; lightbox.style.display = 'flex'; }
+    function closeLightbox() { lightbox.style.display = 'none'; lightboxImg.src = ''; }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
   </script>
 </body>
 </html>
