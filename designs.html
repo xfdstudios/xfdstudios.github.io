@@ -127,9 +127,11 @@
       display: flex;
       align-items: center;
     }
-    .section-title span::before { content: '> '; color: var(--tech); }
+    /* CHANGED: Arrows are now Red to match the page theme */
+    .section-title span::before { content: '> '; color: var(--wrestling); }
 
     .shop-layout-full { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+    /* CHANGED: All terminal blocks inherit the Red left border */
     .terminal-block { background: rgba(20,20,25,0.8); border: 1px solid #333; border-left: 4px solid var(--wrestling); border-radius: 12px; padding: 30px; margin-bottom: 40px; }
     .terminal-text { font-family: monospace; font-size: 0.75rem; color: #666; margin-bottom: 8px; }
 
@@ -327,7 +329,7 @@
     </div>
     
     <div class="terminal-text">// sync_feed: CREATIVE_WORKFLOW_DATA</div>
-    <div class="terminal-block" style="border-left-color: var(--tech);">
+    <div class="terminal-block">
       <h3 style="margin-top:0;">Video Design</h3>
       <p style="color: #666; font-size: 0.9rem; margin-bottom: 5px;">Visualizing the design process, time-lapses, and creative workflows natively:</p>
       
