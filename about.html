@@ -18,102 +18,70 @@
       --fb: #1877F2; 
       --ig: #E1306C; 
       --rb: #E31421; 
-      --ln: #0A66C2; 
+      --ln: #0A66C2;
       --grey-pill: rgba(255, 255, 255, 0.05); 
     }
     
-    body { 
-      background-color: var(--bg); 
-      color: white; 
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-      margin: 0; 
-      padding: 0; 
-      overflow-x: hidden; 
-    }
+    body { background-color: var(--bg); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
 
-    /* =========================================
-       ENCASED HEADER (BLUE THEME)
-       ========================================= */
-    header { 
-      padding: 20px; 
-      position: sticky; 
-      top: 0; 
-      z-index: 100; 
-      background: linear-gradient(to bottom, rgba(5,5,10,1) 40%, rgba(5,5,10,0) 100%); 
-    }
-
+    header { padding: 20px; position: sticky; top: 0; z-index: 100; background: linear-gradient(to bottom, rgba(5,5,10,1) 40%, rgba(5,5,10,0) 100%); }
+    
+    /* BLUE HEADER BORDER & GLOW */
     .header-encased { 
-      display: flex; justify-content: space-between; align-items: center; 
-      width: 100%; max-width: 1400px; margin: 0 auto; 
-      border: 1px solid rgba(255,255,255,0.15); 
-      border-bottom: 2px solid var(--blue); /* BLUE */
-      border-radius: 20px; padding: 10px 30px; 
-      background: rgba(15, 15, 20, 0.85); backdrop-filter: blur(15px); 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(0,191,255,0.05); /* BLUE GLOW */
+      display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1400px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.15); 
+      border-bottom: 2px solid var(--blue); 
+      border-radius: 20px; padding: 10px 30px; background: rgba(15, 15, 20, 0.85); backdrop-filter: blur(15px); 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(0,191,255,0.05); 
     }
-
+    
     .site-logo { max-width: 100px; filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.5)); transition: 0.3s; }
     .site-logo:hover { filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.9)); transform: scale(1.05); }
 
     .pill-nav { display: flex; gap: 15px; }
-    .pill-nav a { 
-      color: white; text-decoration: none; padding: 10px 20px; border-radius: 30px; 
-      background: var(--grey-pill); border: 1px solid rgba(255,255,255,0.1); 
-      font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; 
-      display: flex; align-items: center; gap: 8px; 
-    }
+    .pill-nav a { color: white; text-decoration: none; padding: 10px 20px; border-radius: 30px; background: var(--grey-pill); border: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
     
     .pill-nav a.nav-news i { color: var(--anime); }
     .pill-nav a.nav-news:hover, .pill-nav a.nav-news.active { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); background: rgba(138,43,226,0.1); }
-    
     .pill-nav a.nav-origin i { color: var(--blue); }
     .pill-nav a.nav-origin:hover, .pill-nav a.nav-origin.active { border-color: var(--blue); box-shadow: 0 0 15px rgba(0,191,255,0.3); background: rgba(0,191,255,0.1); }
-    
     .pill-nav a.nav-designs i { color: var(--wrestling); }
     .pill-nav a.nav-designs:hover, .pill-nav a.nav-designs.active { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.3); background: rgba(220,20,60,0.1); }
-    
     .pill-nav a.nav-contact i { color: var(--horror); }
     .pill-nav a.nav-contact:hover, .pill-nav a.nav-contact.active { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); background: rgba(57,255,20,0.1); }
 
     .header-utils { display: flex; align-items: center; gap: 20px; }
     .social-pills { display: flex; align-items: center; gap: 5px; }
     .social-pills a { color: #aaa; font-size: 1.2rem; margin-left: 8px; transition: 0.3s; text-decoration: none; }
-    
     .social-pills .yt:hover { color: #FF0000; text-shadow: 0 0 10px #FF0000; transform: translateY(-2px); }
     .social-pills .fb:hover { color: var(--fb); text-shadow: 0 0 10px var(--fb); transform: translateY(-2px); }
     .social-pills .tt:hover { color: var(--tech); text-shadow: 0 0 10px var(--tech); transform: translateY(-2px); }
     .social-pills .ig:hover { color: var(--ig); text-shadow: 0 0 10px var(--ig); transform: translateY(-2px); }
     .social-pills .th:hover { color: white; text-shadow: 0 0 10px white; transform: translateY(-2px); }
     .social-pills .rb:hover { color: var(--rb); text-shadow: 0 0 10px var(--rb); transform: translateY(-2px); }
-    .social-pills .ln:hover { color: var(--ln); text-shadow: 0 0 10px var(--ln); transform: translateY(-2px); } /* LINKEDIN HOVER */
+    /* LINKEDIN EXCLUSIVE */
+    .social-pills .ln:hover { color: var(--ln); text-shadow: 0 0 10px var(--ln); transform: translateY(-2px); } 
 
-    /* BLUE SEARCH BAR GLOW */
-    .search-bar { 
-      display: flex; align-items: center; background: rgba(0,0,0,0.5); 
-      border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; 
-      padding: 8px 15px; transition: 0.3s; 
-    }
+    /* BLUE SEARCH FOCUS */
+    .search-bar { display: flex; align-items: center; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 8px 15px; transition: 0.3s; }
     .search-bar:focus-within { border-color: var(--blue); box-shadow: 0 0 10px rgba(0,191,255,0.2); }
     .search-bar input { background: transparent; border: none; color: white; outline: none; padding-right: 10px; font-family: monospace; width: 130px;}
     .search-bar input::placeholder { color: #666; }
 
-    /* =========================================
-       LAYOUT CONTAINERS 
-       ========================================= */
-    .layout-full { max-width: 1400px; margin: 40px auto; padding: 0 20px; }
-    
-    .section-title { font-size: 1.2rem; letter-spacing: 2px; margin: 20px 0; text-transform: uppercase; color: var(--blue); }
+    /* ORIGIN SPECIFIC STYLES */
+    .origin-container { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
+    .terminal-block { background: rgba(20,20,25,0.8); border: 1px solid #333; border-left: 4px solid var(--blue); border-radius: 12px; padding: 40px; }
+    .section-title { font-size: 1.5rem; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 10px; }
     .section-title span::before { content: '> '; color: var(--blue); }
     
-    .terminal-block { 
-      background: rgba(20,20,25,0.8); border: 1px solid #333; 
-      border-left: 4px solid var(--blue); 
-      border-radius: 12px; padding: 30px; margin-bottom: 40px; 
-    }
+    .profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; align-items: start; }
+    .profile-img { width: 100%; border-radius: 12px; border: 1px solid rgba(0,191,255,0.3); box-shadow: 0 0 20px rgba(0,191,255,0.1); }
+    .bio-text { color: #ccc; line-height: 1.8; font-size: 1rem; }
+    .bio-text p { margin-bottom: 15px; }
+    .bio-text strong { color: white; }
 
-    .site-footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); font-family: monospace; color: #555; }
+    .site-footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); font-family: monospace; color: #555; margin-top: 40px; }
 
-    @media (max-width: 850px) { .header-encased { flex-direction: column; gap: 20px; } .pill-nav { flex-wrap: wrap; justify-content: center; } .header-utils { flex-direction: column; } }
+    @media (max-width: 850px) { .header-encased { flex-direction: column; gap: 20px; } .pill-nav { flex-wrap: wrap; justify-content: center; } .header-utils { flex-direction: column; } .profile-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -141,7 +109,6 @@
           <a href="https://www.instagram.com/xenofinaldawn/" class="ig" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
           <a href="https://www.threads.com/@xenofinaldawn" class="th" target="_blank" title="Threads"><i class="fas fa-at"></i></a>
           <a href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" class="rb" target="_blank" title="RedBubble Shop"><i class="fas fa-shopping-cart"></i></a>
-          <!-- LINKEDIN EXCLUSIVE TO ORIGIN PAGE -->
           <a href="https://www.linkedin.com/in/orlando-joshua-calh86/" class="ln" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
         
@@ -154,20 +121,29 @@
   </header>
 
   <!-- CONTENT -->
-  <main class="layout-full">
-    
-    <div class="section-title">
-      <span>System Core // Origin Status</span>
-    </div>
+  <main class="origin-container">
+    <div class="section-title"><span>System Core // Origin Story</span></div>
     
     <div class="terminal-block">
-      <!-- PASTE YOUR EXISTING ORIGIN/ABOUT CONTENT HERE -->
-      <h3 style="margin-top:0; color: white;">XFD Identity Node</h3>
-      <p style="color: #ccc; line-height: 1.6;">
-        Welcome to the origin core. Insert your profile information, bio, or history here. The layout matches your primary terminal specifications exactly as requested.
-      </p>
+      <div class="profile-grid">
+        
+        <div>
+          <!-- Replace this with your actual photo! -->
+          <img src="https://via.placeholder.com/400x500/111/555?text=XFD+Profile" alt="O. Calhoun" class="profile-img">
+        </div>
+        
+        <div class="bio-text">
+          <h2 style="color: var(--blue); margin-top: 0; font-family: monospace; font-size: 2rem;">O. Calhoun</h2>
+          <p><strong>// DESIGNATION:</strong> Creator, Editor, Designer.</p>
+          <p>Welcome to the XenoFinalDawn (XFD) central node. This is the origin point for all creative workflows, encompassing everything from high-level video editing and visual effects to vector artwork and merchandising.</p>
+          <p>With a foundation in Graphic Communications and professional editing software like <strong>Final Cut Pro</strong>, alongside a deep-rooted passion for wrestling, anime, and horror lore, the XFD project merges pop culture curation with cyber-terminal aesthetics.</p>
+          <p>Navigate the portal to explore the Quantum Archive designs, tap into the Transmission Hub for live broadcasts, or initiate contact for professional inquiries and collaborations.</p>
+          
+          <a href="contact.html" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: rgba(0,191,255,0.1); border: 1px solid var(--blue); color: var(--blue); text-decoration: none; border-radius: 5px; font-weight: bold; transition: 0.3s;">INITIATE CONTACT</a>
+        </div>
+        
+      </div>
     </div>
-
   </main>
 
   <footer class="site-footer">
