@@ -7,111 +7,243 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     * { box-sizing: border-box; }
-    
+
     :root { 
       --bg: #05050A; 
       --horror: #39FF14; 
       --anime: #8A2BE2; 
       --wrestling: #DC143C; 
       --tech: #00FFFF; 
-      --blue: #00BFFF; 
-      --fb: #1877F2; 
-      --ig: #E1306C; 
-      --rb: #E31421; 
-      --ln: #0A66C2;
-      --grey-pill: rgba(255, 255, 255, 0.05); 
+      --blue: #00BFFF;
+      --fb: #1877F2;
+      --linkedin: #0077B5;
+      --grey-pill: rgba(255, 255, 255, 0.05);
     }
     
-    body { background-color: var(--bg); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+    body { 
+      background-color: var(--bg); 
+      color: white; 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      margin: 0; 
+      padding: 0; 
+      overflow-x: hidden;
+    }
 
-    header { padding: 20px; position: sticky; top: 0; z-index: 100; background: linear-gradient(to bottom, rgba(5,5,10,1) 40%, rgba(5,5,10,0) 100%); }
-    
-    /* BLUE HEADER BORDER & GLOW */
-    .header-encased { 
-      display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1400px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.15); 
-      border-bottom: 2px solid var(--blue); 
-      border-radius: 20px; padding: 10px 30px; background: rgba(15, 15, 20, 0.85); backdrop-filter: blur(15px); 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(0,191,255,0.05); 
+    /* =========================================
+       PHASE 1: ENCASED CONTROL CENTER HEADER
+       ========================================= */
+    header {
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(to bottom, rgba(5,5,10,1) 40%, rgba(5,5,10,0) 100%);
     }
-    
+
+    .header-encased {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-bottom: 2px solid var(--blue); 
+      border-radius: 20px;
+      padding: 10px 30px;
+      background: rgba(15, 15, 20, 0.85);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(0,191,255,0.05);
+    }
+
     .site-logo { max-width: 100px; filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.5)); transition: 0.3s; }
     .site-logo:hover { filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.9)); transform: scale(1.05); }
 
     .pill-nav { display: flex; gap: 15px; }
-    .pill-nav a { color: white; text-decoration: none; padding: 10px 20px; border-radius: 30px; background: var(--grey-pill); border: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+    .pill-nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      background: var(--grey-pill);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
     
     .pill-nav a.nav-news i { color: var(--anime); }
-    .pill-nav a.nav-news:hover, .pill-nav a.nav-news.active { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); background: rgba(138,43,226,0.1); }
+    .pill-nav a.nav-news:hover { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); background: rgba(138,43,226,0.1); }
+    
+    .pill-nav a.nav-origin { border-color: var(--blue); background: rgba(0,191,255,0.15); box-shadow: 0 0 15px rgba(0,191,255,0.2); }
     .pill-nav a.nav-origin i { color: var(--blue); }
-    .pill-nav a.nav-origin:hover, .pill-nav a.nav-origin.active { border-color: var(--blue); box-shadow: 0 0 15px rgba(0,191,255,0.3); background: rgba(0,191,255,0.1); }
+    
     .pill-nav a.nav-designs i { color: var(--wrestling); }
-    .pill-nav a.nav-designs:hover, .pill-nav a.nav-designs.active { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.3); background: rgba(220,20,60,0.1); }
+    .pill-nav a.nav-designs:hover { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.3); background: rgba(220,20,60,0.1); }
+    
     .pill-nav a.nav-contact i { color: var(--horror); }
-    .pill-nav a.nav-contact:hover, .pill-nav a.nav-contact.active { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); background: rgba(57,255,20,0.1); }
+    .pill-nav a.nav-contact:hover { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); background: rgba(57,255,20,0.1); }
 
     .header-utils { display: flex; align-items: center; gap: 20px; }
-    .social-pills { display: flex; align-items: center; gap: 5px; }
-    .social-pills a { color: #aaa; font-size: 1.2rem; margin-left: 8px; transition: 0.3s; text-decoration: none; }
-    .social-pills .yt:hover { color: #FF0000; text-shadow: 0 0 10px #FF0000; transform: translateY(-2px); }
-    .social-pills .fb:hover { color: var(--fb); text-shadow: 0 0 10px var(--fb); transform: translateY(-2px); }
-    .social-pills .tt:hover { color: var(--tech); text-shadow: 0 0 10px var(--tech); transform: translateY(-2px); }
-    .social-pills .ig:hover { color: var(--ig); text-shadow: 0 0 10px var(--ig); transform: translateY(-2px); }
-    .social-pills .th:hover { color: white; text-shadow: 0 0 10px white; transform: translateY(-2px); }
-    .social-pills .rb:hover { color: var(--rb); text-shadow: 0 0 10px var(--rb); transform: translateY(-2px); }
-    /* LINKEDIN EXCLUSIVE */
-    .social-pills .ln:hover { color: var(--ln); text-shadow: 0 0 10px var(--ln); transform: translateY(-2px); } 
+    .social-pills a { color: #aaa; font-size: 1.2rem; margin-left: 10px; transition: 0.3s; text-decoration: none; }
+    .social-pills .yt:hover { color: #FF0000; text-shadow: 0 0 10px #FF0000; }
+    .social-pills .fb:hover { color: var(--fb); text-shadow: 0 0 10px var(--fb); }
+    .social-pills .tt:hover { color: var(--tech); text-shadow: 0 0 10px var(--tech); }
+    .social-pills .ig:hover { color: #FF00AF; text-shadow: 0 0 10px #FF00AF; }
+    .social-pills .th:hover { color: white; text-shadow: 0 0 10px white; }
+    .social-pills .rb:hover { color: #E31421; text-shadow: 0 0 10px #E31421; }
 
-    /* BLUE SEARCH FOCUS */
-    .search-bar { display: flex; align-items: center; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 8px 15px; transition: 0.3s; }
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 30px;
+      padding: 8px 15px;
+      transition: 0.3s;
+    }
+    /* UPDATED: Glow is now blue instead of cyan */
     .search-bar:focus-within { border-color: var(--blue); box-shadow: 0 0 10px rgba(0,191,255,0.2); }
-    .search-bar input { background: transparent; border: none; color: white; outline: none; padding-right: 10px; font-family: monospace; width: 130px;}
+    .search-bar input { background: transparent; border: none; color: white; outline: none; padding-right: 10px; font-family: monospace; width: 150px;}
     .search-bar input::placeholder { color: #666; }
 
-    /* ORIGIN SPECIFIC STYLES */
-    .origin-container { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
-    .terminal-block { background: rgba(20,20,25,0.8); border: 1px solid #333; border-left: 4px solid var(--blue); border-radius: 12px; padding: 40px; }
-    .section-title { font-size: 1.5rem; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 10px; }
+    /* =========================================
+       ORIGIN MAIN LAYOUT ARCHITECTURE
+       ========================================= */
+    .section-title {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      margin: 40px auto 20px auto;
+      text-transform: uppercase;
+      padding: 0 40px;
+      max-width: 1450px;
+    }
     .section-title span::before { content: '> '; color: var(--blue); }
+
+    .origin-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+      padding: 0 40px;
+      max-width: 1450px;
+      margin: 0 auto;
+    }
+
+    .terminal-text { font-family: monospace; font-size: 0.75rem; color: #666; margin-bottom: 8px; }
     
-    .profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; align-items: start; }
-    .profile-img { width: 100%; border-radius: 12px; border: 1px solid rgba(0,191,255,0.3); box-shadow: 0 0 20px rgba(0,191,255,0.1); }
-    .bio-text { color: #ccc; line-height: 1.8; font-size: 1rem; }
-    .bio-text p { margin-bottom: 15px; }
-    .bio-text strong { color: white; }
+    .terminal-block {
+      background: rgba(20,20,25,0.8);
+      border: 1px solid #333;
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 30px;
+      transition: 0.3s;
+    }
+    .terminal-block:hover { border-color: var(--blue); box-shadow: inset 0 0 20px rgba(0,191,255,0.05), 0 0 15px rgba(0,191,255,0.1); }
+    
+    .terminal-block h3 { margin: 0 0 15px 0; font-size: 1.4rem; letter-spacing: 1px; color: white; }
+    .terminal-block p { margin: 0 0 20px 0; font-size: 1.05rem; line-height: 1.6; color: #ccc; }
+    .terminal-block p:last-child { margin-bottom: 0; }
 
-    .site-footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); font-family: monospace; color: #555; margin-top: 40px; }
+    /* Interactive Social Target Nodes (Fighter Select Look) */
+    .profile-card { text-align: center; height: auto; position: sticky; top: 120px; }
+    .profile-card h3 { font-size: 1.6rem; margin-bottom: 5px; }
+    .profile-role { color: var(--blue); font-family: monospace; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 20px; }
+    
+    .profile-socials {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .profile-socials a {
+      color: white;
+      text-decoration: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.4);
+      border: 2px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .profile-socials a:hover { transform: translateY(-4px); }
+    
+    /* Individual Color Injection Targets */
+    .profile-socials a.p-ln:hover { border-color: var(--linkedin); box-shadow: 0 0 15px var(--linkedin); color: var(--linkedin); }
+    .profile-socials a.p-yt:hover { border-color: #FF0000; box-shadow: 0 0 15px #FF0000; color: #FF0000; }
+    .profile-socials a.p-fb:hover { border-color: var(--fb); box-shadow: 0 0 15px var(--fb); color: var(--fb); }
+    .profile-socials a.p-ig:hover { border-color: #FF00AF; box-shadow: 0 0 15px #FF00AF; color: #FF00AF; }
 
-    @media (max-width: 850px) { .header-encased { flex-direction: column; gap: 20px; } .pill-nav { flex-wrap: wrap; justify-content: center; } .header-utils { flex-direction: column; } .profile-grid { grid-template-columns: 1fr; } }
+    /* =========================================
+       HISTORICAL ARCHIVE & DEPLOYMENT GRID
+       ========================================= */
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      padding: 40px 40px 80px 40px;
+      max-width: 1450px;
+      margin: 0 auto;
+    }
+    .archive-card {
+      background: rgba(15,15,20,0.6);
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 25px;
+      transition: 0.3s;
+    }
+    .archive-card:hover { border-color: rgba(255,255,255,0.2); }
+    .archive-meta { font-family: monospace; font-size: 0.8rem; color: var(--blue); margin-bottom: 10px; }
+    .archive-card h4 { margin: 0 0 10px 0; font-size: 1.2rem; }
+    .archive-card p { color: #888; font-size: 0.95rem; line-height: 1.5; margin: 0 0 15px 0; }
+    .btn-decrypt { display: inline-flex; align-items: center; gap: 8px; font-family: monospace; color: white; text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; }
+    .btn-decrypt:hover { color: var(--blue); text-shadow: 0 0 8px var(--blue); }
+
+    .site-footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); font-family: monospace; color: #555; }
+
+    @media (max-width: 1100px) {
+      .origin-layout { grid-template-columns: 1fr; }
+      .archive-grid { grid-template-columns: 1fr; }
+      .profile-card { position: relative; top: 0; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ENCASED HEADER (BLUE) -->
+  <!-- HEADER (Locked Design Vector) -->
   <header>
     <div class="header-encased">
       <div class="logo">
         <a href="index.html"><img src="assets/NEW%20LOGO.png" alt="XFD Logo" class="site-logo"></a>
       </div>
       
-      <!-- NAV PILLS (Origin is ACTIVE) -->
       <nav class="pill-nav">
         <a href="index.html" class="nav-news"><i class="fas fa-newspaper"></i> NEWS</a>
-        <a href="about.html" class="nav-origin active"><i class="fas fa-microchip"></i> ORIGIN</a>
+        <a href="about.html" class="nav-origin"><i class="fas fa-microchip"></i> ORIGIN</a>
         <a href="designs.html" class="nav-designs"><i class="fas fa-pen-nib"></i> DESIGNS</a>
         <a href="contact.html" class="nav-contact"><i class="fas fa-envelope"></i> CONTACT</a>
       </nav>
 
       <div class="header-utils">
         <div class="social-pills">
+          <!-- UPDATED: Added real links + matching Threads/RedBubble. NO LinkedIn here. -->
           <a href="https://www.youtube.com/@Xenofinaldawn" class="yt" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
           <a href="https://www.facebook.com/XFDTV/" class="fb" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
           <a href="https://www.tiktok.com/@xenofinaldawn" class="tt" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
           <a href="https://www.instagram.com/xenofinaldawn/" class="ig" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
           <a href="https://www.threads.com/@xenofinaldawn" class="th" target="_blank" title="Threads"><i class="fas fa-at"></i></a>
           <a href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" class="rb" target="_blank" title="RedBubble Shop"><i class="fas fa-shopping-cart"></i></a>
-          <a href="https://www.linkedin.com/in/orlando-joshua-calh86/" class="ln" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
-        
         <div class="search-bar">
           <input type="text" placeholder="Search portal...">
           <i class="fas fa-search" style="color: #666;"></i>
@@ -120,32 +252,83 @@
     </div>
   </header>
 
-  <!-- CONTENT -->
-  <main class="origin-container">
-    <div class="section-title"><span>System Core // Origin Story</span></div>
-    
-    <div class="terminal-block">
-      <div class="profile-grid">
-        
+  <main>
+    <div class="section-title">
+      <span>System Archive // Core Matrix</span>
+    </div>
+
+    <!-- MAIN ORIGIN INTERFACE -->
+    <div class="origin-layout">
+      
+      <!-- Narrative Blocks -->
+      <div class="story-stream">
         <div>
-          <!-- Replace this with your actual photo! -->
-          <img src="https://via.placeholder.com/400x500/111/555?text=XFD+Profile" alt="O. Calhoun" class="profile-img">
+          <div class="terminal-text">// initialization: CORE_IDENTITY_MANIFEST</div>
+          <div class="terminal-block" style="margin-bottom: 30px;">
+            <h3>What is XFD?</h3>
+            <p>XFD—short for Xeno Final Dawn—is a dynamic creative platform blending sci-fi, fantasy, anime, horror, games, and tech into one brand and portfolio.</p>
+          </div>
         </div>
-        
-        <div class="bio-text">
-          <h2 style="color: var(--blue); margin-top: 0; font-family: monospace; font-size: 2rem;">O. Calhoun</h2>
-          <p><strong>// DESIGNATION:</strong> Creator, Editor, Designer.</p>
-          <p>Welcome to the XenoFinalDawn (XFD) central node. This is the origin point for all creative workflows, encompassing everything from high-level video editing and visual effects to vector artwork and merchandising.</p>
-          <p>With a foundation in Graphic Communications and professional editing software like <strong>Final Cut Pro</strong>, alongside a deep-rooted passion for wrestling, anime, and horror lore, the XFD project merges pop culture curation with cyber-terminal aesthetics.</p>
-          <p>Navigate the portal to explore the Quantum Archive designs, tap into the Transmission Hub for live broadcasts, or initiate contact for professional inquiries and collaborations.</p>
+
+        <div>
+          <div class="terminal-text">// archive_data: CHRONICLES_OF_INFLUENCE</div>
+          <div class="terminal-block">
+            <h3>The Story of XFD…</h3>
+            <p>From the solitude of childhood to a tapestry of influences — American animation, anime, horror, sci-fi, and fantasy — XFD is a celebration of nostalgia meeting visionary creativity.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Creator Controller Unit (Interactive Social Nodes) -->
+      <div>
+        <div class="terminal-text">// node_status: IDENTITY_ACCESS_LOCKED</div>
+        <div class="terminal-block profile-card">
+          <div style="width: 100px; height: 100px; background: #0F0F13; border: 2px solid var(--blue); border-radius: 50%; margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(0,191,255,0.2);">
+            <i class="fas fa-user-shield" style="font-size: 2.5rem; color: var(--blue);"></i>
+          </div>
+          <h3>O. Calhoun</h3>
+          <div class="profile-role">Owner / Creator</div>
+          <p style="font-size: 0.9rem; color: #666; text-align: center; margin-bottom: 0;">Select authorization port to link outward:</p>
           
-          <a href="contact.html" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: rgba(0,191,255,0.1); border: 1px solid var(--blue); color: var(--blue); text-decoration: none; border-radius: 5px; font-weight: bold; transition: 0.3s;">INITIATE CONTACT</a>
+          <div class="profile-socials">
+            <!-- UPDATED: LinkedIn added ONLY here, all URLs updated -->
+            <a href="https://www.linkedin.com/in/orlando-joshua-calh86/" class="p-ln" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/@Xenofinaldawn" class="p-yt" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/XFDTV/" class="p-fb" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/xenofinaldawn/" class="p-ig" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
         </div>
-        
+      </div>
+    </div>
+
+    <!-- TRANSMISSIONS ARCHIVE SECTION -->
+    <div class="section-title">
+      <span>Historical Transmissions // Links</span>
+    </div>
+
+    <div class="archive-grid">
+      <div>
+        <div class="terminal-text">// storage_sector: NOTE_LOG_01</div>
+        <div class="archive-card">
+          <div class="archive-meta">OCT 2024 // BRANDING_INTEL</div>
+          <h4>Finding the XFD Tone</h4>
+          <p>Balancing anime energy with clean composition—the way I approach client branding and stylistic setups.</p>
+          <a href="designs.html" class="btn-decrypt">DECRYPT FILE [XFD_TONE] ➔</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="terminal-text">// storage_sector: NOTE_LOG_02</div>
+        <div class="archive-card">
+          <div class="archive-meta">AUG 2024 // GRAPHIC_WORKFLOW</div>
+          <h4>Designing for Story</h4>
+          <p>Why every graphic should feel like a scene—introducing motion elements and depth even into completely still frames.</p>
+          <a href="designs.html" class="btn-decrypt">DECRYPT FILE [STORY_DSGN] ➔</a>
+        </div>
       </div>
     </div>
   </main>
-
+  
   <footer class="site-footer">
     // SYSTEM_ACTIVE // &copy; 2026 XenoFinalDawn (XFD). All rights reserved.
   </footer>
