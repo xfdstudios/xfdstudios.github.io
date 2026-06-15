@@ -1,208 +1,192 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>XENOFINALDAWN - CYBER TERMINAL</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <style>
-    * { box-sizing: border-box; }
-    :root { --bg: #05050A; --horror: #39FF14; --anime: #8A2BE2; --wrestling: #DC143C; --tech: #00FFFF; --blue: #00BFFF; --fb: #1877F2; --ig: #E1306C; --rb: #E31421; --grey-pill: rgba(255, 255, 255, 0.05); }
-    body { background-color: var(--bg); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="XenoFinalDawn is the central portal for horror, anime, wrestling, gaming, tech, videos, designs, and updates from XFD."
+    >
+    <meta property="og:title" content="XenoFinalDawn - XFD Portal">
+    <meta
+      property="og:description"
+      content="One portal for XFD videos, designs, updates, and creator links."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://xfdzone.github.io/xfdportal/assets/NEW%20LOGO.png">
+    <title>XenoFinalDawn - XFD Portal Refresh</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="page-news">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="XenoFinalDawn home">
+        <img src="https://xfdzone.github.io/xfdportal/assets/NEW%20LOGO.png" alt="XFD logo">
+      </a>
 
-    header { padding: 20px; position: sticky; top: 0; z-index: 100; background: linear-gradient(to bottom, rgba(5,5,10,1) 40%, rgba(5,5,10,0) 100%); }
-    
-    /* PURPLE HEADER BORDER & GLOW */
-    .header-encased { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1400px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.15); border-bottom: 2px solid var(--anime); border-radius: 20px; padding: 10px 30px; background: rgba(15, 15, 20, 0.85); backdrop-filter: blur(15px); box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(138,43,226,0.05); }
-    .site-logo { max-width: 100px; filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.5)); transition: 0.3s; }
-    .site-logo:hover { filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.9)); transform: scale(1.05); }
-
-    .pill-nav { display: flex; gap: 15px; }
-    .pill-nav a { color: white; text-decoration: none; padding: 10px 20px; border-radius: 30px; background: var(--grey-pill); border: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
-    .pill-nav a.nav-news i { color: var(--anime); }
-    .pill-nav a.nav-news:hover, .pill-nav a.nav-news.active { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); background: rgba(138,43,226,0.1); }
-    .pill-nav a.nav-origin i { color: var(--blue); }
-    .pill-nav a.nav-origin:hover, .pill-nav a.nav-origin.active { border-color: var(--blue); box-shadow: 0 0 15px rgba(0,191,255,0.3); background: rgba(0,191,255,0.1); }
-    .pill-nav a.nav-designs i { color: var(--wrestling); }
-    .pill-nav a.nav-designs:hover, .pill-nav a.nav-designs.active { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.3); background: rgba(220,20,60,0.1); }
-    .pill-nav a.nav-contact i { color: var(--horror); }
-    .pill-nav a.nav-contact:hover, .pill-nav a.nav-contact.active { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); background: rgba(57,255,20,0.1); }
-
-    .header-utils { display: flex; align-items: center; gap: 20px; }
-    .social-pills { display: flex; align-items: center; gap: 5px; }
-    .social-pills a { color: #aaa; font-size: 1.2rem; margin-left: 8px; transition: 0.3s; text-decoration: none; }
-    .social-pills .yt:hover { color: #FF0000; text-shadow: 0 0 10px #FF0000; transform: translateY(-2px); }
-    .social-pills .fb:hover { color: var(--fb); text-shadow: 0 0 10px var(--fb); transform: translateY(-2px); }
-    .social-pills .tt:hover { color: var(--tech); text-shadow: 0 0 10px var(--tech); transform: translateY(-2px); }
-    .social-pills .ig:hover { color: var(--ig); text-shadow: 0 0 10px var(--ig); transform: translateY(-2px); }
-    .social-pills .th:hover { color: white; text-shadow: 0 0 10px white; transform: translateY(-2px); }
-    .social-pills .rb:hover { color: var(--rb); text-shadow: 0 0 10px var(--rb); transform: translateY(-2px); }
-
-    /* PURPLE SEARCH BAR GLOW */
-    .search-bar { display: flex; align-items: center; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 8px 15px; transition: 0.3s; }
-    .search-bar:focus-within { border-color: var(--anime); box-shadow: 0 0 10px rgba(138,43,226,0.2); }
-    .search-bar input { background: transparent; border: none; color: white; outline: none; padding-right: 10px; font-family: monospace; width: 130px;}
-    .search-bar input::placeholder { color: #666; }
-
-    .hero-portal { text-align: center; padding: 60px 20px 100px 20px; position: relative; background: radial-gradient(circle at 50% 50%, rgba(138,43,226,0.25) 0%, rgba(0,255,255,0.05) 30%, rgba(0,0,0,0) 60%); }
-    .hero-portal h1 { font-size: 4.5rem; margin: 0; letter-spacing: 6px; text-shadow: 0 0 20px rgba(138,43,226,0.8), 0 0 40px rgba(0,255,255,0.4); }
-    .hero-portal .tagline { font-size: 1.2rem; letter-spacing: 4px; color: #aaa; margin-top: 10px; text-transform: uppercase; }
-
-    .section-title { font-size: 1.2rem; letter-spacing: 2px; margin: 20px 0; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; max-width: 1450px; margin-left: auto; margin-right: auto; }
-    .section-title span::before { content: '> '; color: var(--anime); }
-    .view-all { font-size: 0.8rem; color: #aaa; text-decoration: none; transition: 0.3s; letter-spacing: 1px; }
-    .view-all:hover { color: white; text-shadow: 0 0 10px white; }
-
-    .slider-wrapper { display: flex; align-items: center; padding: 0 20px; gap: 15px; margin-bottom: 60px; max-width: 1500px; margin-left: auto; margin-right: auto; }
-    .nav-arrow { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; width: 45px; height: 45px; color: white; cursor: pointer; transition: 0.3s; flex-shrink: 0; }
-    .nav-arrow:hover { background: rgba(138,43,226,0.3); border-color: var(--anime); box-shadow: 0 0 15px var(--anime); }
-
-    .media-slider { display: flex; overflow-x: auto; gap: 20px; padding: 10px; scrollbar-width: none; scroll-behavior: smooth; flex-grow: 1; }
-    .media-slider::-webkit-scrollbar { display: none; }
-    .media-card { flex: 0 0 320px; background: rgba(20,20,25,0.8); border: 1px solid #333; border-radius: 12px; padding: 15px; transition: 0.3s; position: relative; }
-    .media-card:hover { transform: translateY(-5px); }
-    .media-card img { width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); }
-    .media-card .badge { position: absolute; top: 25px; left: 25px; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; letter-spacing: 1px; }
-
-    .card-purple:hover { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); }
-    .card-cyan:hover { border-color: var(--tech); box-shadow: 0 0 15px rgba(0,255,255,0.3); }
-    .card-green:hover { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); }
-    .card-red:hover { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.3); }
-
-    .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 0 40px 80px 40px; max-width: 1450px; margin: 0 auto; }
-    .terminal-text { font-family: monospace; font-size: 0.75rem; color: #666; margin-bottom: 8px; }
-    .cat-card { background: rgba(20,20,25,0.8); border: 1px solid #333; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 15px; transition: 0.3s; }
-    .cat-card i { font-size: 2.5rem; }
-    .cat-card h3 { margin: 0 0 5px 0; font-size: 1.1rem; letter-spacing: 1px; }
-    .cat-card p { margin: 0; font-size: 0.8rem; color: #aaa; }
-    .btn-view { display: inline-block; margin-top: 10px; padding: 6px 15px; border: 1px solid #555; border-radius: 20px; font-size: 0.7rem; color: white; text-decoration: none; transition: 0.3s; letter-spacing: 1px; }
-
-    .cat-horror { border-color: rgba(138,43,226,0.3); }
-    .cat-horror i { color: var(--anime); text-shadow: 0 0 10px var(--anime); }
-    .cat-horror:hover { box-shadow: inset 0 0 20px rgba(138,43,226,0.2), 0 0 15px rgba(138,43,226,0.4); border-color: var(--anime); }
-    .cat-horror .btn-view:hover { background: var(--anime); border-color: var(--anime); color: white; box-shadow: 0 0 10px var(--anime); }
-    .cat-anime { border-color: rgba(0,191,255,0.3); }
-    .cat-anime i { color: var(--blue); text-shadow: 0 0 10px var(--blue); }
-    .cat-anime:hover { box-shadow: inset 0 0 20px rgba(0,191,255,0.2), 0 0 15px rgba(0,191,255,0.4); border-color: var(--blue); }
-    .cat-anime .btn-view:hover { background: var(--blue); border-color: var(--blue); color: black; box-shadow: 0 0 10px var(--blue); }
-    .cat-wrestling { border-color: rgba(220,20,60,0.3); }
-    .cat-wrestling i { color: var(--wrestling); text-shadow: 0 0 10px var(--wrestling); }
-    .cat-wrestling:hover { box-shadow: inset 0 0 20px rgba(220,20,60,0.2), 0 0 15px rgba(220,20,60,0.4); border-color: var(--wrestling); }
-    .cat-wrestling .btn-view:hover { background: var(--wrestling); border-color: var(--wrestling); color: white; box-shadow: 0 0 10px var(--wrestling); }
-    .cat-tech { border-color: rgba(57,255,20,0.3); }
-    .cat-tech i { color: var(--horror); text-shadow: 0 0 10px var(--horror); }
-    .cat-tech:hover { box-shadow: inset 0 0 20px rgba(57,255,20,0.2), 0 0 15px rgba(57,255,20,0.4); border-color: var(--horror); }
-    .cat-tech .btn-view:hover { background: var(--horror); border-color: var(--horror); color: black; box-shadow: 0 0 10px var(--horror); }
-
-    .site-footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); font-family: monospace; color: #555; }
-    
-    @media (max-width: 1100px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 850px) { 
-      .header-encased { flex-direction: column; gap: 20px; } 
-      .pill-nav { flex-wrap: wrap; justify-content: center; } 
-      .header-utils { flex-direction: column; } 
-    }
-    @media (max-width: 600px) { .category-grid { grid-template-columns: 1fr; } }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="header-encased">
-      <div class="logo"><a href="index.html"><img src="assets/NEW%20LOGO.png" alt="XFD Logo" class="site-logo"></a></div>
-      <nav class="pill-nav">
-        <a href="index.html" class="nav-news active"><i class="fas fa-newspaper"></i> NEWS</a>
-        <a href="about.html" class="nav-origin"><i class="fas fa-microchip"></i> ORIGIN</a>
-        <a href="designs.html" class="nav-designs"><i class="fas fa-pen-nib"></i> DESIGNS</a>
-        <a href="contact.html" class="nav-contact"><i class="fas fa-envelope"></i> CONTACT</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html" aria-current="page"><i class="fa-solid fa-newspaper" aria-hidden="true"></i>Feed</a>
+        <a href="about.html"><i class="fa-solid fa-microchip" aria-hidden="true"></i>Origin</a>
+        <a href="designs.html"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i>Designs</a>
+        <a href="contact.html"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Contact</a>
       </nav>
-      <div class="header-utils">
-        <div class="social-pills">
-          <a href="https://www.youtube.com/@Xenofinaldawn" class="yt" target="_blank"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.facebook.com/XFDTV/" class="fb" target="_blank"><i class="fab fa-facebook"></i></a>
-          <a href="https://www.tiktok.com/@xenofinaldawn" class="tt" target="_blank"><i class="fab fa-tiktok"></i></a>
-          <a href="https://www.instagram.com/xenofinaldawn/" class="ig" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.threads.com/@xenofinaldawn" class="th" target="_blank"><i class="fas fa-at"></i></a>
-          <a href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" class="rb" target="_blank"><i class="fas fa-shopping-cart"></i></a>
+
+      <div class="header-actions">
+        <div class="social-links" aria-label="Social links">
+          <a href="https://www.youtube.com/@Xenofinaldawn" aria-label="YouTube">
+            <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.facebook.com/XFDTV/" aria-label="Facebook">
+            <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.tiktok.com/@xenofinaldawn" aria-label="TikTok">
+            <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.instagram.com/xenofinaldawn/" aria-label="Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" aria-label="Shop">
+            <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          </a>
         </div>
-        <div class="search-bar"><input type="text" placeholder="Search portal..."><i class="fas fa-search" style="color: #666;"></i></div>
+        <label class="search-shell">
+          <span class="sr-only">Search transmissions</span>
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input id="portal-search" type="search" placeholder="Search portal">
+        </label>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <main>
-    <section class="hero-portal">
-      <h1>XENOFINALDAWN</h1>
-      <p class="tagline">One portal. Infinite possibilities.</p>
-    </section>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div
+          class="hero-banner"
+          style="--hero-banner-image: url('https://i3.ytimg.com/vi/vpBdZ3I8KCo/maxresdefault.jpg');"
+        >
+          <div class="hero-copy terminal-panel">
+            <div class="signal-mark" aria-hidden="true">
+              <img src="https://xfdzone.github.io/xfdportal/assets/NEW%20LOGO.png" alt="">
+              <span>discover feed</span>
+            </div>
+            <p class="eyebrow">Discover // Latest signals</p>
+            <div class="hero-title-lockup">
+              <span>XenoFinalDawn</span>
+              <h1 id="hero-title">Latest from XFD</h1>
+            </div>
+            <p>
+              Videos, news, designs, shop drops, and portal updates from across the XenoFinalDawn network.
+            </p>
+            <div class="discover-feed" aria-label="Latest portal activity">
+              <a href="#transmissions">
+                <span>Latest video</span>
+                <strong>Jade Cargill Was Fighting for Her Life Mid-Match</strong>
+              </a>
+              <a href="designs.html">
+                <span>Design drop</span>
+                <strong>Browse XFD shirts, stickers, and gear</strong>
+              </a>
+              <a href="#channels-title">
+                <span>Portal update</span>
+                <strong>Choose Horror, Anime, Wrestling, or Tech/Gaming</strong>
+              </a>
+            </div>
+            <div class="hero-actions">
+              <a class="button primary" href="#transmissions">Explore social feed</a>
+            </div>
+          </div>
 
-    <!-- MOVED UP: CATEGORY GRID -->
-    <div class="section-title"><span>News & Updates</span></div>
-    
-    <div class="category-grid">
-      <div>
-        <div class="terminal-text">// subject: EVIL_DEAD_LORE</div>
-        <div class="cat-card cat-horror">
-          <i class="fas fa-skull"></i>
-          <div><h3>HORROR</h3><p>Enter the unknown.</p><a href="#" class="btn-view">VIEW NEWS <i class="fas fa-arrow-right"></i></a></div>
+          <a class="latest-video-panel" href="https://www.youtube.com/shorts/e7mKx7nxLw0" aria-label="Watch latest video on YouTube">
+            <span class="tag">Latest video</span>
+            <span class="play-mark"><i class="fa-solid fa-play" aria-hidden="true"></i></span>
+            <span class="latest-video-copy">
+              <strong>Jade Cargill Was Fighting for Her Life Mid-Match</strong>
+              <small>Latest upload // Jun 14, 2026</small>
+            </span>
+          </a>
         </div>
-      </div>
-      <div>
-        <div class="terminal-text">// edit_workflow: FINAL_CUT_PRO</div>
-        <div class="cat-card cat-anime">
-          <i class="fas fa-khanda"></i>
-          <div><h3>ANIME</h3><p>Epic battles await.</p><a href="#" class="btn-view">VIEW NEWS <i class="fas fa-arrow-right"></i></a></div>
+      </section>
+
+      <section class="channels section-banner portal-banner" aria-labelledby="channels-title">
+        <div class="section-heading">
+          <p class="eyebrow">News & updates</p>
+          <h2 id="channels-title">Choose a portal</h2>
         </div>
-      </div>
-      <div>
-        <div class="terminal-text">// update: WWE_AEW_NEWS</div>
-        <div class="cat-card cat-wrestling">
-          <i class="fas fa-ring"></i>
-          <div><h3>WRESTLING</h3><p>Champions collide.</p><a href="#" class="btn-view">VIEW NEWS <i class="fas fa-arrow-right"></i></a></div>
+
+        <div class="channel-grid">
+          <a class="channel-card horror" href="horror.html">
+            <span>// subject: evil_dead_lore</span>
+            <div class="channel-icon" aria-hidden="true"><i class="fa-solid fa-skull"></i></div>
+            <h3>Horror</h3>
+            <p>Unknown signals, genre history, and practical effects love.</p>
+            <b>Open portal</b>
+          </a>
+          <a class="channel-card anime" href="anime.html">
+            <span>// edit_workflow: final_cut_pro</span>
+            <div class="channel-icon" aria-hidden="true"><i class="fa-solid fa-eye"></i></div>
+            <h3>Anime</h3>
+            <p>Final bosses, power scaling, edits, and visual fire.</p>
+            <b>Open portal</b>
+          </a>
+          <a class="channel-card wrestling" href="wrestling.html">
+            <span>// update: wwe_aew_news</span>
+            <div class="channel-icon" aria-hidden="true"><i class="fa-solid fa-trophy"></i></div>
+            <h3>Wrestling</h3>
+            <p>Match energy, roster moments, and ringside commentary.</p>
+            <b>Open portal</b>
+          </a>
+          <a class="channel-card tech" href="tech-gaming.html">
+            <span>// system: home_lab_status</span>
+            <div class="channel-icon" aria-hidden="true"><i class="fa-solid fa-gamepad"></i></div>
+            <h3>Tech/Gaming</h3>
+            <p>Retro flags, console talk, gaming culture, and builds.</p>
+            <b>Open portal</b>
+          </a>
         </div>
-      </div>
-      <div>
-        <div class="terminal-text">// system: HOME_LAB_STATUS</div>
-        <div class="cat-card cat-tech">
-          <i class="fas fa-gamepad"></i>
-          <div><h3>TECH/GAMING</h3><p>Level up your world.</p><a href="#" class="btn-view">VIEW NEWS <i class="fas fa-arrow-right"></i></a></div>
+      </section>
+
+      <section id="transmissions" class="transmissions section-banner uploads-banner" aria-labelledby="transmissions-title">
+        <div class="section-heading row">
+          <div>
+            <p class="eyebrow">Social hub</p>
+            <h2 id="transmissions-title">Social feed</h2>
+          </div>
+          <div class="filter-controls" aria-label="Filter transmissions">
+            <button type="button" class="active" data-filter="all">All</button>
+            <button type="button" data-filter="youtube">YouTube</button>
+            <button type="button" data-filter="tiktok">TikTok</button>
+            <button type="button" data-filter="instagram">Instagram</button>
+            <button type="button" data-filter="facebook">Facebook</button>
+            <button type="button" data-filter="threads">Threads</button>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- MOVED DOWN: TRANSMISSION HUB SLIDER -->
-    <div class="section-title"><span>The Transmission Hub</span><a href="designs.html" class="view-all">VIEW ALL <i class="fas fa-arrow-right"></i></a></div>
-    
-    <div class="slider-wrapper">
-      <button class="nav-arrow" onclick="scrollSlider(-1)"><i class="fas fa-chevron-left"></i></button>
-      <div class="media-slider" id="youtube-feed"><div id="loading-message" style="color: #aaa; padding: 20px; width:100%;">Connecting to video feed...</div></div>
-      <button class="nav-arrow" onclick="scrollSlider(1)"><i class="fas fa-chevron-right"></i></button>
-    </div>
+        <div class="rail-wrap">
+          <button class="rail-button prev" type="button" aria-label="Scroll videos left">‹</button>
+          <div id="video-rail" class="video-rail" tabindex="0" aria-live="polite"></div>
+          <button class="rail-button next" type="button" aria-label="Scroll videos right">›</button>
+        </div>
 
-  </main>
+        <p id="empty-state" class="empty-state" hidden>No matching social posts found.</p>
+      </section>
 
-  <footer class="site-footer">// SYSTEM_ACTIVE // &copy; 2026 XenoFinalDawn (XFD). All rights reserved.</footer>
+      <section class="cta-band" aria-labelledby="cta-title">
+        <div>
+          <p class="eyebrow">Shop // design archive</p>
+          <h2 id="cta-title">Artwork, shirts, stickers, and XFD gear.</h2>
+          <p>This is where your shop lives on the portal: a direct jump from the latest XFD content into your Redbubble designs and merch drops.</p>
+        </div>
+        <a class="button primary" href="https://www.redbubble.com/people/Gr3at1/shop?asc=u">Open shop</a>
+      </section>
+    </main>
 
-  <script>
-    const slider = document.getElementById('youtube-feed');
-    function scrollSlider(direction) { slider.scrollBy({ left: 340 * direction, behavior: 'smooth' }); }
-    const myChannelId = 'UCon9odxjxyp_bMh2wkuRbhg'; 
-    async function fetchYouTubeVideos() {
-      try {
-        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${myChannelId}`);
-        const data = await response.json();
-        const loadingText = document.getElementById('loading-message'); if (loadingText) loadingText.remove();
-        if (data.status === 'ok') {
-          const borderClasses = ['card-purple', 'card-cyan', 'card-green']; const badgeColors = ['var(--anime)', 'var(--tech)', 'var(--horror)']; const textColors = ['white', 'black', 'black'];
-          const generatedHTML = data.items.map((v, i) => {
-            const dateObj = new Date(v.pubDate.replace(/-/g, '/')); const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-            return `<div class="media-card ${borderClasses[i % 3]}"><span class="badge" style="background: ${badgeColors[i % 3]}; color: ${textColors[i % 3]};">VIDEO</span><a href="${v.link}" target="_blank" style="text-decoration:none; color:white;"><img src="${v.thumbnail}" alt="Thumbnail"><h4 style="margin: 0 0 10px 0; font-size: 1rem; line-height: 1.3;">${v.title}</h4><p style="font-size: 0.8rem; color: #888; margin: 0;">${formattedDate}</p></a></div>`;
-          }).join("");
-          slider.insertAdjacentHTML('beforeend', generatedHTML);
-        } else { slider.insertAdjacentHTML('beforeend', "<div style='color:#aaa; padding:20px;'>No transmissions found.</div>"); }
-      } catch (err) { const loadingText = document.getElementById('loading-message'); if (loadingText) loadingText.remove(); slider.insertAdjacentHTML('beforeend', "<div style='color:#aaa; padding:20px;'>Transmission error.</div>"); }
-    }
-    fetchYouTubeVideos();
-  </script>
-</body>
+    <footer class="site-footer">
+      <span>// system_active //</span>
+      <p>© 2026 XenoFinalDawn (XFD). All rights reserved.</p>
+    </footer>
+
+    <script src="app.js?v=social-feed"></script>
+  </body>
 </html>

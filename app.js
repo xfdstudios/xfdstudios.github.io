@@ -1,133 +1,199 @@
-// sanity check
-console.log("app.js loaded");
+const fallbackFeed = [
+  {
+    title: "Jade Cargill Was Fighting for Her Life Mid-Match",
+    date: "Jun 14, 2026",
+    platform: "youtube",
+    portal: "wrestling",
+    type: "video",
+    url: "https://www.youtube.com/shorts/e7mKx7nxLw0",
+    thumbnail: "https://i2.ytimg.com/vi/e7mKx7nxLw0/hqdefault.jpg"
+  },
+  {
+    title: "XFD Weekly Finale Boss: Round 001",
+    date: "Jun 9, 2026",
+    platform: "youtube",
+    portal: "anime",
+    type: "video",
+    url: "https://www.youtube.com/shorts/vpBdZ3I8KCo",
+    thumbnail: "https://i3.ytimg.com/vi/vpBdZ3I8KCo/hqdefault.jpg"
+  },
+  {
+    title: "Toxic Pokemon Mains Exposed",
+    date: "Jun 4, 2026",
+    platform: "tiktok",
+    portal: "tech",
+    type: "short",
+    url: "https://www.tiktok.com/@xenofinaldawn",
+    thumbnail: "https://i1.ytimg.com/vi/lI6RkRICVBc/hqdefault.jpg"
+  },
+  {
+    title: "Ringside reaction: chaos, timing, and the finish",
+    date: "Jun 12, 2026",
+    platform: "instagram",
+    portal: "wrestling",
+    type: "photo",
+    url: "https://www.instagram.com/xenofinaldawn/",
+    thumbnail: "https://i3.ytimg.com/vi/VKSfvJUTv4w/hqdefault.jpg"
+  },
+  {
+    title: "Horror watchlist update from the XFD zone",
+    date: "Jun 8, 2026",
+    platform: "facebook",
+    portal: "horror",
+    type: "post",
+    url: "https://www.facebook.com/XFDTV/",
+    thumbnail: "https://i4.ytimg.com/vi/wooEz2_Gn-U/hqdefault.jpg"
+  },
+  {
+    title: "Before gaming got scammed",
+    date: "May 16, 2026",
+    platform: "threads",
+    portal: "tech",
+    type: "thread",
+    url: "https://www.threads.com/@xenofinaldawn",
+    thumbnail: "https://i2.ytimg.com/vi/UY0bomzPkU8/hqdefault.jpg"
+  }
+];
 
-// Remove FOUC guard when everything finishes loading
-window.addEventListener('load', ()=> document.documentElement.classList.remove('fouc-guard'));
+const rail = document.querySelector("#video-rail");
+const searchInput = document.querySelector("#portal-search");
+const filterControls = document.querySelector(".filter-controls");
+const filterLinks = Array.from(document.querySelectorAll("[data-filter-link]"));
+const emptyState = document.querySelector("#empty-state");
+let socialFeed = fallbackFeed;
+let activeFilter = "all";
 
-// ----- Ad-block “soft” detection (non-invasive) -----
-(function detectAdBlock(){
-  const bait = document.createElement('div');
-  bait.className = 'adsbox ad-banner ad-unit ad-slot';
-  bait.style.cssText = 'width:1px;height:1px;position:absolute;left:-10000px;top:-10000px;';
-  document.body.appendChild(bait);
-  setTimeout(() => {
-    const blocked = !bait || bait.offsetParent === null || bait.offsetHeight === 0;
-    bait.remove();
-    if(blocked){
-      const bar = document.getElementById('ab-warning');
-      if(bar) bar.classList.remove('hidden');
-      const x = document.getElementById('ab-dismiss');
-      if(x) x.addEventListener('click', () => bar.classList.add('hidden'));
-    }
-  }, 100);
-})();
+const platformOrder = [
+  "youtube",
+  "tiktok",
+  "instagram",
+  "facebook",
+  "threads",
+  "discord",
+  "fourthwall",
+  "pinterest"
+];
 
-// ----- External links: ensure new tab + noopener -----
-document.querySelectorAll('[data-external]').forEach(a=>{
-  a.setAttribute('target','_blank');
-  a.setAttribute('rel','noopener');
+function label(value) {
+  const labels = {
+    discord: "Discord",
+    facebook: "Facebook",
+    fourthwall: "Fourthwall",
+    instagram: "Instagram",
+    pinterest: "Pinterest",
+    tech: "Tech/Gaming",
+    threads: "Threads",
+    tiktok: "TikTok",
+    wrestling: "Wrestling",
+    youtube: "YouTube"
+  };
+  return labels[value] || value;
+}
+
+function filterButtons() {
+  return Array.from(document.querySelectorAll("[data-filter]"));
+}
+
+function syncPlatformFilters() {
+  const availablePlatforms = new Set(socialFeed.map((item) => item.platform));
+  const existingFilters = new Set(filterButtons().map((button) => button.dataset.filter));
+
+  platformOrder.forEach((platform) => {
+    if (!availablePlatforms.has(platform) || existingFilters.has(platform)) return;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.filter = platform;
+    button.textContent = label(platform);
+    filterControls.append(button);
+  });
+}
+
+function socialCard(item) {
+  return `
+    <article class="media-card" data-category="${item.portal}" data-platform="${item.platform}">
+      <span class="tag">${label(item.platform)}</span>
+      <a href="${item.url}">
+        <img src="${item.thumbnail}" alt="${item.title} thumbnail">
+        <div class="content">
+          <div class="meta-line">
+            <span>${label(item.portal)}</span>
+            <span>${item.type}</span>
+          </div>
+          <h3>${item.title}</h3>
+          <p>${item.date}</p>
+        </div>
+      </a>
+    </article>
+  `;
+}
+
+function renderFeed() {
+  const query = searchInput.value.trim().toLowerCase();
+  const filtered = socialFeed.filter((item) => {
+    const matchesFilter = activeFilter === "all" || item.platform === activeFilter;
+    const searchable = `${item.title} ${item.platform} ${item.portal} ${item.type} ${item.date}`.toLowerCase();
+    return matchesFilter && searchable.includes(query);
+  });
+
+  rail.innerHTML = filtered.map(socialCard).join("");
+  emptyState.hidden = filtered.length > 0;
+}
+
+function updateDiscover() {
+  const latestVideo = socialFeed.find((item) => item.type === "video") || socialFeed[0];
+  const latestDesign = socialFeed.find((item) => item.type === "design");
+  const discoverItems = Array.from(document.querySelectorAll(".discover-feed a"));
+
+  if (latestVideo && discoverItems[0]) {
+    discoverItems[0].href = latestVideo.url;
+    discoverItems[0].querySelector("strong").textContent = latestVideo.title;
+  }
+
+  if (latestDesign && discoverItems[1]) {
+    discoverItems[1].href = latestDesign.url;
+    discoverItems[1].querySelector("strong").textContent = latestDesign.title;
+  }
+}
+
+async function loadSocialFeed() {
+  try {
+    const response = await fetch("social-feed.json");
+    if (!response.ok) throw new Error("Social feed unavailable");
+    socialFeed = await response.json();
+  } catch (error) {
+    socialFeed = fallbackFeed;
+  }
+
+  syncPlatformFilters();
+  updateDiscover();
+  renderFeed();
+}
+
+filterControls.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-filter]");
+  if (!button) return;
+  activeFilter = button.dataset.filter;
+  filterButtons().forEach((item) => item.classList.toggle("active", item === button));
+  renderFeed();
 });
 
-// ----- Carousel scroll buttons (Home) -----
-(function(){
-  const row = document.querySelector('.video-carousel');
-  if(!row) return;
-  const prev = document.getElementById('scrollPrev');
-  const next = document.getElementById('scrollNext');
-  const step = 320;
-  if(prev) prev.addEventListener('click', ()=> row.scrollBy({left:-step,behavior:'smooth'}));
-  if(next) next.addEventListener('click', ()=> row.scrollBy({left: step,behavior:'smooth'}));
-})();
-
-// ----- Modal for portfolio images -----
-(function(){
-  const modal = document.getElementById('modal');
-  if(!modal) return;
-  const inner = document.getElementById('modalInner');
-  const closeBtn = document.getElementById('modalClose');
-
-  function openImage(src, alt='Artwork'){
-    modal.classList.add('show');
-    modal.setAttribute('aria-hidden','false');
-    inner.innerHTML = `<img class="modal-image" alt="${alt}" src="${src}">`;
-  }
-  function closeModal(){
-    modal.classList.remove('show');
-    modal.setAttribute('aria-hidden','true');
-    inner.innerHTML = '';
-  }
-  document.addEventListener('click', (e)=>{
-    const t = e.target.closest('.thumb');
-    if(t){
-      const src = t.getAttribute('data-full');
-      const img = t.querySelector('img');
-      openImage(src, img ? img.alt : 'Artwork');
-    }
+filterLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    activeFilter = "all";
+    filterButtons().forEach((item) => item.classList.toggle("active", item.dataset.filter === "all"));
+    searchInput.value = link.dataset.filterLink;
+    renderFeed();
   });
-  modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
-  if(closeBtn) closeBtn.addEventListener('click', closeModal);
-  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
-})();
+});
 
-// ----- RedBubble embed: load on demand (click) or when scrolled into view -----
-(function(){
-  const box = document.getElementById('rb-portfolio');
-  if(!box) return;
+document.querySelector(".rail-button.prev").addEventListener("click", () => {
+  rail.scrollBy({ left: -360, behavior: "smooth" });
+});
 
-  const store = box.dataset.rbStore || 'gr3at1';
-  let loaded = false;
+document.querySelector(".rail-button.next").addEventListener("click", () => {
+  rail.scrollBy({ left: 360, behavior: "smooth" });
+});
 
-  function fallback(msg){
-    box.innerHTML = `<p style="color:#f99">${msg} <a href="https://www.redbubble.com/people/${store}/shop" target="_blank" rel="noopener">Open the store in a new tab.</a></p>`;
-  }
+searchInput.addEventListener("input", renderFeed);
 
-  function renderRB(){
-    try{
-      if(typeof RBExternalPortfolio === "function"){
-        new RBExternalPortfolio('www.redbubble.com', store, 5, 5).renderIframe('rb-portfolio');
-        // be nice to the browser
-        const iframe = box.querySelector('iframe');
-        if(iframe){ iframe.setAttribute('loading','lazy'); }
-      }else{
-        fallback("RedBubble embed couldn’t start.");
-      }
-    }catch(e){
-      fallback("RedBubble embed is blocked.");
-    }
-  }
-
-  function loadRB(){
-    if(loaded) return;
-    loaded = true;
-    box.innerHTML = "Loading store previews…";
-    const s = document.createElement('script');
-    s.src = "https://www.redbubble.com/assets/external_portfolio.js";
-    s.async = true;
-    s.onload = renderRB;
-    s.onerror = function(){ fallback("RedBubble script failed to load."); };
-    document.head.appendChild(s);
-
-    // safety timeout if blockers swallow events
-    setTimeout(function(){
-      const el = box.querySelector('iframe');
-      if(!el){ fallback("Embed didn’t load (possibly blocked)."); }
-    }, 5000);
-  }
-
-  // Click-to-embed
-  const btn = document.getElementById('rb-load');
-  if(btn) btn.addEventListener('click', loadRB);
-
-  // Optional: auto-load when scrolled near (enable by setting data-rb-autoload="1")
-  if(box.dataset.rbAutoload === '1' && 'IntersectionObserver' in window){
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          loadRB();
-          io.disconnect();
-        }
-      });
-    }, { root:null, rootMargin:'0px 0px -30% 0px', threshold:0.2 });
-    io.observe(box);
-  }
-})();
+loadSocialFeed();

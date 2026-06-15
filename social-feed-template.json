@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Discord community announcement title",
+    "date": "Jul 1, 2026",
+    "platform": "discord",
+    "portal": "tech",
+    "type": "community",
+    "url": "https://discord.gg/your-invite",
+    "thumbnail": "https://example.com/discord-preview.jpg"
+  },
+  {
+    "title": "Fourthwall merch or project drop title",
+    "date": "Jul 1, 2026",
+    "platform": "fourthwall",
+    "portal": "horror",
+    "type": "shop",
+    "url": "https://your-store.fourthwall.com/",
+    "thumbnail": "https://example.com/fourthwall-preview.jpg"
+  },
+  {
+    "title": "Pinterest board or pin title",
+    "date": "Jul 1, 2026",
+    "platform": "pinterest",
+    "portal": "anime",
+    "type": "pin",
+    "url": "https://www.pinterest.com/your-profile/",
+    "thumbnail": "https://example.com/pinterest-preview.jpg"
+  }
+]

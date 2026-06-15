@@ -1,208 +1,345 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DESIGN SHOP // XENOFINALDAWN</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <style>
-    * { box-sizing: border-box; }
-    :root { --bg: #05050A; --horror: #39FF14; --anime: #8A2BE2; --wrestling: #DC143C; --tech: #00FFFF; --blue: #00BFFF; --fb: #1877F2; --ig: #E1306C; --rb: #E31421; --grey-pill: rgba(255, 255, 255, 0.05); }
-    body { background-color: var(--bg); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="XenoFinalDawn design archive with portfolio artwork, Redbubble shop drops, and video design workflow updates."
+    >
+    <meta property="og:title" content="Designs - XFD Portal">
+    <meta
+      property="og:description"
+      content="Browse XFD artwork, portfolio pieces, Redbubble merch, and design process videos."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://xfdzone.github.io/xfdportal/assets/NEW%20LOGO.png">
+    <title>Designs - XFD Portal</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="page-designs">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="XenoFinalDawn home">
+        <img src="https://xfdzone.github.io/xfdportal/assets/NEW%20LOGO.png" alt="XFD logo">
+      </a>
 
-    header { padding: 20px; position: sticky; top: 0; z-index: 100; background: linear-gradient(to bottom, rgba(5,5,10,1) 40%, rgba(5,5,10,0) 100%); }
-    
-    /* FIXED: The rogue slash was removed so the layout loads correctly */
-    .header-encased { 
-      display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1400px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.15); 
-      border-bottom: 2px solid var(--wrestling); /* RED */
-      border-radius: 20px; padding: 10px 30px; background: rgba(15, 15, 20, 0.85); backdrop-filter: blur(15px); 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(220,20,60,0.05); /* RED GLOW */
-    }
-
-    .site-logo { max-width: 100px; filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.5)); transition: 0.3s; }
-    .site-logo:hover { filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.9)); transform: scale(1.05); }
-
-    .pill-nav { display: flex; gap: 15px; }
-    .pill-nav a { color: white; text-decoration: none; padding: 10px 20px; border-radius: 30px; background: var(--grey-pill); border: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
-    .pill-nav a.nav-news i { color: var(--anime); }
-    .pill-nav a.nav-news:hover, .pill-nav a.nav-news.active { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); background: rgba(138,43,226,0.1); }
-    .pill-nav a.nav-origin i { color: var(--blue); }
-    .pill-nav a.nav-origin:hover, .pill-nav a.nav-origin.active { border-color: var(--blue); box-shadow: 0 0 15px rgba(0,191,255,0.3); background: rgba(0,191,255,0.1); }
-    .pill-nav a.nav-designs i { color: var(--wrestling); }
-    .pill-nav a.nav-designs:hover, .pill-nav a.nav-designs.active { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.3); background: rgba(220,20,60,0.1); }
-    .pill-nav a.nav-contact i { color: var(--horror); }
-    .pill-nav a.nav-contact:hover, .pill-nav a.nav-contact.active { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); background: rgba(57,255,20,0.1); }
-
-    .header-utils { display: flex; align-items: center; gap: 20px; }
-    .social-pills { display: flex; align-items: center; gap: 5px; }
-    .social-pills a { color: #aaa; font-size: 1.2rem; margin-left: 8px; transition: 0.3s; text-decoration: none; }
-    .social-pills .yt:hover { color: #FF0000; text-shadow: 0 0 10px #FF0000; transform: translateY(-2px); }
-    .social-pills .fb:hover { color: var(--fb); text-shadow: 0 0 10px var(--fb); transform: translateY(-2px); }
-    .social-pills .tt:hover { color: var(--tech); text-shadow: 0 0 10px var(--tech); transform: translateY(-2px); }
-    .social-pills .ig:hover { color: var(--ig); text-shadow: 0 0 10px var(--ig); transform: translateY(-2px); }
-    .social-pills .th:hover { color: white; text-shadow: 0 0 10px white; transform: translateY(-2px); }
-    .social-pills .rb:hover { color: var(--rb); text-shadow: 0 0 10px var(--rb); transform: translateY(-2px); }
-
-    .search-bar { display: flex; align-items: center; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 8px 15px; transition: 0.3s; }
-    .search-bar:focus-within { border-color: var(--wrestling); box-shadow: 0 0 10px rgba(220,20,60,0.2); }
-    .search-bar input { background: transparent; border: none; color: white; outline: none; padding-right: 10px; font-family: monospace; width: 130px;}
-    .search-bar input::placeholder { color: #666; }
-
-    .section-title { font-size: 1.2rem; letter-spacing: 2px; margin: 40px auto 20px auto; text-transform: uppercase; padding: 0 20px; max-width: 1400px; display: flex; align-items: center; }
-    .section-title span::before { content: '> '; color: var(--wrestling); }
-    
-    .shop-layout-full { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
-    .terminal-block { background: rgba(20,20,25,0.8); border: 1px solid #333; border-left: 4px solid var(--wrestling); border-radius: 12px; padding: 30px; margin-bottom: 40px; }
-    .terminal-text { font-family: monospace; font-size: 0.75rem; color: #666; margin-bottom: 8px; }
-
-    .tabs { display: flex; gap: 15px; margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 10px; flex-wrap: wrap; }
-    .tab-btn { background: transparent; border: none; color: #888; font-family: 'Segoe UI', sans-serif; font-size: 1.1rem; font-weight: bold; letter-spacing: 1px; cursor: pointer; padding: 5px 10px; transition: 0.3s; text-transform: uppercase; }
-    .tab-btn:hover { color: white; }
-    .tab-btn.active { color: white; border-bottom: 3px solid var(--wrestling); text-shadow: 0 0 10px rgba(220,20,60,0.5); }
-    .tab-content { display: none; animation: fadeIn 0.4s ease-in; }
-    .tab-content.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-
-    .cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--wrestling); color: white; text-decoration: none; padding: 10px 24px; border-radius: 30px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; transition: 0.3s; border: none; justify-content: center; margin-bottom: 20px; }
-    .cta-btn:hover { background: #ff1c4b; box-shadow: 0 0 15px var(--wrestling); }
-    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; margin-top: 15px; }
-    .thumb-node { background: rgba(10,10,15,0.6); border: 1px solid #222; border-radius: 12px; padding: 15px; cursor: pointer; transition: 0.3s; text-align: center; display: flex; flex-direction: column; justify-content: space-between; }
-    .thumb-node:hover { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.2); transform: translateY(-3px); }
-    .thumb-node img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; display: block; }
-
-    .rb-embed-container { background: rgba(10,10,15,0.6); border: 1px solid #222; border-radius: 10px; padding: 20px; max-height: 450px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--wrestling) rgba(0,0,0,0.3); }
-    .rb-embed-container::-webkit-scrollbar { width: 8px; }
-    .rb-embed-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); border-radius: 10px; }
-    .rb-embed-container::-webkit-scrollbar-thumb { background: var(--wrestling); border-radius: 10px; }
-
-    .slider-wrapper { display: flex; align-items: center; gap: 15px; margin-top: 15px; }
-    .nav-arrow { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; width: 45px; height: 45px; color: white; cursor: pointer; transition: 0.3s; flex-shrink: 0; }
-    .nav-arrow:hover { background: rgba(138,43,226,0.3); border-color: var(--anime); box-shadow: 0 0 15px var(--anime); }
-    .media-slider { display: flex; overflow-x: auto; gap: 20px; padding: 10px 0; scrollbar-width: none; scroll-behavior: smooth; width: 100%; }
-    .media-slider::-webkit-scrollbar { display: none; }
-    .media-card { flex: 0 0 320px; background: rgba(20,20,25,0.8); border: 1px solid #333; border-radius: 12px; padding: 15px; transition: 0.3s; position: relative; }
-    .media-card:hover { transform: translateY(-5px); }
-    .media-card img { width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); }
-    .media-card .badge { position: absolute; top: 25px; left: 25px; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; letter-spacing: 1px; }
-
-    .card-purple:hover { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); }
-    .card-cyan:hover { border-color: var(--tech); box-shadow: 0 0 15px rgba(0,255,255,0.3); }
-    .card-green:hover { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); }
-
-    .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3, 3, 6, 0.95); display: none; align-items: center; justify-content: center; z-index: 99999; padding: 20px; }
-    .lightbox-content { position: relative; max-width: 90vw; max-height: 85vh; text-align: center; }
-    .lightbox img { max-width: 100%; max-height: 75vh; border-radius: 12px; border: 1px solid #444; box-shadow: 0 0 40px rgba(220, 20, 60, 0.4); object-fit: contain; }
-    .lightbox-close { position: absolute; top: -45px; right: 0; background: transparent; border: none; color: white; font-size: 2.2rem; cursor: pointer; transition: 0.3s; }
-    .lightbox-close:hover { color: var(--wrestling); }
-
-    .site-footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); font-family: monospace; color: #555; margin-top: 50px;}
-    @media (max-width: 850px) { .header-encased { flex-direction: column; gap: 20px; } .pill-nav { flex-wrap: wrap; justify-content: center; } .header-utils { flex-direction: column; } }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="header-encased">
-      <div class="logo"><a href="index.html"><img src="assets/NEW%20LOGO.png" alt="XFD Logo" class="site-logo"></a></div>
-      <nav class="pill-nav">
-        <a href="index.html" class="nav-news"><i class="fas fa-newspaper"></i> NEWS</a>
-        <a href="about.html" class="nav-origin"><i class="fas fa-microchip"></i> ORIGIN</a>
-        <a href="designs.html" class="nav-designs active"><i class="fas fa-pen-nib"></i> DESIGNS</a>
-        <a href="contact.html" class="nav-contact"><i class="fas fa-envelope"></i> CONTACT</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html"><i class="fa-solid fa-newspaper" aria-hidden="true"></i>Feed</a>
+        <a href="about.html"><i class="fa-solid fa-microchip" aria-hidden="true"></i>Origin</a>
+        <a href="designs.html" aria-current="page"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i>Designs</a>
+        <a href="contact.html"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Contact</a>
       </nav>
-      <div class="header-utils">
-        <div class="social-pills">
-          <a href="https://www.youtube.com/@Xenofinaldawn" class="yt" target="_blank"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.facebook.com/XFDTV/" class="fb" target="_blank"><i class="fab fa-facebook"></i></a>
-          <a href="https://www.tiktok.com/@xenofinaldawn" class="tt" target="_blank"><i class="fab fa-tiktok"></i></a>
-          <a href="https://www.instagram.com/xenofinaldawn/" class="ig" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.threads.com/@xenofinaldawn" class="th" target="_blank"><i class="fas fa-at"></i></a>
-          <a href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" class="rb" target="_blank"><i class="fas fa-shopping-cart"></i></a>
+
+      <div class="header-actions">
+        <div class="social-links" aria-label="Social links">
+          <a href="https://www.youtube.com/@Xenofinaldawn" aria-label="YouTube">
+            <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.facebook.com/XFDTV/" aria-label="Facebook">
+            <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.tiktok.com/@xenofinaldawn" aria-label="TikTok">
+            <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.instagram.com/xenofinaldawn/" aria-label="Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" aria-label="Shop">
+            <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          </a>
         </div>
-        <div class="search-bar"><input type="text" placeholder="Search portal..."><i class="fas fa-search" style="color: #666;"></i></div>
+        <label class="search-shell">
+          <span class="sr-only">Search designs</span>
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input type="search" placeholder="Search portal">
+        </label>
+      </div>
+    </header>
+
+    <main>
+      <section class="design-hero section-banner" aria-labelledby="design-title">
+        <div>
+          <p class="eyebrow">Quantum archive // asset distribution</p>
+          <div class="hero-title-lockup">
+            <span>XFD Design Shop</span>
+            <h1 id="design-title">Design Archive</h1>
+          </div>
+          <p>
+            Portfolio pieces, visual experiments, Redbubble merch, and creative workflow transmissions from the XFD design side.
+          </p>
+        </div>
+        <div class="design-hero-actions">
+          <a class="button primary" href="#design-archive">Open portfolio</a>
+          <a class="button secondary redbubble-button" href="https://www.redbubble.com/people/Gr3at1/shop?asc=u">Redbubble store</a>
+        </div>
+      </section>
+
+      <section id="design-archive" class="design-terminal section-banner" aria-labelledby="archive-title">
+        <div class="section-heading">
+          <p class="eyebrow">Initialization // secure_merch_and_portfolio</p>
+          <h2 id="archive-title">Portfolio and Storefront</h2>
+        </div>
+
+        <div class="design-tabs" role="tablist" aria-label="Design archive sections">
+          <button class="design-tab active" type="button" data-tab="portfolio-panel" role="tab" aria-selected="true">Portfolio Gallery</button>
+          <button class="design-tab" type="button" data-tab="shop-panel" role="tab" aria-selected="false">Redbubble Storefront</button>
+        </div>
+
+        <div id="portfolio-panel" class="design-tab-panel active" role="tabpanel">
+          <p class="design-copy">Select an artwork node to inspect the full visual asset.</p>
+          <div class="portfolio-grid">
+            <button class="design-thumb" type="button" data-full="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg">
+              <img src="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg" alt="Love Bites" loading="lazy">
+              <span>Love Bites</span>
+            </button>
+            <button class="design-thumb" type="button" data-full="assets/Horor%20its%20self.jpg">
+              <img src="assets/Horor%20its%20self.jpg" alt="Horror Itself" loading="lazy">
+              <span>Horror Itself</span>
+            </button>
+            <button class="design-thumb" type="button" data-full="assets/Darkness%20lighen.jpg">
+              <img src="assets/Darkness%20lighen.jpg" alt="Darkness Lighten" loading="lazy">
+              <span>Darkness Lighten</span>
+            </button>
+            <button class="design-thumb" type="button" data-full="assets/Sea.jpg">
+              <img src="assets/Sea.jpg" alt="Sea Horizon" loading="lazy">
+              <span>Sea Horizon</span>
+            </button>
+            <button class="design-thumb" type="button" data-full="assets/Packages.jpg">
+              <img src="assets/Packages.jpg" alt="Packages" loading="lazy">
+              <span>Packages</span>
+            </button>
+            <button class="design-thumb" type="button" data-full="assets/girl%20with%20big%20head.jpg">
+              <img src="assets/girl%20with%20big%20head.jpg" alt="Girl With Big Head" loading="lazy">
+              <span>Girl With Big Head</span>
+            </button>
+            <button class="design-thumb" type="button" data-full="assets/Betty%20Boo%20Vs.png">
+              <img src="assets/Betty%20Boo%20Vs.png" alt="Betty Boo Vs" loading="lazy">
+              <span>Betty Boo Vs</span>
+            </button>
+            <button class="design-thumb" type="button" data-full="assets/Secrets-of-In-the-mouth-of-Madness.png">
+              <img src="assets/Secrets-of-In-the-mouth-of-Madness.png" alt="Mouth of Madness" loading="lazy">
+              <span>Mouth of Madness</span>
+            </button>
+            <button class="design-thumb" type="button" data-full="assets/back-to-the-future-z.jpg">
+              <img src="assets/back-to-the-future-z.jpg" alt="Back to the Future Z" loading="lazy">
+              <span>Back to the Future Z</span>
+            </button>
+            <button class="design-thumb" type="button" data-full="assets/Kang.jpg">
+              <img src="assets/Kang.jpg" alt="Kang Engine" loading="lazy">
+              <span>Kang Engine</span>
+            </button>
+            <button class="design-thumb" type="button" data-full="assets/tarus.jpg">
+              <img src="assets/tarus.jpg" alt="Taurus Vector" loading="lazy">
+              <span>Taurus Vector</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="shop-panel" class="design-tab-panel" role="tabpanel">
+          <p class="design-copy">Redbubble blocks full-site embedding, so this section uses reliable product cards that link directly to each item.</p>
+          <a class="button primary redbubble-button" href="https://www.redbubble.com/people/Gr3at1/shop?asc=u">
+            <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+            Open Redbubble Store
+          </a>
+          <div class="redbubble-products" aria-label="Featured Redbubble products">
+            <a class="redbubble-product" href="https://www.redbubble.com/i/hoodie/The-Poet-by-Gr3at1/148883240/ng59">
+              <img src="assets/The%20Poet%20Hoodie.png" alt="The Poet hoodie design preview" loading="lazy">
+              <span>The Poet Hoodie</span>
+              <strong>Open product</strong>
+            </a>
+            <a class="redbubble-product" href="https://www.redbubble.com/i/sticker/Bobby-Womack-Fly-Me-to-the-Moon-Retro-Cartoon-Art-Design-by-Gr3at1/173365365/7sgk">
+              <img src="assets/Bobby%20Womack%20Sticker.png" alt="Bobby Womack Fly Me to the Moon sticker design preview" loading="lazy">
+              <span>Bobby Womack Sticker</span>
+              <strong>Open product</strong>
+            </a>
+            <a class="redbubble-product" href="https://www.redbubble.com/i/mug/I-Am-a-Survivor-Retro-Pink-Ribbon-Betty-Inspired-Empowerment-Design-by-Gr3at1/180654446/7yqg">
+              <img src="assets/I%20am%20a%20survivor%20Mug.png" alt="I Am a Survivor pillow design preview" loading="lazy">
+              <span>I Am a Survivor Pillow</span>
+              <strong>Open product</strong>
+            </a>
+            <a class="redbubble-product" href="https://www.redbubble.com/i/iphone-case/Too-Delulu-To-Quit-90s-Air-Bush-Hip-Hop-Motivational-Design-by-Gr3at1/172721726/3bp7">
+              <img src="assets/Too%20Delulu%20to%20Quit.png" alt="Too Delulu To Quit iPhone case design preview" loading="lazy">
+              <span>Too Delulu To Quit</span>
+              <strong>Open product</strong>
+            </a>
+            <a class="redbubble-product" href="https://www.redbubble.com/i/iphone-case/Liberty-in-RED-WHITE-BLUE-Solidarity-by-Gr3at1/157392157/3bp7">
+              <img src="assets/Liberty%20in%20Red%20white%20Blue%20.png" alt="Liberty in Red White Blue iPhone case design preview" loading="lazy">
+              <span>Liberty in Red White Blue</span>
+              <strong>Open product</strong>
+            </a>
+            <a class="redbubble-product" href="https://www.redbubble.com/i/iphone-case/Frankenstein-Monster-by-Gr3at1/147702609/3bp7">
+              <img src="assets/Frankenstein%20Monster.png" alt="Frankenstein Monster iPhone case design preview" loading="lazy">
+              <span>Frankenstein Monster</span>
+              <strong>Open product</strong>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="design-terminal section-banner" aria-labelledby="video-design-title">
+        <div class="section-heading row">
+          <div>
+            <p class="eyebrow">Studio feed // video design</p>
+            <h2 id="video-design-title">Video Design Showcase</h2>
+          </div>
+        </div>
+
+        <p class="design-copy">Motion edits, process clips, reels, shorts, and platform-ready video design work from across the XFD channels.</p>
+        <div class="design-slider-wrap">
+          <button class="design-rail-button prev" type="button" aria-label="Scroll design videos left">‹</button>
+          <div id="design-video-feed" class="design-video-rail" tabindex="0" aria-live="polite">
+            <p class="design-loading">Connecting to studio transmission stream...</p>
+          </div>
+          <button class="design-rail-button next" type="button" aria-label="Scroll design videos right">›</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>// system_active //</span>
+      <p>© 2026 XenoFinalDawn (XFD). All rights reserved.</p>
+    </footer>
+
+    <div class="design-lightbox" id="design-lightbox" aria-hidden="true">
+      <div class="design-lightbox-content">
+        <button class="design-lightbox-close" type="button" aria-label="Close preview">×</button>
+        <img id="design-lightbox-img" src="" alt="Expanded artwork preview">
       </div>
     </div>
-  </header>
 
-  <main class="shop-layout-full">
-    <div class="section-title"><span>Quantum Archive // Asset Distribution</span></div>
-    <div class="terminal-text">// initialization: SECURE_MERCH_AND_PORTFOLIO</div>
-    <div class="terminal-block">
-      <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('tab-portfolio', this)">Portfolio Gallery</button>
-        <button class="tab-btn" onclick="switchTab('tab-shop', this)">RedBubble Storefront</button>
-      </div>
+    <script>
+      const designTabs = document.querySelectorAll(".design-tab");
+      const designPanels = document.querySelectorAll(".design-tab-panel");
+      const designLightbox = document.querySelector("#design-lightbox");
+      const designLightboxImg = document.querySelector("#design-lightbox-img");
+      const designVideoRail = document.querySelector("#design-video-feed");
 
-      <div id="tab-portfolio" class="tab-content active">
-        <p style="color: #ccc; margin-bottom: 20px;">Select visualization sub-node to unpack high-resolution vector format configuration:</p>
-        <div class="portfolio-grid">
-          <div class="thumb-node" onclick="openLightbox('assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg')"><img alt="Love Bites" src="assets/love_bites_by_deadfantasysaga_d4jm3h5.jpg" loading="lazy"><h4>Love Bites</h4></div>
-          <div class="thumb-node" onclick="openLightbox('assets/Horor%20its%20self.jpg')"><img alt="Horror" src="assets/Horor%20its%20self.jpg" loading="lazy"><h4>Horror Itself</h4></div>
-          <div class="thumb-node" onclick="openLightbox('assets/Darkness%20lighen.jpg')"><img alt="Darkness" src="assets/Darkness%20lighen.jpg" loading="lazy"><h4>Darkness Lighten</h4></div>
-          <div class="thumb-node" onclick="openLightbox('assets/Sea.jpg')"><img alt="Sea" src="assets/Sea.jpg" loading="lazy"><h4>Sea Horizon</h4></div>
-          <div class="thumb-node" onclick="openLightbox('assets/Packages.jpg')"><img alt="Packages" src="assets/Packages.jpg" loading="lazy"><h4>Packages</h4></div>
-          <div class="thumb-node" onclick="openLightbox('assets/girl%20with%20big%20head.jpg')"><img alt="Girl" src="assets/girl%20with%20big%20head.jpg" loading="lazy"><h4>Girl With Big Head</h4></div>
-          <div class="thumb-node" onclick="openLightbox('assets/Betty%20Boo%20Vs.png')"><img alt="Betty Boo" src="assets/Betty%20Boo%20Vs.png" loading="lazy"><h4>Betty Boo Vs</h4></div>
-          <div class="thumb-node" onclick="openLightbox('assets/Secrets-of-In-the-mouth-of-Madness.png')"><img alt="Madness" src="assets/Secrets-of-In-the-mouth-of-Madness.png" loading="lazy"><h4>Mouth of Madness</h4></div>
-          <div class="thumb-node" onclick="openLightbox('assets/back-to-the-future-z.jpg')"><img alt="BTTF" src="assets/back-to-the-future-z.jpg" loading="lazy"><h4>Back to the Future Z</h4></div>
-          <div class="thumb-node" onclick="openLightbox('assets/Kang.jpg')"><img alt="Kang" src="assets/Kang.jpg" loading="lazy"><h4>Kang Engine</h4></div>
-          <div class="thumb-node" onclick="openLightbox('assets/tarus.jpg')"><img alt="Tarus" src="assets/tarus.jpg" loading="lazy"><h4>Taurus Vector</h4></div>
-        </div>
-      </div>
+      designTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          designTabs.forEach((item) => {
+            const isActive = item === tab;
+            item.classList.toggle("active", isActive);
+            item.setAttribute("aria-selected", String(isActive));
+          });
+          designPanels.forEach((panel) => panel.classList.toggle("active", panel.id === tab.dataset.tab));
+        });
+      });
 
-      <div id="tab-shop" class="tab-content">
-        <p style="color: #ccc; margin-bottom: 20px;">Browse configurations below, or initialize the main engine branch on RedBubble.</p>
-        <a class="cta-btn" href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" target="_blank"><i class="fas fa-shopping-cart"></i> OPEN REDBUBBLE STORE</a>
-        <div class="rb-embed-container">
-          <script type="text/javascript" src="https://www.redbubble.com/assets/external_portfolio.js"></script>
-          <script id="rb-xzfcxvzx" type="text/javascript">new RBExternalPortfolio('www.redbubble.com', 'gr3at1', 5, 5).renderIframe();</script>
-          <noscript><div style="color: #aaa; text-align: center; padding: 20px;">Script blocked by browser. Please click the button above!</div></noscript>
-        </div>
-      </div>
-    </div>
+      document.querySelectorAll(".design-thumb").forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+          designLightboxImg.src = thumb.dataset.full;
+          designLightbox.setAttribute("aria-hidden", "false");
+        });
+      });
 
-    <div class="section-title"><span>Studio Feed // Video Design</span></div>
-    <div class="terminal-text">// sync_feed: CREATIVE_WORKFLOW_DATA</div>
-    <div class="terminal-block">
-      <h3 style="margin-top:0;">Video Design</h3>
-      <p style="color: #666; font-size: 0.9rem; margin-bottom: 5px;">Visualizing the design process, time-lapses, and creative workflows natively:</p>
-      <div class="slider-wrapper">
-        <button class="nav-arrow" onclick="scrollSlider(-1)"><i class="fas fa-chevron-left"></i></button>
-        <div class="media-slider" id="youtube-feed"><div id="loading-message" style="color: #aaa; padding: 20px;">Connecting to studio transmission stream...</div></div>
-        <button class="nav-arrow" onclick="scrollSlider(1)"><i class="fas fa-chevron-right"></i></button>
-      </div>
-    </div>
-  </main>
+      function closeDesignLightbox() {
+        designLightbox.setAttribute("aria-hidden", "true");
+        designLightboxImg.src = "";
+      }
 
-  <footer class="site-footer">// SYSTEM_ACTIVE // &copy; 2026 XenoFinalDawn (XFD). All rights reserved.</footer>
+      designLightbox.addEventListener("click", closeDesignLightbox);
+      document.querySelector(".design-lightbox-content").addEventListener("click", (event) => event.stopPropagation());
+      document.querySelector(".design-lightbox-close").addEventListener("click", closeDesignLightbox);
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeDesignLightbox();
+      });
 
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()"><div class="lightbox-content" onclick="event.stopPropagation()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img id="lightbox-img" src="" alt="Expanded Vector Overlay"></div></div>
+      document.querySelector(".design-rail-button.prev").addEventListener("click", () => {
+        designVideoRail.scrollBy({ left: -360, behavior: "smooth" });
+      });
 
-  <script>
-    function switchTab(tabId, btnElement) { document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active')); document.getElementById(tabId).classList.add('active'); btnElement.classList.add('active'); }
-    const slider = document.getElementById('youtube-feed');
-    function scrollSlider(direction) { slider.scrollBy({ left: 340 * direction, behavior: 'smooth' }); }
-    const myChannelId = 'UCon9odxjxyp_bMh2wkuRbhg'; 
-    async function fetchYouTubeVideos() {
-      try {
-        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${myChannelId}`);
-        const data = await response.json();
-        const loadingText = document.getElementById('loading-message'); if (loadingText) loadingText.remove();
-        if (data.status === 'ok') {
-          const borderClasses = ['card-purple', 'card-cyan', 'card-green']; const badgeColors = ['var(--anime)', 'var(--tech)', 'var(--horror)']; const textColors = ['white', 'black', 'black'];
-          const generatedHTML = data.items.map((v, i) => {
-            const dateObj = new Date(v.pubDate.replace(/-/g, '/')); const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-            return `<div class="media-card ${borderClasses[i % 3]}"><span class="badge" style="background: ${badgeColors[i % 3]}; color: ${textColors[i % 3]};">VIDEO</span><a href="${v.link}" target="_blank" style="text-decoration:none; color:white;"><img src="${v.thumbnail}" alt="Thumbnail"><h4 style="margin: 0 0 10px 0; font-size: 1rem; line-height: 1.3;">${v.title}</h4><p style="font-size: 0.8rem; color: #888; margin: 0;">${formattedDate}</p></a></div>`;
-          }).join("");
-          slider.insertAdjacentHTML('beforeend', generatedHTML);
-        } else { slider.insertAdjacentHTML('beforeend', "<div style='color:#aaa; padding:20px;'>No transmissions found.</div>"); }
-      } catch (err) { const loadingText = document.getElementById('loading-message'); if (loadingText) loadingText.remove(); slider.insertAdjacentHTML('beforeend', "<div style='color:#aaa; padding:20px;'>Transmission sync dropped.</div>"); }
-    }
-    fetchYouTubeVideos();
-    const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img');
-    function openLightbox(src) { lightboxImg.src = src; lightbox.style.display = 'flex'; }
-    function closeLightbox() { lightbox.style.display = 'none'; lightboxImg.src = ''; }
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
-  </script>
-</body>
+      document.querySelector(".design-rail-button.next").addEventListener("click", () => {
+        designVideoRail.scrollBy({ left: 360, behavior: "smooth" });
+      });
+
+      const designFeedFallback = [
+        {
+          title: "Jade Cargill Was Fighting for Her Life Mid-Match",
+          date: "Jun 14, 2026",
+          platform: "youtube",
+          portal: "wrestling",
+          type: "video",
+          url: "https://www.youtube.com/shorts/e7mKx7nxLw0",
+          thumbnail: "https://i2.ytimg.com/vi/e7mKx7nxLw0/hqdefault.jpg"
+        },
+        {
+          title: "Toxic Pokemon Mains Exposed",
+          date: "Jun 4, 2026",
+          platform: "tiktok",
+          portal: "tech",
+          type: "short",
+          url: "https://www.tiktok.com/@xenofinaldawn",
+          thumbnail: "https://i1.ytimg.com/vi/lI6RkRICVBc/hqdefault.jpg"
+        },
+        {
+          title: "Ringside reaction: chaos, timing, and the finish",
+          date: "Jun 12, 2026",
+          platform: "instagram",
+          portal: "wrestling",
+          type: "photo",
+          url: "https://www.instagram.com/xenofinaldawn/",
+          thumbnail: "https://i3.ytimg.com/vi/VKSfvJUTv4w/hqdefault.jpg"
+        },
+        {
+          title: "Horror watchlist update from the XFD zone",
+          date: "Jun 8, 2026",
+          platform: "facebook",
+          portal: "horror",
+          type: "post",
+          url: "https://www.facebook.com/XFDTV/",
+          thumbnail: "https://i4.ytimg.com/vi/wooEz2_Gn-U/hqdefault.jpg"
+        }
+      ];
+
+      const designPlatformOrder = ["youtube", "facebook", "instagram", "tiktok"];
+      const designPlatformLabels = {
+        facebook: "Facebook",
+        instagram: "Instagram",
+        tiktok: "TikTok",
+        youtube: "YouTube"
+      };
+      const designPlatformIcons = {
+        facebook: "fa-facebook",
+        instagram: "fa-instagram",
+        tiktok: "fa-tiktok",
+        youtube: "fa-youtube"
+      };
+
+      function renderDesignVideos(items) {
+        designVideoRail.innerHTML = items.map((item) => `
+          <article class="design-video-card ${item.platform}">
+            <a href="${item.url}">
+              <span><i class="fa-brands ${designPlatformIcons[item.platform]}" aria-hidden="true"></i>${designPlatformLabels[item.platform]}</span>
+              <img src="${item.thumbnail}" alt="${item.title} thumbnail">
+              <h3>${item.title}</h3>
+              <p>Video design // ${item.date}</p>
+            </a>
+          </article>
+        `).join("");
+      }
+
+      function platformSample(feed) {
+        return designPlatformOrder
+          .map((platform) => feed.find((item) => item.platform === platform))
+          .filter(Boolean);
+      }
+
+      async function fetchDesignVideos() {
+        try {
+          const response = await fetch("social-feed.json");
+          if (!response.ok) throw new Error("Social feed unavailable");
+          const data = await response.json();
+          renderDesignVideos(platformSample(data));
+        } catch (error) {
+          renderDesignVideos(platformSample(designFeedFallback));
+        }
+      }
+
+      fetchDesignVideos();
+    </script>
+  </body>
 </html>

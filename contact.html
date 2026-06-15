@@ -1,180 +1,192 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CONTACT // XENOFINALDAWN</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <style>
-    * { box-sizing: border-box; }
-    
-    :root { 
-      --bg: #05050A; 
-      --horror: #39FF14; 
-      --anime: #8A2BE2; 
-      --wrestling: #DC143C; 
-      --tech: #00FFFF; 
-      --blue: #00BFFF; 
-      --fb: #1877F2; 
-      --ig: #E1306C; 
-      --rb: #E31421; 
-      --grey-pill: rgba(255, 255, 255, 0.05); 
-    }
-    
-    body { 
-      background-color: var(--bg); 
-      color: white; 
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-      margin: 0; 
-      padding: 0; 
-      overflow-x: hidden; 
-    }
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Contact XenoFinalDawn for business inquiries, design commissions, collaborations, feedback, and creator updates."
+    >
+    <meta property="og:title" content="Contact - XFD Portal">
+    <meta
+      property="og:description"
+      content="Send a direct message to the XFD creator channel or connect through XenoFinalDawn social platforms."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://xfdzone.github.io/xfdportal/assets/NEW%20LOGO.png">
+    <title>Contact - XFD Portal</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="page-contact">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="XenoFinalDawn home">
+        <img src="https://xfdzone.github.io/xfdportal/assets/NEW%20LOGO.png" alt="XFD logo">
+      </a>
 
-    header { 
-      padding: 20px; 
-      position: sticky; 
-      top: 0; 
-      z-index: 100; 
-      background: linear-gradient(to bottom, rgba(5,5,10,1) 40%, rgba(5,5,10,0) 100%); 
-    }
-    
-    /* CHANGED: Header bottom border and inner glow are now Green (--horror) */
-    .header-encased { 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      width: 100%; 
-      max-width: 1400px; 
-      margin: 0 auto; 
-      border: 1px solid rgba(255,255,255,0.15); 
-      border-bottom: 2px solid var(--horror); 
-      border-radius: 20px; 
-      padding: 10px 30px; 
-      background: rgba(15, 15, 20, 0.85); 
-      backdrop-filter: blur(15px); 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(57,255,20,0.05); 
-    }
-    
-    .site-logo { max-width: 100px; filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.5)); transition: 0.3s; }
-    .site-logo:hover { filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.9)); transform: scale(1.05); }
-
-    .pill-nav { display: flex; gap: 15px; }
-    .pill-nav a { color: white; text-decoration: none; padding: 10px 20px; border-radius: 30px; background: var(--grey-pill); border: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
-    
-    .pill-nav a.nav-news i { color: var(--anime); }
-    .pill-nav a.nav-news:hover, .pill-nav a.nav-news.active { border-color: var(--anime); box-shadow: 0 0 15px rgba(138,43,226,0.3); background: rgba(138,43,226,0.1); }
-    .pill-nav a.nav-origin i { color: var(--blue); }
-    .pill-nav a.nav-origin:hover, .pill-nav a.nav-origin.active { border-color: var(--blue); box-shadow: 0 0 15px rgba(0,191,255,0.3); background: rgba(0,191,255,0.1); }
-    .pill-nav a.nav-designs i { color: var(--wrestling); }
-    .pill-nav a.nav-designs:hover, .pill-nav a.nav-designs.active { border-color: var(--wrestling); box-shadow: 0 0 15px rgba(220,20,60,0.3); background: rgba(220,20,60,0.1); }
-    .pill-nav a.nav-contact i { color: var(--horror); }
-    .pill-nav a.nav-contact:hover, .pill-nav a.nav-contact.active { border-color: var(--horror); box-shadow: 0 0 15px rgba(57,255,20,0.3); background: rgba(57,255,20,0.1); }
-
-    .header-utils { display: flex; align-items: center; gap: 20px; }
-    .social-pills { display: flex; align-items: center; gap: 5px; }
-    .social-pills a { color: #aaa; font-size: 1.2rem; margin-left: 8px; transition: 0.3s; text-decoration: none; }
-    .social-pills .yt:hover { color: #FF0000; text-shadow: 0 0 10px #FF0000; transform: translateY(-2px); }
-    .social-pills .fb:hover { color: var(--fb); text-shadow: 0 0 10px var(--fb); transform: translateY(-2px); }
-    .social-pills .tt:hover { color: var(--tech); text-shadow: 0 0 10px var(--tech); transform: translateY(-2px); }
-    .social-pills .ig:hover { color: var(--ig); text-shadow: 0 0 10px var(--ig); transform: translateY(-2px); }
-    .social-pills .th:hover { color: white; text-shadow: 0 0 10px white; transform: translateY(-2px); }
-    .social-pills .rb:hover { color: var(--rb); text-shadow: 0 0 10px var(--rb); transform: translateY(-2px); }
-
-    /* CHANGED: Search bar focus glow is now green */
-    .search-bar { display: flex; align-items: center; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 8px 15px; transition: 0.3s; }
-    .search-bar:focus-within { border-color: var(--horror); box-shadow: 0 0 10px rgba(57,255,20,0.2); }
-    .search-bar input { background: transparent; border: none; color: white; outline: none; padding-right: 10px; font-family: monospace; width: 130px;}
-    .search-bar input::placeholder { color: #666; }
-
-    /* CONTACT SPECIFIC STYLES */
-    .contact-container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
-    .terminal-block { background: rgba(20,20,25,0.8); border: 1px solid #333; border-left: 4px solid var(--horror); border-radius: 12px; padding: 40px; }
-    .section-title { font-size: 1.5rem; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; color: var(--horror); display: flex; align-items: center; gap: 10px; }
-    
-    .form-group { margin-bottom: 20px; }
-    .form-group label { display: block; margin-bottom: 8px; color: #aaa; font-family: monospace; letter-spacing: 1px; }
-    .form-group input, .form-group textarea { width: 100%; padding: 15px; background: rgba(0,0,0,0.6); border: 1px solid #444; border-radius: 8px; color: white; font-family: 'Segoe UI', sans-serif; transition: 0.3s; }
-    .form-group input:focus, .form-group textarea:focus { border-color: var(--horror); outline: none; box-shadow: 0 0 15px rgba(57,255,20,0.2); }
-    .form-group textarea { height: 150px; resize: vertical; }
-    
-    .btn-submit { background: transparent; border: 1px solid var(--horror); color: var(--horror); padding: 15px 30px; font-size: 1rem; letter-spacing: 2px; border-radius: 30px; cursor: pointer; transition: 0.3s; font-weight: bold; width: 100%; }
-    .btn-submit:hover { background: var(--horror); color: black; box-shadow: 0 0 20px rgba(57,255,20,0.4); }
-
-    .site-footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); font-family: monospace; color: #555; margin-top: 40px; }
-
-    @media (max-width: 850px) { .header-encased { flex-direction: column; gap: 20px; } .pill-nav { flex-wrap: wrap; justify-content: center; } .header-utils { flex-direction: column; } }
-  </style>
-</head>
-<body>
-
-  <!-- ENCASED HEADER -->
-  <header>
-    <div class="header-encased">
-      <div class="logo">
-        <a href="index.html"><img src="assets/NEW%20LOGO.png" alt="XFD Logo" class="site-logo"></a>
-      </div>
-      
-      <!-- NAV PILLS (Contact is ACTIVE) -->
-      <nav class="pill-nav">
-        <a href="index.html" class="nav-news"><i class="fas fa-newspaper"></i> NEWS</a>
-        <a href="about.html" class="nav-origin"><i class="fas fa-microchip"></i> ORIGIN</a>
-        <a href="designs.html" class="nav-designs"><i class="fas fa-pen-nib"></i> DESIGNS</a>
-        <a href="contact.html" class="nav-contact active"><i class="fas fa-envelope"></i> CONTACT</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html"><i class="fa-solid fa-newspaper" aria-hidden="true"></i>Feed</a>
+        <a href="about.html"><i class="fa-solid fa-microchip" aria-hidden="true"></i>Origin</a>
+        <a href="designs.html"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i>Designs</a>
+        <a href="contact.html" aria-current="page"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Contact</a>
       </nav>
 
-      <div class="header-utils">
-        <div class="social-pills">
-          <a href="https://www.youtube.com/@Xenofinaldawn" class="yt" target="_blank"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.facebook.com/XFDTV/" class="fb" target="_blank"><i class="fab fa-facebook"></i></a>
-          <a href="https://www.tiktok.com/@xenofinaldawn" class="tt" target="_blank"><i class="fab fa-tiktok"></i></a>
-          <a href="https://www.instagram.com/xenofinaldawn/" class="ig" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.threads.com/@xenofinaldawn" class="th" target="_blank"><i class="fas fa-at"></i></a>
-          <a href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" class="rb" target="_blank"><i class="fas fa-shopping-cart"></i></a>
+      <div class="header-actions">
+        <div class="social-links" aria-label="Social links">
+          <a href="https://www.youtube.com/@Xenofinaldawn" aria-label="YouTube">
+            <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.facebook.com/XFDTV/" aria-label="Facebook">
+            <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.tiktok.com/@xenofinaldawn" aria-label="TikTok">
+            <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.instagram.com/xenofinaldawn/" aria-label="Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" aria-label="Shop">
+            <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          </a>
         </div>
-        
-        <div class="search-bar">
-          <input type="text" placeholder="Search portal...">
-          <i class="fas fa-search" style="color: #666;"></i>
-        </div>
+        <label class="search-shell">
+          <span class="sr-only">Search contact page</span>
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input type="search" placeholder="Search portal">
+        </label>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- CONTENT -->
-  <main class="contact-container">
-    <div class="terminal-block">
-      <div class="section-title"><i class="fas fa-satellite-dish"></i> INITIATE TRANSMISSION</div>
-      <p style="color: #ccc; margin-bottom: 30px; line-height: 1.6;">
-        Use the secure channel below to send a direct message to the XFD core. Whether for business inquiries, design commissions, or general feedback, your data will be securely encrypted.
-      </p>
-
-      <!-- REPLACE 'YOUR_UNIQUE_ID_HERE' WITH YOUR FORMSPREE LINK -->
-      <form action="https://formspree.io/f/xwvjwyvl" method="POST">
-        
-        <div class="form-group">
-          <label>> IDENTIFIER // NAME</label>
-          <input type="text" name="name" placeholder="Enter your name" required>
+    <main>
+      <section class="contact-hero section-banner" aria-labelledby="contact-title">
+        <div class="contact-hero-copy">
+          <p class="eyebrow">Contact // secure channel</p>
+          <div class="hero-title-lockup">
+            <span>XFD Contact Port</span>
+            <h1 id="contact-title">Initiate Transmission</h1>
+          </div>
+          <p>
+            Send business inquiries, design commission requests, collaboration ideas, or direct feedback to the XFD creator channel.
+          </p>
+          <div class="signal-chips" aria-label="Contact topics">
+            <span>Business</span>
+            <span>Design work</span>
+            <span>Collaborations</span>
+            <span>Feedback</span>
+          </div>
         </div>
-        
-        <div class="form-group">
-          <label>> RETURN NODE // EMAIL</label>
-          <input type="email" name="email" placeholder="Enter your email address" required>
-        </div>
-        
-        <div class="form-group">
-          <label>> DATA PAYLOAD // MESSAGE</label>
-          <textarea name="message" placeholder="Type your transmission here..." required></textarea>
-        </div>
-        
-        <button type="submit" class="btn-submit">SEND TRANSMISSION</button>
-      </form>
-      
-    </div>
-  </main>
 
-  <footer class="site-footer">
-    // SYSTEM_ACTIVE // &copy; 2026 XenoFinalDawn (XFD). All rights reserved.
-  </footer>
+        <aside class="contact-status" aria-label="Creator contact status">
+          <span>// node_status</span>
+          <div class="status-mark" aria-hidden="true">
+            <i class="fa-solid fa-satellite-dish"></i>
+          </div>
+          <strong>O. Calhoun</strong>
+          <p>Owner / Creator</p>
+        </aside>
+      </section>
 
-</body>
+      <section class="contact-grid" aria-labelledby="form-title">
+        <article class="transmission-panel section-banner">
+          <div class="section-heading">
+            <p class="eyebrow">Direct line // formspree relay</p>
+            <h2 id="form-title">Send a Message</h2>
+          </div>
+
+          <p class="contact-copy">
+            Use the secure channel below for business inquiries, design commissions, general feedback, or anything that needs a direct reply.
+          </p>
+
+          <form class="contact-form" action="https://formspree.io/f/xwvjwyvl" method="POST">
+            <input type="hidden" name="_subject" value="New XFD Portal Transmission">
+
+            <div class="form-group">
+              <label for="contact-name">Identifier // Name</label>
+              <input id="contact-name" type="text" name="name" placeholder="Enter your name" autocomplete="name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-email">Return node // Email</label>
+              <input id="contact-email" type="email" name="email" placeholder="Enter your email address" autocomplete="email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-topic">Transmission type</label>
+              <select id="contact-topic" name="topic" required>
+                <option value="">Choose a contact type</option>
+                <option>Business inquiry</option>
+                <option>Design commission</option>
+                <option>Collaboration</option>
+                <option>General feedback</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message">Data payload // Message</label>
+              <textarea id="contact-message" name="message" placeholder="Type your transmission here..." required></textarea>
+            </div>
+
+            <button class="button primary contact-submit" type="submit">
+              <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+              Send transmission
+            </button>
+          </form>
+        </article>
+
+        <aside class="contact-side-stack" aria-label="More ways to connect">
+          <article class="contact-card">
+            <span>Best for</span>
+            <h2>What to Send Here</h2>
+            <p>Project requests, design work, shop questions, creator partnerships, interview ideas, and serious feedback.</p>
+          </article>
+
+          <article class="contact-card social-contact-card">
+            <span>Social channels</span>
+            <h2>Connect Outside the Form</h2>
+            <div class="contact-social-grid" aria-label="Social contact links">
+              <a class="youtube" href="https://www.youtube.com/@Xenofinaldawn">
+                <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                YouTube
+              </a>
+              <a class="facebook" href="https://www.facebook.com/XFDTV/">
+                <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+                Facebook
+              </a>
+              <a class="tiktok" href="https://www.tiktok.com/@xenofinaldawn">
+                <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+                TikTok
+              </a>
+              <a class="instagram" href="https://www.instagram.com/xenofinaldawn/">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                Instagram
+              </a>
+              <a class="threads" href="https://www.threads.com/@xenofinaldawn">
+                <i class="fa-solid fa-at" aria-hidden="true"></i>
+                Threads
+              </a>
+              <a class="redbubble" href="https://www.redbubble.com/people/Gr3at1/shop?asc=u">
+                <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                Redbubble
+              </a>
+            </div>
+          </article>
+
+          <article class="contact-card contact-routing-card">
+            <span>Not sure?</span>
+            <h2>Start With the Feed</h2>
+            <p>For the latest videos, social posts, articles, and design drops, jump back to the main portal feed.</p>
+            <a class="button secondary" href="index.html">Latest news and updates</a>
+          </article>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>// system_active //</span>
+      <p>© 2026 XenoFinalDawn (XFD). All rights reserved.</p>
+    </footer>
+  </body>
 </html>

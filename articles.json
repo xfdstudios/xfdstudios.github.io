@@ -1,0 +1,47 @@
+[
+  {
+    "id": "horror-practical-effects",
+    "portal": "horror",
+    "title": "Why 90s practical effects still hit harder",
+    "date": "2026-06-14",
+    "summary": "A quick look at why creature work, lighting, texture, and physical sets still make horror feel alive.",
+    "type": "story",
+    "image": "https://i4.ytimg.com/vi/wooEz2_Gn-U/hqdefault.jpg"
+  },
+  {
+    "id": "anime-finale-boss-round-one",
+    "portal": "anime",
+    "title": "XFD Weekly Finale Boss: Round 001",
+    "date": "2026-06-09",
+    "summary": "The first round of XFD's finale boss format brings horror, anime, wrestling, and gaming energy together.",
+    "type": "update",
+    "image": "https://i3.ytimg.com/vi/vpBdZ3I8KCo/hqdefault.jpg"
+  },
+  {
+    "id": "wrestling-jade-mid-match",
+    "portal": "wrestling",
+    "title": "Jade Cargill was fighting for her life mid-match",
+    "date": "2026-06-14",
+    "summary": "A ringside-style reaction entry for one of the latest wrestling clips in the XFD feed.",
+    "type": "reaction",
+    "image": "https://i2.ytimg.com/vi/e7mKx7nxLw0/hqdefault.jpg"
+  },
+  {
+    "id": "tech-pokemon-red-flags",
+    "portal": "tech",
+    "title": "Pokemon red flags and gamer personality chaos",
+    "date": "2026-06-10",
+    "summary": "A tech/gaming culture update built around the newest Pokemon red-flags clip.",
+    "type": "post",
+    "image": "https://i1.ytimg.com/vi/H7G-QOh7nSo/hqdefault.jpg"
+  },
+  {
+    "id": "horror-modern-drama-remake",
+    "portal": "horror",
+    "title": "When a comedy gets turned into a gritty modern drama",
+    "date": "2026-04-23",
+    "summary": "An archive entry for the darker remake trend and why nostalgia keeps getting re-skinned.",
+    "type": "archive",
+    "image": "https://i3.ytimg.com/vi/Fz0ioZ4LJ8Y/hqdefault.jpg"
+  }
+]
