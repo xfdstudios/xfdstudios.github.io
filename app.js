@@ -168,6 +168,10 @@ function updateDiscover() {
   const latestPanel = document.querySelector(".latest-video-panel");
   if (latestPanel) {
     latestPanel.href = latestVideo.url;
+    if (latestVideo.thumbnail) {
+      latestPanel.style.backgroundImage =
+        `linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.78)), url('${latestVideo.thumbnail}')`;
+    }
     const title = latestPanel.querySelector(".latest-video-copy strong");
     const meta = latestPanel.querySelector(".latest-video-copy small");
     if (title) title.textContent = latestVideo.title;
