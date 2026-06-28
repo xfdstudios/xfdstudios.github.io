@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="Contact XenoFinalDawn for business inquiries, design commissions, collaborations, feedback, and creator updates."
+      content="Contact XenoFinalDawn for collaborations, sponsorships, social media partnerships, questions, and creator updates."
     >
     <meta property="og:title" content="Contact - XFD Portal">
     <meta
       property="og:description"
-      content="Send a direct message to the XFD creator channel or connect through XenoFinalDawn social platforms."
+      content="Reach the XFD creator channel for collaborations, sponsorships, partnership inquiries, and questions about XenoFinalDawn."
     >
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://xfdzone.github.io/assets/NEW%20LOGO.png">
@@ -20,6 +20,21 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
     <link rel="stylesheet" href="styles.css">
+    <style>
+      .contact-status--image {
+        padding: 0;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        overflow: hidden;
+      }
+      .contact-status--image img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    </style>
   </head>
   <body class="page-contact">
     <header class="site-header">
@@ -69,23 +84,18 @@
             <h1 id="contact-title">Initiate Transmission</h1>
           </div>
           <p>
-            Send business inquiries, design commission requests, collaboration ideas, or direct feedback to the XFD creator channel.
+            Send collaboration ideas, sponsorship offers, social media partnership pitches, or any questions for the XFD creator channel.
           </p>
           <div class="signal-chips" aria-label="Contact topics">
-            <span>Business</span>
-            <span>Design work</span>
-            <span>Collaborations</span>
-            <span>Feedback</span>
+            <span>Collaboration</span>
+            <span>Sponsorship</span>
+            <span>Partnership</span>
+            <span>Questions</span>
           </div>
         </div>
 
-        <aside class="contact-status" aria-label="Creator contact status">
-          <span>// node_status</span>
-          <div class="status-mark" aria-hidden="true">
-            <i class="fa-solid fa-satellite-dish"></i>
-          </div>
-          <strong>O. Calhoun</strong>
-          <p>Owner / Creator</p>
+        <aside class="contact-status contact-status--image" aria-label="XFD contact mascot">
+          <img src="assets/Contactme.jpeg" alt="">
         </aside>
       </section>
 
@@ -97,7 +107,7 @@
           </div>
 
           <p class="contact-copy">
-            Use the secure channel below for business inquiries, design commissions, general feedback, or anything that needs a direct reply.
+            Use the secure channel below for collaborations, sponsorships, social media partnerships, or any questions that need a direct reply.
           </p>
 
           <form class="contact-form" action="https://formspree.io/f/xwvjwyvl" method="POST">
@@ -117,10 +127,10 @@
               <label for="contact-topic">Transmission type</label>
               <select id="contact-topic" name="topic" required>
                 <option value="">Choose a contact type</option>
-                <option>Business inquiry</option>
-                <option>Design commission</option>
                 <option>Collaboration</option>
-                <option>General feedback</option>
+                <option>Sponsorship</option>
+                <option>Social media partnership</option>
+                <option>Question</option>
               </select>
             </div>
 
@@ -140,7 +150,7 @@
           <article class="contact-card">
             <span>Best for</span>
             <h2>What to Send Here</h2>
-            <p>Project requests, design work, shop questions, creator partnerships, interview ideas, and serious feedback.</p>
+            <p>Collaboration pitches, sponsorship offers, social media partnerships, creator team-ups, interview requests, and any questions about XFD.</p>
           </article>
 
           <article class="contact-card social-contact-card">

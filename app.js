@@ -140,7 +140,10 @@ function renderFeed() {
 }
 
 function updateDiscover() {
-  const latestVideo = socialFeed.find((item) => item.type === "video") || socialFeed[0];
+  const latestVideo =
+    socialFeed.find((item) => item.platform === "youtube") ||
+    socialFeed.find((item) => item.type === "video") ||
+    socialFeed[0];
   const latestDesign = socialFeed.find((item) => item.type === "design");
   const discoverItems = Array.from(document.querySelectorAll(".discover-feed a"));
 
@@ -152,6 +155,23 @@ function updateDiscover() {
   if (latestDesign && discoverItems[1]) {
     discoverItems[1].href = latestDesign.url;
     discoverItems[1].querySelector("strong").textContent = latestDesign.title;
+  }
+
+  if (!latestVideo) return;
+
+  const heroBanner = document.querySelector(".hero-banner");
+  if (heroBanner && latestVideo.thumbnail) {
+    const heroImage = latestVideo.thumbnail.replace("/hqdefault.jpg", "/maxresdefault.jpg");
+    heroBanner.style.setProperty("--hero-banner-image", `url('${heroImage}')`);
+  }
+
+  const latestPanel = document.querySelector(".latest-video-panel");
+  if (latestPanel) {
+    latestPanel.href = latestVideo.url;
+    const title = latestPanel.querySelector(".latest-video-copy strong");
+    const meta = latestPanel.querySelector(".latest-video-copy small");
+    if (title) title.textContent = latestVideo.title;
+    if (meta) meta.textContent = `Latest upload // ${latestVideo.date}`;
   }
 }
 
