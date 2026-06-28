@@ -20,6 +20,74 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
     <link rel="stylesheet" href="styles.css">
+    <style>
+      .creator-mascot {
+        width: 150px;
+        height: 150px;
+        border-radius: 12px;
+        border: 2px solid var(--page-accent);
+        object-fit: cover;
+        box-shadow: 0 0 24px var(--page-accent-soft);
+      }
+      .design-matrix-card {
+        display: grid;
+        gap: 0.4rem;
+        justify-items: center;
+        width: 100%;
+        margin-top: 0.4rem;
+        padding: 1.4rem 1rem;
+        border: 1px solid color-mix(in srgb, var(--page-accent) 35%, var(--line));
+        border-radius: 10px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.25));
+        text-align: center;
+      }
+      .design-matrix-card .matrix-glyph {
+        margin: 0;
+        color: var(--page-accent);
+        font-family: "SFMono-Regular", Consolas, monospace;
+        font-size: 3.2rem;
+        line-height: 1;
+        text-shadow: 0 0 18px var(--page-accent-soft);
+      }
+      .design-matrix-card h3 {
+        margin: 0;
+        font-size: 0.95rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .design-matrix-card .matrix-construction {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-style: italic;
+      }
+      .personal-site-card {
+        margin-top: 1.5rem;
+        padding: 1.4rem;
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--page-accent);
+        border-radius: 8px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.012)),
+          rgba(16, 17, 25, 0.82);
+        box-shadow: var(--shadow);
+      }
+      .personal-site-card .matrix-label {
+        margin-bottom: 0.6rem;
+      }
+      .personal-site-card h2 {
+        margin: 0 0 0.45rem;
+        font-size: 1.4rem;
+      }
+      .personal-site-card p {
+        margin: 0 0 1rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .personal-site-card .button i {
+        margin-right: 0.5rem;
+      }
+    </style>
   </head>
   <body class="page-origin">
     <header class="site-header">
@@ -102,24 +170,39 @@
                 <p>Placeholder for editing, design, writing, social publishing, and shop-platform tools.</p>
               </article>
             </div>
+
+            <div class="personal-site-card">
+              <p class="matrix-label">// external_node: personal_design_site</p>
+              <h2>Orlando J. Calhoun — Graphic Design</h2>
+              <p>
+                Looking for the client-facing graphic design portfolio? Logos, branding, print, and
+                marketing work lives on the personal design site.
+              </p>
+              <a class="button primary" href="#PERSONAL_SITE_URL" target="_blank" rel="noopener">
+                <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                Visit the design portfolio
+              </a>
+            </div>
           </div>
 
           <aside class="creator-card" aria-label="Owner and creator profile">
-            <div class="creator-avatar" aria-hidden="true">
-              <i class="fa-solid fa-user-shield"></i>
-            </div>
+            <img class="creator-mascot" src="assets/Profilepic.jpg" alt="O. Calhoun, creator of XFD">
             <h2>O. Calhoun</h2>
             <p class="creator-role">Owner / Creator</p>
             <p>Select authorization port to link outward:</p>
             <div class="creator-socials" aria-label="Creator social links">
-              <a class="linkedin" href="https://www.linkedin.com/" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
               <a class="youtube" href="https://www.youtube.com/@Xenofinaldawn" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
               <a class="facebook" href="https://www.facebook.com/XFDTV/" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
               <a class="instagram" href="https://www.instagram.com/xenofinaldawn/" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
             </div>
             <div class="creator-card-actions">
-              <a class="button secondary" href="contact.html">Contact creator</a>
-              <a class="button secondary resume-link" href="assets/O-Calhoun-Resume.txt" download>Download resume</a>
+              <a class="button secondary" href="contact.html">Transmit signal</a>
+            </div>
+
+            <div class="design-matrix-card" aria-label="Design matrix access card">
+              <p class="matrix-glyph">D</p>
+              <h3>Design Matrix Access Card</h3>
+              <p class="matrix-construction">(Under construction)</p>
             </div>
           </aside>
         </div>
@@ -150,35 +233,9 @@
         </div>
       </section>
 
-      <section class="origin-timeline" aria-labelledby="timeline-title">
-        <div class="section-heading">
-          <p class="eyebrow">Creator path</p>
-          <h2 id="timeline-title">What this page should do</h2>
-        </div>
-
-        <div class="timeline-list">
-          <article>
-            <span>Intro</span>
-            <h3>Who created XFD</h3>
-            <p>Give visitors the short version of who you are and what kind of creative work you make.</p>
-          </article>
-          <article>
-            <span>Work</span>
-            <h3>What XFD creates</h3>
-            <p>Point people toward videos, articles, social posts, designs, and shop drops without making the page feel crowded.</p>
-          </article>
-          <article>
-            <span>Next</span>
-            <h3>Where to go</h3>
-            <p>Guide visitors into the Feed, portal pages, Designs, or Contact depending on what they are looking for.</p>
-          </article>
-        </div>
-      </section>
-
     </main>
 
     <footer class="site-footer">
-      <span>// system_active //</span>
       <p>© 2026 XenoFinalDawn (XFD). All rights reserved.</p>
     </footer>
   </body>

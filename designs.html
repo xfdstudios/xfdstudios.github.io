@@ -20,6 +20,21 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
     <link rel="stylesheet" href="styles.css">
+    <style>
+      .redbubble-embed {
+        margin: 1rem 0 1.5rem;
+        padding: 0.6rem;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(8, 9, 15, 0.6);
+        min-height: 80px;
+      }
+      .redbubble-embed iframe {
+        width: 100%;
+        border: 0;
+        display: block;
+      }
+    </style>
   </head>
   <body class="page-designs">
     <header class="site-header">
@@ -140,7 +155,20 @@
         </div>
 
         <div id="shop-panel" class="design-tab-panel" role="tabpanel">
-          <p class="design-copy">Redbubble blocks full-site embedding, so this section uses reliable product cards that link directly to each item.</p>
+          <p class="design-copy">Live Redbubble preview loads below. If your browser uses an ad or tracker blocker, the embed may be blocked &mdash; the manually curated product cards underneath always render.</p>
+
+          <div class="redbubble-embed" aria-label="Redbubble portfolio embed">
+            <div id="rb-portfolio-mount"></div>
+          </div>
+          <script type="text/javascript" src="https://www.redbubble.com/assets/external_portfolio.js"></script>
+          <script id="rb-xzfcxvzx" type="text/javascript">
+            try {
+              new RBExternalPortfolio('www.redbubble.com', 'gr3at1', 2, 2).renderIframe();
+            } catch (err) {
+              // Ad blocker or network blocked the script; manual cards below act as the fallback.
+            }
+          </script>
+
           <a class="button primary redbubble-button" href="https://www.redbubble.com/people/Gr3at1/shop?asc=u">
             <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
             Open Redbubble Store
@@ -200,7 +228,6 @@
     </main>
 
     <footer class="site-footer">
-      <span>// system_active //</span>
       <p>© 2026 XenoFinalDawn (XFD). All rights reserved.</p>
     </footer>
 
