@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XFD Article Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0d0e16;
+      --surface: #13141f;
+      --border: rgba(255,255,255,.1);
+      --accent: #00e5ff;
+      --text: #e8e8f0;
+      --muted: rgba(255,255,255,.5);
+      --horror: #ff3d3d;
+      --anime: #9b59ff;
+      --wrestling: #ff9f00;
+      --tech: #00e5ff;
+      --green: #4caf50;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    .admin-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .admin-header-left { display: flex; align-items: center; gap: 1rem; }
+    .admin-logo { color: var(--accent); font-size: 1.3rem; font-weight: 800; letter-spacing: -.02em; }
+    .admin-logo span { color: var(--muted); font-weight: 400; font-size: .85rem; margin-left: .5rem; }
+    .admin-header a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .85rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .admin-header a:hover { color: var(--text); }
+
+    /* LAYOUT */
+    .admin-layout {
+      display: grid;
+      grid-template-columns: 500px 1fr;
+      min-height: calc(100vh - 56px);
+    }
+
+    /* LEFT: FORM */
+    .form-panel {
+      padding: 1.75rem 2rem;
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+    }
+    .section-label {
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--muted);
+      margin: 1.5rem 0 .75rem;
+      padding-bottom: .4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-label:first-child { margin-top: 0; }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    .field { margin-bottom: .85rem; }
+    .field label {
+      display: block;
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+      margin-bottom: .35rem;
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: .9rem;
+      padding: .55rem .75rem;
+      outline: none;
+      font-family: inherit;
+      transition: border-color .15s;
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus { border-color: var(--accent); }
+    .field textarea { resize: vertical; line-height: 1.6; }
+    .field .hint {
+      font-size: .72rem;
+      color: var(--muted);
+      margin-top: .3rem;
+      line-height: 1.4;
+    }
+    .field .hint strong { color: var(--accent); }
+
+    /* VIDEO AUTO BADGE */
+    .auto-badge {
+      display: inline-block;
+      background: rgba(0,229,255,.15);
+      color: var(--accent);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .15em .5em;
+      border-radius: 4px;
+      margin-left: .4rem;
+      vertical-align: middle;
+    }
+
+    /* GENERATE BUTTON */
+    .btn-generate {
+      width: 100%;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      padding: .9rem 1rem;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 1.25rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      transition: opacity .15s;
+    }
+    .btn-generate:hover { opacity: .85; }
+
+    /* RIGHT PANEL */
+    .right-panel {
+      padding: 1.75rem 2rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* CARD PREVIEW */
+    .preview-label {
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--muted);
+      margin-bottom: .75rem;
+    }
+    .preview-card {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      background: rgba(16,17,25,.8);
+      min-height: 150px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .preview-card.horror    { border-left-color: var(--horror); }
+    .preview-card.anime     { border-left-color: var(--anime); }
+    .preview-card.wrestling { border-left-color: var(--wrestling); }
+    .preview-card.tech      { border-left-color: var(--tech); }
+    .preview-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      background: #1a1b2a;
+      display: block;
+    }
+    .preview-card-body { padding: 1rem; }
+    .preview-meta {
+      font-size: .68rem;
+      font-family: monospace;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .preview-card.horror    .preview-meta { color: var(--horror); }
+    .preview-card.anime     .preview-meta { color: var(--anime); }
+    .preview-card.wrestling .preview-meta { color: var(--wrestling); }
+    .preview-card.tech      .preview-meta { color: var(--tech); }
+    .preview-title { font-size: 1.05rem; margin: .4rem 0 .5rem; line-height: 1.2; }
+    .preview-summary { font-size: .82rem; color: var(--muted); line-height: 1.5; }
+
+    /* OUTPUT BOX */
+    .output-wrap { display: none; }
+    .output-wrap.visible { display: block; }
+    .output-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: .6rem;
+    }
+    .output-box {
+      background: rgba(0,0,0,.45);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.1rem;
+      margin-bottom: .75rem;
+    }
+    .output-box pre {
+      font-size: .75rem;
+      color: #a8d8a8;
+      overflow-x: auto;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .btn-copy {
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 6px;
+      padding: .45rem .9rem;
+      font-size: .82rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      transition: background .15s;
+    }
+    .btn-copy:hover { background: rgba(255,255,255,.14); }
+    .btn-copy.copied { color: var(--green); border-color: var(--green); }
+
+    /* STEPS */
+    .steps-box {
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.1rem;
+    }
+    .steps-title {
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted);
+      margin-bottom: .9rem;
+    }
+    .step {
+      display: flex;
+      gap: .7rem;
+      margin-bottom: .65rem;
+      align-items: flex-start;
+    }
+    .step:last-child { margin-bottom: 0; }
+    .step-num {
+      background: var(--accent);
+      color: #000;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .65rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-text { font-size: .84rem; line-height: 1.5; }
+    .step-text code {
+      background: rgba(255,255,255,.1);
+      border-radius: 3px;
+      padding: .1em .4em;
+      font-size: .8em;
+      font-family: monospace;
+    }
+
+    /* PLACEHOLDER */
+    .placeholder {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--muted);
+    }
+    .placeholder i {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 1rem;
+      opacity: .25;
+    }
+    .placeholder p { font-size: .9rem; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<header class="admin-header">
+  <div class="admin-header-left">
+    <div class="admin-logo">XFD <span>Article Admin</span></div>
+  </div>
+  <a href="index.html" target="_blank">
+    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+    View live site
+  </a>
+</header>
+
+<div class="admin-layout">
+
+  <!-- ── LEFT: FORM ── -->
+  <div class="form-panel">
+
+    <p class="section-label">Portal &amp; Type</p>
+    <div class="row-2">
+      <div class="field">
+        <label>Portal</label>
+        <select id="f-portal">
+          <option value="horror">Horror</option>
+          <option value="wrestling">Wrestling</option>
+          <option value="anime">Anime</option>
+          <option value="tech">Tech / Gaming</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Content Type</label>
+        <select id="f-type">
+          <option value="short">Short (YouTube Short)</option>
+          <option value="thread">Thread (Threads post)</option>
+          <option value="story">Story</option>
+          <option value="reaction">Reaction</option>
+          <option value="post">Post</option>
+          <option value="update">Update</option>
+        </select>
+      </div>
+    </div>
+
+    <p class="section-label">Article Info</p>
+    <div class="field">
+      <label>Title</label>
+      <input type="text" id="f-title" placeholder="Article headline — make it punchy">
+    </div>
+    <div class="field">
+      <label>Date</label>
+      <input type="date" id="f-date">
+    </div>
+    <div class="field">
+      <label>Caption / Description</label>
+      <textarea id="f-summary" rows="3" placeholder="1–2 sentences shown on the article card. This is the hook that gets people to click."></textarea>
+      <p class="hint">Shown on the portal card. Keep it <strong>short and punchy</strong>.</p>
+    </div>
+    <div class="field">
+      <label>Full Article Body</label>
+      <textarea id="f-body" rows="8" placeholder="Paste your Threads post here, or write your full thoughts. This is what fans read when they open the article page.&#10;&#10;Separate paragraphs with a blank line."></textarea>
+      <p class="hint">Your actual words. Can be pasted straight from Threads.</p>
+    </div>
+
+    <p class="section-label">Media <span class="auto-badge">Auto-fills from YouTube</span></p>
+    <div class="field">
+      <label>YouTube Video URL</label>
+      <input type="url" id="f-video" placeholder="https://www.youtube.com/shorts/...">
+      <p class="hint">Paste your YouTube or Shorts URL. Thumbnail fills automatically.</p>
+    </div>
+    <div class="field">
+      <label>Custom Image URL <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0">— optional, overrides YouTube thumbnail</span></label>
+      <input type="url" id="f-image" placeholder="Paste image URL (your XFD graphic, etc.)">
+      <p class="hint">Use this for Threads posts that have a custom graphic instead of a YouTube thumbnail.</p>
+    </div>
+
+    <button class="btn-generate" onclick="generate()">
+      <i class="fa-solid fa-bolt"></i>
+      Generate JSON Entry
+    </button>
+
+  </div><!-- /form-panel -->
+
+  <!-- ── RIGHT: PREVIEW + OUTPUT ── -->
+  <div class="right-panel">
+
+    <div>
+      <p class="preview-label">Live Card Preview</p>
+      <div class="preview-card" id="preview-card">
+        <img id="preview-img" src="" alt="" onerror="this.style.background='#1a1b2a'">
+        <div class="preview-card-body">
+          <div class="preview-meta" id="preview-meta">SHORT // JUN 29, 2026</div>
+          <div class="preview-title" id="preview-title">Your title will appear here</div>
+          <div class="preview-summary" id="preview-summary">Caption will show here...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="output-wrap" id="output-wrap">
+      <div class="output-header">
+        <p class="preview-label" style="margin:0">Copy this → paste into <code style="background:rgba(255,255,255,.1);padding:.1em .4em;border-radius:3px;font-size:.8em">articles.json</code></p>
+        <button class="btn-copy" id="copy-btn" onclick="copyJSON()">
+          <i class="fa-solid fa-copy"></i> Copy
+        </button>
+      </div>
+      <div class="output-box">
+        <pre id="json-output"></pre>
+      </div>
+
+      <div class="steps-box">
+        <p class="steps-title">How to publish in 4 steps</p>
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">Click <strong>Copy</strong> above</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">Open <code>articles.json</code> — paste your entry right after the opening <code>[</code> on line 1. It already has a comma at the end.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">Save the file</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">Open GitHub Desktop → <strong>Commit to main</strong> → <strong>Push origin</strong> — live in ~60 seconds</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="placeholder" id="placeholder">
+      <i class="fa-solid fa-pen-nib"></i>
+      <p>Fill in the form on the left<br>and click <strong>Generate JSON Entry</strong></p>
+    </div>
+
+  </div><!-- /right-panel -->
+
+</div>
+
+<script>
+  // Set today as default date
+  document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
+
+  function slugify(str) {
+    return str.toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .substring(0, 60);
+  }
+
+  function getVideoId(url) {
+    if (!url) return null;
+    const m = url.match(/(?:shorts\/|v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+    return m ? m[1] : url.split('/').pop().split('?')[0];
+  }
+
+  function fmtDate(str) {
+    if (!str) return '';
+    return new Date(str + 'T00:00:00').toLocaleDateString('en-US', {
+      month: 'short', day: 'numeric', year: 'numeric'
+    }).toUpperCase();
+  }
+
+  function updatePreview() {
+    const portal  = document.getElementById('f-portal').value;
+    const rawType = document.getElementById('f-type').value;
+    const type    = rawType.split(' ')[0].toUpperCase();
+    const title   = document.getElementById('f-title').value   || 'Your title will appear here';
+    const date    = document.getElementById('f-date').value;
+    const summary = document.getElementById('f-summary').value || 'Caption will show here...';
+    const video   = document.getElementById('f-video').value;
+    const image   = document.getElementById('f-image').value;
+
+    // Card color
+    document.getElementById('preview-card').className = 'preview-card ' + portal;
+
+    // Image
+    const img = document.getElementById('preview-img');
+    if (image) {
+      img.src = image;
+    } else if (video) {
+      const vid = getVideoId(video);
+      img.src = vid ? `https://i.ytimg.com/vi/${vid}/hqdefault.jpg` : '';
+    } else {
+      img.src = '';
+    }
+
+    document.getElementById('preview-meta').textContent    = `${type} // ${fmtDate(date)}`;
+    document.getElementById('preview-title').textContent   = title;
+    document.getElementById('preview-summary').textContent = summary;
+  }
+
+  ['f-portal','f-type','f-title','f-date','f-summary','f-video','f-image'].forEach(id => {
+    const el = document.getElementById(id);
+    el.addEventListener('input',  updatePreview);
+    el.addEventListener('change', updatePreview);
+  });
+
+  // Video URL → auto-fill image field hint
+  document.getElementById('f-video').addEventListener('input', function() {
+    const vid = getVideoId(this.value);
+    if (vid && !document.getElementById('f-image').value) {
+      updatePreview(); // refresh so thumbnail shows
+    }
+  });
+
+  function generate() {
+    const portal  = document.getElementById('f-portal').value;
+    const rawType = document.getElementById('f-type').value;
+    const type    = rawType.split(' ')[0];
+    const title   = document.getElementById('f-title').value.trim();
+    const date    = document.getElementById('f-date').value;
+    const summary = document.getElementById('f-summary').value.trim();
+    const body    = document.getElementById('f-body').value.trim();
+    const video   = document.getElementById('f-video').value.trim();
+    const imgIn   = document.getElementById('f-image').value.trim();
+
+    if (!title)   { alert('Add a title before generating.'); return; }
+    if (!date)    { alert('Pick a date before generating.'); return; }
+    if (!summary) { alert('Add a caption/description before generating.'); return; }
+
+    const id = portal + '-' + slugify(title);
+
+    let image = imgIn;
+    if (!image && video) {
+      const vid = getVideoId(video);
+      image = vid ? `https://i.ytimg.com/vi/${vid}/hqdefault.jpg` : '';
+    }
+
+    const entry = { id, portal, title, date, summary, type };
+    if (image)    entry.image    = image;
+    if (video)    entry.videoUrl = video;
+    if (body)     entry.body     = body;
+
+    // Output with trailing comma so it pastes cleanly
+    const json = JSON.stringify(entry, null, 2) + ',';
+    document.getElementById('json-output').textContent = json;
+    document.getElementById('output-wrap').classList.add('visible');
+    document.getElementById('placeholder').style.display = 'none';
+    document.getElementById('output-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function copyJSON() {
+    const text = document.getElementById('json-output').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copy-btn');
+      btn.classList.add('copied');
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy';
+      }, 2500);
+    });
+  }
+
+  updatePreview();
+</script>
+</body>
+</html>
