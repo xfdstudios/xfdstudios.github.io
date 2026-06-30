@@ -29,6 +29,7 @@ YOUTUBE_FEED = (
 MAX_ITEMS     = 20
 ARTICLES_PATH = Path(__file__).resolve().parent.parent / "articles.json"
 
+
 NS = {
     "a":     "http://www.w3.org/2005/Atom",
     "yt":    "http://www.youtube.com/xml/schemas/2015",

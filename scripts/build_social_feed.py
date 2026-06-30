@@ -23,6 +23,7 @@ YOUTUBE_FEED = (
 MAX_YOUTUBE_ITEMS = 12
 FEED_PATH = Path(__file__).resolve().parent.parent / "social-feed.json"
 
+
 NS = {
     "a": "http://www.w3.org/2005/Atom",
     "yt": "http://www.youtube.com/xml/schemas/2015",
