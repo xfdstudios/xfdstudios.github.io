@@ -80,6 +80,24 @@
         transition: opacity .2s;
       }
       .article-watch-btn:hover { opacity: .85; }
+      .article-thread-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: .6rem;
+        background: #0a0a0f;
+        border: 1px solid rgba(255, 255, 255, .25);
+        color: #fff;
+        text-decoration: none;
+        padding: .75rem 1.5rem;
+        border-radius: 6px;
+        font-size: .9rem;
+        font-weight: 600;
+        margin-bottom: 2.5rem;
+        transition: opacity .2s;
+      }
+      .article-thread-btn:hover { opacity: .85; }
+      .article-watch-btn[hidden],
+      .article-thread-btn[hidden] { display: none; }
     </style>
   </head>
   <body class="page-news">
@@ -139,6 +157,11 @@
         Watch on YouTube
       </a>
 
+      <a class="article-thread-btn" id="article-thread-link" href="#" target="_blank" rel="noopener" hidden>
+        <i class="fa-brands fa-threads"></i>
+        Read more on Threads
+      </a>
+
       <div class="article-body" id="article-body"></div>
     </main>
 
@@ -148,11 +171,14 @@
 
     <script>
       const portalInfo = {
-        horror:   { label: 'Horror',      href: 'horror.html' },
-        anime:    { label: 'Anime',        href: 'anime.html' },
-        wrestling:{ label: 'Wrestling',    href: 'wrestling.html' },
-        tech:     { label: 'Tech/Gaming',  href: 'tech-gaming.html' }
+        horror:     { label: 'Horror',       href: 'horror.html' },
+        anime:      { label: 'Anime',         href: 'anime.html' },
+        wrestling:  { label: 'Wrestling',     href: 'wrestling.html' },
+        tech:       { label: 'Tech/Gaming',   href: 'tech-gaming.html' },
+        popculture: { label: 'Pop Culture',   href: 'popculture.html' }
       };
+
+      const THREADS_PROFILE = 'https://www.threads.com/@xenofinaldawn';
 
       function getVideoId(url) {
         if (!url) return null;
@@ -203,6 +229,11 @@
           const watchLink = document.querySelector('#article-watch-link');
           watchLink.href = article.videoUrl;
           watchLink.hidden = false;
+        } else {
+          // Text/Threads posts (no video): link out to Threads instead.
+          const threadLink = document.querySelector('#article-thread-link');
+          threadLink.href = article.threadsUrl || THREADS_PROFILE;
+          threadLink.hidden = false;
         }
 
         const bodyEl = document.querySelector('#article-body');
