@@ -1,6 +1,5 @@
 [
   {
-  {
     "id": "horror-joe-jackson-whos-your-daddy",
     "portal": "horror",
     "title": "Who's Your Daddy? Joe Jackson as a Horror Icon",
@@ -113,8 +112,6 @@
     "videoUrl": "https://www.youtube.com/shorts/ldpAtAI6nAw",
     "body": "",
     "_draft": true
-  },
-
   },
   {
     "id": "horror-nightmare-elm-street-mandela",
@@ -263,5 +260,15 @@
     "image": "https://i.ytimg.com/vi/VKSfvJUTv4w/hqdefault.jpg",
     "videoUrl": "https://www.youtube.com/shorts/VKSfvJUTv4w",
     "body": "Before Mortal Kombat 2 dropped and before any reboot conversation started, the 1995 Mortal Kombat film worked because of one performance. Cary-Hiroyuki Tagawa as Shang Tsung was not a video game villain awkwardly translated to screen — he was a genuine screen presence who made the movie feel like it had real stakes.\n\nTagawa brought classical acting discipline to a role that most people assumed would be a campy genre piece, and the result was a villain who held the movie together.\n\nWhether MK2 tries to recapture it or do something entirely different, the original still sets the standard. This tribute breaks down exactly why."
+  },
+  {
+    "id": "popculture-nostalgia-rewrites-memory",
+    "portal": "popculture",
+    "title": "How Nostalgia Quietly Rewrites the Pop Culture We Grew Up On",
+    "date": "2026-06-24",
+    "summary": "Movies, music, and memes blur together until we remember a version of the past that never aired. XFD breaks down why pop culture nostalgia keeps inventing Mandela Effects.",
+    "type": "thread",
+    "image": "assets/NEW%20LOGO.png",
+    "body": "Pop culture is the easiest place to catch your own brain lying to you.\n\nA song you swear was in a movie. A logo you'd bet money looked different. A line everyone quotes that was never actually said. The more a moment gets replayed, remixed, and meme-ified, the further it drifts from what really happened.\n\nThat's the engine behind every Mandela Effect: nostalgia doesn't store the past, it re-renders it every time we reach for it. Studios know this too — half of modern reboots are selling you the feeling of a memory, not the thing itself.\n\nThis is the lane the Pop Culture portal lives in: movies, music, celebrities, trends, and the shared moments everyone remembers slightly wrong. Drop the one you'd swear you remember right."
   }
 ]

@@ -14,6 +14,7 @@
   --anime: #8a35ff;
   --wrestling: #ff315f;
   --tech: #39d5ff;
+  --popculture: #ff8a2b;
   --amber: #ffd15a;
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
   --page-accent: var(--purple);
@@ -55,6 +56,11 @@
   --page-accent-soft: rgba(57, 213, 255, 0.2);
 }
 
+.portal-story-page[data-portal="popculture"] {
+  --page-accent: var(--popculture);
+  --page-accent-soft: rgba(255, 138, 43, 0.2);
+}
+
 .portal-story-page[data-portal="horror"] {
   background:
     radial-gradient(circle at 18% 18%, rgba(114, 255, 94, 0.1), transparent 24rem),
@@ -76,6 +82,12 @@
 .portal-story-page[data-portal="tech"] {
   background:
     radial-gradient(circle at 18% 18%, rgba(57, 213, 255, 0.11), transparent 24rem),
+    linear-gradient(180deg, #06080f 0%, var(--bg) 42%, #020307 100%);
+}
+
+.portal-story-page[data-portal="popculture"] {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 138, 43, 0.12), transparent 24rem),
     linear-gradient(180deg, #06080f 0%, var(--bg) 42%, #020307 100%);
 }
 
@@ -778,7 +790,7 @@ main {
 
 .channel-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 1rem;
 }
 
@@ -838,6 +850,11 @@ main {
   box-shadow: 0 0 24px rgba(57, 213, 255, 0.18);
 }
 
+.popculture .channel-icon {
+  color: var(--popculture);
+  box-shadow: 0 0 24px rgba(255, 138, 43, 0.2);
+}
+
 .channel-card h3 {
   margin: 2rem 0 0.45rem;
   font-size: 1.65rem;
@@ -869,6 +886,10 @@ main {
 
 .tech {
   border-color: rgba(57, 213, 255, 0.42);
+}
+
+.popculture {
+  border-color: rgba(255, 138, 43, 0.42);
 }
 
 .filter-controls {
@@ -2462,6 +2483,11 @@ main {
   color: var(--tech);
 }
 
+.portal-jump.popculture i,
+.related-card.popculture i {
+  color: var(--popculture);
+}
+
 .portal-jump.active {
   border-color: var(--page-accent);
   background:
@@ -2617,6 +2643,10 @@ main {
 
 .related-card.tech {
   border-color: rgba(57, 213, 255, 0.34);
+}
+
+.related-card.popculture {
+  border-color: rgba(255, 138, 43, 0.34);
 }
 
 @media (max-width: 980px) {
