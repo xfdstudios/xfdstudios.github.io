@@ -1,47 +1,110 @@
 [
   {
-    "id": "horror-practical-effects",
+    "id": "horror-nightmare-elm-street-mandela",
     "portal": "horror",
-    "title": "Why 90s practical effects still hit harder",
-    "date": "2026-06-14",
-    "summary": "A quick look at why creature work, lighting, texture, and physical sets still make horror feel alive.",
-    "type": "story",
-    "image": "https://i4.ytimg.com/vi/wooEz2_Gn-U/hqdefault.jpg"
+    "title": "The Nightmare on Elm Street Mandela Effect Nobody Spotted",
+    "date": "2026-06-24",
+    "summary": "XFD accidentally stumbled onto a Nightmare on Elm Street Mandela Effect that has horror fans second-guessing their memories. If you grew up watching Freddy Krueger in the 80s and 90s, this one rewires how you remember the films. Watch the short to see if you remember it the same way.",
+    "type": "short",
+    "image": "https://i.ytimg.com/vi/qqrbXc2wc_U/hqdefault.jpg"
   },
   {
-    "id": "anime-finale-boss-round-one",
-    "portal": "anime",
-    "title": "XFD Weekly Finale Boss: Round 001",
-    "date": "2026-06-09",
-    "summary": "The first round of XFD's finale boss format brings horror, anime, wrestling, and gaming energy together.",
-    "type": "update",
-    "image": "https://i3.ytimg.com/vi/vpBdZ3I8KCo/hqdefault.jpg"
+    "id": "tech-sonic-racing-crossworlds-year2",
+    "portal": "tech",
+    "title": "Sonic Racing Crossworlds Year 2: Sega Still Has Answers to Give",
+    "date": "2026-06-23",
+    "summary": "Sega's Sonic Racing Crossworlds is a full year in and the questions haven't stopped. XFD breaks down what Year 2 delivered, what's still broken, and whether the game has earned back Sonic fans' trust — or if Sega is still coasting on the brand name.",
+    "type": "short",
+    "image": "https://i.ytimg.com/vi/KK1bFEta-1g/hqdefault.jpg"
+  },
+  {
+    "id": "horror-practical-effects",
+    "portal": "horror",
+    "title": "Why 90s Practical Effects Still Hit Harder Than CGI",
+    "date": "2026-06-14",
+    "summary": "A breakdown of why creature work, lighting, texture, and physical sets still make horror feel alive decades later. From Jurassic Park to Evil Dead, the practical effects era gave horror a weight CGI has never matched. XFD makes the case for going analog.",
+    "type": "story",
+    "image": "https://i.ytimg.com/vi/wooEz2_Gn-U/hqdefault.jpg"
   },
   {
     "id": "wrestling-jade-mid-match",
     "portal": "wrestling",
-    "title": "Jade Cargill was fighting for her life mid-match",
+    "title": "Jade Cargill Was Fighting for Her Life Mid-Match — and Nobody's Talking About It",
     "date": "2026-06-14",
-    "summary": "A ringside-style reaction entry for one of the latest wrestling clips in the XFD feed.",
+    "summary": "Jade Cargill is carrying a division on her back and mid-match she was clearly in survival mode. XFD breaks down the timing, the chaos, and the finish — and why this is exactly why Cargill deserves more flowers than she gets from wrestling commentary.",
     "type": "reaction",
-    "image": "https://i2.ytimg.com/vi/e7mKx7nxLw0/hqdefault.jpg"
+    "image": "https://i.ytimg.com/vi/e7mKx7nxLw0/hqdefault.jpg"
+  },
+  {
+    "id": "anime-finale-boss-round-one",
+    "portal": "anime",
+    "title": "XFD Weekly Finale Boss: Round 001 — Horror, Anime, Wrestling, and Gaming Collide",
+    "date": "2026-06-09",
+    "summary": "The first round of the XFD Finale Boss format brings the whole network together. Horror genre picks vs anime power scaling vs wrestling match energy vs gaming culture — four portals, one format, and the best final boss energy across every niche XFD covers.",
+    "type": "update",
+    "image": "https://i.ytimg.com/vi/vpBdZ3I8KCo/hqdefault.jpg"
+  },
+  {
+    "id": "anime-pokemon-power-scaling",
+    "portal": "anime",
+    "title": "Your Pokemon Pick Exposes Your Anime Power Scaling Opinions",
+    "date": "2026-06-10",
+    "summary": "The Pokemon you gravitate toward maps directly onto how you think about power scaling in anime. Support types, sweepers, walls — the same logic behind competitive Pokemon tier lists is the same logic people use to rank anime fighters. XFD connects the dots between Smogon and Shonen.",
+    "type": "post",
+    "image": "https://i.ytimg.com/vi/H7G-QOh7nSo/hqdefault.jpg"
   },
   {
     "id": "tech-pokemon-red-flags",
     "portal": "tech",
-    "title": "Pokemon red flags and gamer personality chaos",
+    "title": "Pokemon Red Flags and Gamer Personality Chaos",
     "date": "2026-06-10",
-    "summary": "A tech/gaming culture update built around the newest Pokemon red-flags clip.",
+    "summary": "A gaming culture breakdown built around the newest XFD Pokemon red-flags clip. Which Pokemon you main says something about how you play games, how you interact in lobbies, and frankly whether you're going to be a problem in any co-op session.",
     "type": "post",
-    "image": "https://i1.ytimg.com/vi/H7G-QOh7nSo/hqdefault.jpg"
+    "image": "https://i.ytimg.com/vi/H7G-QOh7nSo/hqdefault.jpg"
+  },
+  {
+    "id": "tech-toxic-pokemon-mains",
+    "portal": "tech",
+    "title": "Toxic Pokemon Mains Exposed: The Red Flags by Starter and Type",
+    "date": "2026-06-04",
+    "summary": "Every Pokemon trainer has a type they main, and every type has a specific kind of toxic player behind it. XFD breaks down the red flags by starter, competitive tier, and battle style — with receipts to back it all up. If you main Charizard, you already know.",
+    "type": "post",
+    "image": "https://i.ytimg.com/vi/lI6RkRICVBc/hqdefault.jpg"
+  },
+  {
+    "id": "tech-90s-video-games-red-flag",
+    "portal": "tech",
+    "title": "Your Favorite 90s Video Game Is Your Biggest Personality Red Flag",
+    "date": "2026-05-26",
+    "summary": "Street Fighter or Mortal Kombat? N64 or PlayStation? Sonic or Mario? The 90s video game franchise you swore loyalty to reveals everything about who you are as a gamer — and probably as a person. XFD runs the full personality breakdown by console, genre, and franchise.",
+    "type": "post",
+    "image": "https://i.ytimg.com/vi/VTInsot8hG4/hqdefault.jpg"
+  },
+  {
+    "id": "tech-gaming-before-scammed",
+    "portal": "tech",
+    "title": "Before Gaming Got Scammed: The Nintendo Wii Era They Don't Want You to Remember",
+    "date": "2026-05-16",
+    "summary": "The Nintendo Wii era shipped complete games for a full price. No battle passes, no day-one DLC, no season passes, no always-online requirements. XFD breaks down how gaming culture shifted from honest local co-op fun into a subscription machine — and why the Switch 2 generation still hasn't fixed it.",
+    "type": "story",
+    "image": "https://i.ytimg.com/vi/UY0bomzPkU8/hqdefault.jpg"
+  },
+  {
+    "id": "wrestling-tagawa-mortal-kombat",
+    "portal": "wrestling",
+    "title": "Before MK2: Cary-Hiroyuki Tagawa Built the Mortal Kombat Movie on His Shoulders",
+    "date": "2026-05-11",
+    "summary": "Cary-Hiroyuki Tagawa's Shang Tsung is the reason the 1995 Mortal Kombat movie still holds up. Before MK2 dropped, Tagawa delivered a villain that felt real, theatrical, and genuinely dangerous. XFD pays tribute to the performance that made the first film more than a cash grab — and why the reboot era hasn't come close.",
+    "type": "story",
+    "image": "https://i.ytimg.com/vi/VKSfvJUTv4w/hqdefault.jpg"
   },
   {
     "id": "horror-modern-drama-remake",
     "portal": "horror",
-    "title": "When a comedy gets turned into a gritty modern drama",
+    "title": "They Are Turning This 90s Comedy Into a Gritty Modern Drama",
     "date": "2026-04-23",
-    "summary": "An archive entry for the darker remake trend and why nostalgia keeps getting re-skinned.",
+    "summary": "The darker remake trend is out of control, and horror fans know it better than anyone. Hollywood keeps re-skinning nostalgic comedies and family favorites into gritty modern dramas — and the result is always the same: less soul, more prestige packaging. XFD breaks down why nostalgia keeps getting corrupted.",
     "type": "archive",
-    "image": "https://i3.ytimg.com/vi/Fz0ioZ4LJ8Y/hqdefault.jpg"
+    "image": "https://i.ytimg.com/vi/Fz0ioZ4LJ8Y/hqdefault.jpg"
   }
 ]
