@@ -25,17 +25,14 @@ jobs:
       - name: Refresh social-feed.json from YouTube
         run: python scripts/build_social_feed.py
 
-      - name: Sync new YouTube videos into articles.json
-        run: python scripts/sync_articles.py
-
       - name: Commit if changed
         run: |
-          if git diff --quiet -- social-feed.json articles.json; then
+          if git diff --quiet -- social-feed.json; then
             echo "No changes to commit."
             exit 0
           fi
           git config user.name  "xfd-feed-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add social-feed.json articles.json
-          git commit -m "chore: sync YouTube feed + new article drafts"
+          git add social-feed.json
+          git commit -m "chore: sync YouTube feed"
           git push
