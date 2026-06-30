@@ -44,21 +44,21 @@ function formatDate(dateString) {
 
 function storyCard(story) {
   return `
-    <article class="story-card" id="${story.id}">
-      <img src="${story.image}" alt="">
+    <a class="story-card" id="${story.id}" href="article.html?id=${story.id}">
+      <img src="${story.image}" alt="${story.title}">
       <div>
         <span>${story.type} // ${formatDate(story.date)}</span>
         <h2>${story.title}</h2>
         <p>${story.summary}</p>
       </div>
-    </article>
+    </a>
   `;
 }
 
 function archiveItem(story) {
   return `
     <li>
-      <a href="#${story.id}">
+      <a href="article.html?id=${story.id}">
         <span>${formatDate(story.date)}</span>
         <strong>${story.title}</strong>
       </a>
@@ -122,7 +122,7 @@ async function loadStories() {
     .filter((story) => story.portal === portal)
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  const latest = portalStories.slice(0, 1);
+  const latest = portalStories;
   const archive = portalStories.slice(1);
 
   latestList.innerHTML = latest.map(storyCard).join("") || "<p>No stories yet.</p>";
