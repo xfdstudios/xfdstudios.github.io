@@ -1,0 +1,44 @@
+[
+  {
+    "id": "the-poet-hoodie",
+    "category": "apparel",
+    "title": "The Poet Hoodie",
+    "image": "assets/The%20Poet%20Hoodie.png",
+    "url": "https://www.redbubble.com/i/hoodie/The-Poet-by-Gr3at1/148883240/ng59"
+  },
+  {
+    "id": "bobby-womack-sticker",
+    "category": "stickers",
+    "title": "Bobby Womack Sticker",
+    "image": "assets/Bobby%20Womack%20Sticker.png",
+    "url": "https://www.redbubble.com/i/sticker/Bobby-Womack-Fly-Me-to-the-Moon-Retro-Cartoon-Art-Design-by-Gr3at1/173365365/7sgk"
+  },
+  {
+    "id": "i-am-a-survivor-mug",
+    "category": "home",
+    "title": "I Am a Survivor Mug",
+    "image": "assets/I%20am%20a%20survivor%20Mug.png",
+    "url": "https://www.redbubble.com/i/mug/I-Am-a-Survivor-Retro-Pink-Ribbon-Betty-Inspired-Empowerment-Design-by-Gr3at1/180654446/7yqg"
+  },
+  {
+    "id": "too-delulu-to-quit",
+    "category": "tech",
+    "title": "Too Delulu To Quit",
+    "image": "assets/Too%20Delulu%20to%20Quit.png",
+    "url": "https://www.redbubble.com/i/iphone-case/Too-Delulu-To-Quit-90s-Air-Bush-Hip-Hop-Motivational-Design-by-Gr3at1/172721726/3bp7"
+  },
+  {
+    "id": "liberty-in-red-white-blue",
+    "category": "tech",
+    "title": "Liberty in Red White Blue",
+    "image": "assets/Liberty%20in%20Red%20white%20Blue%20.png",
+    "url": "https://www.redbubble.com/i/iphone-case/Liberty-in-RED-WHITE-BLUE-Solidarity-by-Gr3at1/157392157/3bp7"
+  },
+  {
+    "id": "frankenstein-monster",
+    "category": "tech",
+    "title": "Frankenstein Monster",
+    "image": "assets/Frankenstein%20Monster.png",
+    "url": "https://www.redbubble.com/i/iphone-case/Frankenstein-Monster-by-Gr3at1/147702609/3bp7"
+  }
+]

@@ -93,59 +93,25 @@
         <div class="shop-category">
           <h3>Apparel</h3>
           <p class="design-copy">Hoodies and tees built around XFD's original character and horror-anime artwork — wearable pieces of the XenoChaos world.</p>
-          <div class="redbubble-products" aria-label="Apparel products">
-            <a class="redbubble-product" href="https://www.redbubble.com/i/hoodie/The-Poet-by-Gr3at1/148883240/ng59">
-              <img src="assets/The%20Poet%20Hoodie.png" alt="The Poet hoodie design preview" loading="lazy">
-              <span>The Poet Hoodie</span>
-              <strong>Open product</strong>
-            </a>
-          </div>
+          <div class="redbubble-products" data-category="apparel" aria-label="Apparel products"></div>
         </div>
 
         <div class="shop-category">
           <h3>Stickers</h3>
           <p class="design-copy">Retro cartoon-style sticker art celebrating music icons and pop culture legends, made for laptops, water bottles, and gear.</p>
-          <div class="redbubble-products" aria-label="Sticker products">
-            <a class="redbubble-product" href="https://www.redbubble.com/i/sticker/Bobby-Womack-Fly-Me-to-the-Moon-Retro-Cartoon-Art-Design-by-Gr3at1/173365365/7sgk">
-              <img src="assets/Bobby%20Womack%20Sticker.png" alt="Bobby Womack Fly Me to the Moon sticker design preview" loading="lazy">
-              <span>Bobby Womack Sticker</span>
-              <strong>Open product</strong>
-            </a>
-          </div>
+          <div class="redbubble-products" data-category="stickers" aria-label="Sticker products"></div>
         </div>
 
         <div class="shop-category">
           <h3>Home &amp; Living</h3>
           <p class="design-copy">Empowerment and awareness-themed art on mugs and everyday home goods, designed to carry a message.</p>
-          <div class="redbubble-products" aria-label="Home and living products">
-            <a class="redbubble-product" href="https://www.redbubble.com/i/mug/I-Am-a-Survivor-Retro-Pink-Ribbon-Betty-Inspired-Empowerment-Design-by-Gr3at1/180654446/7yqg">
-              <img src="assets/I%20am%20a%20survivor%20Mug.png" alt="I Am a Survivor mug design preview" loading="lazy">
-              <span>I Am a Survivor Mug</span>
-              <strong>Open product</strong>
-            </a>
-          </div>
+          <div class="redbubble-products" data-category="home" aria-label="Home and living products"></div>
         </div>
 
         <div class="shop-category">
           <h3>Tech Accessories</h3>
           <p class="design-copy">Phone cases featuring horror icons, retro motivational art, and bold statement graphics for everyday tech.</p>
-          <div class="redbubble-products" aria-label="Tech accessory products">
-            <a class="redbubble-product" href="https://www.redbubble.com/i/iphone-case/Too-Delulu-To-Quit-90s-Air-Bush-Hip-Hop-Motivational-Design-by-Gr3at1/172721726/3bp7">
-              <img src="assets/Too%20Delulu%20to%20Quit.png" alt="Too Delulu To Quit iPhone case design preview" loading="lazy">
-              <span>Too Delulu To Quit</span>
-              <strong>Open product</strong>
-            </a>
-            <a class="redbubble-product" href="https://www.redbubble.com/i/iphone-case/Liberty-in-RED-WHITE-BLUE-Solidarity-by-Gr3at1/157392157/3bp7">
-              <img src="assets/Liberty%20in%20Red%20white%20Blue%20.png" alt="Liberty in Red White Blue iPhone case design preview" loading="lazy">
-              <span>Liberty in Red White Blue</span>
-              <strong>Open product</strong>
-            </a>
-            <a class="redbubble-product" href="https://www.redbubble.com/i/iphone-case/Frankenstein-Monster-by-Gr3at1/147702609/3bp7">
-              <img src="assets/Frankenstein%20Monster.png" alt="Frankenstein Monster iPhone case design preview" loading="lazy">
-              <span>Frankenstein Monster</span>
-              <strong>Open product</strong>
-            </a>
-          </div>
+          <div class="redbubble-products" data-category="tech" aria-label="Tech accessory products"></div>
         </div>
       </section>
 
@@ -173,6 +139,82 @@
     </footer>
 
     <script>
+      const shopFallback = [
+        {
+          id: "the-poet-hoodie",
+          category: "apparel",
+          title: "The Poet Hoodie",
+          image: "assets/The%20Poet%20Hoodie.png",
+          url: "https://www.redbubble.com/i/hoodie/The-Poet-by-Gr3at1/148883240/ng59"
+        },
+        {
+          id: "bobby-womack-sticker",
+          category: "stickers",
+          title: "Bobby Womack Sticker",
+          image: "assets/Bobby%20Womack%20Sticker.png",
+          url: "https://www.redbubble.com/i/sticker/Bobby-Womack-Fly-Me-to-the-Moon-Retro-Cartoon-Art-Design-by-Gr3at1/173365365/7sgk"
+        },
+        {
+          id: "i-am-a-survivor-mug",
+          category: "home",
+          title: "I Am a Survivor Mug",
+          image: "assets/I%20am%20a%20survivor%20Mug.png",
+          url: "https://www.redbubble.com/i/mug/I-Am-a-Survivor-Retro-Pink-Ribbon-Betty-Inspired-Empowerment-Design-by-Gr3at1/180654446/7yqg"
+        },
+        {
+          id: "too-delulu-to-quit",
+          category: "tech",
+          title: "Too Delulu To Quit",
+          image: "assets/Too%20Delulu%20to%20Quit.png",
+          url: "https://www.redbubble.com/i/iphone-case/Too-Delulu-To-Quit-90s-Air-Bush-Hip-Hop-Motivational-Design-by-Gr3at1/172721726/3bp7"
+        },
+        {
+          id: "liberty-in-red-white-blue",
+          category: "tech",
+          title: "Liberty in Red White Blue",
+          image: "assets/Liberty%20in%20Red%20white%20Blue%20.png",
+          url: "https://www.redbubble.com/i/iphone-case/Liberty-in-RED-WHITE-BLUE-Solidarity-by-Gr3at1/157392157/3bp7"
+        },
+        {
+          id: "frankenstein-monster",
+          category: "tech",
+          title: "Frankenstein Monster",
+          image: "assets/Frankenstein%20Monster.png",
+          url: "https://www.redbubble.com/i/iphone-case/Frankenstein-Monster-by-Gr3at1/147702609/3bp7"
+        }
+      ];
+
+      function shopProductCard(product) {
+        return `
+          <a class="redbubble-product" href="${product.url}">
+            <img src="${product.image}" alt="${product.title} design preview" loading="lazy">
+            <span>${product.title}</span>
+            <strong>Open product</strong>
+          </a>
+        `;
+      }
+
+      function renderShopProducts(products) {
+        document.querySelectorAll(".redbubble-products[data-category]").forEach((container) => {
+          const category = container.dataset.category;
+          const matches = products.filter((product) => product.category === category);
+          container.innerHTML = matches.map(shopProductCard).join("");
+        });
+      }
+
+      async function fetchShopProducts() {
+        try {
+          const response = await fetch("shop-products.json");
+          if (!response.ok) throw new Error("Shop catalog unavailable");
+          const data = await response.json();
+          renderShopProducts(data);
+        } catch (error) {
+          renderShopProducts(shopFallback);
+        }
+      }
+
+      fetchShopProducts();
+
       const designVideoRail = document.querySelector("#design-video-feed");
 
       document.querySelector(".design-rail-button.prev").addEventListener("click", () => {
