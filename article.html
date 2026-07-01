@@ -237,8 +237,21 @@
         }
 
         const bodyEl = document.querySelector('#article-body');
-        const text = article.body || article.summary;
-        bodyEl.innerHTML = text.split('\n\n').map(p => `<p>${p}</p>`).join('');
+        const text = (article.body || article.summary || '').trim();
+        const escapeHtml = (s) => s
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+        // If the body uses blank-line paragraphs, split on those (single newlines
+        // inside a paragraph become <br>). If it only uses single line breaks,
+        // treat every line as its own paragraph so it doesn't render as one wall.
+        const hasBlankLines = /\n\s*\n/.test(text);
+        bodyEl.innerHTML = text
+          .split(hasBlankLines ? /\n\s*\n/ : /\n+/)
+          .map((para) => para.trim())
+          .filter(Boolean)
+          .map((para) => `<p>${escapeHtml(para).replace(/\n/g, '<br>')}</p>`)
+          .join('');
       }
 
       loadArticle();
