@@ -2,8 +2,9 @@
 
 Runs as part of the GitHub Actions workflow. Checks the YouTube RSS feed
 for new videos that don't already exist in articles.json. Adds them as
-draft entries with portal "tech" (default) so they show up in the admin
-form ready to be edited and assigned the right portal.
+draft entries with portal "all" (uncategorized) so they never auto-land
+in a hub; they show up in the admin form ready to be edited and assigned
+the right portal.
 
 The human workflow after this runs:
   1. Open xfdstudios.github.io/admin.html
@@ -75,8 +76,8 @@ def parse_youtube_entries() -> list[dict]:
         video_url = f"https://www.youtube.com/shorts/{video_id}" if is_short else url
 
         items.append({
-            "id":       "tech-" + slugify(title),   # default portal: tech — edit in admin
-            "portal":   "tech",                      # CHANGE THIS in admin.html
+            "id":       "draft-" + slugify(title),  # neutral prefix — assign hub in admin
+            "portal":   "all",                       # uncategorized — assign hub in admin.html
             "title":    title,
             "date":     date_str,
             "summary":  "",                          # ADD caption in admin.html

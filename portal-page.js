@@ -26,6 +26,13 @@ const portalInfo = {
     icon: "fa-gamepad",
     label: "Tech/Gaming",
     tagline: "Retro flags, console talk, gaming culture, and builds."
+  },
+  popculture: {
+    accent: "popculture",
+    href: "popculture.html",
+    icon: "fa-icons",
+    label: "Pop Culture",
+    tagline: "Movies, music, celebs, trends, and the moments everyone is talking about."
   }
 };
 

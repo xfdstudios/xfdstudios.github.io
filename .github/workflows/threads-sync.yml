@@ -15,8 +15,6 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    # Only run if the THREADS_TOKEN secret has been added
-    if: ${{ secrets.THREADS_TOKEN != '' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -25,9 +23,14 @@ jobs:
           python-version: "3.12"
 
       - name: Pull latest Threads posts into social-feed.json
-        run: python scripts/sync_threads.py
         env:
           THREADS_TOKEN: ${{ secrets.THREADS_TOKEN }}
+        run: |
+          if [ -z "$THREADS_TOKEN" ]; then
+            echo "THREADS_TOKEN secret not set — skipping Threads sync."
+            exit 0
+          fi
+          python scripts/sync_threads.py
 
       - name: Commit if changed
         run: |
