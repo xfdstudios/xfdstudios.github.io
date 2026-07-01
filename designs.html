@@ -66,53 +66,42 @@
           <p class="eyebrow">XenoChaos Designs // official storefront</p>
           <div class="hero-title-lockup">
             <span>XFD Design Shop</span>
-            <h1 id="design-title">Design Archive</h1>
+            <h1 id="design-title">Wear the Chaos</h1>
           </div>
           <p>
-            Apparel, stickers, phone cases, and home goods pulling from horror, anime, wrestling, and tech/gaming — plus the video design workflow behind it all.
+            Apparel, stickers, phone cases, and home goods pulling from horror, anime, wrestling, and tech/gaming — original XFD art, printed on demand.
           </p>
         </div>
         <div class="design-hero-actions">
-          <a class="button primary" href="#design-archive">Browse the shop</a>
-          <a class="button secondary redbubble-button" href="https://www.redbubble.com/people/Gr3at1/shop?asc=u">Redbubble store</a>
+          <a class="button primary" href="#shop-showcase">Browse the collection</a>
         </div>
       </section>
 
-      <section id="design-archive" class="design-terminal section-banner" aria-labelledby="archive-title">
+      <section id="shop-showcase" class="design-terminal section-banner" aria-labelledby="archive-title">
         <div class="section-heading">
           <p class="eyebrow">Initialization // secure_merch_catalog</p>
           <h2 id="archive-title">The XFD Storefront</h2>
-          <p>XenoChaos Designs is the independent art shop behind XFD — original graphics for fans of horror, anime, wrestling, tech/gaming, and pop culture, printed on demand through Redbubble.</p>
         </div>
 
-        <a class="button primary redbubble-button" href="https://www.redbubble.com/people/Gr3at1/shop?asc=u">
-          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
-          Open Redbubble Store
-        </a>
-
-        <div class="shop-category">
-          <h3>Apparel</h3>
-          <p class="design-copy">Hoodies and tees built around XFD's original character and horror-anime artwork — wearable pieces of the XenoChaos world.</p>
-          <div class="redbubble-products" data-category="apparel" aria-label="Apparel products"></div>
+        <div class="shop-filters" id="shop-filters" aria-label="Filter products by category">
+          <button class="shop-filter active" type="button" data-filter="all">All</button>
+          <button class="shop-filter" type="button" data-filter="apparel">Apparel</button>
+          <button class="shop-filter" type="button" data-filter="stickers">Stickers</button>
+          <button class="shop-filter" type="button" data-filter="home">Home &amp; Living</button>
+          <button class="shop-filter" type="button" data-filter="tech">Tech</button>
         </div>
 
-        <div class="shop-category">
-          <h3>Stickers</h3>
-          <p class="design-copy">Retro cartoon-style sticker art celebrating music icons and pop culture legends, made for laptops, water bottles, and gear.</p>
-          <div class="redbubble-products" data-category="stickers" aria-label="Sticker products"></div>
+        <div class="shop-stage">
+          <button class="shop-nav prev" id="shop-prev" type="button" aria-label="Previous product">‹</button>
+          <div class="shop-slide" id="shop-slide" aria-live="polite">
+            <p class="design-loading">Loading the collection…</p>
+          </div>
+          <button class="shop-nav next" id="shop-next" type="button" aria-label="Next product">›</button>
         </div>
 
-        <div class="shop-category">
-          <h3>Home &amp; Living</h3>
-          <p class="design-copy">Empowerment and awareness-themed art on mugs and everyday home goods, designed to carry a message.</p>
-          <div class="redbubble-products" data-category="home" aria-label="Home and living products"></div>
-        </div>
+        <div class="shop-thumbs" id="shop-thumbs" aria-label="All products"></div>
 
-        <div class="shop-category">
-          <h3>Tech Accessories</h3>
-          <p class="design-copy">Phone cases featuring horror icons, retro motivational art, and bold statement graphics for everyday tech.</p>
-          <div class="redbubble-products" data-category="tech" aria-label="Tech accessory products"></div>
-        </div>
+        <a class="shop-fullshop-link" href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" target="_blank" rel="noopener">See every design on Redbubble →</a>
       </section>
 
       <section class="design-terminal section-banner" aria-labelledby="video-design-title">
@@ -137,20 +126,6 @@
     <footer class="site-footer">
       <p>© 2026 XenoFinalDawn (XFD). All rights reserved.</p>
     </footer>
-
-    <div class="design-lightbox" id="shop-lightbox" aria-hidden="true">
-      <div class="design-lightbox-content shop-lightbox-content">
-        <button class="design-lightbox-close" id="shop-lightbox-close" type="button" aria-label="Close preview">×</button>
-        <img id="shop-lightbox-img" src="" alt="">
-        <div class="design-lightbox-info">
-          <h3 id="shop-lightbox-title"></h3>
-          <a id="shop-lightbox-link" class="button primary redbubble-button" href="#" target="_blank" rel="noopener">
-            <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
-            Open on Redbubble
-          </a>
-        </div>
-      </div>
-    </div>
 
     <script>
       const shopFallback = [
@@ -202,28 +177,121 @@
         return String(value).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
       }
 
-      function shopProductCard(product) {
-        return `
-          <button
-            class="redbubble-product"
-            type="button"
-            data-title="${escapeAttr(product.title)}"
-            data-image="${escapeAttr(product.image)}"
-            data-url="${escapeAttr(product.url)}"
-          >
-            <img src="${product.image}" alt="${escapeAttr(product.title)} design preview" loading="lazy">
-            <span>${product.title}</span>
-            <strong>View &amp; buy</strong>
-          </button>
-        `;
+      const categoryLabels = {
+        all: "All",
+        apparel: "Apparel",
+        stickers: "Stickers",
+        home: "Home & Living",
+        tech: "Tech"
+      };
+
+      const shopSlide = document.querySelector("#shop-slide");
+      const shopThumbs = document.querySelector("#shop-thumbs");
+      const shopFilters = document.querySelector("#shop-filters");
+      const shopStage = document.querySelector(".shop-stage");
+
+      let allProducts = shopFallback;
+      let activeFilter = "all";
+      let currentIndex = 0;
+      let autoTimer = null;
+
+      function visibleProducts() {
+        return activeFilter === "all"
+          ? allProducts
+          : allProducts.filter((product) => product.category === activeFilter);
       }
 
-      function renderShopProducts(products) {
-        document.querySelectorAll(".redbubble-products[data-category]").forEach((container) => {
-          const category = container.dataset.category;
-          const matches = products.filter((product) => product.category === category);
-          container.innerHTML = matches.map(shopProductCard).join("");
+      function renderSlide() {
+        const products = visibleProducts();
+        if (!products.length) {
+          shopSlide.innerHTML = `<p class="design-loading">No products in this category yet.</p>`;
+          return;
+        }
+        currentIndex = ((currentIndex % products.length) + products.length) % products.length;
+        const product = products[currentIndex];
+        shopSlide.innerHTML = `
+          <div class="shop-slide-media">
+            <img src="${escapeAttr(product.image)}" alt="${escapeAttr(product.title)} design">
+          </div>
+          <div class="shop-slide-info">
+            <span class="shop-slide-cat">${categoryLabels[product.category] || product.category}</span>
+            <h3>${product.title}</h3>
+            <a class="button primary redbubble-button" href="${escapeAttr(product.url)}" target="_blank" rel="noopener">
+              <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+              Shop on Redbubble
+            </a>
+            <span class="shop-slide-count">${currentIndex + 1} / ${products.length}</span>
+          </div>
+        `;
+        updateThumbs();
+      }
+
+      function renderThumbs() {
+        const products = visibleProducts();
+        shopThumbs.innerHTML = products
+          .map((product, index) => `
+            <button class="shop-thumb" type="button" data-index="${index}" aria-label="${escapeAttr(product.title)}">
+              <img src="${escapeAttr(product.image)}" alt="" loading="lazy">
+            </button>
+          `)
+          .join("");
+        updateThumbs();
+      }
+
+      function updateThumbs() {
+        shopThumbs.querySelectorAll(".shop-thumb").forEach((thumb, index) => {
+          thumb.classList.toggle("active", index === currentIndex);
         });
+      }
+
+      function go(delta) {
+        currentIndex += delta;
+        renderSlide();
+      }
+
+      function startAuto() {
+        stopAuto();
+        if (visibleProducts().length > 1) {
+          autoTimer = setInterval(() => go(1), 5000);
+        }
+      }
+
+      function stopAuto() {
+        if (autoTimer) clearInterval(autoTimer);
+        autoTimer = null;
+      }
+
+      document.querySelector("#shop-prev").addEventListener("click", () => { go(-1); startAuto(); });
+      document.querySelector("#shop-next").addEventListener("click", () => { go(1); startAuto(); });
+
+      shopFilters.addEventListener("click", (event) => {
+        const button = event.target.closest(".shop-filter");
+        if (!button) return;
+        activeFilter = button.dataset.filter;
+        shopFilters.querySelectorAll(".shop-filter").forEach((item) => item.classList.toggle("active", item === button));
+        currentIndex = 0;
+        renderThumbs();
+        renderSlide();
+        startAuto();
+      });
+
+      shopThumbs.addEventListener("click", (event) => {
+        const thumb = event.target.closest(".shop-thumb");
+        if (!thumb) return;
+        currentIndex = Number(thumb.dataset.index);
+        renderSlide();
+        startAuto();
+      });
+
+      shopStage.addEventListener("mouseenter", stopAuto);
+      shopStage.addEventListener("mouseleave", startAuto);
+
+      function initShop(products) {
+        allProducts = products;
+        currentIndex = 0;
+        renderThumbs();
+        renderSlide();
+        startAuto();
       }
 
       async function fetchShopProducts() {
@@ -231,48 +299,13 @@
           const response = await fetch("shop-products.json");
           if (!response.ok) throw new Error("Shop catalog unavailable");
           const data = await response.json();
-          renderShopProducts(data);
+          initShop(data);
         } catch (error) {
-          renderShopProducts(shopFallback);
+          initShop(shopFallback);
         }
       }
 
       fetchShopProducts();
-
-      const shopLightbox = document.querySelector("#shop-lightbox");
-      const shopLightboxImg = document.querySelector("#shop-lightbox-img");
-      const shopLightboxTitle = document.querySelector("#shop-lightbox-title");
-      const shopLightboxLink = document.querySelector("#shop-lightbox-link");
-
-      function openShopLightbox(product) {
-        shopLightboxImg.src = product.image;
-        shopLightboxImg.alt = `${product.title} design preview`;
-        shopLightboxTitle.textContent = product.title;
-        shopLightboxLink.href = product.url;
-        shopLightbox.setAttribute("aria-hidden", "false");
-      }
-
-      function closeShopLightbox() {
-        shopLightbox.setAttribute("aria-hidden", "true");
-        shopLightboxImg.src = "";
-      }
-
-      document.querySelector("#design-archive").addEventListener("click", (event) => {
-        const card = event.target.closest(".redbubble-product");
-        if (!card) return;
-        openShopLightbox({
-          title: card.dataset.title,
-          image: card.dataset.image,
-          url: card.dataset.url
-        });
-      });
-
-      shopLightbox.addEventListener("click", closeShopLightbox);
-      document.querySelector(".shop-lightbox-content").addEventListener("click", (event) => event.stopPropagation());
-      document.querySelector("#shop-lightbox-close").addEventListener("click", closeShopLightbox);
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") closeShopLightbox();
-      });
 
       const designVideoRail = document.querySelector("#design-video-feed");
 
