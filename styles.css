@@ -2180,7 +2180,11 @@ main {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.01)),
     rgba(8, 9, 15, 0.72);
+  color: inherit;
+  font: inherit;
+  text-align: left;
   text-decoration: none;
+  cursor: pointer;
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
@@ -2385,16 +2389,21 @@ main {
 
 .design-lightbox-content {
   position: relative;
-  max-width: min(100%, 1100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  max-width: min(100%, 900px);
   max-height: 88vh;
 }
 
 .design-lightbox img {
   max-width: 100%;
-  max-height: 82vh;
+  max-height: 68vh;
   border: 1px solid rgba(255, 49, 95, 0.45);
   border-radius: 8px;
   object-fit: contain;
+  background: #f5f5f7;
   box-shadow: 0 0 40px rgba(255, 49, 95, 0.22);
 }
 
@@ -2407,6 +2416,20 @@ main {
   color: white;
   cursor: pointer;
   font-size: 2.25rem;
+}
+
+.design-lightbox-info {
+  display: grid;
+  gap: 0.75rem;
+  justify-items: center;
+  text-align: center;
+}
+
+.design-lightbox-info h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: white;
+  text-transform: uppercase;
 }
 
 .portal-hero {

@@ -138,6 +138,20 @@
       <p>© 2026 XenoFinalDawn (XFD). All rights reserved.</p>
     </footer>
 
+    <div class="design-lightbox" id="shop-lightbox" aria-hidden="true">
+      <div class="design-lightbox-content shop-lightbox-content">
+        <button class="design-lightbox-close" id="shop-lightbox-close" type="button" aria-label="Close preview">×</button>
+        <img id="shop-lightbox-img" src="" alt="">
+        <div class="design-lightbox-info">
+          <h3 id="shop-lightbox-title"></h3>
+          <a id="shop-lightbox-link" class="button primary redbubble-button" href="#" target="_blank" rel="noopener">
+            <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+            Open on Redbubble
+          </a>
+        </div>
+      </div>
+    </div>
+
     <script>
       const shopFallback = [
         {
@@ -184,13 +198,23 @@
         }
       ];
 
+      function escapeAttr(value) {
+        return String(value).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+      }
+
       function shopProductCard(product) {
         return `
-          <a class="redbubble-product" href="${product.url}">
-            <img src="${product.image}" alt="${product.title} design preview" loading="lazy">
+          <button
+            class="redbubble-product"
+            type="button"
+            data-title="${escapeAttr(product.title)}"
+            data-image="${escapeAttr(product.image)}"
+            data-url="${escapeAttr(product.url)}"
+          >
+            <img src="${product.image}" alt="${escapeAttr(product.title)} design preview" loading="lazy">
             <span>${product.title}</span>
-            <strong>Open product</strong>
-          </a>
+            <strong>View &amp; buy</strong>
+          </button>
         `;
       }
 
@@ -214,6 +238,41 @@
       }
 
       fetchShopProducts();
+
+      const shopLightbox = document.querySelector("#shop-lightbox");
+      const shopLightboxImg = document.querySelector("#shop-lightbox-img");
+      const shopLightboxTitle = document.querySelector("#shop-lightbox-title");
+      const shopLightboxLink = document.querySelector("#shop-lightbox-link");
+
+      function openShopLightbox(product) {
+        shopLightboxImg.src = product.image;
+        shopLightboxImg.alt = `${product.title} design preview`;
+        shopLightboxTitle.textContent = product.title;
+        shopLightboxLink.href = product.url;
+        shopLightbox.setAttribute("aria-hidden", "false");
+      }
+
+      function closeShopLightbox() {
+        shopLightbox.setAttribute("aria-hidden", "true");
+        shopLightboxImg.src = "";
+      }
+
+      document.querySelector("#design-archive").addEventListener("click", (event) => {
+        const card = event.target.closest(".redbubble-product");
+        if (!card) return;
+        openShopLightbox({
+          title: card.dataset.title,
+          image: card.dataset.image,
+          url: card.dataset.url
+        });
+      });
+
+      shopLightbox.addEventListener("click", closeShopLightbox);
+      document.querySelector(".shop-lightbox-content").addEventListener("click", (event) => event.stopPropagation());
+      document.querySelector("#shop-lightbox-close").addEventListener("click", closeShopLightbox);
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeShopLightbox();
+      });
 
       const designVideoRail = document.querySelector("#design-video-feed");
 
