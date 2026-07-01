@@ -788,6 +788,13 @@ main {
   text-transform: uppercase;
 }
 
+.section-heading > p:not(.eyebrow) {
+  max-width: 640px;
+  margin: 0.6rem 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 .channel-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
@@ -2137,9 +2144,30 @@ main {
 
 .redbubble-products {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1rem;
   margin-top: 1rem;
+}
+
+.shop-category {
+  margin-top: 2.25rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.shop-category:first-of-type {
+  margin-top: 1.75rem;
+}
+
+.shop-category h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.shop-category .design-copy {
+  margin-bottom: 0;
 }
 
 .redbubble-product {

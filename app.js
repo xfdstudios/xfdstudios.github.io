@@ -60,8 +60,32 @@ const searchInput = document.querySelector("#portal-search");
 const filterControls = document.querySelector(".filter-controls");
 const filterLinks = Array.from(document.querySelectorAll("[data-filter-link]"));
 const emptyState = document.querySelector("#empty-state");
+const ideaGrid = document.querySelector("#idea-grid");
 let socialFeed = fallbackFeed;
+let articles = [];
 let activeFilter = "all";
+
+const hubOrder = ["horror", "anime", "wrestling", "tech", "popculture"];
+
+const hubInfo = {
+  horror: { label: "Horror", icon: "fa-skull" },
+  anime: { label: "Anime", icon: "fa-eye" },
+  wrestling: { label: "Wrestling", icon: "fa-trophy" },
+  tech: { label: "Tech/Gaming", icon: "fa-gamepad" },
+  popculture: { label: "Pop Culture", icon: "fa-icons" }
+};
+
+function getVideoId(url) {
+  if (!url) return null;
+  const parts = url.split("/");
+  return parts[parts.length - 1].split("?")[0];
+}
+
+function teaser(text, maxLength = 180) {
+  if (!text) return "";
+  if (text.length <= maxLength) return text;
+  return text.slice(0, maxLength).replace(/\s+\S*$/, "") + "…";
+}
 
 const platformOrder = [
   "youtube",
@@ -177,6 +201,74 @@ function updateDiscover() {
     if (title) title.textContent = latestVideo.title;
     if (meta) meta.textContent = `Latest upload // ${latestVideo.date}`;
   }
+
+  updateFeaturedDrop(latestVideo);
+}
+
+function updateFeaturedDrop(latestVideo) {
+  const blurb = document.querySelector("#featured-drop-blurb");
+  if (!blurb) return;
+
+  const videoId = getVideoId(latestVideo.url);
+  const matchedArticle = articles.find((article) => {
+    if (article._draft || !(article.summary || article.body)) return false;
+    return article.videoUrl && getVideoId(article.videoUrl) === videoId;
+  });
+
+  if (matchedArticle) {
+    blurb.textContent = matchedArticle.summary || teaser(matchedArticle.body, 320);
+  } else {
+    blurb.textContent =
+      `New from XFD: "${latestVideo.title}." Catch the full watch, then dig into Horror, Anime, ` +
+      `Wrestling, Tech/Gaming, or Pop Culture for the write-ups behind it.`;
+  }
+}
+
+function ideaCard(portal, article) {
+  const info = hubInfo[portal];
+  return `
+    <a class="channel-card ${portal}" href="article.html?id=${article.id}">
+      <span>// ${article.type || "entry"}: ${article.date}</span>
+      <div class="channel-icon" aria-hidden="true"><i class="fa-solid ${info.icon}"></i></div>
+      <h3>${article.title}</h3>
+      <p>${teaser(article.summary || article.body)}</p>
+      <b>Read more</b>
+    </a>
+  `;
+}
+
+function renderIdeaGrid() {
+  if (!ideaGrid) return;
+
+  const cards = hubOrder
+    .map((portal) => {
+      const latest = articles
+        .filter((a) => a.portal === portal && !a._draft && (a.summary || a.body))
+        .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+      return latest ? ideaCard(portal, latest) : "";
+    })
+    .filter(Boolean);
+
+  if (cards.length) {
+    ideaGrid.innerHTML = cards.join("");
+  }
+}
+
+async function loadArticles() {
+  try {
+    const response = await fetch("articles.json");
+    if (!response.ok) throw new Error("Articles unavailable");
+    articles = await response.json();
+  } catch (error) {
+    articles = [];
+  }
+
+  renderIdeaGrid();
+  updateFeaturedDrop(
+    socialFeed.find((item) => item.platform === "youtube") ||
+      socialFeed.find((item) => item.type === "video") ||
+      socialFeed[0]
+  );
 }
 
 async function loadSocialFeed() {
@@ -221,3 +313,4 @@ document.querySelector(".rail-button.next").addEventListener("click", () => {
 searchInput.addEventListener("input", renderFeed);
 
 loadSocialFeed();
+loadArticles();
