@@ -127,6 +127,20 @@
       <p>© 2026 XenoFinalDawn (XFD). All rights reserved.</p>
     </footer>
 
+    <div class="design-lightbox" id="shop-lightbox" aria-hidden="true">
+      <div class="design-lightbox-content">
+        <button class="design-lightbox-close" id="shop-lightbox-close" type="button" aria-label="Close preview">×</button>
+        <img id="shop-lightbox-img" src="" alt="">
+        <div class="design-lightbox-info">
+          <h3 id="shop-lightbox-title"></h3>
+          <a id="shop-lightbox-link" class="button primary redbubble-button" href="#" target="_blank" rel="noopener">
+            <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+            Shop on Redbubble
+          </a>
+        </div>
+      </div>
+    </div>
+
     <script>
       const shopFallback = [
         {
@@ -194,6 +208,7 @@
       let activeFilter = "all";
       let currentIndex = 0;
       let autoTimer = null;
+      let currentProduct = null;
 
       function visibleProducts() {
         return activeFilter === "all"
@@ -209,10 +224,12 @@
         }
         currentIndex = ((currentIndex % products.length) + products.length) % products.length;
         const product = products[currentIndex];
+        currentProduct = product;
         shopSlide.innerHTML = `
-          <div class="shop-slide-media">
+          <button class="shop-slide-media" type="button" aria-label="Enlarge ${escapeAttr(product.title)}">
             <img src="${escapeAttr(product.image)}" alt="${escapeAttr(product.title)} design">
-          </div>
+            <span class="shop-zoom-hint" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+          </button>
           <div class="shop-slide-info">
             <span class="shop-slide-cat">${categoryLabels[product.category] || product.category}</span>
             <h3>${product.title}</h3>
@@ -285,6 +302,37 @@
 
       shopStage.addEventListener("mouseenter", stopAuto);
       shopStage.addEventListener("mouseleave", startAuto);
+
+      const shopLightbox = document.querySelector("#shop-lightbox");
+      const shopLightboxImg = document.querySelector("#shop-lightbox-img");
+      const shopLightboxTitle = document.querySelector("#shop-lightbox-title");
+      const shopLightboxLink = document.querySelector("#shop-lightbox-link");
+
+      function openLightbox(product) {
+        if (!product) return;
+        stopAuto();
+        shopLightboxImg.src = product.image;
+        shopLightboxImg.alt = `${product.title} design`;
+        shopLightboxTitle.textContent = product.title;
+        shopLightboxLink.href = product.url;
+        shopLightbox.setAttribute("aria-hidden", "false");
+      }
+
+      function closeLightbox() {
+        shopLightbox.setAttribute("aria-hidden", "true");
+        shopLightboxImg.src = "";
+        startAuto();
+      }
+
+      shopSlide.addEventListener("click", (event) => {
+        if (event.target.closest(".shop-slide-media")) openLightbox(currentProduct);
+      });
+      shopLightbox.addEventListener("click", closeLightbox);
+      document.querySelector("#shop-lightbox .design-lightbox-content").addEventListener("click", (event) => event.stopPropagation());
+      document.querySelector("#shop-lightbox-close").addEventListener("click", closeLightbox);
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeLightbox();
+      });
 
       function initShop(products) {
         allProducts = products;
