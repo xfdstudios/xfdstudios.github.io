@@ -20,6 +20,20 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
     <link rel="stylesheet" href="styles.css">
+
+    <!-- ============================================================
+         UPDATE ME: featured video
+         Set videoId to pin a specific video in the Now Playing hero
+         (e.g. "lWev0Kb54nc"). Leave all three as "" to automatically
+         feature the newest YouTube upload from the feed.
+         ============================================================ -->
+    <script>
+      window.XFD_FEATURED = {
+        videoId: "",
+        title: "",
+        url: ""
+      };
+    </script>
   </head>
   <body class="page-news">
     <header class="site-header">
@@ -48,6 +62,10 @@
           <a href="https://www.instagram.com/xenofinaldawn/" aria-label="Instagram">
             <i class="fa-brands fa-instagram" aria-hidden="true"></i>
           </a>
+          <a href="https://www.threads.com/@xenofinaldawn" aria-label="XFD Studios on Threads">
+            <i class="fa-brands fa-threads" aria-hidden="true"></i>
+          </a>
+          <!-- UPDATE ME: swap Redbubble URL for Fourthwall store URL when live -->
           <a href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" aria-label="Shop">
             <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
           </a>
@@ -61,6 +79,7 @@
     </header>
 
     <main>
+      <!-- ── 2.1 NOW PLAYING ─────────────────────────────────────── -->
       <section class="hero" aria-labelledby="hero-title">
         <div
           class="hero-banner"
@@ -69,9 +88,9 @@
           <div class="hero-copy terminal-panel">
             <div class="signal-mark" aria-hidden="true">
               <img src="assets/NEW%20LOGO.png" alt="">
-              <span>discover feed</span>
+              <span>One portal. Infinite possibilities.</span>
             </div>
-            <p class="eyebrow">Discover // Latest signals</p>
+            <p class="eyebrow">Now playing // featured transmission</p>
             <div class="hero-title-lockup">
               <span>XenoFinalDawn</span>
               <h1 id="hero-title">Latest from XFD</h1>
@@ -79,123 +98,153 @@
             <p id="featured-drop-blurb">
               Videos, news, designs, shop drops, and portal updates from across the XenoFinalDawn network.
             </p>
-            <div class="discover-feed" aria-label="Latest portal activity">
-              <a href="#transmissions">
-                <span>Latest video</span>
-                <strong>Jade Cargill Was Fighting for Her Life Mid-Match</strong>
-              </a>
-              <a href="designs.html">
-                <span>Design drop</span>
-                <strong>Browse XFD shirts, stickers, and gear</strong>
-              </a>
-              <a href="#channels-title">
-                <span>Portal update</span>
-                <strong>Choose Horror, Anime, Wrestling, Tech/Gaming, or Pop Culture</strong>
+            <div class="hero-actions">
+              <a class="button primary" id="featured-watch-link" href="https://www.youtube.com/@Xenofinaldawn">
+                <i class="fa-solid fa-play" aria-hidden="true"></i>
+                Watch now
               </a>
             </div>
-            <div class="hero-actions">
-              <a class="button primary" href="#transmissions">Explore social feed</a>
+            <div class="discover-feed" id="recent-strip" aria-label="Recent from XFD">
+              <a href="#feed">
+                <span>Recent</span>
+                <strong>Loading the latest transmissions…</strong>
+              </a>
             </div>
           </div>
 
-          <a class="latest-video-panel" href="https://www.youtube.com/shorts/e7mKx7nxLw0" aria-label="Watch latest video on YouTube">
-            <span class="tag">Latest video</span>
+          <a class="latest-video-panel" href="https://www.youtube.com/@Xenofinaldawn" aria-label="Watch the featured video on YouTube">
+            <span class="tag">Now playing</span>
             <span class="play-mark"><i class="fa-solid fa-play" aria-hidden="true"></i></span>
             <span class="latest-video-copy">
-              <strong>Jade Cargill Was Fighting for Her Life Mid-Match</strong>
-              <small>Latest upload // Jun 14, 2026</small>
+              <strong>Latest from XFD</strong>
+              <small>Featured transmission</small>
             </span>
           </a>
         </div>
       </section>
 
-      <section class="channels section-banner portal-banner" aria-labelledby="ideas-title">
+      <!-- ── 2.2 CHARACTER SELECT ────────────────────────────────── -->
+      <section class="channels section-banner portal-banner" aria-labelledby="select-title">
         <div class="section-heading">
-          <p class="eyebrow">Fresh writing // across every world</p>
-          <h2 id="ideas-title">Latest ideas from XFD</h2>
-          <p>Every idea and interest I write about lives here first — horror, anime, wrestling, tech/gaming, and pop culture, all in one place.</p>
+          <p class="eyebrow">Select your world // press start</p>
+          <h2 id="select-title">Choose a portal</h2>
+          <p>Pick a world to filter the feed below — or step through to its full portal page.</p>
         </div>
 
-        <div class="channel-grid" id="idea-grid"></div>
-      </section>
-
-      <section class="channels section-banner portal-banner" aria-labelledby="channels-title">
-        <div class="section-heading">
-          <p class="eyebrow">News & updates</p>
-          <h2 id="channels-title">Choose a portal</h2>
-        </div>
-
-        <div class="channel-grid">
-          <a class="channel-card horror" href="horror.html">
+        <div class="channel-grid" id="portal-select">
+          <div class="channel-card horror" data-select="horror" tabindex="0" role="button" aria-pressed="false">
             <span>// subject: evil_dead_lore</span>
             <div class="channel-icon" aria-hidden="true"><i class="fa-solid fa-skull"></i></div>
             <h3>Horror</h3>
             <p>Unknown signals, genre history, and practical effects love.</p>
-            <b>Open portal</b>
-          </a>
-          <a class="channel-card anime" href="anime.html">
+            <a class="portal-enter" href="horror.html">Enter portal →</a>
+          </div>
+          <div class="channel-card anime" data-select="anime" tabindex="0" role="button" aria-pressed="false">
             <span>// edit_workflow: final_cut_pro</span>
             <div class="channel-icon" aria-hidden="true"><i class="fa-solid fa-eye"></i></div>
-            <h3>Anime</h3>
+            <h3>Anime &amp; Manga</h3>
             <p>Final bosses, power scaling, edits, and visual fire.</p>
-            <b>Open portal</b>
-          </a>
-          <a class="channel-card wrestling" href="wrestling.html">
+            <a class="portal-enter" href="anime.html">Enter portal →</a>
+          </div>
+          <div class="channel-card wrestling" data-select="wrestling" tabindex="0" role="button" aria-pressed="false">
             <span>// update: wwe_aew_news</span>
             <div class="channel-icon" aria-hidden="true"><i class="fa-solid fa-trophy"></i></div>
             <h3>Wrestling</h3>
             <p>Match energy, roster moments, and ringside commentary.</p>
-            <b>Open portal</b>
-          </a>
-          <a class="channel-card tech" href="tech-gaming.html">
+            <a class="portal-enter" href="wrestling.html">Enter portal →</a>
+          </div>
+          <div class="channel-card tech" data-select="tech" tabindex="0" role="button" aria-pressed="false">
             <span>// system: home_lab_status</span>
             <div class="channel-icon" aria-hidden="true"><i class="fa-solid fa-gamepad"></i></div>
-            <h3>Tech/Gaming</h3>
+            <h3>Gaming &amp; Tech</h3>
             <p>Retro flags, console talk, gaming culture, and builds.</p>
-            <b>Open portal</b>
-          </a>
-          <a class="channel-card popculture" href="popculture.html">
+            <a class="portal-enter" href="tech-gaming.html">Enter portal →</a>
+          </div>
+          <div class="channel-card popculture" data-select="popculture" tabindex="0" role="button" aria-pressed="false">
             <span>// trending: pop_culture_radar</span>
             <div class="channel-icon" aria-hidden="true"><i class="fa-solid fa-icons"></i></div>
             <h3>Pop Culture</h3>
             <p>Movies, music, celebs, trends, and what everyone is talking about.</p>
-            <b>Open portal</b>
-          </a>
+            <a class="portal-enter" href="popculture.html">Enter portal →</a>
+          </div>
         </div>
       </section>
 
-      <section id="transmissions" class="transmissions section-banner uploads-banner" aria-labelledby="transmissions-title">
+      <!-- ── 2.3 THE FEED ────────────────────────────────────────── -->
+      <section id="feed" class="transmissions section-banner uploads-banner" aria-labelledby="feed-title">
         <div class="section-heading row">
           <div>
-            <p class="eyebrow">Social hub</p>
-            <h2 id="transmissions-title">Social feed</h2>
+            <p class="eyebrow">The feed // every world, one stream</p>
+            <h2 id="feed-title">The Feed</h2>
           </div>
-          <div class="filter-controls" aria-label="Filter transmissions">
-            <button type="button" class="active" data-filter="all">All</button>
-            <button type="button" data-filter="youtube">YouTube</button>
-            <button type="button" data-filter="tiktok">TikTok</button>
-            <button type="button" data-filter="instagram">Instagram</button>
-            <button type="button" data-filter="facebook">Facebook</button>
-            <button type="button" data-filter="threads">Threads</button>
+          <div class="filter-controls" aria-label="Filter the feed by world">
+            <button type="button" class="active" data-filter="all">All / Latest</button>
+            <button type="button" data-filter="horror">Horror</button>
+            <button type="button" data-filter="anime">Anime &amp; Manga</button>
+            <button type="button" data-filter="wrestling">Wrestling</button>
+            <button type="button" data-filter="tech">Gaming &amp; Tech</button>
+            <button type="button" data-filter="popculture">Pop Culture</button>
           </div>
         </div>
 
-        <div class="rail-wrap">
-          <button class="rail-button prev" type="button" aria-label="Scroll videos left">‹</button>
-          <div id="video-rail" class="video-rail" tabindex="0" aria-live="polite"></div>
-          <button class="rail-button next" type="button" aria-label="Scroll videos right">›</button>
-        </div>
+        <div class="feed-grid" id="feed-grid" aria-live="polite"></div>
 
-        <p id="empty-state" class="empty-state" hidden>No matching social posts found.</p>
+        <p id="empty-state" class="empty-state" hidden>No matching transmissions found.</p>
       </section>
 
-      <section class="cta-band" aria-labelledby="cta-title">
-        <div>
-          <p class="eyebrow">Shop // design archive</p>
-          <h2 id="cta-title">Artwork, shirts, stickers, and XFD gear.</h2>
-          <p>This is where your shop lives on the portal: a direct jump from the latest XFD content into your Redbubble designs and merch drops.</p>
+      <!-- ── 2.4 TRANSMISSION LOG (patch notes) ──────────────────── -->
+      <section class="section-banner transmission-log" aria-labelledby="log-title">
+        <div class="section-heading">
+          <p class="eyebrow">Patch notes // system updates</p>
+          <h2 id="log-title">Transmission Log</h2>
         </div>
-        <a class="button primary" href="https://www.redbubble.com/people/Gr3at1/shop?asc=u">Open shop</a>
+
+        <!-- UPDATE ME: patch notes — copy an <li> below, change the date + text, done. -->
+        <ul class="patch-notes">
+          <li>
+            <time datetime="2026-07-02">2026-07-02</time>
+            <span>Pop Culture portal restocked — recovered tributes and nostalgia pieces are back online.</span>
+            <a href="popculture.html">View portal →</a>
+          </li>
+          <li>
+            <time datetime="2026-07-02">2026-07-02</time>
+            <span>The XFD Shop gets its new home on the portal — store migration in progress.</span>
+            <a href="#shop">Visit the shelf →</a>
+          </li>
+          <li>
+            <time datetime="2026-07-01">2026-07-01</time>
+            <span>New drop: “Before Dandadan, There Was Abenobashi” — video + article live in Anime &amp; Manga.</span>
+            <a href="article.html?id=anime-before-dandadan-there-was-abenobashi-remembering-animes-forg">Read it →</a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ── 2.5 SHOP SHELF ──────────────────────────────────────── -->
+      <section id="shop" class="cta-band shop-shelf" aria-labelledby="shop-title">
+        <div class="shop-shelf-copy">
+          <p class="eyebrow">Shop // official gear</p>
+          <h2 id="shop-title">The XFD Shop</h2>
+          <p>Shirts, stickers, and original XFD gear — straight from the portal. New drops land here first.</p>
+          <!-- UPDATE ME: swap Redbubble URL for Fourthwall store URL when live -->
+          <a class="button primary" href="https://www.redbubble.com/people/Gr3at1/shop?asc=u">Visit the shop</a>
+        </div>
+        <div class="shop-shelf-items" aria-label="Featured products">
+          <!-- UPDATE ME: swap Redbubble URL for Fourthwall store URL when live -->
+          <a class="shop-shelf-item" href="https://www.redbubble.com/i/hoodie/The-Poet-by-Gr3at1/148883240/ng59">
+            <img src="assets/The%20Poet%20Hoodie.png" alt="The Poet hoodie" loading="lazy">
+            <span>The Poet Hoodie</span>
+          </a>
+          <!-- UPDATE ME: swap Redbubble URL for Fourthwall store URL when live -->
+          <a class="shop-shelf-item" href="https://www.redbubble.com/i/sticker/Bobby-Womack-Fly-Me-to-the-Moon-Retro-Cartoon-Art-Design-by-Gr3at1/173365365/7sgk">
+            <img src="assets/Bobby%20Womack%20Sticker.png" alt="Bobby Womack sticker" loading="lazy">
+            <span>Bobby Womack Sticker</span>
+          </a>
+          <!-- UPDATE ME: swap Redbubble URL for Fourthwall store URL when live -->
+          <a class="shop-shelf-item" href="https://www.redbubble.com/i/iphone-case/Frankenstein-Monster-by-Gr3at1/147702609/3bp7">
+            <img src="assets/Frankenstein%20Monster.png" alt="Frankenstein Monster phone case" loading="lazy">
+            <span>Frankenstein Monster</span>
+          </a>
+        </div>
       </section>
     </main>
 
@@ -203,6 +252,6 @@
       <p>© 2026 XenoFinalDawn (XFD). All rights reserved.</p>
     </footer>
 
-    <script src="app.js?v=hero-feed-2"></script>
+    <script src="app.js?v=one-feed-1"></script>
   </body>
 </html>

@@ -10,7 +10,7 @@ const portalInfo = {
     accent: "anime",
     href: "anime.html",
     icon: "fa-eye",
-    label: "Anime",
+    label: "Anime & Manga",
     tagline: "Final bosses, power scaling, edits, and visual fire."
   },
   wrestling: {
@@ -24,7 +24,7 @@ const portalInfo = {
     accent: "tech",
     href: "tech-gaming.html",
     icon: "fa-gamepad",
-    label: "Tech/Gaming",
+    label: "Gaming & Tech",
     tagline: "Retro flags, console talk, gaming culture, and builds."
   },
   popculture: {

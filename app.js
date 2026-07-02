@@ -1,13 +1,9 @@
+/* XFD homepage: Now Playing hero, character-select portal filter, unified feed.
+   The feed merges articles.json (internal write-ups) with social-feed.json
+   (platform posts), deduped by YouTube video id. Filtering is plain JS and
+   degrades gracefully: portal cards keep real "Enter portal" links. */
+
 const fallbackFeed = [
-  {
-    title: "Jade Cargill Was Fighting for Her Life Mid-Match",
-    date: "Jun 14, 2026",
-    platform: "youtube",
-    portal: "wrestling",
-    type: "video",
-    url: "https://www.youtube.com/shorts/e7mKx7nxLw0",
-    thumbnail: "https://i2.ytimg.com/vi/e7mKx7nxLw0/hqdefault.jpg"
-  },
   {
     title: "XFD Weekly Finale Boss: Round 001",
     date: "Jun 9, 2026",
@@ -27,15 +23,6 @@ const fallbackFeed = [
     thumbnail: "https://i1.ytimg.com/vi/lI6RkRICVBc/hqdefault.jpg"
   },
   {
-    title: "Ringside reaction: chaos, timing, and the finish",
-    date: "Jun 12, 2026",
-    platform: "instagram",
-    portal: "wrestling",
-    type: "photo",
-    url: "https://www.instagram.com/xenofinaldawn/",
-    thumbnail: "https://i3.ytimg.com/vi/VKSfvJUTv4w/hqdefault.jpg"
-  },
-  {
     title: "Horror watchlist update from the XFD zone",
     date: "Jun 8, 2026",
     platform: "facebook",
@@ -43,108 +30,109 @@ const fallbackFeed = [
     type: "post",
     url: "https://www.facebook.com/XFDTV/",
     thumbnail: "https://i4.ytimg.com/vi/wooEz2_Gn-U/hqdefault.jpg"
-  },
-  {
-    title: "Before gaming got scammed",
-    date: "May 16, 2026",
-    platform: "threads",
-    portal: "tech",
-    type: "thread",
-    url: "https://www.threads.com/@xenofinaldawn",
-    thumbnail: "https://i2.ytimg.com/vi/UY0bomzPkU8/hqdefault.jpg"
   }
 ];
 
-const rail = document.querySelector("#video-rail");
+const feedGrid = document.querySelector("#feed-grid");
 const searchInput = document.querySelector("#portal-search");
 const filterControls = document.querySelector(".filter-controls");
-const filterLinks = Array.from(document.querySelectorAll("[data-filter-link]"));
+const portalSelect = document.querySelector("#portal-select");
+const recentStrip = document.querySelector("#recent-strip");
 const emptyState = document.querySelector("#empty-state");
-const ideaGrid = document.querySelector("#idea-grid");
+
 let socialFeed = fallbackFeed;
 let articles = [];
+let feedItems = [];
 let activeFilter = "all";
 
-const hubOrder = ["horror", "anime", "wrestling", "tech", "popculture"];
-
-const hubInfo = {
-  horror: { label: "Horror", icon: "fa-skull" },
-  anime: { label: "Anime", icon: "fa-eye" },
-  wrestling: { label: "Wrestling", icon: "fa-trophy" },
-  tech: { label: "Tech/Gaming", icon: "fa-gamepad" },
-  popculture: { label: "Pop Culture", icon: "fa-icons" }
+const categoryLabels = {
+  all: "All",
+  horror: "Horror",
+  anime: "Anime & Manga",
+  wrestling: "Wrestling",
+  tech: "Gaming & Tech",
+  popculture: "Pop Culture"
 };
+
+const platformLabels = {
+  youtube: "YouTube",
+  tiktok: "TikTok",
+  instagram: "Instagram",
+  facebook: "Facebook",
+  threads: "Threads",
+  discord: "Discord",
+  fourthwall: "Fourthwall",
+  pinterest: "Pinterest"
+};
+
+function label(value) {
+  return categoryLabels[value] || platformLabels[value] || value;
+}
 
 function getVideoId(url) {
   if (!url) return null;
-  const parts = url.split("/");
-  return parts[parts.length - 1].split("?")[0];
+  const m = String(url).match(/(?:shorts\/|v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
 }
 
-function teaser(text, maxLength = 180) {
-  if (!text) return "";
-  if (text.length <= maxLength) return text;
-  return text.slice(0, maxLength).replace(/\s+\S*$/, "") + "…";
+function parseWhen(value) {
+  const t = Date.parse(value);
+  return Number.isNaN(t) ? 0 : t;
 }
 
-const platformOrder = [
-  "youtube",
-  "tiktok",
-  "instagram",
-  "facebook",
-  "threads",
-  "discord",
-  "fourthwall",
-  "pinterest"
-];
-
-function label(value) {
-  const labels = {
-    discord: "Discord",
-    facebook: "Facebook",
-    fourthwall: "Fourthwall",
-    instagram: "Instagram",
-    pinterest: "Pinterest",
-    tech: "Tech/Gaming",
-    threads: "Threads",
-    tiktok: "TikTok",
-    wrestling: "Wrestling",
-    youtube: "YouTube"
-  };
-  return labels[value] || value;
+function displayDate(value) {
+  const t = parseWhen(value);
+  if (!t) return value || "";
+  return new Date(t).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
-function filterButtons() {
-  return Array.from(document.querySelectorAll("[data-filter]"));
+/* Build one unified list: articles first (richer, internal links), then any
+   social posts whose video isn't already covered by an article. */
+function buildFeedItems() {
+  const articleVideoIds = new Set(
+    articles.map((a) => getVideoId(a.videoUrl)).filter(Boolean)
+  );
+
+  const articleItems = articles.map((a) => ({
+    kind: "article",
+    category: a.portal,
+    tag: label(a.portal),
+    meta: a.type || "article",
+    title: a.title,
+    date: a.date,
+    image: a.image || "assets/NEW%20LOGO.png",
+    url: `article.html?id=${a.id}`
+  }));
+
+  const socialItems = socialFeed
+    .filter((item) => !articleVideoIds.has(getVideoId(item.url)))
+    .map((item) => ({
+      kind: "social",
+      category: item.portal || "all",
+      tag: platformLabels[item.platform] || item.platform,
+      meta: item.type || "post",
+      title: item.title,
+      date: item.date,
+      image: item.thumbnail || "assets/NEW%20LOGO.png",
+      url: item.url
+    }));
+
+  feedItems = articleItems.concat(socialItems).sort((a, b) => parseWhen(b.date) - parseWhen(a.date));
 }
 
-function syncPlatformFilters() {
-  const availablePlatforms = new Set(socialFeed.map((item) => item.platform));
-  const existingFilters = new Set(filterButtons().map((button) => button.dataset.filter));
-
-  platformOrder.forEach((platform) => {
-    if (!availablePlatforms.has(platform) || existingFilters.has(platform)) return;
-    const button = document.createElement("button");
-    button.type = "button";
-    button.dataset.filter = platform;
-    button.textContent = label(platform);
-    filterControls.append(button);
-  });
-}
-
-function socialCard(item) {
+function feedCard(item) {
   return `
-    <article class="media-card" data-category="${item.portal}" data-platform="${item.platform}">
-      <span class="tag">${label(item.platform)}</span>
+    <article class="media-card" data-category="${item.category}">
+      <span class="tag">${item.tag}</span>
       <a href="${item.url}">
-        <img src="${item.thumbnail}" alt="${item.title} thumbnail">
+        <img src="${item.image}" alt="${item.title} thumbnail" loading="lazy">
         <div class="content">
           <div class="meta-line">
-            <span>${label(item.portal)}</span>
-            <span>${item.type}</span>
+            <span>${label(item.category)}</span>
+            <span>${item.meta}</span>
           </div>
           <h3>${item.title}</h3>
-          <p>${item.date}</p>
+          <p>${displayDate(item.date)}</p>
         </div>
       </a>
     </article>
@@ -152,126 +140,120 @@ function socialCard(item) {
 }
 
 function renderFeed() {
-  const query = searchInput.value.trim().toLowerCase();
-  const filtered = socialFeed.filter((item) => {
-    const matchesFilter = activeFilter === "all" || item.platform === activeFilter;
-    const searchable = `${item.title} ${item.platform} ${item.portal} ${item.type} ${item.date}`.toLowerCase();
+  if (!feedGrid) return;
+  const query = (searchInput ? searchInput.value : "").trim().toLowerCase();
+  const filtered = feedItems.filter((item) => {
+    const matchesFilter = activeFilter === "all" || item.category === activeFilter;
+    const searchable = `${item.title} ${item.category} ${item.tag} ${item.meta} ${item.date}`.toLowerCase();
     return matchesFilter && searchable.includes(query);
   });
 
-  rail.innerHTML = filtered.map(socialCard).join("");
-  emptyState.hidden = filtered.length > 0;
+  feedGrid.innerHTML = filtered.map(feedCard).join("");
+  if (emptyState) emptyState.hidden = filtered.length > 0;
 }
 
-function updateDiscover() {
-  const latestVideo =
+function setFilter(filter) {
+  activeFilter = filter;
+  document.querySelectorAll(".filter-controls [data-filter]").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.filter === filter);
+  });
+  if (portalSelect) {
+    portalSelect.querySelectorAll(".channel-card").forEach((card) => {
+      const selected = card.dataset.select === filter;
+      card.classList.toggle("selected", selected);
+      card.setAttribute("aria-pressed", String(selected));
+    });
+  }
+  renderFeed();
+}
+
+/* ── Now Playing hero ─────────────────────────────────────────── */
+
+function resolveFeatured() {
+  const cfg = window.XFD_FEATURED || {};
+  const newest =
     socialFeed.find((item) => item.platform === "youtube") ||
     socialFeed.find((item) => item.type === "video") ||
     socialFeed[0];
-  const latestDesign = socialFeed.find((item) => item.type === "design");
-  const discoverItems = Array.from(document.querySelectorAll(".discover-feed a"));
 
-  if (latestVideo && discoverItems[0]) {
-    discoverItems[0].href = latestVideo.url;
-    discoverItems[0].querySelector("strong").textContent = latestVideo.title;
+  if (cfg.videoId) {
+    return {
+      title: cfg.title || (newest && newest.title) || "Latest from XFD",
+      url: cfg.url || `https://www.youtube.com/watch?v=${cfg.videoId}`,
+      date: "",
+      thumbnail: `https://i.ytimg.com/vi/${cfg.videoId}/hqdefault.jpg`,
+      heroImage: `https://i.ytimg.com/vi/${cfg.videoId}/maxresdefault.jpg`
+    };
   }
+  if (!newest) return null;
+  return {
+    title: newest.title,
+    url: newest.url,
+    date: newest.date,
+    thumbnail: newest.thumbnail,
+    heroImage: (newest.thumbnail || "").replace("/hqdefault.jpg", "/maxresdefault.jpg")
+  };
+}
 
-  if (latestDesign && discoverItems[1]) {
-    discoverItems[1].href = latestDesign.url;
-    discoverItems[1].querySelector("strong").textContent = latestDesign.title;
-  }
+function updateHero() {
+  const featured = resolveFeatured();
+  if (!featured) return;
 
-  if (!latestVideo) return;
+  const heroTitle = document.querySelector("#hero-title");
+  if (heroTitle) heroTitle.textContent = featured.title;
+
+  const watchLink = document.querySelector("#featured-watch-link");
+  if (watchLink) watchLink.href = featured.url;
 
   const heroBanner = document.querySelector(".hero-banner");
-  if (heroBanner && latestVideo.thumbnail) {
-    const heroImage = latestVideo.thumbnail.replace("/hqdefault.jpg", "/maxresdefault.jpg");
-    heroBanner.style.setProperty("--hero-banner-image", `url('${heroImage}')`);
+  if (heroBanner && featured.heroImage) {
+    heroBanner.style.setProperty("--hero-banner-image", `url('${featured.heroImage}')`);
   }
 
-  const latestPanel = document.querySelector(".latest-video-panel");
-  if (latestPanel) {
-    latestPanel.href = latestVideo.url;
-    if (latestVideo.thumbnail) {
-      latestPanel.style.backgroundImage =
-        `linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.78)), url('${latestVideo.thumbnail}')`;
+  const panel = document.querySelector(".latest-video-panel");
+  if (panel) {
+    panel.href = featured.url;
+    if (featured.thumbnail) {
+      panel.style.backgroundImage =
+        `linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.78)), url('${featured.thumbnail}')`;
     }
-    const title = latestPanel.querySelector(".latest-video-copy strong");
-    const meta = latestPanel.querySelector(".latest-video-copy small");
-    if (title) title.textContent = latestVideo.title;
-    if (meta) meta.textContent = `Latest upload // ${latestVideo.date}`;
+    const title = panel.querySelector(".latest-video-copy strong");
+    const meta = panel.querySelector(".latest-video-copy small");
+    if (title) title.textContent = featured.title;
+    if (meta) meta.textContent = featured.date ? `Featured // ${displayDate(featured.date)}` : "Featured transmission";
   }
 
-  updateFeaturedDrop(latestVideo);
-}
-
-function updateFeaturedDrop(latestVideo) {
   const blurb = document.querySelector("#featured-drop-blurb");
-  if (!blurb) return;
-
-  const videoId = getVideoId(latestVideo.url);
-  const matchedArticle = articles.find((article) => {
-    if (article._draft || !(article.summary || article.body)) return false;
-    return article.videoUrl && getVideoId(article.videoUrl) === videoId;
-  });
-
-  if (matchedArticle) {
-    blurb.textContent = matchedArticle.summary || teaser(matchedArticle.body, 320);
-  } else {
-    blurb.textContent =
-      `New from XFD: "${latestVideo.title}." Catch the full watch, then dig into Horror, Anime, ` +
-      `Wrestling, Tech/Gaming, or Pop Culture for the write-ups behind it.`;
+  if (blurb) {
+    const videoId = getVideoId(featured.url);
+    const match = articles.find((a) => getVideoId(a.videoUrl) === videoId && (a.summary || a.body));
+    if (match) {
+      blurb.textContent = match.summary || match.body.slice(0, 300);
+    }
   }
 }
 
-function ideaCard(portal, article) {
-  const info = hubInfo[portal];
-  return `
-    <a class="channel-card ${portal}" href="article.html?id=${article.id}">
-      <span>// ${article.type || "entry"}: ${article.date}</span>
-      <div class="channel-icon" aria-hidden="true"><i class="fa-solid ${info.icon}"></i></div>
-      <h3>${article.title}</h3>
-      <p>${teaser(article.summary || article.body)}</p>
-      <b>Read more</b>
-    </a>
-  `;
+function updateRecentStrip() {
+  if (!recentStrip) return;
+  const featured = resolveFeatured();
+  const featuredId = featured ? getVideoId(featured.url) : null;
+  const recents = feedItems
+    .filter((item) => getVideoId(item.url) !== featuredId)
+    .slice(0, 3);
+  if (!recents.length) return;
+  recentStrip.innerHTML = recents
+    .map((item) => `
+      <a href="${item.url}">
+        <span>${item.tag} // ${displayDate(item.date)}</span>
+        <strong>${item.title}</strong>
+      </a>
+    `)
+    .join("");
 }
 
-function renderIdeaGrid() {
-  if (!ideaGrid) return;
+/* ── Data loading ─────────────────────────────────────────────── */
 
-  const cards = hubOrder
-    .map((portal) => {
-      const latest = articles
-        .filter((a) => a.portal === portal && !a._draft && (a.summary || a.body))
-        .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
-      return latest ? ideaCard(portal, latest) : "";
-    })
-    .filter(Boolean);
-
-  if (cards.length) {
-    ideaGrid.innerHTML = cards.join("");
-  }
-}
-
-async function loadArticles() {
-  try {
-    const response = await fetch("articles.json");
-    if (!response.ok) throw new Error("Articles unavailable");
-    articles = await response.json();
-  } catch (error) {
-    articles = [];
-  }
-
-  renderIdeaGrid();
-  updateFeaturedDrop(
-    socialFeed.find((item) => item.platform === "youtube") ||
-      socialFeed.find((item) => item.type === "video") ||
-      socialFeed[0]
-  );
-}
-
-async function loadSocialFeed() {
+async function loadAll() {
   try {
     const response = await fetch("social-feed.json");
     if (!response.ok) throw new Error("Social feed unavailable");
@@ -280,37 +262,50 @@ async function loadSocialFeed() {
     socialFeed = fallbackFeed;
   }
 
-  syncPlatformFilters();
-  updateDiscover();
+  try {
+    const response = await fetch("articles.json");
+    if (!response.ok) throw new Error("Articles unavailable");
+    articles = await response.json();
+  } catch (error) {
+    articles = [];
+  }
+
+  buildFeedItems();
+  updateHero();
+  updateRecentStrip();
   renderFeed();
 }
 
-filterControls.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-filter]");
-  if (!button) return;
-  activeFilter = button.dataset.filter;
-  filterButtons().forEach((item) => item.classList.toggle("active", item === button));
-  renderFeed();
-});
+/* ── Events ───────────────────────────────────────────────────── */
 
-filterLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    activeFilter = "all";
-    filterButtons().forEach((item) => item.classList.toggle("active", item.dataset.filter === "all"));
-    searchInput.value = link.dataset.filterLink;
-    renderFeed();
+if (filterControls) {
+  filterControls.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-filter]");
+    if (!button) return;
+    setFilter(button.dataset.filter);
   });
-});
+}
 
-document.querySelector(".rail-button.prev").addEventListener("click", () => {
-  rail.scrollBy({ left: -360, behavior: "smooth" });
-});
+if (portalSelect) {
+  portalSelect.addEventListener("click", (event) => {
+    if (event.target.closest(".portal-enter")) return; // real link wins
+    const card = event.target.closest(".channel-card");
+    if (!card) return;
+    const next = card.classList.contains("selected") ? "all" : card.dataset.select;
+    setFilter(next);
+    document.querySelector("#feed").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  portalSelect.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    const card = event.target.closest(".channel-card");
+    if (!card || event.target.closest(".portal-enter")) return;
+    event.preventDefault();
+    const next = card.classList.contains("selected") ? "all" : card.dataset.select;
+    setFilter(next);
+    document.querySelector("#feed").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
 
-document.querySelector(".rail-button.next").addEventListener("click", () => {
-  rail.scrollBy({ left: 360, behavior: "smooth" });
-});
+if (searchInput) searchInput.addEventListener("input", renderFeed);
 
-searchInput.addEventListener("input", renderFeed);
-
-loadSocialFeed();
-loadArticles();
+loadAll();
