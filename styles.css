@@ -3317,3 +3317,27 @@ main {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* === FOOTER SITE MAP === */
+.site-footer {
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 1.15rem;
+}
+
+.footer-nav a {
+  color: #9b98a8;
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+
+.footer-nav a:hover {
+  color: var(--page-accent);
+}

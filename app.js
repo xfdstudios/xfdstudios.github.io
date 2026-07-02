@@ -100,7 +100,7 @@ function buildFeedItems() {
     meta: a.type || "article",
     title: a.title,
     date: a.date,
-    image: a.image || "assets/NEW%20LOGO.png",
+    image: a.image || "assets/xeno-final-dawn-logo.png",
     url: `article.html?id=${a.id}`
   }));
 
@@ -113,7 +113,7 @@ function buildFeedItems() {
       meta: item.type || "post",
       title: item.title,
       date: item.date,
-      image: item.thumbnail || "assets/NEW%20LOGO.png",
+      image: item.thumbnail || "assets/xeno-final-dawn-logo.png",
       url: item.url
     }));
 
