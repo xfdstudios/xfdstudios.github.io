@@ -1557,6 +1557,60 @@ main {
   line-height: 1.6;
 }
 
+.matrix-panel p + p {
+  margin-top: 0.9rem;
+}
+
+.origin-seeds {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.3rem 0;
+}
+
+.origin-seed {
+  padding: 1.1rem;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--page-accent);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.008)),
+    rgba(8, 9, 15, 0.55);
+}
+
+.origin-seed h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.origin-seed h3 span {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--page-accent);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.origin-seed p {
+  font-size: 0.88rem;
+}
+
+.matrix-panel .origin-tagline {
+  margin-top: 0.4rem;
+  color: var(--page-accent);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-shadow: 0 0 18px var(--page-accent-soft);
+}
+
 .creator-card {
   display: grid;
   align-content: start;
@@ -2928,6 +2982,7 @@ main {
   .creator-layout,
   .showcase-grid,
   .profile-stack,
+  .origin-seeds,
   .redbubble-products {
     grid-template-columns: 1fr;
   }
