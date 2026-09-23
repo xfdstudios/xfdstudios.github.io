@@ -102,7 +102,10 @@ function sourceRank(item) {
 }
 
 function parseWhen(value) {
-  const t = Date.parse(value);
+  // A bare "YYYY-MM-DD" parses as UTC midnight, which is still the previous
+  // day in US time zones. Read it as local midnight, like article.html does.
+  const s = String(value || "");
+  const t = Date.parse(/^\d{4}-\d{2}-\d{2}$/.test(s) ? `${s}T00:00:00` : s);
   return Number.isNaN(t) ? 0 : t;
 }
 

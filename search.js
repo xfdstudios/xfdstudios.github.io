@@ -52,7 +52,13 @@
     var m = String(url).match(/(?:shorts\/|v=|youtu\.be\/|embed\/|\/vi\/)([a-zA-Z0-9_-]{11})/);
     return m ? m[1] : null;
   }
-  function whenMs(d) { var t = Date.parse(d); return isNaN(t) ? 0 : t; }
+  function whenMs(d) {
+    // Bare "YYYY-MM-DD" is read as local midnight, not UTC, so article dates
+    // don't show a day early in US time zones.
+    var s = String(d || "");
+    var t = Date.parse(/^\d{4}-\d{2}-\d{2}$/.test(s) ? s + "T00:00:00" : s);
+    return isNaN(t) ? 0 : t;
+  }
   function niceDate(d) {
     var t = whenMs(d);
     if (!t) return d || "";
