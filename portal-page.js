@@ -51,7 +51,7 @@ function formatDate(dateString) {
 
 function storyCard(story) {
   return `
-    <a class="story-card" id="${story.id}" href="article.html?id=${story.id}">
+    <a class="story-card" id="${story.id}" href="articles/${story.id}.html">
       <img src="${story.image}" alt="${story.title}">
       <div>
         <span>${story.type} // ${formatDate(story.date)}</span>
@@ -65,7 +65,7 @@ function storyCard(story) {
 function archiveItem(story) {
   return `
     <li>
-      <a href="article.html?id=${story.id}">
+      <a href="articles/${story.id}.html">
         <span>${formatDate(story.date)}</span>
         <strong>${story.title}</strong>
       </a>

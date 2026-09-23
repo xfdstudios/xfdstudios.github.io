@@ -83,7 +83,7 @@
           category: a.portal || "all",
           title: a.title || "",
           date: a.date || "",
-          url: "article.html?id=" + encodeURIComponent(a.id),
+          url: "articles/" + encodeURIComponent(a.id) + ".html",
           external: false,
           vid: videoId(a.videoUrl) || videoId(a.image),
           text: ((a.title || "") + " " + (a.summary || "") + " " + (a.body || "")).toLowerCase()

@@ -129,7 +129,7 @@ function buildFeedItems() {
       title: a.title,
       date: a.date,
       image: a.image || "assets/xeno-final-dawn-logo.png",
-      url: `article.html?id=${a.id}`,
+      url: `articles/${a.id}.html`,
       videoKey: canonicalId(a.videoUrl, a.image),
       search: `${a.title} ${a.summary || ""} ${a.body || ""}`.toLowerCase()
     });

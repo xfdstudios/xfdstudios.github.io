@@ -9,6 +9,8 @@
     <title>Articles | XFD Studios</title>
     <meta name="description" content="XFD Studios articles — breakdowns, tributes, and hot takes across horror, anime and manga, wrestling, gaming and tech, and pop culture.">
     <link rel="canonical" href="https://xfdstudios.github.io/article.html">
+    <!-- Only a loader/redirect for old links; the real pages are /articles/*.html. -->
+    <meta name="robots" content="noindex, follow">
 
     <!-- Open Graph (link previews on Facebook, Instagram, Discord, iMessage, etc.) -->
     <meta property="og:type" content="website">
@@ -277,6 +279,20 @@
           return;
         }
 
+        // Every article has its own crawlable page under /articles/ (built by
+        // scripts/build_article_pages.py), so send old article.html?id= links
+        // there. If that page hasn't been built yet, render here as before.
+        const staticPage = `articles/${encodeURIComponent(articleId)}.html`;
+        try {
+          const found = await fetch(staticPage, { method: 'HEAD' });
+          if (found.ok) {
+            location.replace(staticPage);
+            return;
+          }
+        } catch (e) {
+          // Offline or blocked: fall through and render in place.
+        }
+
         const response = await fetch('articles.json');
         const articles = await response.json();
         const article = articles.find(a => a.id === articleId);
@@ -396,6 +412,6 @@
 
       loadArticle();
     </script>
-    <script src="search.js"></script>
+    <script src="search.js?v=article-pages-1"></script>
   </body>
 </html>

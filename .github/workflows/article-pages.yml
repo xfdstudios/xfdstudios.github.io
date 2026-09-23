@@ -1,0 +1,50 @@
+name: Build article pages
+
+# Every article gets its own crawlable page under /articles/ plus an entry
+# in sitemap.xml, and each portal page lists its articles in plain HTML.
+# This rebuilds all of it whenever articles.json (or the page template,
+# portal copy or build script) changes, so new articles are search-ready
+# without anyone running the script by hand.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - articles.json
+      - article.html
+      - portal-page.js
+      - scripts/build_article_pages.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: article-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build article pages and sitemap
+        run: python scripts/build_article_pages.py
+
+      - name: Commit if changed
+        run: |
+          git add -A articles sitemap.xml horror.html anime.html wrestling.html tech-gaming.html popculture.html
+          if git diff --cached --quiet; then
+            echo "Article pages already up to date."
+            exit 0
+          fi
+          git config user.name  "xfd-feed-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "chore: rebuild article pages and sitemap"
+          git pull --rebase origin main
+          git push
