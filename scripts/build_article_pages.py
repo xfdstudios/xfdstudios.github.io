@@ -181,6 +181,17 @@ def pretty_date(iso: str) -> str:
     return f"{d:%b} {d.day}, {d.year}"
 
 
+def last_changed(a: dict) -> str:
+    """The optional "updated" date (YYYY-MM-DD) if the article was revised, else its publish date."""
+    return a.get("updated") or a["date"]
+
+
+def updated_note(a: dict) -> str:
+    if not a.get("updated") or a["updated"] == a["date"]:
+        return ""
+    return f' · Updated <time datetime="{a["updated"]}">{pretty_date(a["updated"])}</time>'
+
+
 def iso_datetime(iso: str) -> str:
     """YYYY-MM-DD as midnight in SITE_TZ, e.g. 2026-07-29T00:00:00-04:00."""
     return datetime.combine(date.fromisoformat(iso), time(0), SITE_TZ).isoformat()
@@ -220,7 +231,7 @@ def structured_data(a: dict, canonical: str, title: str, desc: str, image: str,
             "description": desc,
             "image": [image],
             "datePublished": iso_datetime(a["date"]),
-            "dateModified": iso_datetime(a["date"]),
+            "dateModified": iso_datetime(a.get("updated") or a["date"]),
             "inLanguage": "en-US",
             "articleSection": label,
             "author": {"@type": "Person", "name": "XenoFinalDawn", "url": YOUTUBE_CHANNEL},
@@ -281,6 +292,7 @@ def head_meta(a: dict, canonical: str, title: str, desc: str, image: str,
         f"{img_size}"
         f'    <meta property="og:image:alt" content="{t}">\n'
         f'    <meta property="article:published_time" content="{iso_datetime(a["date"])}">\n'
+        f'    <meta property="article:modified_time" content="{iso_datetime(a.get("updated") or a["date"])}">\n'
         f'    <meta property="article:section" content="{attr(portal[0])}">\n'
         "\n"
         "    <!-- Twitter/X card -->\n"
@@ -331,7 +343,7 @@ def main_content(a: dict, portal: tuple[str, str], video_id: str | None) -> str:
         '        <div class="article-head">\n'
         f'          <p class="eyebrow" id="article-portal-label">{esc(label)}</p>\n'
         f'          <h1 id="article-title">{esc(a["title"])}</h1>\n'
-        f'          <p class="meta" id="article-meta">{esc(a["type"])} // <time datetime="{a["date"]}">{pretty_date(a["date"])}</time></p>\n'
+        f'          <p class="meta" id="article-meta">{esc(a["type"])} // <time datetime="{a["date"]}">{pretty_date(a["date"])}</time>{updated_note(a)}</p>\n'
         "        </div>\n\n"
         f"{media}\n"
         '        <div class="article-body" id="article-body">\n'
@@ -443,17 +455,17 @@ def build_portal_page(key: str, articles: list[dict], copy: tuple[str, str]) -> 
 
 
 def build_sitemap(articles: list[dict]) -> str:
-    newest = max(a["date"] for a in articles)
+    newest = max(last_changed(a) for a in articles)
     by_portal: dict[str, str] = {}
     for a in articles:
-        by_portal[a["portal"]] = max(by_portal.get(a["portal"], ""), a["date"])
+        by_portal[a["portal"]] = max(by_portal.get(a["portal"], ""), last_changed(a))
     rows = []
     for page, portal in STATIC_PAGES:
         lastmod = newest if portal is None else by_portal.get(portal, "") if portal else ""
         tag = f"<lastmod>{lastmod}</lastmod>" if lastmod else ""
         rows.append(f"  <url><loc>{SITE}/{page}</loc>{tag}</url>")
     for a in sorted(articles, key=lambda a: (a["date"], a["id"]), reverse=True):
-        rows.append(f"  <url><loc>{SITE}/articles/{a['id']}.html</loc><lastmod>{a['date']}</lastmod></url>")
+        rows.append(f"  <url><loc>{SITE}/articles/{a['id']}.html</loc><lastmod>{last_changed(a)}</lastmod></url>")
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
             + "\n".join(rows) + "\n</urlset>\n")

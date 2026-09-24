@@ -316,7 +316,12 @@
         const date = new Date(`${article.date}T00:00:00`).toLocaleDateString('en-US', {
           month: 'short', day: 'numeric', year: 'numeric'
         });
-        document.querySelector('#article-meta').textContent = `${article.type} // ${date}`;
+        const updated = article.updated && article.updated !== article.date
+          ? ` · Updated ${new Date(`${article.updated}T00:00:00`).toLocaleDateString('en-US', {
+              month: 'short', day: 'numeric', year: 'numeric'
+            })}`
+          : '';
+        document.querySelector('#article-meta').textContent = `${article.type} // ${date}${updated}`;
 
         if (article.videoUrl) {
           const videoId = getVideoId(article.videoUrl);
