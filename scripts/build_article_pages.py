@@ -19,8 +19,9 @@ from __future__ import annotations
 
 import json
 import re
-from datetime import date
+from datetime import date, datetime, time
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://xfdstudios.github.io"
@@ -28,6 +29,9 @@ TEMPLATE = ROOT / "article.html"
 ARTICLES = ROOT / "articles.json"
 OUT_DIR = ROOT / "articles"
 SITEMAP = ROOT / "sitemap.xml"
+# Dates in articles.json are plain days, but Google wants structured-data
+# dates as full timestamps with a time zone, so read them as midnight Eastern.
+SITE_TZ = ZoneInfo("America/New_York")
 
 PORTALS = {
     "horror": ("Horror", "horror.html"),
@@ -177,6 +181,11 @@ def pretty_date(iso: str) -> str:
     return f"{d:%b} {d.day}, {d.year}"
 
 
+def iso_datetime(iso: str) -> str:
+    """YYYY-MM-DD as midnight in SITE_TZ, e.g. 2026-07-29T00:00:00-04:00."""
+    return datetime.combine(date.fromisoformat(iso), time(0), SITE_TZ).isoformat()
+
+
 def quick_answers(body: str) -> list[tuple[str, str]]:
     """Question/answer pairs from a '## Quick answers' section, if any."""
     m = re.search(r"^##\s+Quick answers\s*$(.*?)(?=^##\s|\Z)", body or "", re.M | re.S | re.I)
@@ -210,8 +219,8 @@ def structured_data(a: dict, canonical: str, title: str, desc: str, image: str,
             "headline": clip(title, 110),
             "description": desc,
             "image": [image],
-            "datePublished": a["date"],
-            "dateModified": a["date"],
+            "datePublished": iso_datetime(a["date"]),
+            "dateModified": iso_datetime(a["date"]),
             "inLanguage": "en-US",
             "articleSection": label,
             "author": {"@type": "Person", "name": "XenoFinalDawn", "url": YOUTUBE_CHANNEL},
@@ -227,7 +236,7 @@ def structured_data(a: dict, canonical: str, title: str, desc: str, image: str,
             "name": title,
             "description": plain(a.get("summary", "")) or desc,
             "thumbnailUrl": [image],
-            "uploadDate": a["date"],
+            "uploadDate": iso_datetime(a["date"]),
             "embedUrl": f"https://www.youtube.com/embed/{video_id}",
             "url": a["videoUrl"],
             "publisher": {"@id": ORGANIZATION["@id"]},
@@ -271,7 +280,7 @@ def head_meta(a: dict, canonical: str, title: str, desc: str, image: str,
         f'    <meta property="og:image" content="{i}">\n'
         f"{img_size}"
         f'    <meta property="og:image:alt" content="{t}">\n'
-        f'    <meta property="article:published_time" content="{a["date"]}">\n'
+        f'    <meta property="article:published_time" content="{iso_datetime(a["date"])}">\n'
         f'    <meta property="article:section" content="{attr(portal[0])}">\n'
         "\n"
         "    <!-- Twitter/X card -->\n"
