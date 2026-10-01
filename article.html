@@ -156,6 +156,11 @@
         transition: opacity .2s;
       }
       .article-watch-btn:hover { opacity: .85; }
+      .article-watch-btn.tiktok {
+        background: #000;
+        border: 1px solid rgba(255, 255, 255, .25);
+        box-shadow: -2px -2px 0 #25f4ee, 2px 2px 0 #fe2c55;
+      }
       .article-thread-btn {
         display: inline-flex;
         align-items: center;
@@ -331,13 +336,19 @@
         document.querySelector('#article-meta').textContent = `${article.type} // ${date}${updated}`;
 
         if (article.videoUrl) {
-          const videoId = getVideoId(article.videoUrl);
+          const tiktok = article.videoUrl.match(/tiktok\.com\/@[^/]+\/video\/(\d+)/);
           const frame = document.querySelector('#article-video-frame');
-          frame.src = `https://www.youtube.com/embed/${videoId}?rel=0`;
+          frame.src = tiktok
+            ? `https://www.tiktok.com/player/v1/${tiktok[1]}`
+            : `https://www.youtube.com/embed/${getVideoId(article.videoUrl)}?rel=0`;
           document.querySelector('#article-video-wrap').hidden = false;
 
           const watchLink = document.querySelector('#article-watch-link');
           watchLink.href = article.videoUrl;
+          if (tiktok) {
+            watchLink.classList.add('tiktok');
+            watchLink.innerHTML = '<i class="fa-brands fa-tiktok" aria-hidden="true"></i> Watch on TikTok';
+          }
           watchLink.hidden = false;
         } else {
           // Text/Threads posts (no video): link out to Threads instead.
