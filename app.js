@@ -215,21 +215,42 @@ function buildHeroItems() {
   const cfg = window.XFD_FEATURED || {};
   const max = cfg.heroMax || 5;
 
-  const videos = [];
-  const seen = new Set();
-  for (const item of socialFeed) {
-    const key = canonicalId(item.url, item.thumbnail) || item.title;
-    if (seen.has(key)) continue;
-    if (!item.thumbnail) continue;
-    seen.add(key);
-    videos.push({
+  const candidates = socialFeed
+    .filter((item) => item.thumbnail)
+    .map((item) => ({
+      key: canonicalId(item.url, item.thumbnail) || item.title,
       title: item.title,
       url: item.url,
       date: item.date,
       platform: item.platform,
       thumbnail: item.thumbnail,
       heroImage: (item.thumbnail || "").replace("/hqdefault.jpg", "/maxresdefault.jpg")
-    });
+    }));
+
+  /* social-feed.json only syncs YouTube, so videos posted elsewhere (like
+     TikTok) come in through their articles and open the article page,
+     where the video plays. YouTube articles are already covered above. */
+  articles
+    .filter((a) => a.videoUrl && !getVideoId(a.videoUrl) && a.image)
+    .forEach((a) => candidates.push({
+      key: a.videoUrl,
+      title: a.title,
+      url: `articles/${a.id}.html`,
+      date: a.date,
+      platform: "article",
+      thumbnail: a.image,
+      heroImage: a.image
+    }));
+
+  /* Newest first; sort is stable, so same-day items keep feed order. */
+  candidates.sort((a, b) => parseWhen(b.date) - parseWhen(a.date));
+
+  const videos = [];
+  const seen = new Set();
+  for (const item of candidates) {
+    if (seen.has(item.key)) continue;
+    seen.add(item.key);
+    videos.push(item);
     if (videos.length >= max) break;
   }
 
