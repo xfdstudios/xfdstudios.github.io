@@ -1,0 +1,374 @@
+/* XFD Halloween mode. Loaded by halloween.js only while Halloween mode is on
+   (October), so none of this ships the rest of the year. */
+
+/* ── Header: slime border, cobwebs, drips ─────────────────────── */
+
+.xfd-halloween .site-header {
+  border-bottom-color: rgba(140, 255, 90, 0.6);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.42), 0 0 22px rgba(255, 138, 43, 0.2);
+}
+
+.site-header > .xfd-slime {
+  position: absolute;
+  z-index: 0;
+  left: 12px;
+  right: 12px;
+  bottom: -11px;
+  height: 14px;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 14'%3E%3Cg fill='%238cff5a'%3E%3Crect width='120' height='3'/%3E%3Crect x='9' width='5' height='9' rx='2.5'/%3E%3Crect x='31' width='4' height='6' rx='2'/%3E%3Crect x='53' width='6' height='13' rx='3'/%3E%3Crect x='80' width='4' height='7' rx='2'/%3E%3Crect x='101' width='5' height='11' rx='2.5'/%3E%3C/g%3E%3C/svg%3E") repeat-x;
+  background-size: 120px 14px;
+  filter: drop-shadow(0 2px 5px rgba(140, 255, 90, 0.35));
+}
+
+.site-header > .xfd-web {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  width: 58px;
+  height: 58px;
+  pointer-events: none;
+  opacity: 0.6;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60' fill='none' stroke='%23e9e4ff' stroke-width='.8'%3E%3Cpath d='M0 0L60 0M0 0L56 24M0 0L42 42M0 0L24 56M0 0L0 60'/%3E%3Cpath d='M15 0Q13 4 14 6Q10 9 11 11Q7 11 6 14Q3 13 0 15'/%3E%3Cpath d='M30 0Q26 7 28 12Q21 17 21 21Q14 22 12 28Q6 26 0 30'/%3E%3Cpath d='M45 0Q40 11 42 18Q32 25 32 32Q22 33 18 42Q9 40 0 45'/%3E%3C/svg%3E") no-repeat;
+  background-size: contain;
+}
+
+.site-header > .xfd-web--left { left: 0; border-top-left-radius: 8px; }
+.site-header > .xfd-web--right { right: 0; transform: scaleX(-1); border-top-left-radius: 8px; }
+
+/* ── Homepage: bats across the banner, pumpkin-orange button ──── */
+
+.hero-banner > .xfd-bats {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.xfd-bat {
+  position: absolute;
+  left: -8%;
+  width: 64px;
+  opacity: 0;
+  fill: #1c1030;
+  filter: drop-shadow(0 0 2px rgba(140, 255, 90, 0.95)) drop-shadow(0 0 9px rgba(140, 255, 90, 0.45));
+  animation: xfd-bat-fly 22s linear infinite;
+}
+
+.xfd-bat svg {
+  display: block;
+  width: 100%;
+  animation: xfd-flap 0.28s ease-in-out infinite alternate;
+}
+
+/* Kept to the thin strip above the "One portal" tag so they never cross the text. */
+.xfd-bat--1 { top: 2px; width: 52px; animation-delay: 1.5s; }
+.xfd-bat--2 { top: 12px; width: 36px; animation-delay: 2.1s; }
+.xfd-bat--3 { top: 4px; width: 30px; animation-delay: 2.7s; }
+
+@keyframes xfd-bat-fly {
+  0% { left: -8%; opacity: 0; transform: translateY(0); }
+  1% { opacity: 0.95; }
+  12% { transform: translateY(-6px); }
+  26% { left: 108%; opacity: 0.95; transform: translateY(4px); }
+  27%, 100% { left: 108%; opacity: 0; }
+}
+
+@keyframes xfd-flap {
+  from { transform: scaleY(1); }
+  to { transform: scaleY(0.7); }
+}
+
+.xfd-halloween #featured-watch-link {
+  background: linear-gradient(135deg, #ffb057, #ff7a1a);
+  color: #1a0d02;
+}
+
+.xfd-countdown {
+  margin: 0.55rem 0 0;
+  color: #ffb26b;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Graveyard silhouette above the footer ────────────────────── */
+
+/* Matches the SVG's 1200x96 shape so the whole scene shows on wide screens;
+   phones get a taller strip that trims the far edges instead of shrinking. */
+.xfd-graveyard {
+  width: min(1240px, calc(100% - 2rem));
+  aspect-ratio: 1200 / 96;
+  margin: 2.5rem auto 0;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 45%);
+  mask-image: linear-gradient(to bottom, transparent, #000 45%);
+}
+
+.xfd-graveyard svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Hidden pumpkins ──────────────────────────────────────────── */
+
+.xfd-pumpkin-host {
+  position: relative;
+}
+
+.xfd-pumpkin {
+  position: absolute;
+  z-index: 5;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 22px;
+  line-height: 36px;
+  cursor: pointer;
+  opacity: 0.88;
+  filter: drop-shadow(0 0 6px rgba(255, 138, 43, 0.75));
+  animation: xfd-bob 2.6s ease-in-out infinite;
+}
+
+.xfd-pumpkin--top { top: 10px; }
+.xfd-pumpkin--bottom { bottom: 10px; }
+
+.xfd-pumpkin:hover,
+.xfd-pumpkin:focus-visible {
+  opacity: 1;
+  filter: drop-shadow(0 0 10px rgba(255, 138, 43, 0.95));
+}
+
+.xfd-pumpkin.is-found { animation: xfd-pop 0.6s ease-out forwards; }
+
+@keyframes xfd-bob {
+  0%, 100% { transform: translateY(0) rotate(-6deg); }
+  50% { transform: translateY(-4px) rotate(6deg); }
+}
+
+@keyframes xfd-pop {
+  to { transform: scale(2.3); opacity: 0; }
+}
+
+/* ── Pumpkin Hunt button (every page) ─────────────────────────── */
+
+.xfd-hunt {
+  position: fixed;
+  z-index: 150;
+  left: 16px;
+  bottom: 16px;
+  padding: 0.6rem 0.95rem;
+  border: 1px solid rgba(255, 138, 43, 0.55);
+  border-radius: 999px;
+  background: rgba(12, 10, 20, 0.95);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+  color: #ffb26b;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.xfd-hunt:hover,
+.xfd-hunt:focus-visible { border-color: #ff8a2b; color: #ffd09c; }
+
+/* Room at the very bottom so the button never sits on the copyright line. */
+.xfd-halloween body { padding-bottom: 64px; }
+
+.xfd-hunt.is-flash {
+  border-color: #8cff5a;
+  color: #8cff5a;
+}
+
+/* ── Shared close button ──────────────────────────────────────── */
+
+.xfd-close {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.45rem;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: rgba(247, 245, 255, 0.7);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.xfd-close:hover,
+.xfd-close:focus-visible {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Welcome note ─────────────────────────────────────────────── */
+
+.xfd-welcome {
+  position: fixed;
+  z-index: 160;
+  right: 16px;
+  bottom: 16px;
+  max-width: 340px;
+  padding: 1rem 2.6rem 1rem 1rem;
+  border: 1px solid rgba(255, 138, 43, 0.45);
+  border-radius: 10px;
+  background: rgba(12, 10, 20, 0.97);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 138, 43, 0.16);
+  color: #f7f5ff;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  animation: xfd-rise 0.4s ease-out;
+}
+
+.xfd-welcome strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #ffb26b;
+  font-size: 1rem;
+}
+
+.xfd-welcome-rules {
+  display: inline-block;
+  margin-top: 0.7rem;
+  padding: 0.45rem 0.85rem;
+  border: 0;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #ffb057, #ff7a1a);
+  color: #1a0d02;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+@keyframes xfd-rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ── Dialogs: rules and prize ─────────────────────────────────── */
+
+.xfd-dialog {
+  position: fixed;
+  z-index: 300;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(3, 4, 10, 0.8);
+  backdrop-filter: blur(4px);
+}
+
+.xfd-dialog-panel {
+  position: relative;
+  width: min(440px, 100%);
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  padding: 1.5rem 1.4rem 1.3rem;
+  border: 1px solid rgba(140, 255, 90, 0.4);
+  border-radius: 12px;
+  background: #0d0b16;
+  box-shadow: 0 0 40px rgba(140, 255, 90, 0.14);
+  color: #f7f5ff;
+  line-height: 1.55;
+}
+
+.xfd-dialog-eyebrow {
+  margin: 0;
+  color: #8cff5a;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.xfd-dialog-panel h2 {
+  margin: 0.4rem 0 0.6rem;
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+.xfd-dialog-panel h3 {
+  margin: 1.1rem 0 0.4rem;
+  color: #ffb26b;
+  font-size: 0.95rem;
+}
+
+.xfd-dialog-panel p { margin: 0; color: rgba(247, 245, 255, 0.85); }
+
+.xfd-rules-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: rgba(247, 245, 255, 0.85);
+  font-size: 0.92rem;
+}
+
+.xfd-rules-list li { margin-bottom: 0.35rem; }
+
+.xfd-progress-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.92rem;
+}
+
+.xfd-progress-list li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.xfd-progress-list span { display: inline-block; width: 1.5rem; }
+.xfd-progress-list a { color: #ffb26b; font-weight: 700; }
+.xfd-progress-list em { color: rgba(247, 245, 255, 0.55); font-style: normal; font-size: 0.82rem; }
+.xfd-progress-list .is-found { color: #8cff5a; }
+
+.xfd-prize .xfd-dialog-panel { text-align: center; }
+
+.xfd-prize img {
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  margin: 1rem auto;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+.xfd-prize .button.primary {
+  background: linear-gradient(135deg, #ffb057, #ff7a1a);
+  color: #1a0d02;
+}
+
+.xfd-prize-note {
+  margin-top: 0.8rem !important;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .xfd-welcome {
+    left: 12px;
+    right: 12px;
+    bottom: 64px;
+    max-width: none;
+  }
+  .xfd-hunt { left: 12px; bottom: 12px; }
+  .xfd-graveyard { height: 64px; aspect-ratio: auto; }
+  .xfd-bat--1 { top: 2px; width: 40px; }
+  .xfd-bat--2 { top: 10px; width: 30px; }
+  .xfd-bat--3 { top: 5px; width: 26px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xfd-bats { display: none; }
+  .xfd-welcome,
+  .xfd-pumpkin,
+  .xfd-pumpkin.is-found {
+    animation: none;
+  }
+}
