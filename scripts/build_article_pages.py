@@ -67,6 +67,7 @@ STATIC_PAGES = [
 HEADING = re.compile(r"^#{2,3}\s+")
 BULLET = re.compile(r"^[-*]\s+")
 LINK = re.compile(r"\[([^\]]+)\]\(([^)\s]+)\)")
+IMAGE = re.compile(r"^!\[([^\]]*)\]\(([^)\s]+)\)$")
 OLD_ARTICLE_LINK = re.compile(r"^article\.html\?id=([a-z0-9-]+)$")
 VIDEO_ID = re.compile(r"(?:shorts/|v=|youtu\.be/|embed/)([A-Za-z0-9_-]{11})")
 TRAILING_HASHTAGS = re.compile(r"(?:\s*#\w+)+\s*$")
@@ -107,6 +108,10 @@ def inline(s: str) -> str:
 
 
 def render_block(block: str) -> str:
+    image = IMAGE.match(block.strip())
+    if image and safe_href(image.group(2)):
+        return (f'<figure class="article-figure"><img src="{image.group(2)}" '
+                f'alt="{attr(image.group(1))}" loading="lazy"></figure>')
     lines = [ln.strip() for ln in block.split("\n") if ln.strip()]
     if not any(HEADING.match(ln) or BULLET.match(ln) for ln in lines):
         return f"<p>{inline(block).replace(chr(10), '<br>')}</p>"
@@ -152,7 +157,8 @@ def render_body(text: str) -> str:
 
 def plain(text: str) -> str:
     """Body/summary markup flattened to one line of plain text."""
-    text = LINK.sub(r"\1", text or "")
+    text = re.sub(r"!\[[^\]]*\]\([^)\s]+\)", "", text or "")
+    text = LINK.sub(r"\1", text)
     lines = [BULLET.sub("", HEADING.sub("", ln.strip())) for ln in text.splitlines()]
     return re.sub(r"\s+", " ", " ".join(lines)).strip()
 
