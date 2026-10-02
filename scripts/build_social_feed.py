@@ -21,6 +21,12 @@ YOUTUBE_FEED = (
     f"https://www.youtube.com/feeds/videos.xml?channel_id={YOUTUBE_CHANNEL_ID}"
 )
 MAX_YOUTUBE_ITEMS = 12
+# YouTube uploads that are already on the site under another post (the same
+# video posted as an article from TikTok, for example). Skipped so they
+# don't show up twice.
+SKIP_YOUTUBE_IDS = {
+    "TmHZoLCyLuQ",  # Earthworm Jim "Groovy" short: already the Sep 30 article
+}
 FEED_PATH = Path(__file__).resolve().parent.parent / "social-feed.json"
 
 
@@ -52,7 +58,7 @@ def parse_youtube_entries() -> list[dict]:
             date_str = dt.strftime("%b %-d, %Y")
         except ValueError:
             date_str = published[:10]
-        if not video_id or not title or not url:
+        if not video_id or not title or not url or video_id in SKIP_YOUTUBE_IDS:
             continue
         items.append({
             "title": title,
