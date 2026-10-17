@@ -349,6 +349,13 @@ def main_content(a: dict, portal: tuple[str, str], video: dict | None) -> str:
             f"          Watch on {video['site']}\n"
             "        </a>\n"
         )
+    elif a.get("instagramUrl"):
+        media = (
+            f'        <a class="article-thread-btn" id="article-thread-link" href="{attr(a["instagramUrl"])}" target="_blank" rel="noopener">\n'
+            '          <i class="fa-brands fa-instagram" aria-hidden="true"></i>\n'
+            "          See it on Instagram\n"
+            "        </a>\n"
+        )
     else:
         media = (
             f'        <a class="article-thread-btn" id="article-thread-link" href="{attr(a.get("threadsUrl") or THREADS_PROFILE)}" target="_blank" rel="noopener">\n'

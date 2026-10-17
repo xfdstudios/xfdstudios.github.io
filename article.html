@@ -353,7 +353,10 @@
         } else {
           // Text/Threads posts (no video): link out to Threads instead.
           const threadLink = document.querySelector('#article-thread-link');
-          threadLink.href = article.threadsUrl || THREADS_PROFILE;
+          threadLink.href = article.instagramUrl || article.threadsUrl || THREADS_PROFILE;
+          if (article.instagramUrl) {
+            threadLink.innerHTML = '<i class="fa-brands fa-instagram" aria-hidden="true"></i> See it on Instagram';
+          }
           threadLink.hidden = false;
         }
 
