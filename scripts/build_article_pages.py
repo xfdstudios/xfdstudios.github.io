@@ -69,6 +69,7 @@ BULLET = re.compile(r"^[-*]\s+")
 LINK = re.compile(r"\[([^\]]+)\]\(([^)\s]+)\)")
 IMAGE = re.compile(r"^!\[([^\]]*)\]\(([^)\s]+)\)$")
 OLD_ARTICLE_LINK = re.compile(r"^article\.html\?id=([a-z0-9-]+)$")
+EMBED = re.compile(r"@\[([^\]]*)\]\((\S+)\)")
 VIDEO_ID = re.compile(r"(?:shorts/|v=|youtu\.be/|embed/)([A-Za-z0-9_-]{11})")
 TIKTOK_ID = re.compile(r"tiktok\.com/@[^/]+/video/(\d+)")
 TRAILING_HASHTAGS = re.compile(r"(?:\s*#\w+)+\s*$")
@@ -109,6 +110,13 @@ def inline(s: str) -> str:
 
 
 def render_block(block: str) -> str:
+    # A block that is just "@[Short title](youtube shorts URL)" embeds that Short in the body.
+    short = EMBED.fullmatch(block.strip())
+    if short and (vid := VIDEO_ID.search(short.group(2))):
+        return (f'<div class="article-video-wrap article-video-inline"><iframe '
+                f'src="https://www.youtube.com/embed/{vid.group(1)}?rel=0" title="{attr(short.group(1))}" '
+                'loading="lazy" allowfullscreen allow="accelerometer; autoplay; clipboard-write; '
+                'encrypted-media; gyroscope; picture-in-picture"></iframe></div>')
     image = IMAGE.match(block.strip())
     if image and safe_href(image.group(2)):
         return (f'<figure class="article-figure"><img src="{image.group(2)}" '
@@ -158,7 +166,7 @@ def render_body(text: str) -> str:
 
 def plain(text: str) -> str:
     """Body/summary markup flattened to one line of plain text."""
-    text = re.sub(r"!\[[^\]]*\]\([^)\s]+\)", "", text or "")
+    text = re.sub(r"[!@]\[[^\]]*\]\([^)\s]+\)", "", text or "")
     text = LINK.sub(r"\1", text)
     lines = [BULLET.sub("", HEADING.sub("", ln.strip())) for ln in text.splitlines()]
     return re.sub(r"\s+", " ", " ".join(lines)).strip()
@@ -335,7 +343,7 @@ def main_content(a: dict, portal: tuple[str, str], video: dict | None) -> str:
     title = attr(a["title"])
     if video:
         media = (
-            '        <div class="article-video-wrap" id="article-video-wrap">\n'
+            f'        <div class="article-video-wrap{" is-wide" if a.get("type") == "video" else ""}" id="article-video-wrap">\n'
             "          <iframe\n"
             '            id="article-video-frame"\n'
             f'            src="{video["player"]}"\n'

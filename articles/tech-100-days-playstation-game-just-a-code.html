@@ -198,6 +198,13 @@
         aspect-ratio: 9 / 16;
         background: #111;
       }
+      .article-video-wrap.is-wide {
+        max-width: 100%;
+        aspect-ratio: 16 / 9;
+      }
+      .article-video-inline {
+        max-width: 340px;
+      }
       .article-video-wrap iframe {
         width: 100%;
         height: 100%;
@@ -355,7 +362,7 @@
           <p class="meta" id="article-meta">video // <time datetime="2026-10-21">Oct 21, 2026</time></p>
         </div>
 
-        <div class="article-video-wrap" id="article-video-wrap">
+        <div class="article-video-wrap is-wide" id="article-video-wrap">
           <iframe
             id="article-video-frame"
             src="https://www.youtube.com/embed/Rfa5pF-ahh4?rel=0"

@@ -73,6 +73,13 @@
         aspect-ratio: 9 / 16;
         background: #111;
       }
+      .article-video-wrap.is-wide {
+        max-width: 100%;
+        aspect-ratio: 16 / 9;
+      }
+      .article-video-inline {
+        max-width: 340px;
+      }
       .article-video-wrap iframe {
         width: 100%;
         height: 100%;
@@ -341,7 +348,9 @@
           frame.src = tiktok
             ? `https://www.tiktok.com/player/v1/${tiktok[1]}`
             : `https://www.youtube.com/embed/${getVideoId(article.videoUrl)}?rel=0`;
-          document.querySelector('#article-video-wrap').hidden = false;
+          const wrap = document.querySelector('#article-video-wrap');
+          wrap.classList.toggle('is-wide', article.type === 'video');
+          wrap.hidden = false;
 
           const watchLink = document.querySelector('#article-watch-link');
           watchLink.href = article.videoUrl;
