@@ -62,6 +62,9 @@ STATIC_PAGES = [
     ("designs.html", ""),
     ("about.html", ""),
     ("contact.html", ""),
+    ("studio-dashboard.html", ""),
+    ("privacy.html", ""),
+    ("terms.html", ""),
 ]
 
 HEADING = re.compile(r"^#{2,3}\s+")

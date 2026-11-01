@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=2">
+    <link rel="apple-touch-icon" href="assets/favicon.png?v=2">
+    <!-- Primary meta -->
+    <title>XFD Studio app | XFD Studios</title>
+    <meta name="description" content="XFD Studio is XFD Studios' private, read-only analytics tool for its own YouTube channel.">
+    <link rel="canonical" href="https://xfdstudios.github.io/studio-dashboard.html">
+
+    <!-- Open Graph (link previews on Facebook, Instagram, Discord, iMessage, etc.) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="XFD Studios">
+    <meta property="og:title" content="XFD Studio app | XFD Studios">
+    <meta property="og:description" content="XFD Studio is XFD Studios' private, read-only analytics tool for its own YouTube channel.">
+    <meta property="og:url" content="https://xfdstudios.github.io/studio-dashboard.html">
+    <meta property="og:image" content="https://xfdstudios.github.io/assets/og-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="XFD Studios logo — Xeno Final Dawn">
+
+    <!-- Twitter/X card (falls back to OG; this forces the large-image layout) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="XFD Studio app | XFD Studios">
+    <meta name="twitter:description" content="XFD Studio is XFD Studios' private, read-only analytics tool for its own YouTube channel.">
+    <meta name="twitter:image" content="https://xfdstudios.github.io/assets/og-card.png">
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      .legal-page { max-width: 860px; margin: 0 auto; }
+      .legal-page .matrix-panel { margin-bottom: 1.2rem; }
+      .legal-page h3 { margin: 1.2rem 0 0.4rem; color: var(--page-accent); font-size: 1rem; }
+      .legal-page ul { padding-left: 1.3rem; line-height: 1.6; }
+      .legal-page a { color: var(--page-accent); }
+      .legal-page code { font-size: 0.85em; }
+      .legal-updated { color: var(--muted); font-size: 0.85rem; margin: 0.3rem 0 0; }
+    </style>
+  </head>
+  <body class="page-origin">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="XenoFinalDawn home">
+        <img src="assets/xeno-final-dawn-logo.png" alt="XFD Studios — Xeno Final Dawn logo">
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html"><i class="fa-solid fa-newspaper" aria-hidden="true"></i>Feed</a>
+        <a href="about.html"><i class="fa-solid fa-microchip" aria-hidden="true"></i>Origin</a>
+        <a href="designs.html"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i>Designs</a>
+        <a href="contact.html"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="social-links" aria-label="Social links">
+          <a href="https://www.youtube.com/@Xenofinaldawn" aria-label="YouTube">
+            <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.facebook.com/XFDTV/" aria-label="Facebook">
+            <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.tiktok.com/@xenofinaldawn" aria-label="TikTok">
+            <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.instagram.com/xenofinaldawn/" aria-label="Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.threads.com/@xenofinaldawn" aria-label="XFD Studios on Threads">
+            <i class="fa-brands fa-threads" aria-hidden="true"></i>
+          </a>
+          <!-- UPDATE ME: swap Redbubble URL for Fourthwall store URL when live -->
+          <a href="https://www.redbubble.com/people/Gr3at1/shop?asc=u" aria-label="Shop">
+            <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          </a>
+        </div>
+        <label class="search-shell">
+          <span class="sr-only">Search transmissions</span>
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input type="search" placeholder="Search portal">
+        </label>
+      </div>
+    </header>
+
+    <main>
+      <section class="creator-matrix legal-page" aria-labelledby="app-title">
+        <div class="matrix-heading">
+          <p class="eyebrow">System archive // studio tools</p>
+          <h1 id="app-title">XFD Studio</h1>
+        </div>
+
+        <article class="matrix-panel">
+          <h2>What it is</h2>
+          <p>
+            XFD Studio is the private, in-house analytics dashboard that XFD Studios uses to track how its
+            own videos and posts are doing. It runs on the creator's own computer and is configured to listen only there, not on the network. It is not a public
+            service: there are no outside users or sign-ups, and no one else's account is connected.
+          </p>
+        </article>
+
+        <article class="matrix-panel">
+          <h2>What it does with YouTube</h2>
+          <p>
+            When the XFD Studios YouTube channel owner signs in with Google, the dashboard asks for
+            <strong>read-only</strong> access to that one channel:
+          </p>
+          <ul>
+            <li><strong>YouTube Data API</strong> (<code>youtube.readonly</code>): reads the channel's ID and name.</li>
+            <li><strong>YouTube Analytics API</strong> (<code>yt-analytics.readonly</code>): reads daily channel totals
+              for the last 28 days: views, watch time, average view duration, likes, comments, shares and
+              subscribers gained or lost.</li>
+          </ul>
+          <p>
+            The YouTube connection never uploads, edits, deletes, comments, or changes anything on YouTube. It uses these
+            numbers to show charts and reports so XFD Studios can plan better videos.
+          </p>
+        </article>
+
+        <article class="matrix-panel">
+          <h2>Policies</h2>
+          <p>
+            Read the <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>.
+            Questions can be sent through the <a href="contact.html">contact page</a>.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <nav class="footer-nav" aria-label="Site map">
+        <a href="index.html">Home</a>
+        <a href="horror.html">Horror</a>
+        <a href="anime.html">Anime &amp; Manga</a>
+        <a href="wrestling.html">Wrestling</a>
+        <a href="tech-gaming.html">Gaming &amp; Tech</a>
+        <a href="popculture.html">Pop Culture</a>
+        <a href="about.html">Origin</a>
+        <a href="designs.html">Designs</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+      <p>© 2026 XenoFinalDawn (XFD). All rights reserved.</p>
+    </footer>
+    <script src="search.js?v=article-pages-1"></script>
+    <script src="halloween.js?v=5" defer></script>
+  </body>
+</html>
