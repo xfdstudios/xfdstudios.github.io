@@ -90,7 +90,7 @@
         <div class="matrix-heading">
           <p class="eyebrow">System archive // privacy</p>
           <h1 id="privacy-title">Privacy Policy</h1>
-          <p class="legal-updated">Last updated: November 1, 2026</p>
+          <p class="legal-updated">Last updated: November 2, 2026</p>
         </div>
 
         <article class="matrix-panel">
@@ -111,9 +111,15 @@
           <h3>What we access</h3>
           <ul>
             <li>The channel's ID and name (YouTube Data API, <code>youtube.readonly</code>).</li>
+            <li>For each video uploaded to the channel: its video ID, title, thumbnail link, publish date,
+              length, and its public view, like and comment counts (YouTube Data API,
+              <code>youtube.readonly</code>). Thumbnail images are shown from YouTube's own links and are
+              not downloaded.</li>
             <li>Daily channel totals for the last 28 days: views, watch time, average view duration,
               likes, comments, shares and subscribers gained or lost (YouTube Analytics API,
               <code>yt-analytics.readonly</code>).</li>
+            <li>The same kinds of numbers for each video over the last 28 days, plus the average
+              percentage of the video watched (YouTube Analytics API, <code>yt-analytics.readonly</code>).</li>
           </ul>
           <p>
             The YouTube connection is read-only: it cannot upload, edit, delete or post anything on
@@ -129,9 +135,13 @@
 
           <h3>Where it is stored</h3>
           <p>
-            Each sync saves a snapshot: the channel name as it was that day plus that day's 28-day report,
-            in a database on the XFD Studios creator's own computer. A new sync adds a new snapshot; it does
-            not change older ones. The Google sign-in token is saved in a private file on that same
+            Each sync saves a dated snapshot in a database on the XFD Studios creator's own computer: the
+            channel name and that day's 28-day channel report, and each video's details and numbers as they
+            were at that time. When a video's numbers change, a sync adds a new snapshot and leaves older ones
+            as they were, so the dashboard can show how each video grew over time; when nothing changed, it
+            only refreshes the newest snapshot instead of saving a duplicate. When XFD Studios links one of its YouTube videos to one of
+            its own projects (for example a Short made from a longer video), only the video ID is saved with
+            that link; the title and numbers are read from the snapshots above. The Google sign-in token is saved in a private file on that same
             computer. The dashboard is configured to listen only on that computer, not on the network.
           </p>
 
@@ -139,7 +149,7 @@
           <p>
             XFD Studios uses AI assistants (such as Anthropic's Claude, OpenAI's ChatGPT/Codex and Google's
             Antigravity/Gemini) to help read its own reports. This only happens when the channel owner asks
-            an assistant to review a report. Only the report numbers needed for that question are shared,
+            an assistant to review a report. Only the report numbers and video titles needed for that question are shared,
             never the Google sign-in token, passwords or other credentials. Each AI provider handles what it
             receives under its own terms and privacy policy. We do not share YouTube data with anyone else,
             sell it, or use it for advertising.
@@ -151,14 +161,17 @@
             every 6 hours), including to its backup copies:
           </p>
           <ul>
-            <li><strong>YouTube Analytics numbers</strong> (views, watch time and the other totals above) are
-              kept for as long as XFD Studios needs them to compare how videos do over time, but only while
-              authorization is confirmed by a successful sync at least every 30 days.</li>
+            <li><strong>YouTube numbers</strong> (channel totals and each video's views, likes, comments, watch
+              time and the other figures above) are kept for as long as XFD Studios needs them to compare how
+              videos do over time, but only while authorization is confirmed by a successful sync at least
+              every 30 days.</li>
             <li>If no sync has confirmed authorization for 30 days, the YouTube API data stored in the
               dashboard's database and its backups is permanently deleted. The dashboard also asks Google to revoke the sign-in token, and deletes the token once
               Google confirms or reports it is no longer valid. If Google cannot be reached, the token is kept
               only so the request can be retried.</li>
-            <li><strong>The channel name and ID</strong> are removed from snapshots older than 30 days.</li>
+            <li><strong>The channel name and ID, and each video's title, thumbnail link, publish date, length
+              and link</strong> are removed from snapshots older than 30 days. The newest snapshot is refreshed
+              by every sync, so current titles stay up to date.</li>
             <li>If any part of a deletion fails, it is flagged in the dashboard and retried on every sync
               until it is complete.</li>
           </ul>
