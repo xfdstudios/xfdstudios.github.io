@@ -364,8 +364,10 @@
         } else {
           // Text/Threads posts (no video): link out to Threads instead.
           const threadLink = document.querySelector('#article-thread-link');
-          threadLink.href = article.facebookUrl || article.instagramUrl || article.threadsUrl || THREADS_PROFILE;
-          if (article.facebookUrl) {
+          threadLink.href = article.tiktokUrl || article.facebookUrl || article.instagramUrl || article.threadsUrl || THREADS_PROFILE;
+          if (article.tiktokUrl) {
+            threadLink.innerHTML = '<i class="fa-brands fa-tiktok" aria-hidden="true"></i> See it on TikTok';
+          } else if (article.facebookUrl) {
             threadLink.innerHTML = '<i class="fa-brands fa-facebook" aria-hidden="true"></i> See it on Facebook';
           } else if (article.instagramUrl) {
             threadLink.innerHTML = '<i class="fa-brands fa-instagram" aria-hidden="true"></i> See it on Instagram';

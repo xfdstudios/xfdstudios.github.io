@@ -360,6 +360,13 @@ def main_content(a: dict, portal: tuple[str, str], video: dict | None) -> str:
             f"          Watch on {video['site']}\n"
             "        </a>\n"
         )
+    elif a.get("tiktokUrl"):
+        media = (
+            f'        <a class="article-thread-btn" id="article-thread-link" href="{attr(a["tiktokUrl"])}" target="_blank" rel="noopener">\n'
+            '          <i class="fa-brands fa-tiktok" aria-hidden="true"></i>\n'
+            "          See it on TikTok\n"
+            "        </a>\n"
+        )
     elif a.get("facebookUrl"):
         media = (
             f'        <a class="article-thread-btn" id="article-thread-link" href="{attr(a["facebookUrl"])}" target="_blank" rel="noopener">\n'
