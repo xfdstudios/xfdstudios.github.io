@@ -541,14 +541,19 @@ def main() -> None:
         if stale.name not in wanted:
             stale.unlink()
 
-    # Preserve the former Judy Short URL while keeping it out of article listings.
-    target = f"{SITE}/articles/popculture-who-sang-the-real-ghostbusters-songs-tahiti.html"
-    (OUT_DIR / "popculture-judy-winslow-big-sister-ghostbusters-short.html").write_text(
-        '<!doctype html><html lang="en"><head><meta charset="utf-8">'
-        '<title>Judy Winslow Short — Tahiti | XFD</title><meta name="robots" content="noindex">'
-        f'<link rel="canonical" href="{target}"><meta http-equiv="refresh" content="0;url={target}">'
-        f'</head><body><p>The Judy Winslow Short is part of our <a href="{target}">Tahiti article</a>.</p></body></html>\n',
-        encoding="utf-8")
+    # Related long videos and Shorts share one article; keep former URLs working.
+    redirects = {
+        "popculture-judy-winslow-big-sister-ghostbusters-short": "popculture-who-sang-the-real-ghostbusters-songs-tahiti",
+        "horror-ahs-finale-devil-two-weeks-notice": "horror-ahs-13-finale-all-that-buildup",
+    }
+    for old_id, target_id in redirects.items():
+        target = f"{SITE}/articles/{target_id}.html"
+        (OUT_DIR / f"{old_id}.html").write_text(
+            '<!doctype html><html lang="en"><head><meta charset="utf-8">'
+            '<title>Related video | XFD</title><meta name="robots" content="noindex">'
+            f'<link rel="canonical" href="{target}"><meta http-equiv="refresh" content="0;url={target}">'
+            f'</head><body><p>Watch both related videos in the <a href="{target}">full article</a>.</p></body></html>\n',
+            encoding="utf-8")
 
     copy = portal_copy()
     portals = [build_portal_page(key, articles, copy[key]) for key in PORTALS]
