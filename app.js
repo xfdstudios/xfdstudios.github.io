@@ -119,6 +119,7 @@ function displayDate(value) {
 
 function buildFeedItems() {
   const candidates = [];
+  const owners = XFDContent.owners(articles);
 
   articles.forEach((a) => {
     candidates.push({
@@ -136,6 +137,12 @@ function buildFeedItems() {
   });
 
   socialFeed.forEach((item) => {
+    const owner = owners.get(XFDContent.key(item.url));
+    if (owner) {
+      const articleItem = candidates.find((c) => c.url === `articles/${owner.id}.html`);
+      if (articleItem) articleItem.search += ` ${item.title} ${item.platform}`.toLowerCase();
+      return;
+    }
     candidates.push({
       kind: "social",
       platform: item.platform,
@@ -214,18 +221,22 @@ let heroTimer = null;
 function buildHeroItems() {
   const cfg = window.XFD_FEATURED || {};
   const max = cfg.heroMax || 5;
+  const owners = XFDContent.owners(articles);
 
   const candidates = socialFeed
     .filter((item) => item.thumbnail)
-    .map((item) => ({
-      key: canonicalId(item.url, item.thumbnail) || item.title,
-      title: item.title,
-      url: item.url,
-      date: item.date,
-      platform: item.platform,
-      thumbnail: item.thumbnail,
-      heroImage: (item.thumbnail || "").replace("/hqdefault.jpg", "/maxresdefault.jpg")
-    }));
+    .map((item) => {
+      const owner = owners.get(XFDContent.key(item.url));
+      return {
+        key: owner ? owner.id : canonicalId(item.url, item.thumbnail) || item.title,
+        title: owner ? owner.title : item.title,
+        url: owner ? `articles/${owner.id}.html` : item.url,
+        date: item.date,
+        platform: owner ? "article" : item.platform,
+        thumbnail: owner ? owner.image : item.thumbnail,
+        heroImage: owner ? owner.image : (item.thumbnail || "").replace("/hqdefault.jpg", "/maxresdefault.jpg")
+      };
+    });
 
   /* social-feed.json only syncs YouTube, so videos posted elsewhere (like
      TikTok) come in through their articles and open the article page,
@@ -233,7 +244,7 @@ function buildHeroItems() {
   articles
     .filter((a) => a.videoUrl && !getVideoId(a.videoUrl) && a.image)
     .forEach((a) => candidates.push({
-      key: a.videoUrl,
+      key: a.id,
       title: a.title,
       url: `articles/${a.id}.html`,
       date: a.date,
@@ -255,9 +266,14 @@ function buildHeroItems() {
   }
 
   if (cfg.videoId) {
+    const owner = owners.get("youtube:" + cfg.videoId);
+    const featuredKey = owner ? owner.id : cfg.videoId;
+    const duplicate = videos.findIndex((item) => item.key === featuredKey);
+    if (duplicate >= 0) videos.splice(duplicate, 1);
     videos.unshift({
-      title: cfg.title || "Featured from XFD",
-      url: cfg.url || `https://www.youtube.com/watch?v=${cfg.videoId}`,
+      key: featuredKey,
+      title: owner ? owner.title : cfg.title || "Featured from XFD",
+      url: owner ? `articles/${owner.id}.html` : cfg.url || `https://www.youtube.com/watch?v=${cfg.videoId}`,
       date: "",
       platform: "youtube",
       thumbnail: `https://i.ytimg.com/vi/${cfg.videoId}/hqdefault.jpg`,

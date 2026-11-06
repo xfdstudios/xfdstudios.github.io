@@ -102,11 +102,17 @@ def load_articles() -> list[dict]:
 def main() -> int:
     existing = load_articles()
 
-    # Build a set of known video URLs so we don't add duplicates
-    known_urls: set[str] = set()
-    for a in existing:
-        if a.get("videoUrl"):
-            known_urls.add(a["videoUrl"])
+    # Recognize companion embeds and URL aliases so merged Shorts stay merged.
+    def video_key(url):
+        match = re.search(r"(?:shorts/|[?&]v=|youtu\.be/|embed/)([A-Za-z0-9_-]{11})", url or "")
+        return match.group(1) if match else url
+
+    known_urls = set()
+    for article in existing:
+        urls = [article.get("videoUrl")]
+        urls += [v if isinstance(v, str) else v.get("url") for v in article.get("relatedVideos", [])]
+        urls += re.findall(r"@\[[^\]]*\]\(([^\s)]+)\)", article.get("body", ""))
+        known_urls.update(video_key(url) for url in urls if url)
 
     try:
         youtube = parse_youtube_entries()
@@ -114,7 +120,7 @@ def main() -> int:
         print(f"YouTube fetch failed: {err}", file=sys.stderr)
         return 1
 
-    new_entries = [e for e in youtube if e["videoUrl"] not in known_urls]
+    new_entries = [e for e in youtube if video_key(e["videoUrl"]) not in known_urls]
 
     if not new_entries:
         print("articles.json already up to date — no new YouTube videos found.")

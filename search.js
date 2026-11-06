@@ -76,6 +76,7 @@
       var articles = res[0] || [];
       var social = res[1] || [];
       var items = [];
+      var owners = XFDContent.owners(articles);
 
       articles.forEach(function (a) {
         items.push({
@@ -90,6 +91,12 @@
         });
       });
       social.forEach(function (s) {
+        var owner = owners.get(XFDContent.key(s.url));
+        if (owner) {
+          var articleItem = items.find(function (it) { return it.url === "articles/" + encodeURIComponent(owner.id) + ".html"; });
+          if (articleItem) articleItem.text += " " + ((s.title || "") + " " + (s.platform || "")).toLowerCase();
+          return;
+        }
         items.push({
           rank: s.platform === "youtube" ? 1 : 2,
           category: s.portal || "all",
