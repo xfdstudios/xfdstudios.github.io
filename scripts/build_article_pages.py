@@ -541,6 +541,15 @@ def main() -> None:
         if stale.name not in wanted:
             stale.unlink()
 
+    # Preserve the former Judy Short URL while keeping it out of article listings.
+    target = f"{SITE}/articles/popculture-who-sang-the-real-ghostbusters-songs-tahiti.html"
+    (OUT_DIR / "popculture-judy-winslow-big-sister-ghostbusters-short.html").write_text(
+        '<!doctype html><html lang="en"><head><meta charset="utf-8">'
+        '<title>Judy Winslow Short — Tahiti | XFD</title><meta name="robots" content="noindex">'
+        f'<link rel="canonical" href="{target}"><meta http-equiv="refresh" content="0;url={target}">'
+        f'</head><body><p>The Judy Winslow Short is part of our <a href="{target}">Tahiti article</a>.</p></body></html>\n',
+        encoding="utf-8")
+
     copy = portal_copy()
     portals = [build_portal_page(key, articles, copy[key]) for key in PORTALS]
 
