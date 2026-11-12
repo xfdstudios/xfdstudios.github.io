@@ -2,13 +2,15 @@ name: Refresh social feed
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    # Off the top of the hour: GitHub drops many scheduled runs queued at :00.
+    - cron: "17 * * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
+  # Shared with threads-sync: both jobs write social-feed.json.
   group: social-feed
   cancel-in-progress: false
 
@@ -35,4 +37,5 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add social-feed.json
           git commit -m "chore: sync YouTube feed"
+          git pull --rebase origin main
           git push

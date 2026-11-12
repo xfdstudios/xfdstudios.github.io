@@ -2,14 +2,15 @@ name: Sync Threads posts
 
 on:
   schedule:
-    - cron: "0 */6 * * *"   # every 6 hours
+    - cron: "43 */6 * * *"  # every 6 hours, off the top of the hour
   workflow_dispatch:          # run manually anytime from GitHub Actions tab
 
 permissions:
   contents: write
 
 concurrency:
-  group: threads-sync
+  # Shared with the social-feed job: both write social-feed.json.
+  group: social-feed
   cancel-in-progress: false
 
 jobs:
@@ -42,4 +43,5 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add social-feed.json
           git commit -m "chore: sync Threads posts into social feed"
+          git pull --rebase origin main
           git push
