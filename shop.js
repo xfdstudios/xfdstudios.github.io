@@ -1,4 +1,4 @@
-/* XFD Shop: Fourthwall live product grid (primary) + Redbubble tab.
+/* XFD Shop: Fourthwall live product grid (primary store section).
    Storefront token is read-only (catalog only, no orders/customers), so
    it's safe in client code. The Storefront API allows browser CORS. */
 (function () {
@@ -53,35 +53,7 @@
     }
   }
 
-  function initTabs() {
-    const tabs = Array.from(document.querySelectorAll(".shop-tab"));
-    if (!tabs.length) return;
-    function select(tab) {
-      tabs.forEach((t) => {
-        const on = t === tab;
-        t.classList.toggle("is-active", on);
-        t.setAttribute("aria-selected", on ? "true" : "false");
-        t.tabIndex = on ? 0 : -1;
-        const panel = document.getElementById(t.getAttribute("aria-controls"));
-        if (panel) {
-          panel.classList.toggle("is-active", on);
-          panel.hidden = !on;
-        }
-      });
-    }
-    tabs.forEach((tab, i) => {
-      tab.addEventListener("click", () => select(tab));
-      tab.addEventListener("keydown", (e) => {
-        if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
-        e.preventDefault();
-        const next = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
-        next.focus();
-        select(next);
-      });
-    });
-  }
-
-  function init() { loadFourthwall(); initTabs(); }
+  function init() { loadFourthwall(); }
   if (document.readyState !== "loading") init();
   else document.addEventListener("DOMContentLoaded", init);
 })();
