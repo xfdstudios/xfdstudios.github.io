@@ -3760,3 +3760,48 @@ main {
   .merch-promo { padding: 1.15rem; }
   .merch-promo-products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* Whole-image fit (image-fit.js): when a card picture's shape is far from
+   its frame, show all of it over a blurred copy instead of cropping. */
+.img-fit-frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: #05060c;
+}
+.story-card .img-fit-frame { height: 100%; min-height: 170px; }
+.img-fit-frame::before {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  background: var(--fit-image) center / cover no-repeat;
+  filter: blur(18px) brightness(0.5) saturate(1.1);
+}
+.img-fit-frame img.img-fit {
+  position: relative;
+  display: block;
+  object-fit: contain;
+}
+
+/* "Now playing" panel showing a wide thumbnail in a tall frame. */
+.latest-video-panel.is-fit {
+  background: #05060c;
+  isolation: isolate;
+}
+.latest-video-panel.is-fit::after {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  z-index: -1;
+  background: var(--fit-image) center / cover no-repeat;
+  filter: blur(20px) brightness(0.45) saturate(1.1);
+  pointer-events: none;
+}
+.latest-video-panel.is-fit::before {
+  z-index: 0;
+  background:
+    linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.7)),
+    var(--fit-image) center top 3.4rem / contain no-repeat;
+}
+/* Keep the feed card's category badge above a fitted image frame. */
+.media-card > .tag { z-index: 2; }

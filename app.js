@@ -234,7 +234,8 @@ function buildHeroItems() {
         date: item.date,
         platform: owner ? "article" : item.platform,
         thumbnail: owner ? owner.image : item.thumbnail,
-        heroImage: owner ? owner.image : (item.thumbnail || "").replace("/hqdefault.jpg", "/maxresdefault.jpg")
+        heroImage: owner ? owner.image : (item.thumbnail || "").replace("/hqdefault.jpg", "/maxresdefault.jpg"),
+        isShort: owner ? owner.type === "short" : /\/shorts\//.test(item.url || "")
       };
     });
 
@@ -250,7 +251,8 @@ function buildHeroItems() {
       date: a.date,
       platform: "article",
       thumbnail: a.image,
-      heroImage: a.image
+      heroImage: a.image,
+      isShort: a.type === "short"
     }));
 
   /* Newest first; sort is stable, so same-day items keep feed order. */
@@ -277,7 +279,8 @@ function buildHeroItems() {
       date: "",
       platform: "youtube",
       thumbnail: `https://i.ytimg.com/vi/${cfg.videoId}/hqdefault.jpg`,
-      heroImage: `https://i.ytimg.com/vi/${cfg.videoId}/maxresdefault.jpg`
+      heroImage: `https://i.ytimg.com/vi/${cfg.videoId}/maxresdefault.jpg`,
+      isShort: owner ? owner.type === "short" : false
     });
   }
 
@@ -312,6 +315,7 @@ function renderHeroSlide() {
     const small = panel.querySelector(".latest-video-copy small");
     if (title) title.textContent = item.title;
     if (small) small.textContent = item.date ? `Now playing // ${displayDate(item.date)}` : "Now playing";
+    if (window.XFDFitPanel) window.XFDFitPanel(panel, item.thumbnail, item.isShort);
   }
 
   const count = document.querySelector("#hero-count");
