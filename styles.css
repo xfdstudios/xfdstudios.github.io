@@ -3664,10 +3664,10 @@ main {
 }
 
 /* Give the shop-slide a neutral (page-accent) border wherever it's reused
-   off the Designs page, so it doesn't force wrestling-red on the homepage. */
+   off the Shop page, so it doesn't force wrestling-red on the homepage. */
 .page-news .shop-slide { border-color: color-mix(in srgb, var(--page-accent) 30%, var(--line)); }
 
-/* Fourthwall grid sits comfortably inside the Designs tab panel */
+/* Fourthwall grid sits comfortably inside the Shop tab panel */
 #panel-fw .fw-grid { margin-top: 0.4rem; }
 #panel-fw .button.primary { margin-top: 0.4rem; }
 

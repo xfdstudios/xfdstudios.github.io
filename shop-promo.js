@@ -1,8 +1,8 @@
 /* Homepage shop teaser: an auto-rotating slideshow of product images from
    BOTH stores (Fourthwall live API + Redbubble shop-products.json). It's a
    showcase — each slide links to the product, and the section's button
-   sends people to the full shop on designs.html. Reuses the .shop-slide
-   styles from the Designs page. */
+   sends people to the full shop on shop.html. Reuses the .shop-slide
+   styles from the Shop page. */
 (function () {
   const FW_TOKEN = "ptkn" + "_56d0f08f-9cea-447d-90fe-892cf0888e6f"; // public read-only storefront token
   const FW_SHOP  = "https://xfd-shop.fourthwall.com";
@@ -61,7 +61,7 @@
 
   function render() {
     if (!slides.length) {
-      slideEl.innerHTML = '<p class="fw-error">Shop is stocking up — <a href="designs.html">browse the shop →</a></p>';
+      slideEl.innerHTML = '<p class="fw-error">Shop is stocking up — <a href="shop.html">browse the shop →</a></p>';
       return;
     }
     index = ((index % slides.length) + slides.length) % slides.length;

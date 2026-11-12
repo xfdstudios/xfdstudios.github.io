@@ -76,7 +76,7 @@ STATIC_PAGES = [
     ("wrestling.html", "wrestling"),
     ("tech-gaming.html", "tech"),
     ("popculture.html", "popculture"),
-    ("designs.html", ""),
+    ("shop.html", ""),
     ("about.html", ""),
     ("contact.html", ""),
     ("studio-dashboard.html", ""),

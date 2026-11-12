@@ -55,7 +55,7 @@
   var NAV_ICONS = {
     "fa-newspaper": "fa-ghost",
     "fa-microchip": "fa-skull",
-    "fa-pen-nib": "fa-hat-wizard",
+    "fa-cart-shopping": "fa-hat-wizard",
     "fa-envelope": "fa-spider"
   };
 
