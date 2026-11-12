@@ -11,6 +11,8 @@ from __future__ import annotations
 import json
 import re
 import sys
+import time
+import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime
@@ -37,10 +39,31 @@ NS = {
 }
 
 
+# YouTube's public feed intermittently answers 404 or 5xx for a valid
+# channel, then recovers within seconds to minutes. Retry those instead of
+# failing the run.
+RETRY_DELAYS = (5, 15, 30, 60)
+RETRY_STATUS = {404, 429, 500, 502, 503, 504}
+
+
 def fetch(url: str) -> bytes:
     req = urllib.request.Request(url, headers={"User-Agent": "xfd-feed-bot/1.0"})
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        return resp.read()
+    for attempt, delay in enumerate((*RETRY_DELAYS, None), start=1):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                return resp.read()
+        except urllib.error.HTTPError as err:
+            if delay is None or err.code not in RETRY_STATUS:
+                raise
+            reason = f"HTTP {err.code}"
+        except (urllib.error.URLError, TimeoutError) as err:
+            if delay is None:
+                raise
+            reason = str(err)
+        print(f"Fetch attempt {attempt} failed ({reason}); retrying in {delay}s",
+              file=sys.stderr)
+        time.sleep(delay)
+    raise AssertionError("unreachable")
 
 
 def parse_youtube_entries() -> list[dict]:
