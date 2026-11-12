@@ -41,12 +41,16 @@ PORTALS = {
     "popculture": ("Pop Culture", "popculture.html"),
 }
 THREADS_PROFILE = "https://www.threads.com/@xenofinaldawn"
+# Unmodified copy of Shared Assets/Brand/XFD_Official_Brand_Logo.png. Per the
+# brand guide, show the real logo instead of typing "XFD", and never crop it.
+OFFICIAL_LOGO = "assets/brand/XFD_Official_Brand_Logo.png"
 # Merch lines an article can promote with "merch": "<key>" in articles.json.
 # The card goes just before the article's "Your turn" section. merch-promo.js
 # fills in live product photos from the matching Fourthwall collection.
 MERCH = {
     "physical-culture": {
         "name": "XFD Physical Culture",
+        "line": "Physical Culture",
         "pitch": ("Tees and hoodies for people who still keep their games on a shelf: "
                   "Own the Game, Keep Your Games, Offline Club, Disc Is It and Digital vs Physical."),
         "collection": "physical-culture",
@@ -360,8 +364,10 @@ def merch_promo(key: str) -> str:
         raise SystemExit(f"unknown merch line in articles.json: {key!r}")
     return (
         f'<aside class="merch-promo" data-collection="{attr(m["collection"])}" aria-label="{attr(m["name"])} merch">'
-        '<p class="merch-promo-eyebrow">From the XFD shop</p>'
-        f'<p class="merch-promo-title">{esc(m["name"])}</p>'
+        '<p class="merch-promo-eyebrow">Official merch</p>'
+        '<p class="merch-promo-title">'
+        f'<img class="merch-promo-logo" src="{OFFICIAL_LOGO}" alt="XFD" width="1024" height="1024" loading="lazy">'
+        f'<span>{esc(m["line"])}</span></p>'
         f'<p class="merch-promo-pitch">{esc(m["pitch"])}</p>'
         '<div class="merch-promo-products" hidden></div>'
         f'<a class="button primary merch-promo-cta" href="{attr(m["url"])}" target="_blank" rel="noopener">'

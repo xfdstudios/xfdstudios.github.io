@@ -3691,11 +3691,23 @@ main {
   text-transform: uppercase;
 }
 .article-body .merch-promo-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   margin: 0 0 0.5rem;
   color: var(--text);
   font-size: 1.45rem;
   font-weight: 900;
   line-height: 1.2;
+}
+/* The official logo file is square with transparent space around the oval;
+   scale it whole (never crop it). */
+.article-body .merch-promo-logo {
+  flex: none;
+  width: 124px;
+  height: 124px;
+  margin: -22px -8px -22px -14px;
+  object-fit: contain;
 }
 .article-body .merch-promo-pitch {
   margin: 0 0 1.1rem;
