@@ -3670,3 +3670,81 @@ main {
 /* Fourthwall grid sits comfortably inside the Designs tab panel */
 #panel-fw .fw-grid { margin-top: 0.4rem; }
 #panel-fw .button.primary { margin-top: 0.4rem; }
+
+/* Merch card inside articles (merch-promo.js fills in the products). */
+.merch-promo {
+  margin: 2.5rem 0;
+  padding: 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--tech) 45%, var(--line));
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top right, rgba(57, 213, 255, 0.14), transparent 55%),
+    linear-gradient(160deg, var(--panel-2), var(--panel));
+  box-shadow: var(--shadow);
+}
+.merch-promo-eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--tech);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.article-body .merch-promo-title {
+  margin: 0 0 0.5rem;
+  color: var(--text);
+  font-size: 1.45rem;
+  font-weight: 900;
+  line-height: 1.2;
+}
+.article-body .merch-promo-pitch {
+  margin: 0 0 1.1rem;
+  color: var(--muted);
+}
+.merch-promo-products {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
+}
+.merch-promo-products[hidden] { display: none; }
+.article-body a.merch-promo-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 0;
+}
+.merch-promo-item img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.merch-promo-item:hover img,
+.merch-promo-item:focus-visible img {
+  transform: translateY(-3px);
+  border-color: var(--tech);
+}
+.merch-promo-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.merch-promo-price {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.article-body a.merch-promo-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+@media (max-width: 640px) {
+  .merch-promo { padding: 1.15rem; }
+  .merch-promo-products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

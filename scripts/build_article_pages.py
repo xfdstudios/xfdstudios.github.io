@@ -41,6 +41,19 @@ PORTALS = {
     "popculture": ("Pop Culture", "popculture.html"),
 }
 THREADS_PROFILE = "https://www.threads.com/@xenofinaldawn"
+# Merch lines an article can promote with "merch": "<key>" in articles.json.
+# The card goes just before the article's "Your turn" section. merch-promo.js
+# fills in live product photos from the matching Fourthwall collection.
+MERCH = {
+    "physical-culture": {
+        "name": "XFD Physical Culture",
+        "pitch": ("Tees and hoodies for people who still keep their games on a shelf: "
+                  "Own the Game, Keep Your Games, Offline Club, Disc Is It and Digital vs Physical."),
+        "collection": "physical-culture",
+        "url": "https://xfd-shop.fourthwall.com/collections/physical-culture",
+        "cta": "Shop Physical Culture",
+    },
+}
 YOUTUBE_CHANNEL = "https://www.youtube.com/@Xenofinaldawn"
 ORGANIZATION = {
     "@type": "Organization",
@@ -341,6 +354,33 @@ def head_meta(a: dict, canonical: str, title: str, desc: str, image: str,
     )
 
 
+def merch_promo(key: str) -> str:
+    m = MERCH.get(key)
+    if not m:
+        raise SystemExit(f"unknown merch line in articles.json: {key!r}")
+    return (
+        f'<aside class="merch-promo" data-collection="{attr(m["collection"])}" aria-label="{attr(m["name"])} merch">'
+        '<p class="merch-promo-eyebrow">From the XFD shop</p>'
+        f'<p class="merch-promo-title">{esc(m["name"])}</p>'
+        f'<p class="merch-promo-pitch">{esc(m["pitch"])}</p>'
+        '<div class="merch-promo-products" hidden></div>'
+        f'<a class="button primary merch-promo-cta" href="{attr(m["url"])}" target="_blank" rel="noopener">'
+        f'<i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> {esc(m["cta"])}</a>'
+        "</aside>"
+    )
+
+
+def with_merch(body: str, key: str | None) -> str:
+    """Place the merch card before "Your turn", or at the end if there isn't one."""
+    if not key:
+        return body
+    card = merch_promo(key)
+    marker = "<h2>Your turn</h2>"
+    if marker in body:
+        return body.replace(marker, card + "\n" + marker, 1)
+    return body + "\n" + card
+
+
 def main_content(a: dict, portal: tuple[str, str], video: dict | None) -> str:
     label, href = portal
     title = attr(a["title"])
@@ -388,7 +428,7 @@ def main_content(a: dict, portal: tuple[str, str], video: dict | None) -> str:
             "          Read more on Threads\n"
             "        </a>\n"
         )
-    body = render_body(a.get("body") or a.get("summary") or "")
+    body = with_merch(render_body(a.get("body") or a.get("summary") or ""), a.get("merch"))
     return (
         '<main class="article-main">\n'
         f'      <a class="article-back" id="article-back-link" href="{href}">\n'
