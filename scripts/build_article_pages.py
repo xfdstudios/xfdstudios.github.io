@@ -437,6 +437,15 @@ def main_content(a: dict, portal: tuple[str, str], video: dict | None) -> str:
             "        </a>\n"
         )
     body = with_merch(render_body(a.get("body") or a.get("summary") or ""), a.get("merch"))
+    if a["id"] == "tech-gta-6-box-has-no-disc-212-gb-pre-load":
+        # Trusted local presentation partial; never interpret article text as HTML.
+        guide = (ROOT / "assets/ps5-storage-guide.html").read_text()
+        body, count = re.subn(
+            r"<h2>Optional PS5 storage upgrades</h2>.*?(?=<h2>When pre-load starts</h2>)",
+            lambda _: guide, body, count=1, flags=re.S)
+        if count != 1:
+            raise ValueError("PS5 storage guide placement no longer matches article")
+
     return (
         '<main class="article-main">\n'
         f'      <a class="article-back" id="article-back-link" href="{href}">\n'

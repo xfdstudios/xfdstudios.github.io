@@ -14,6 +14,7 @@ on:
       - article.html
       - portal-page.js
       - scripts/build_article_pages.py
+      - assets/ps5-storage-guide.html
   workflow_dispatch:
 
 permissions:
