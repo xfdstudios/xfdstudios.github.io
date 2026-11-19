@@ -1,49 +1,52 @@
 <section class="xfd-storage-guide" aria-labelledby="storage-guide-title">
 <style>
-.xfd-storage-guide{margin:2.5rem 0;padding:clamp(1rem,3vw,1.6rem);border:1px solid #375675;border-radius:18px;background:#101d2d;color:#e4edf8}
+.xfd-storage-guide{margin:2.6rem 0;color:inherit;font:inherit}
 .xfd-storage-guide *{box-sizing:border-box}
-.xfd-storage-guide .storage-kicker{color:#82caff;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;margin:0}
-.article-body .xfd-storage-guide h2{margin:.5rem 0 1rem;color:#fff}
-.xfd-storage-guide .storage-first{border-left:3px solid #82caff;padding:.65rem 1rem;background:#172b40}
-.xfd-storage-guide .storage-flow{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin:1rem 0 .4rem;padding:0;list-style:none}
-.article-body .xfd-storage-guide .storage-flow li{margin:0;padding:.65rem .85rem;border:1px solid #51708e;border-radius:8px}
+.xfd-storage-guide .storage-kicker{color:var(--page-accent);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;margin:0}
+.article-body .xfd-storage-guide h2{margin:.5rem 0 1rem}
+.xfd-storage-guide .storage-first{color:var(--text)}
+.xfd-storage-guide .storage-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin:1.4rem 0;padding:0;list-style:none}
+.article-body .xfd-storage-guide .storage-flow li{margin:0;padding:.8rem 0;border-top:2px solid var(--page-accent);font-size:.9rem;color:var(--text)}
 .article-body .xfd-storage-guide .storage-flow li::before{content:none}
-.xfd-storage-guide .storage-caption{font-size:.85rem;color:#b8cde1}
+.xfd-storage-guide .storage-caption{font-size:.75rem;color:var(--muted);margin:.6rem 0 0}
 .xfd-storage-guide .storage-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
-.xfd-storage-guide .storage-card{min-width:0;display:flex;flex-direction:column;padding:1.2rem;border:1px solid #45627e;border-radius:12px;background:#182b40;overflow-wrap:anywhere}
-.xfd-storage-guide h3{font-size:1.2rem;line-height:1.4;margin:0 0 .7rem;color:#fff}
-.xfd-storage-guide .storage-model{font-size:.8rem;color:#bed3e6}
-.xfd-storage-guide dl{margin:0 0 1rem;line-height:1.5}
-.xfd-storage-guide dt{font-size:.8rem;color:#b8cde1;margin-top:.6rem}
-.xfd-storage-guide dd{margin:0;color:#fff}
-.article-body .xfd-storage-guide a.storage-button{display:block;margin-top:auto;padding:.8rem;text-align:center;background:#91d3ff;color:#102236;border:2px solid transparent;border-radius:8px;line-height:1.5;font-weight:700;min-height:48px}
-.article-body .xfd-storage-guide a:focus-visible{outline:3px solid #fff;outline-offset:4px}
-.xfd-storage-guide .storage-note{font-size:.9rem;margin-top:1rem}
-@media(max-width:600px){.xfd-storage-guide .storage-grid{grid-template-columns:1fr}}
+.xfd-storage-guide .storage-card{min-width:0;display:flex;flex-direction:column;padding:1.2rem;border:1px solid var(--line);border-radius:14px;background:var(--panel);overflow-wrap:anywhere}
+.xfd-storage-guide .storage-visual{margin:1.2rem 0;padding:1rem;background:var(--panel-2);border:1px solid var(--line);border-radius:14px;text-align:center}
+.xfd-storage-guide .storage-visual svg{display:block;width:100%;max-width:560px;height:auto;margin:0 auto}
+.xfd-storage-guide h3{font:inherit;font-weight:700;font-size:1.15rem;line-height:1.35;margin:0 0 .6rem;color:var(--text)}
+.xfd-storage-guide .storage-model{font-size:.75rem;color:var(--muted)}
+.xfd-storage-guide .storage-capacity{color:var(--page-accent);font-weight:600}
+.article-body .xfd-storage-guide a.storage-button{display:block;margin-top:auto;padding:.8rem;text-align:center;background:var(--page-accent);color:var(--bg);border:2px solid transparent;border-radius:8px;line-height:1.5;font-weight:700;min-height:48px}
+.article-body .xfd-storage-guide a:focus-visible{outline:3px solid var(--text);outline-offset:4px}
+.xfd-storage-guide #storage-disclosure{font-size:.85rem;border-left:2px solid var(--page-accent);padding:.6rem .9rem;background:var(--panel);color:var(--text)}
+.xfd-storage-guide .storage-install{margin:1.2rem 0;padding:1rem;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.xfd-storage-guide .storage-note{font-size:.85rem;color:var(--muted);margin-top:1rem}
+@media(max-width:600px){.xfd-storage-guide .storage-grid{grid-template-columns:1fr}.xfd-storage-guide .storage-flow{grid-template-columns:1fr;gap:0}}
 </style>
 <p class="storage-kicker">Storage check / PS5</p>
 <h2 id="storage-guide-title">Optional PS5 storage upgrades</h2>
 <p class="storage-first"><strong>Check your free space first.</strong> Open Settings → Storage on your PS5. If you already have enough room, you do not need an SSD. Removing games you no longer need is a free way to make space; follow PlayStation’s guidance and keep your saved data safe.</p>
-<ol class="storage-flow" aria-label="Storage decision diagram"><li>1. Check free space</li><li>2. Make room if needed</li><li>3. Add storage only if useful</li></ol>
-<p class="storage-caption">Original decision diagram, not a product photo or installation diagram.</p>
-<p>Both options below add internal storage for installing and playing PS5 games. They do not create a physical game copy, change a game’s license or guarantee faster downloads. Choose one, not both.</p>
-<p id="storage-disclosure"><strong>Disclosure:</strong> XFD may earn a commission from purchases through the paid links below. As an Amazon Associate I earn from qualifying purchases.</p>
+<ol class="storage-flow" aria-label="Storage decision diagram"><li>1. Check free space →</li><li>2. Clear space if needed →</li><li>3. Add storage if still short</li></ol>
+<figure class="storage-visual"><svg viewBox="0 0 560 240" role="img" aria-label="Original generic illustration of a slim M.2 storage module with a raised ribbed heatsink; not the exact product"><defs><linearGradient id="storage-metal" x2="0" y2="1"><stop stop-color="#647180"/><stop offset="1" stop-color="#202c39"/></linearGradient></defs><ellipse cx="280" cy="194" rx="211" ry="15" fill="#070b13" opacity=".5"/><g transform="translate(65 53) rotate(-7 220 70)"><path d="M0 20H400L430 42V132H20L0 112Z" fill="#152932" stroke="#7498a8" stroke-width="2"/><path d="M400 42H450V104H400Z" fill="#ad914e"/><path d="M410 44V100M420 44V100M430 44V100M440 44V100" stroke="#4e472d" stroke-width="3"/><path d="M20 7H385L405 28V112H20Z" fill="url(#storage-metal)" stroke="#8b9baa" stroke-width="2"/><path d="M20 7L42 -5H369L385 7" fill="#8c9ba7"/><path d="M45 21V99" stroke="#111c28" stroke-width="7"/><path d="M48 21V99" stroke="#84929e" stroke-width="1"/><path d="M60 21V99" stroke="#111c28" stroke-width="7"/><path d="M63 21V99" stroke="#84929e" stroke-width="1"/><path d="M75 21V99" stroke="#111c28" stroke-width="7"/><path d="M78 21V99" stroke="#84929e" stroke-width="1"/><path d="M90 21V99" stroke="#111c28" stroke-width="7"/><path d="M93 21V99" stroke="#84929e" stroke-width="1"/><path d="M105 21V99" stroke="#111c28" stroke-width="7"/><path d="M108 21V99" stroke="#84929e" stroke-width="1"/><path d="M120 21V99" stroke="#111c28" stroke-width="7"/><path d="M123 21V99" stroke="#84929e" stroke-width="1"/><path d="M135 21V99" stroke="#111c28" stroke-width="7"/><path d="M138 21V99" stroke="#84929e" stroke-width="1"/><path d="M150 21V99" stroke="#111c28" stroke-width="7"/><path d="M153 21V99" stroke="#84929e" stroke-width="1"/><path d="M165 21V99" stroke="#111c28" stroke-width="7"/><path d="M168 21V99" stroke="#84929e" stroke-width="1"/><path d="M180 21V99" stroke="#111c28" stroke-width="7"/><path d="M183 21V99" stroke="#84929e" stroke-width="1"/><path d="M195 21V99" stroke="#111c28" stroke-width="7"/><path d="M198 21V99" stroke="#84929e" stroke-width="1"/><path d="M210 21V99" stroke="#111c28" stroke-width="7"/><path d="M213 21V99" stroke="#84929e" stroke-width="1"/><path d="M225 21V99" stroke="#111c28" stroke-width="7"/><path d="M228 21V99" stroke="#84929e" stroke-width="1"/><path d="M240 21V99" stroke="#111c28" stroke-width="7"/><path d="M243 21V99" stroke="#84929e" stroke-width="1"/><path d="M255 21V99" stroke="#111c28" stroke-width="7"/><path d="M258 21V99" stroke="#84929e" stroke-width="1"/><path d="M270 21V99" stroke="#111c28" stroke-width="7"/><path d="M273 21V99" stroke="#84929e" stroke-width="1"/><path d="M285 21V99" stroke="#111c28" stroke-width="7"/><path d="M288 21V99" stroke="#84929e" stroke-width="1"/><path d="M300 21V99" stroke="#111c28" stroke-width="7"/><path d="M303 21V99" stroke="#84929e" stroke-width="1"/><path d="M315 21V99" stroke="#111c28" stroke-width="7"/><path d="M318 21V99" stroke="#84929e" stroke-width="1"/><path d="M330 21V99" stroke="#111c28" stroke-width="7"/><path d="M333 21V99" stroke="#84929e" stroke-width="1"/><path d="M345 21V99" stroke="#111c28" stroke-width="7"/><path d="M348 21V99" stroke="#84929e" stroke-width="1"/><path d="M360 21V99" stroke="#111c28" stroke-width="7"/><path d="M363 21V99" stroke="#84929e" stroke-width="1"/><path d="M375 21V99" stroke="#111c28" stroke-width="7"/><path d="M378 21V99" stroke="#84929e" stroke-width="1"/><path d="M35 117H389" stroke="#81c9ff" stroke-width="3"/></g></svg><figcaption class="storage-caption">M.2 SSD with heatsink · Original example illustration, not either drive’s exact design</figcaption></figure>
+<p>Both options: 2TB advertised capacity, internal M.2 PCIe Gen4 NVMe, heatsink included and officially licensed for PS5. They add space for installing and playing PS5 games. They do not create a physical game copy, change a game’s license or guarantee faster downloads. Choose one, not both.</p>
+<p id="storage-disclosure">Shopping through these links may earn XFD a commission. As an Amazon Associate I earn from qualifying purchases.</p>
 <div class="storage-grid">
 <div class="storage-card">
 <h3>WD_BLACK SN850P<br>2TB with heatsink</h3>
 <p class="storage-model">Exact model: WDBBYV0020BNC-WRSN</p>
-<dl><dt>Advertised capacity</dt><dd>2TB</dd><dt>Connection</dt><dd>Internal M.2 PCIe Gen4 NVMe</dd><dt>Cooling</dt><dd>Included heatsink</dd><dt>Console fit</dt><dd>Officially licensed for PS5</dd></dl>
+<p class="storage-capacity">2TB · Heatsink included</p>
 <p>For a PS5 library that needs more install space. The heatsink is included with this exact model.</p>
-<a class="storage-button" href="https://www.amazon.com/dp/B0C47ZX1WB/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check WD_BLACK SN850P 2TB price on Amazon, paid link">Check price on Amazon<br><small>(paid link)</small></a>
+<a class="storage-button" href="https://www.amazon.com/dp/B0C47ZX1WB/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check WD_BLACK SN850P 2TB price on Amazon, paid link">Check price on Amazon<br><small>Affiliate link</small></a>
 </div>
 <div class="storage-card">
 <h3>Seagate Game Drive PS5<br>2TB NVMe SSD</h3>
 <p class="storage-model">Exact model: ZP2000GP3A1001</p>
-<dl><dt>Advertised capacity</dt><dd>2TB</dd><dt>Connection</dt><dd>Internal M.2 PCIe Gen4 NVMe</dd><dt>Cooling</dt><dd>Built-in heatsink</dd><dt>Console fit</dt><dd>Officially licensed for PS5</dd></dl>
+<p class="storage-capacity">2TB · Heatsink included</p>
 <p>An alternative for the same storage need. This is the internal NVMe model, not a USB Game Drive.</p>
-<a class="storage-button" href="https://www.amazon.com/dp/B0CGF9T5P2/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check Seagate Game Drive PS5 2TB price on Amazon, paid link">Check price on Amazon<br><small>(paid link)</small></a>
+<a class="storage-button" href="https://www.amazon.com/dp/B0CGF9T5P2/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check Seagate Game Drive PS5 2TB price on Amazon, paid link">Check price on Amazon<br><small>Affiliate link</small></a>
 </div>
 </div>
+<aside class="storage-install"><strong>Check the fit. Follow the steps.</strong><br>These exact models include a heatsink for PS5’s internal M.2 expansion slot. Confirm your console model and read <a href="https://www.playstation.com/en-us/support/hardware/ps5-install-m2-ssd/" target="_blank" rel="noopener">Sony’s official M.2 installation guide</a> before opening the console.</aside>
 <p class="storage-note">Specifications-based options, not hands-on reviews. Usable capacity is lower than the advertised capacity. Check the exact model, capacity, heatsink, seller and current price before buying. Follow <a href="https://www.playstation.com/en-us/support/hardware/ps5-install-m2-ssd/" target="_blank" rel="noopener">Sony’s installation guide</a>: first-time formatting erases data already on the added SSD.</p>
 <p class="storage-note">Specification sources: <a href="https://documents.westerndigital.com/content/dam/doc-library/en_us/assets/public/western-digital/product/internal-drives/wd-black-ssd/data-sheet-wd-black-sn850p-nvme-ssd-for-ps5.pdf" target="_blank" rel="noopener">WD_BLACK datasheet</a> · <a href="https://www.seagate.com/content/dam/seagate/en/content-fragments/products/datasheets/game-drive-ps5-nvme-ssd/game-drive-ps5-nvme-ssd-SC12-2-2503US-en_US.pdf" target="_blank" rel="noopener">Seagate datasheet</a>.</p>
 </section>
