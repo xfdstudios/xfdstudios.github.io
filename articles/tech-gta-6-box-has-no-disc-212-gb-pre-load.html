@@ -393,6 +393,11 @@
 .xfd-storage-guide .storage-caption{font-size:.75rem;color:var(--muted);margin:.6rem 0 0}
 .xfd-storage-guide .storage-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
 .xfd-storage-guide .storage-card{min-width:0;display:flex;flex-direction:column;padding:1.2rem;border:1px solid var(--line);border-radius:14px;background:var(--panel);overflow-wrap:anywhere}
+.xfd-storage-guide .storage-card{border-top:3px solid var(--tier-bg,var(--line))}
+.xfd-storage-guide [data-storage-tier="good"]{--tier-bg:#fca5a5;--tier-ink:#450a0a}
+.xfd-storage-guide [data-storage-tier="great"]{--tier-bg:#fde047;--tier-ink:#422006}
+.xfd-storage-guide [data-storage-tier="best"]{--tier-bg:#86efac;--tier-ink:#052e16}
+.xfd-storage-guide .storage-tier{align-self:flex-start;display:inline-block;margin:0 0 .7rem;padding:.24rem .65rem;border-radius:99px;background:var(--tier-bg);color:var(--tier-ink);font-size:.8rem;font-weight:800;line-height:1.4}
 .xfd-storage-guide .storage-visual{margin:1.2rem 0;padding:1rem;background:var(--panel-2);border:1px solid var(--line);border-radius:14px;text-align:center}
 .xfd-storage-guide .storage-visual svg{display:block;width:100%;max-width:560px;height:auto;margin:0 auto}
 .xfd-storage-guide h3{font:inherit;font-weight:700;font-size:1.15rem;line-height:1.35;margin:0 0 .6rem;color:var(--text)}
@@ -413,30 +418,30 @@
 <p><strong>Our baseline: 2TB for ongoing PS5 use.</strong> Consider more only if your growing library genuinely needs it. Wait if you already have enough space or expect to change consoles soon. These are editorial Good / Great / Best options, not a current-price ranking or a promise of better gameplay. All three add the same advertised 2TB, with an included heatsink for internal PS5 storage. They do not create a physical game copy, change a game’s license or guarantee faster downloads. Choose one.</p>
 <p id="storage-disclosure">Shopping through these links may earn XFD a commission. As an Amazon Associate I earn from qualifying purchases.</p>
 <div class="storage-grid">
-<div class="storage-card">
-<p class="storage-kicker">Good</p>
+<div class="storage-card" data-storage-tier="good">
+<p class="storage-tier">Good</p>
 <h3>TEAMGROUP G70 PRO<br>2TB with heatsink</h3>
 <p class="storage-model">Exact model: TM8FFH002T0C128</p>
 <p class="storage-capacity">Aluminum heatsink</p>
-<p>Buy only if meaningfully cheaper than comparable 2TB options from a trustworthy seller. Skip if the saving is small. Match the aluminum model, not the graphene variant.</p>
+<p><strong>For the value shopper.</strong> The aluminum-heatsink model is rated up to 7,400 MB/s sequential read. Pick it if it is meaningfully cheaper from a trustworthy seller. Skip the graphene variant for this recommendation.</p>
 <p class="storage-model"><a href="https://www.teamgroupinc.com/en/product-detail/ssd/T-FORCE/g70-pro/g70-pro-TM8FFH002T0C128/" target="_blank" rel="noopener">View product photos on TEAMGROUP’s official site</a></p>
 <a class="storage-button" href="https://www.amazon.com/dp/B0CSD65FTW/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check TEAMGROUP G70 PRO 2TB seller and price on Amazon, paid link">Compare seller &amp; price<br><small>Amazon · Affiliate link</small></a>
 </div>
-<div class="storage-card">
-<p class="storage-kicker">Great</p>
+<div class="storage-card" data-storage-tier="great">
+<p class="storage-tier">Great</p>
 <h3>WD_BLACK SN850P<br>2TB with heatsink</h3>
 <p class="storage-model">Exact model: WDBBYV0020BNC-WRSN</p>
 <p class="storage-capacity">Factory heatsink · Officially licensed for PS5</p>
-<p>Buy if the current price is reasonable and the seller is trustworthy. Skip inflated offers or unclear sellers; an Amazon listing does not mean Amazon itself has an offer.</p>
+<p><strong>For the PS5-only shopper.</strong> Pick it if you want official PlayStation licensing at a price you are comfortable with. Rated up to 7,300 MB/s sequential read. Skip inflated offers or unclear sellers; a listing does not mean Amazon itself has an offer.</p>
 <p class="storage-model"><a href="https://www.sandisk.com/products/ssd/internal-ssd/wd-black-sn850p-nvme-ssd-for-ps5?sku=WDBBYV0020BNC-WRSN" target="_blank" rel="noopener">View product photos on Sandisk’s official site</a></p>
 <a class="storage-button" href="https://www.amazon.com/dp/B0C47ZX1WB/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check WD_BLACK SN850P 2TB seller and price on Amazon, paid link">Compare seller &amp; price<br><small>Amazon · Affiliate link</small></a>
 </div>
-<div class="storage-card">
-<p class="storage-kicker">Best</p>
+<div class="storage-card" data-storage-tier="best">
+<p class="storage-tier">Best</p>
 <h3>Samsung 990 PRO<br>2TB with heatsink</h3>
 <p class="storage-model">Exact model: MZ-V9P2T0CW</p>
 <p class="storage-capacity">Factory heatsink · Premium fallback</p>
-<p>Buy only if dependable seller availability justifies the premium. Skip if a cheaper equivalent meets your needs. Do not pay extra expecting gameplay gains: capacity is still 2TB.</p>
+<p><strong>For the shopper who prefers Samsung.</strong> Rated up to 7,450 MB/s sequential read, the highest stated rating here. Pick it if you prefer this model and find a dependable offer. Skip the premium if a cheaper pick meets your needs.</p>
 <p class="storage-model"><a href="https://www.samsung.com/us/memory-storage/nvme-ssd/990-pro-w-heatsink-pcie-4-0-nvme-ssd-2tb-sku-mz-v9p2t0cw/" target="_blank" rel="noopener">View product photos on Samsung’s official site</a></p>
 <a class="storage-button" href="https://www.amazon.com/dp/B0BHJDY57J/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check Samsung 990 PRO 2TB seller and price on Amazon, paid link">Compare seller &amp; price<br><small>Amazon · Affiliate link</small></a>
 </div>
@@ -453,7 +458,7 @@
 <li><strong>Close up before powering on:</strong> Reattach the bay cover and outer panel. Reconnect power, then follow the format prompt if it appears. Formatting erases data on the added drive.</li>
 </ol>
 </aside>
-<p class="storage-note">Specifications-based options, not hands-on reviews. Usable capacity is lower than the advertised capacity. Check the exact model, capacity, heatsink, seller and current price before buying. Follow <a href="https://www.playstation.com/en-us/support/hardware/ps5-install-m2-ssd/" target="_blank" rel="noopener">Sony’s installation guide</a>: first-time formatting erases data already on the added SSD.</p>
+<p class="storage-note">Specifications-based options, not hands-on reviews. Manufacturers’ peak read ratings are not PS5 load-time tests or proof of longer drive life. Usable capacity is lower than the advertised capacity. Check the exact model, capacity, heatsink, seller and current price before buying. Follow <a href="https://www.playstation.com/en-us/support/hardware/ps5-install-m2-ssd/" target="_blank" rel="noopener">Sony’s installation guide</a>: first-time formatting erases data already on the added SSD.</p>
 <p class="storage-note">Specification sources: <a href="https://images.teamgroupinc.com/products/ssd/m2/g70-pro/spec-sheet/g70-pro-en.pdf" target="_blank" rel="noopener">TEAMGROUP datasheet</a> · <a href="https://www.sandisk.com/products/ssd/internal-ssd/wd-black-sn850p-nvme-ssd-for-ps5?sku=WDBBYV0020BNC-WRSN" target="_blank" rel="noopener">WD_BLACK specifications</a> · <a href="https://download.semiconductor.samsung.com/resources/brochure/990_PRO_Series_Brouchure_Web_Version_4.0_250523.pdf" target="_blank" rel="noopener">Samsung datasheet</a>.</p>
 </section>
 <h2>When pre-load starts</h2>
