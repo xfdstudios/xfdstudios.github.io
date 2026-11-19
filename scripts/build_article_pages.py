@@ -123,7 +123,9 @@ def inline(s: str) -> str:
         if old:
             href = f"articles/{old.group(1)}.html"
         external = href.startswith(("http://", "https://"))
-        extra = ' target="_blank" rel="noopener"' if external else ""
+        sponsored = bool(re.match(r"^https://www\.amazon\.com/dp/(?:B0C47ZX1WB|B0CGF9T5P2)/ref=nosim\?tag=xfdstudios-20$", href))
+        rel = "noopener sponsored" if sponsored else "noopener"
+        extra = f' target="_blank" rel="{rel}"' if external else ""
         return f'<a href="{href}"{extra}>{label}</a>'
 
     return LINK.sub(link, esc(s))

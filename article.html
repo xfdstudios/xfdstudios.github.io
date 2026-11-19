@@ -393,7 +393,9 @@
           (whole, label, href) => {
             if (!safeHref(href)) return whole;
             const external = /^https?:\/\//.test(href);
-            const attrs = external ? ' target="_blank" rel="noopener"' : '';
+            const sponsored = /^https:\/\/www\.amazon\.com\/dp\/(?:B0C47ZX1WB|B0CGF9T5P2)\/ref=nosim\?tag=xfdstudios-20$/.test(href);
+            const rel = sponsored ? 'noopener sponsored' : 'noopener';
+            const attrs = external ? ` target="_blank" rel="${rel}"` : '';
             return `<a href="${href}"${attrs}>${label}</a>`;
           }
         );
