@@ -348,19 +348,120 @@
 <h2>Step 1: the free fix</h2>
 <p>Open Settings → Storage on your PS5 and look at what's actually installed. If there are games you haven't touched in months, delete them. You can download them again later, and PlayStation's guide shows how to keep your saved data safe. <a href="https://www.playstation.com/en-us/support/hardware/ps5-manage-storage-space/" target="_blank" rel="noopener">PlayStation: manage your PS5 storage</a></p>
 <p>Got enough room now? Then you're done. Keep your money.</p>
-<h2>Is a hard drive enough?</h2>
-<p>Store ✔. Play ✘. That's the whole answer.</p>
-<p>Think of your PS5 like a house. The console's own storage is the living room: that's where you play. A USB hard drive (or USB SSD) is the garage. You can park games out there, but you can't play PS5 games from the garage.</p>
-<ul><li>PS5 games: you can move them to a USB drive to free up space. When you want one back, copy it to the console storage and play it from there.</li><li>PS4 games: these can play straight from the USB drive.</li></ul>
-<p>PlayStation's own rules for USB extended storage: SuperSpeed USB 5 Gbps or faster, 250 GB to 8 TB, plugged straight into the console (no USB hub), and one extended-storage drive at a time. <a href="https://www.playstation.com/en-us/support/hardware/ps5-extended-storage/" target="_blank" rel="noopener">PlayStation: USB extended storage on PS5</a></p>
-<p>So if you just need somewhere to park the games you're not playing right now, a hard drive does the job and usually costs less.</p>
+<section class="xfd-storage-guide xfd-hdd-guide" aria-labelledby="hdd-guide-title">
+<style>
+.xfd-hdd-guide{margin:2.6rem 0;color:inherit;font:inherit}
+.xfd-hdd-guide *{box-sizing:border-box}
+.xfd-hdd-guide .storage-kicker{color:var(--page-accent);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;margin:0}
+.article-body .xfd-hdd-guide h2{margin:.5rem 0 1rem}
+.xfd-hdd-guide h3{font:inherit;font-weight:700;font-size:1.15rem;line-height:1.35;margin:0 0 .6rem;color:var(--text)}
+.xfd-hdd-guide .hdd-verdict{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.2rem 0}
+.xfd-hdd-guide .hdd-verdict-card{min-width:0;padding:1.2rem;border-radius:14px;background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--v-bg);color:var(--text)}
+.xfd-hdd-guide .hdd-verdict-card[data-verdict="yes"]{--v-bg:#86efac;--v-ink:#052e16}
+.xfd-hdd-guide .hdd-verdict-card[data-verdict="no"]{--v-bg:#fca5a5;--v-ink:#450a0a}
+.xfd-hdd-guide .hdd-verdict-badge{display:inline-block;margin:0 0 .7rem;padding:.3rem .8rem;border-radius:99px;background:var(--v-bg);color:var(--v-ink);font-weight:800;font-size:1rem;line-height:1.4}
+.xfd-hdd-guide .hdd-house{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:.8rem;margin:1.2rem 0;padding:1rem;background:var(--panel-2);border:1px solid var(--line);border-radius:14px;text-align:center}
+.xfd-hdd-guide .hdd-room{padding:1rem .6rem;border:2px solid var(--page-accent);border-radius:12px;color:var(--text)}
+.xfd-hdd-guide .hdd-room strong{display:block;font-size:1.05rem}
+.xfd-hdd-guide .hdd-room span{display:block;font-size:.85rem;color:var(--muted);margin-top:.3rem}
+.xfd-hdd-guide .hdd-room-icon{display:block;font-size:2rem;line-height:1;margin-bottom:.4rem}
+.xfd-hdd-guide .hdd-arrows{font-size:.8rem;color:var(--muted);line-height:1.5}
+.xfd-hdd-guide .hdd-arrow-glyph{display:block;font-size:1.6rem;color:var(--page-accent);line-height:1.1}
+@media(max-width:700px){.xfd-hdd-guide .hdd-arrow-glyph{transform:rotate(90deg)}}
+.xfd-hdd-guide .storage-caption{font-size:.75rem;color:var(--muted);margin:.6rem 0 0;grid-column:1/-1}
+.xfd-hdd-guide .storage-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.xfd-hdd-guide .storage-card{min-width:0;display:flex;flex-direction:column;padding:1.2rem;border:1px solid var(--line);border-top:3px solid var(--tier-bg,var(--line));border-radius:14px;background:var(--panel);overflow-wrap:anywhere}
+.xfd-hdd-guide [data-storage-tier="good"]{--tier-bg:#fca5a5;--tier-ink:#450a0a}
+.xfd-hdd-guide [data-storage-tier="great"]{--tier-bg:#fde047;--tier-ink:#422006}
+.xfd-hdd-guide [data-storage-tier="best"]{--tier-bg:#86efac;--tier-ink:#052e16}
+.xfd-hdd-guide [data-storage-tier="also"]{--tier-bg:#93c5fd;--tier-ink:#0b1f44}
+.xfd-hdd-guide .storage-tier{align-self:flex-start;display:inline-block;margin:0 0 .7rem;padding:.24rem .65rem;border-radius:99px;background:var(--tier-bg);color:var(--tier-ink);font-size:.8rem;font-weight:800;line-height:1.4}
+.xfd-hdd-guide .storage-model{font-size:.75rem;color:var(--muted)}
+.xfd-hdd-guide .storage-capacity{color:var(--tier-bg,var(--page-accent));font-weight:600}
+.article-body .xfd-hdd-guide a.storage-button{display:block;margin-top:auto;padding:.8rem;text-align:center;background:var(--tier-bg,var(--page-accent));color:var(--tier-ink,var(--bg));border:2px solid transparent;border-radius:8px;line-height:1.5;font-weight:700;min-height:48px}
+.article-body .xfd-hdd-guide .storage-card a.storage-button:hover{border-color:var(--tier-ink)}
+.article-body .xfd-hdd-guide a:focus-visible{outline:3px solid var(--text);outline-offset:4px}
+.xfd-hdd-guide .hdd-disclosure{font-size:.85rem;border-left:2px solid var(--page-accent);padding:.6rem .9rem;background:var(--panel);color:var(--text)}
+.xfd-hdd-guide .hdd-install{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin:1.4rem 0;padding:1rem 1.2rem;border:1px solid var(--line);border-left:4px solid var(--page-accent);border-radius:12px;background:var(--panel);color:var(--text)}
+.xfd-hdd-guide .hdd-install p{margin:0}
+.article-body .xfd-hdd-guide a.hdd-install-button{display:inline-block;padding:.75rem 1.1rem;border-radius:8px;background:var(--page-accent);color:var(--bg);font-weight:700;min-height:48px;line-height:1.6}
+.xfd-hdd-guide .storage-note{font-size:.85rem;color:var(--muted);margin-top:1rem}
+@media(max-width:700px){.xfd-hdd-guide .hdd-verdict,.xfd-hdd-guide .storage-grid{grid-template-columns:1fr}.xfd-hdd-guide .hdd-house{grid-template-columns:1fr}.xfd-hdd-guide .hdd-arrows{transform:none}}
+</style>
+
+<p class="storage-kicker">Storage check / PS5</p>
+<h2 id="hdd-guide-title">Is a hard drive enough?</h2>
+
+<div class="hdd-verdict">
+<div class="hdd-verdict-card" data-verdict="yes">
+<p class="hdd-verdict-badge">Store ✔</p>
+<h3>A USB hard drive can hold your games</h3>
+<p>Move the PS5 games you're not playing onto a USB hard drive (or USB SSD), and GTA 6 gets the room on your console. PS4 games can even play straight from it.</p>
+</div>
+<div class="hdd-verdict-card" data-verdict="no">
+<p class="hdd-verdict-badge">Play ✘</p>
+<h3>It can't run your PS5 games</h3>
+<p>PS5 games can't be played from USB. When you want one back, copy it to the console storage and play it from there.</p>
+</div>
+</div>
+
+<figure class="hdd-house" aria-label="Diagram: the console's storage is where you play; a USB drive is where you store games">
+<div class="hdd-room"><span class="hdd-room-icon" aria-hidden="true">🏠</span><strong>Console storage</strong><span>The living room: play here</span></div>
+<div class="hdd-arrows" aria-hidden="true"><span class="hdd-arrow-glyph">⇄</span>park it there<br>copy it back to play</div>
+<div class="hdd-room"><span class="hdd-room-icon" aria-hidden="true">🚗</span><strong>USB drive</strong><span>The garage: store here</span></div>
+<figcaption class="storage-caption">Original XFD diagram. PS4 games are the exception: they can play from USB.</figcaption>
+</figure>
+
+<p class="storage-note">PlayStation's rules for USB extended storage: SuperSpeed USB 5 Gbps or faster, 250 GB to 8 TB, plugged straight into the console (no USB hub), and one extended-storage drive at a time. <a href="https://www.playstation.com/en-us/support/hardware/ps5-extended-storage/" target="_blank" rel="noopener">PlayStation: USB extended storage on PS5</a>.</p>
+
 <h2>When you actually need an SSD</h2>
 <p>Want a bunch of PS5 games installed and ready to play at once, no copying back and forth? That's when you need an internal M.2 SSD with a heatsink. It goes inside the console and works like more living room.</p>
+
 <h2>Our picks</h2>
-<p>Disclosure: XFD may earn a commission from purchases through the paid links below. As an Amazon Associate I earn from qualifying purchases.</p>
-<p>These are editorial picks based on published specifications, not hands-on reviews. All of them are 2TB internal drives with a heatsink. Choose one, not all of them.</p>
-<ul><li>Good: TEAMGROUP G70 PRO 2TB (aluminum heatsink, model TM8FFH002T0C128). For the value shopper. <a href="https://www.amazon.com/dp/B0CSD65FTW/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored">Check today's price on Amazon (paid link)</a></li><li>Great: WD_BLACK SN850P 2TB (model WDBBYV0020BNC-WRSN). Officially licensed for PS5. <a href="https://www.amazon.com/dp/B0C47ZX1WB/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored">Check today's price on Amazon (paid link)</a></li><li>Best: Samsung 990 PRO 2TB with heatsink (model MZ-V9P2T0CW). The premium option. <a href="https://www.amazon.com/dp/B0BHJDY57J/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored">Check today's price on Amazon (paid link)</a></li><li>Also worth a look: WD_BLACK SN850X 2TB with heatsink (model WDS200T2XHE). WD's heatsink model that works with PS5. It isn't the officially licensed version; that's the SN850P above. <a href="https://www.amazon.com/dp/B0B7CKZGN6/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored">Check today's price on Amazon (paid link)</a></li></ul>
-<p>Before you install anything, check your console model and follow <a href="https://www.playstation.com/en-us/support/hardware/ps5-install-m2-ssd/" target="_blank" rel="noopener">Sony's M.2 SSD installation guide</a>. The full side-by-side, with install notes, is in <a href="articles/tech-gta-6-box-has-no-disc-212-gb-pre-load.html">our GTA 6 box breakdown</a>.</p>
+<p class="hdd-disclosure">Disclosure: XFD may earn a commission from purchases through the paid links below. As an Amazon Associate I earn from qualifying purchases.</p>
+<p>Editorial picks based on published specifications, not hands-on reviews. All four are 2TB internal drives with a heatsink. Choose one, not all of them.</p>
+<div class="storage-grid">
+<div class="storage-card" data-storage-tier="good">
+<p class="storage-tier">Good</p>
+<h3>TEAMGROUP G70 PRO<br>2TB with heatsink</h3>
+<p class="storage-model">Exact model: TM8FFH002T0C128</p>
+<p class="storage-capacity">Aluminum heatsink</p>
+<p>For the value shopper.</p>
+<a class="storage-button" href="https://www.amazon.com/dp/B0CSD65FTW/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check TEAMGROUP G70 PRO 2TB price on Amazon, paid link">Check today's price<br><small>Amazon · Paid link</small></a>
+</div>
+<div class="storage-card" data-storage-tier="great">
+<p class="storage-tier">Great</p>
+<h3>WD_BLACK SN850P<br>2TB with heatsink</h3>
+<p class="storage-model">Exact model: WDBBYV0020BNC-WRSN</p>
+<p class="storage-capacity">Officially licensed for PS5</p>
+<p>For the PS5-only shopper.</p>
+<a class="storage-button" href="https://www.amazon.com/dp/B0C47ZX1WB/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check WD_BLACK SN850P 2TB price on Amazon, paid link">Check today's price<br><small>Amazon · Paid link</small></a>
+</div>
+<div class="storage-card" data-storage-tier="best">
+<p class="storage-tier">Best</p>
+<h3>Samsung 990 PRO<br>2TB with heatsink</h3>
+<p class="storage-model">Exact model: MZ-V9P2T0CW</p>
+<p class="storage-capacity">Premium option</p>
+<p>For the shopper who prefers Samsung.</p>
+<a class="storage-button" href="https://www.amazon.com/dp/B0BHJDY57J/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check Samsung 990 PRO 2TB price on Amazon, paid link">Check today's price<br><small>Amazon · Paid link</small></a>
+</div>
+<div class="storage-card" data-storage-tier="also">
+<p class="storage-tier">Also worth a look</p>
+<h3>WD_BLACK SN850X<br>2TB with heatsink</h3>
+<p class="storage-model">Exact model: WDS200T2XHE</p>
+<p class="storage-capacity">Works with PS5 · Not the licensed version</p>
+<p>WD's heatsink model. The officially licensed PS5 version is the SN850P.</p>
+<a class="storage-button" href="https://www.amazon.com/dp/B0B7CKZGN6/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check WD_BLACK SN850X 2TB price on Amazon, paid link">Check today's price<br><small>Amazon · Paid link</small></a>
+</div>
+</div>
+
+<div class="hdd-install">
+<p><strong>Installing one?</strong> Check your PS5 model first. Our step-by-step has an install diagram and links to photo walkthroughs.</p>
+<a class="hdd-install-button" href="tech-gta-6-box-has-no-disc-212-gb-pre-load.html#ps5-ssd-install">How to install it →</a>
+</div>
+<p class="storage-note">Usable space is lower than the advertised capacity. Check the exact model, seller and today's price before buying, and follow <a href="https://www.playstation.com/en-us/support/hardware/ps5-install-m2-ssd/" target="_blank" rel="noopener">Sony's M.2 SSD installation guide</a> for your console.</p>
+</section>
+
 <h2>Black Friday, real talk</h2>
 <p>Prices move all weekend, and a "deal" isn't a deal if you didn't need the thing. We're not going to tell you anything is the lowest price ever. Check today's price, check who the seller is, and if you already have the room, walk away.</p>
 <h2>Buying for a GTA 6 player?</h2>

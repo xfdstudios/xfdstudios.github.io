@@ -445,6 +445,14 @@ def main_content(a: dict, portal: tuple[str, str], video: dict | None) -> str:
             lambda _: guide, body, count=1, flags=re.S)
         if count != 1:
             raise ValueError("PS5 storage guide placement no longer matches article")
+    if a["id"] == "tech-is-a-hard-drive-enough-for-gta-6":
+        # Trusted local presentation partial; the article's markdown keeps a plain-text fallback.
+        guide = (ROOT / "assets/hdd-storage-guide.html").read_text()
+        body, count = re.subn(
+            r"<h2>Is a hard drive enough\?</h2>.*?(?=<h2>Black Friday, real talk</h2>)",
+            lambda _: guide, body, count=1, flags=re.S)
+        if count != 1:
+            raise ValueError("Hard-drive storage guide placement no longer matches article")
 
     return (
         '<main class="article-main">\n'
