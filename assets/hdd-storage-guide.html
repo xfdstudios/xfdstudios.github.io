@@ -5,6 +5,14 @@
 .xfd-hdd-guide .storage-kicker{color:var(--page-accent);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;margin:0}
 .article-body .xfd-hdd-guide h2{margin:.5rem 0 1rem}
 .xfd-hdd-guide h3{font:inherit;font-weight:700;font-size:1.15rem;line-height:1.35;margin:0 0 .6rem;color:var(--text)}
+.xfd-hdd-guide .hdd-short{margin:1rem 0 1.4rem;padding:1.1rem 1.3rem;list-style:none;border:1px solid var(--line);border-left:4px solid var(--page-accent);border-radius:12px;background:var(--panel);font-size:1.05rem;line-height:1.6;color:var(--text)}
+.article-body .xfd-hdd-guide .hdd-short li{margin:.35rem 0;padding:0}
+.article-body .xfd-hdd-guide .hdd-short li::before{content:none}
+.xfd-hdd-guide .storage-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin:1.4rem 0 .4rem;padding:0;list-style:none}
+.article-body .xfd-hdd-guide .storage-flow li{margin:0;padding:.8rem 0;border-top:2px solid var(--page-accent);font-size:.95rem;font-weight:600;color:var(--text)}
+.article-body .xfd-hdd-guide .storage-flow li::before{content:none}
+.xfd-hdd-guide .hdd-verdict-card h3{font-size:1.3rem}
+.xfd-hdd-guide .hdd-verdict-card p{margin:.4rem 0}
 .xfd-hdd-guide .hdd-verdict{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.2rem 0}
 .xfd-hdd-guide .hdd-verdict-card{min-width:0;padding:1.2rem;border-radius:14px;background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--v-bg);color:var(--text)}
 .xfd-hdd-guide .hdd-verdict-card[data-verdict="yes"]{--v-bg:#86efac;--v-ink:#052e16}
@@ -36,22 +44,32 @@
 .xfd-hdd-guide .hdd-install p{margin:0}
 .article-body .xfd-hdd-guide a.hdd-install-button{display:inline-block;padding:.75rem 1.1rem;border-radius:8px;background:var(--page-accent);color:var(--bg);font-weight:700;min-height:48px;line-height:1.6}
 .xfd-hdd-guide .storage-note{font-size:.85rem;color:var(--muted);margin-top:1rem}
-@media(max-width:700px){.xfd-hdd-guide .hdd-verdict,.xfd-hdd-guide .storage-grid{grid-template-columns:1fr}.xfd-hdd-guide .hdd-house{grid-template-columns:1fr}.xfd-hdd-guide .hdd-arrows{transform:none}}
+@media(max-width:700px){.xfd-hdd-guide .hdd-verdict,.xfd-hdd-guide .storage-grid,.xfd-hdd-guide .storage-flow{grid-template-columns:1fr}.xfd-hdd-guide .storage-flow{gap:0}.xfd-hdd-guide .hdd-house{grid-template-columns:1fr}.xfd-hdd-guide .hdd-arrows{transform:none}}
 </style>
 
 <p class="storage-kicker">Storage check / PS5</p>
-<h2 id="hdd-guide-title">Is a hard drive enough?</h2>
+<h2 id="hdd-guide-title">The short answer</h2>
+<ul class="hdd-short">
+<li><strong>Free first:</strong> clear space in Settings → Storage.</li>
+<li><strong>Hard drive:</strong> stores games. It can't play PS5 games.</li>
+<li><strong>Internal SSD:</strong> more games ready to play.</li>
+</ul>
 
+<ol class="storage-flow" aria-label="Storage steps"><li>1. Check free space →</li><li>2. Clear what you're not playing →</li><li>3. Add storage if still short</li></ol>
+<p class="storage-note">Deleting a game is free, and you can download it again later. <a href="https://www.playstation.com/en-us/support/hardware/ps5-manage-storage-space/" target="_blank" rel="noopener">PlayStation: manage your PS5 storage</a> shows how to keep your saved data safe.</p>
+
+<h2>Is a hard drive enough?</h2>
 <div class="hdd-verdict">
 <div class="hdd-verdict-card" data-verdict="yes">
 <p class="hdd-verdict-badge">Store ✔</p>
-<h3>A USB hard drive can hold your games</h3>
-<p>Move the PS5 games you're not playing onto a USB hard drive (or USB SSD), and GTA 6 gets the room on your console. PS4 games can even play straight from it.</p>
+<h3>It holds your games</h3>
+<p>Park the PS5 games you're not playing on it. GTA 6 gets the room.</p>
+<p>PS4 games can play straight from it.</p>
 </div>
 <div class="hdd-verdict-card" data-verdict="no">
 <p class="hdd-verdict-badge">Play ✘</p>
-<h3>It can't run your PS5 games</h3>
-<p>PS5 games can't be played from USB. When you want one back, copy it to the console storage and play it from there.</p>
+<h3>It can't run PS5 games</h3>
+<p>Want one back? Copy it to the console first, then play.</p>
 </div>
 </div>
 
@@ -65,11 +83,11 @@
 <p class="storage-note">PlayStation's rules for USB extended storage: SuperSpeed USB 5 Gbps or faster, 250 GB to 8 TB, plugged straight into the console (no USB hub), and one extended-storage drive at a time. <a href="https://www.playstation.com/en-us/support/hardware/ps5-extended-storage/" target="_blank" rel="noopener">PlayStation: USB extended storage on PS5</a>.</p>
 
 <h2>When you actually need an SSD</h2>
-<p>Want a bunch of PS5 games installed and ready to play at once, no copying back and forth? That's when you need an internal M.2 SSD with a heatsink. It goes inside the console and works like more living room.</p>
+<p>Want lots of PS5 games ready to play, with no copying back and forth? Get an internal M.2 SSD with a heatsink. It goes inside the console: more living room.</p>
 
 <h2>Our picks</h2>
 <p class="hdd-disclosure">Disclosure: XFD may earn a commission from purchases through the paid links below. As an Amazon Associate I earn from qualifying purchases.</p>
-<p>Editorial picks based on published specifications, not hands-on reviews. All four are 2TB internal drives with a heatsink. Choose one, not all of them.</p>
+<p>All four: 2TB, internal, heatsink included. Pick one. These are spec-based picks, not hands-on reviews.</p>
 <div class="storage-grid">
 <div class="storage-card" data-storage-tier="good">
 <p class="storage-tier">Good</p>
