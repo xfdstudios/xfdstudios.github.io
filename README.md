@@ -12,3 +12,8 @@ This rule applies to ALL surfaces: homepage feed, featured carousel, portal list
 
 ## Merch cards in articles
 Add `"merch": "physical-culture"` to an article in `articles.json` to show the XFD Physical Culture card just before its "Your turn" section. `scripts/build_article_pages.py` (the `MERCH` table) writes the card's text and shop button; `merch-promo.js` adds live product photos, one per design, from the matching Fourthwall collection. Use it only on articles that relate to the line (physical vs digital games and game ownership). To add another merch line, add an entry to `MERCH` with its Fourthwall collection handle.
+
+## Short links (easy to say in videos)
+`/storage` opens the "Is a Hard Drive Enough for GTA 6?" guide (`storage/index.html`). Tracking tags like `?utm_source=tiktok` are kept.
+- These pages are `noindex` and stay out of the sitemap.
+- They only forward to our own article. Never point a short link straight at Amazon: Amazon policy (v)(w) bans redirecting or cloaked links.
