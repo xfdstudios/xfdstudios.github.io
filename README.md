@@ -17,3 +17,6 @@ Add `"merch": "physical-culture"` to an article in `articles.json` to show the X
 `/storage` opens the "Is a Hard Drive Enough for GTA 6?" guide (`storage/index.html`). Tracking tags like `?utm_source=tiktok` are kept.
 - These pages are `noindex` and stay out of the sitemap.
 - They only forward to our own article. Never point a short link straight at Amazon: Amazon policy (v)(w) bans redirecting or cloaked links.
+
+## Pinning an article on the homepage
+Add `"pinned": true` to an article in `articles.json`. It stays first in the homepage feed (and in its category filter) with a "📌 Pinned" label. Remove the line to unpin. Currently pinned: GTA 6 Launch Week (Start Here).

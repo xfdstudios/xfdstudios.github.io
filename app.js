@@ -131,6 +131,7 @@ function buildFeedItems() {
       date: a.date,
       image: a.image || "assets/xeno-final-dawn-logo.png",
       url: `articles/${a.id}.html`,
+      pinned: Boolean(a.pinned),
       videoKey: canonicalId(a.videoUrl, a.image),
       search: `${a.title} ${a.summary || ""} ${a.body || ""}`.toLowerCase()
     });
@@ -175,7 +176,8 @@ function buildFeedItems() {
     kept.push(item);
   }
 
-  feedItems = kept.sort((a, b) => parseWhen(b.date) - parseWhen(a.date));
+  /* Pinned articles ("pinned": true in articles.json) stay first. */
+  feedItems = kept.sort((a, b) => (b.pinned === true) - (a.pinned === true) || parseWhen(b.date) - parseWhen(a.date));
 }
 
 function feedCard(item) {
@@ -187,7 +189,7 @@ function feedCard(item) {
         <div class="content">
           <div class="meta-line">
             <span>${categoryLabel(item.category)}</span>
-            <span>${item.meta}</span>
+            <span>${item.pinned ? "📌 Pinned" : item.meta}</span>
           </div>
           <h3>${item.title}</h3>
           <p>${displayDate(item.date)}</p>
