@@ -3043,10 +3043,20 @@ main {
 
   .nav-links {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0.35rem;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.3rem;
     width: 100%;
     overflow: visible;
+  }
+
+  /* 5 menu items on phones: drop the icons so every label fits on one row */
+  .nav-links i {
+    display: none;
+  }
+
+  .nav-links a {
+    padding-inline: 0.15rem;
+    font-size: 0.68rem;
   }
 
   .nav-links a {
