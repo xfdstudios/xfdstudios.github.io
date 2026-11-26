@@ -250,12 +250,16 @@ img {
   color: var(--tech);
 }
 
-.nav-links a:nth-child(3) i {
+.nav-links a[href$="shop.html"] i {
   color: var(--wrestling);
 }
 
-.nav-links a:nth-child(4) i {
+.nav-links a[href$="contact.html"] i {
   color: var(--horror);
+}
+
+.nav-links a[href$="gear.html"] i {
+  color: var(--popculture);
 }
 
 .nav-links a:nth-child(2):hover,
@@ -264,16 +268,22 @@ img {
   box-shadow: 0 0 18px rgba(57, 213, 255, 0.22);
 }
 
-.nav-links a:nth-child(3):hover,
-.nav-links a:nth-child(3)[aria-current="page"] {
+.nav-links a[href$="shop.html"]:hover,
+.nav-links a[href$="shop.html"][aria-current="page"] {
   border-color: rgba(255, 49, 95, 0.9);
   box-shadow: 0 0 18px rgba(255, 49, 95, 0.22);
 }
 
-.nav-links a:nth-child(4):hover,
-.nav-links a:nth-child(4)[aria-current="page"] {
+.nav-links a[href$="contact.html"]:hover,
+.nav-links a[href$="contact.html"][aria-current="page"] {
   border-color: rgba(114, 255, 94, 0.9);
   box-shadow: 0 0 18px rgba(114, 255, 94, 0.22);
+}
+
+.nav-links a[href$="gear.html"]:hover,
+.nav-links a[href$="gear.html"][aria-current="page"] {
+  border-color: rgba(255, 138, 43, 0.9);
+  box-shadow: 0 0 18px rgba(255, 138, 43, 0.22);
 }
 
 .nav-links a[aria-current="page"],
