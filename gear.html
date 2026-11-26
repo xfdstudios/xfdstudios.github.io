@@ -103,7 +103,45 @@
         color: var(--page-accent);
         font-weight: 600;
       }
+      /* design pass 2026-11-26 */
+      .quick-picks { margin:0 0 1.4rem; padding:1rem 1.1rem; border:1px solid #b98cff; border-radius:14px; background:linear-gradient(135deg, rgba(138,53,255,.16), rgba(138,53,255,.04)); }
+      .quick-picks h2 { font-size:1.05rem; margin:0 0 .7rem; color:var(--text); }
+      .qp-list { list-style:none; margin:0; padding:0; display:grid; gap:.5rem; }
+      .qp-row { display:grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1.4fr) auto; gap:.8rem; align-items:center; padding:.55rem .2rem; border-top:1px solid var(--line); }
+      .qp-row:first-child { border-top:0; }
+      .qp-name { color:var(--text); font-weight:700; text-decoration:none; display:flex; flex-wrap:wrap; align-items:center; gap:.45rem; }
+      .qp-name i { color:#b98cff; width:1.1em; }
+      .qp-who { color:var(--muted); font-size:.9rem; }
+      .qp-btn { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:.45rem 1rem; border-radius:8px; background:#8a35ff; color:#fff; font-weight:700; text-decoration:none; white-space:nowrap; }
+      .qp-btn:hover, .qp-btn:focus-visible { filter:brightness(1.12); outline:2px solid #fff; outline-offset:2px; }
+      .qp-badge, .gear-ribbon { display:inline-block; padding:.15rem .5rem; border-radius:999px; background:#ffd23f; color:#16120a; font-size:.72rem; font-weight:800; letter-spacing:.03em; text-transform:uppercase; }
+      .gear-card { position:relative; }
+      .gear-card.is-top { border-color:#ffd23f; box-shadow:0 0 0 1px rgba(255,210,63,.35), 0 10px 30px rgba(255,210,63,.08); }
+      .gear-ribbon { position:absolute; top:-.7rem; left:1rem; }
+      .gear-title-link { color:inherit; text-decoration:none; }
+      .gear-title-link:hover, .gear-title-link:focus-visible { text-decoration:underline; text-decoration-color:#b98cff; }
       @media (max-width: 640px) {
+        .qp-row { grid-template-columns: 1fr auto; }
+        .qp-who { grid-column:1; grid-row:2; }
+        .qp-btn { grid-column:2; grid-row:1 / span 2; }
+      }
+
+      .gear-jump { display:flex; flex-wrap:wrap; gap:0.5rem; margin:0 0 1.2rem; padding:0; list-style:none; }
+      .gear-jump a { display:inline-flex; align-items:center; gap:0.45rem; min-height:44px; padding:0.5rem 0.9rem; border:1px solid var(--line); border-radius:999px; background:var(--panel); color:var(--text); font-weight:600; font-size:0.9rem; text-decoration:none; }
+      .gear-jump a:hover, .gear-jump a:focus-visible { border-color:#b98cff; }
+      .gear-jump i, .gear-icon i { color:#b98cff; }
+      .gear-card { scroll-margin-top: 1rem; transition: border-color .15s, transform .15s; }
+      .gear-card:hover { border-color:#b98cff; transform: translateY(-2px); }
+      .gear-head { display:flex; gap:0.85rem; align-items:flex-start; margin-bottom:0.6rem; }
+      .gear-icon { flex:none; width:48px; height:48px; border-radius:12px; display:grid; place-items:center; background:rgba(138,53,255,0.18); font-size:1.3rem; }
+      .gear-head .gear-tag { color:#b98cff; }
+      .gear-head h2 { margin:0; }
+      .gear-for { display:inline-block; align-self:flex-start; margin:0 0 0.7rem; padding:0.3rem 0.65rem; border-radius:6px; background:rgba(138,53,255,0.18); color:var(--text); font-weight:700; font-size:0.88rem; }
+      .gear-btn { color:#fff; display:flex; align-items:center; justify-content:center; gap:0.55rem; }
+      .gear-btn:hover, .gear-btn:focus-visible { filter:brightness(1.12); outline:2px solid #fff; outline-offset:2px; }
+      .gear-btn small { font-weight:500; opacity:.85; }
+      @media (max-width: 640px) {
+        .gear-desc { font-size:0.95rem; }
         .gear-grid { grid-template-columns: 1fr; }
       }
     </style>
@@ -154,7 +192,7 @@
         <div class="matrix-heading">
           <p class="eyebrow">XFD Blue // Setup Gear &amp; Reading List</p>
           <h1 id="gear-title">Everyday Gamer Gear &amp; Gift Guide</h1>
-          <p class="legal-updated">Updated: November 25, 2026 · Spec-based picks</p>
+          <p class="legal-updated">Updated: November 26, 2026 · Spec-based picks</p>
         </div>
 
         <article class="matrix-panel">
@@ -163,41 +201,64 @@
             <strong>As an Amazon Associate I earn from qualifying purchases.</strong>
           </p>
 
+          <section class="quick-picks" aria-labelledby="qp-title">
+            <h2 id="qp-title">Quick picks: who's it for?</h2>
+            <ul class="qp-list">
+              <li class="qp-row">
+                <a class="qp-name" href="#charging"><i class="fa-solid fa-bolt" aria-hidden="true"></i>OIVO PS5 Charging Station <span class="qp-badge">Top gift pick</span></a>
+                <span class="qp-who">The PS5 player whose controllers always die</span>
+                <a class="qp-btn" href="https://www.amazon.com/dp/B0GDWQPVXF/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check OIVO PS5 Charging Station on Amazon, paid link">Check price</a>
+              </li>
+              <li class="qp-row">
+                <a class="qp-name" href="#grip"><i class="fa-solid fa-gamepad" aria-hidden="true"></i>KontrolFreek Heist Thumbsticks</a>
+                <span class="qp-who">Shooter fans who want finer aim</span>
+                <a class="qp-btn" href="https://www.amazon.com/dp/B0GNNTYQGH/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check KontrolFreek Heist Thumbsticks on Amazon, paid link">Check price</a>
+              </li>
+              <li class="qp-row">
+                <a class="qp-name" href="#hdmi"><i class="fa-solid fa-tv" aria-hidden="true"></i>Zeskit Maya HDMI 2.1 Cable</a>
+                <span class="qp-who">A 120Hz TV that isn't getting 120Hz</span>
+                <a class="qp-btn" href="https://www.amazon.com/dp/B08TQTYCYS/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check Zeskit Maya HDMI 2.1 Cable on Amazon, paid link">Check price</a>
+              </li>
+              <li class="qp-row">
+                <a class="qp-name" href="#book"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Jacked (paperback)</a>
+                <span class="qp-who">The fan who wants the full story behind GTA</span>
+                <a class="qp-btn" href="https://www.amazon.com/dp/B0FF15HB4C/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check Jacked (paperback) on Amazon, paid link">Check price</a>
+              </li>
+            </ul>
+          </section>
+
           <div class="gear-grid">
-            <div class="gear-card">
-              <p class="gear-tag">PS5 Charging</p>
-              <h2>Sony DualSense Charging Station</h2>
-              <p class="gear-spec">Official PlayStation accessory · Model: CFI-ZDS1 · Click-in dual dock</p>
-              <p class="gear-desc">Charges up to two DualSense wireless controllers at the same speed as connecting to a PS5 console, freeing up the console's front USB ports.</p>
-              <!-- PENDING_SITESTRIPE_LINK: Sony DualSense Charging Station (CFI-ZDS1) -->
-              <span class="gear-btn is-pending" aria-disabled="true">Check today's price on Amazon<br><small>Link activating soon</small></span>
+            <div class="gear-card is-top" id="charging">
+              <span class="gear-ribbon">XFD top gift pick</span>
+              <div class="gear-head"><span class="gear-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span><div><p class="gear-tag">PS5 Charging</p><h2><a class="gear-title-link" href="https://www.amazon.com/dp/B0GDWQPVXF/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored">OIVO PS5 Controller Charging Station</a></h2></div></div>
+              <p class="gear-spec">Third-party dock · Fits DualSense &amp; DualSense Edge · Charges 2 at once · USB-powered</p>
+              <p class="gear-for">For the player whose controller dies mid-mission.</p>
+              <p class="gear-desc">Drop two controllers in after a session and they're charged for the next one. A red light means charging and green means full, and RGB light modes match a gaming setup. An easy gift for anyone who got a PS5 for GTA 6.</p>
+              <a class="gear-btn" href="https://www.amazon.com/dp/B0GDWQPVXF/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check OIVO PS5 Controller Charging Station seller and price on Amazon, paid link">Check today's price on Amazon<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
             </div>
 
-            <div class="gear-card">
-              <p class="gear-tag">Controller Grip</p>
-              <h2>KontrolFreek Performance Thumbsticks</h2>
-              <p class="gear-spec">Snap-on analog stick extenders · Available for PS5 &amp; Xbox controllers</p>
-              <p class="gear-desc">Adds textured grip and extra stick height for finer aim control in shooters and open-world games without modifying the controller.</p>
-              <!-- PENDING_SITESTRIPE_LINK: KontrolFreek Performance Thumbsticks -->
-              <span class="gear-btn is-pending" aria-disabled="true">Check today's price on Amazon<br><small>Link activating soon</small></span>
+            <div class="gear-card" id="grip">
+              <div class="gear-head"><span class="gear-icon"><i class="fa-solid fa-gamepad" aria-hidden="true"></i></span><div><p class="gear-tag">Controller Grip</p><h2><a class="gear-title-link" href="https://www.amazon.com/dp/B0GNNTYQGH/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored">KontrolFreek Performance Thumbsticks</a></h2></div></div>
+              <p class="gear-spec">Heist Edition · Pink &amp; blue · Snap-on stick extenders for PS5 &amp; PS4 controllers</p>
+              <p class="gear-for">For the player who keeps missing the shot.</p>
+              <p class="gear-desc">Taller sticks mean a longer throw, so small thumb movements become finer aim. They snap on and off, so the controller isn't modified. A stocking-stuffer pick for shooter and open-world fans.</p>
+              <a class="gear-btn" href="https://www.amazon.com/dp/B0GNNTYQGH/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check KontrolFreek Heist Edition Thumbsticks seller and price on Amazon, paid link">Check today's price on Amazon<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
             </div>
 
-            <div class="gear-card">
-              <p class="gear-tag">4K / 120Hz Display</p>
-              <h2>Zeskit Maya Certified Ultra High Speed HDMI 2.1 Cable</h2>
-              <p class="gear-spec">HDMI Forum Certified · 48 Gbps · Supports 4K 120Hz, VRR &amp; eARC</p>
-              <p class="gear-desc">Officially certified 48 Gbps HDMI 2.1 cable built for PS5, Xbox Series X, and modern 120Hz TVs when you need a longer or spare run.</p>
-              <!-- PENDING_SITESTRIPE_LINK: Zeskit Maya Certified HDMI 2.1 Cable -->
-              <span class="gear-btn is-pending" aria-disabled="true">Check today's price on Amazon<br><small>Link activating soon</small></span>
+            <div class="gear-card" id="hdmi">
+              <div class="gear-head"><span class="gear-icon"><i class="fa-solid fa-tv" aria-hidden="true"></i></span><div><p class="gear-tag">4K / 120Hz Display</p><h2><a class="gear-title-link" href="https://www.amazon.com/dp/B08TQTYCYS/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored">Zeskit Maya Certified Ultra High Speed HDMI 2.1 Cable</a></h2></div></div>
+              <p class="gear-spec">Certified Ultra High Speed · 48 Gbps · 4K 120Hz, VRR &amp; eARC · 5 ft</p>
+              <p class="gear-for">For the setup that isn't getting the 120Hz it paid for.</p>
+              <p class="gear-desc">A certified 48 Gbps cable carries 4K at 120Hz, VRR and eARC between a PS5 or Series X and a capable TV. Other lengths are on the same Amazon page.</p>
+              <a class="gear-btn" href="https://www.amazon.com/dp/B08TQTYCYS/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check Zeskit Maya HDMI 2.1 Cable seller and price on Amazon, paid link">Check today's price on Amazon<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
             </div>
 
-            <div class="gear-card">
-              <p class="gear-tag">GTA History Read</p>
-              <h2>Jacked: The Outlaw Story of Grand Theft Auto</h2>
-              <p class="gear-spec">Author: David Kushner · Paperback · Gaming history non-fiction</p>
-              <p class="gear-desc">The behind-the-scenes history of how Rockstar Games built Grand Theft Auto from its early Scottish studio roots into a global phenomenon.</p>
-              <!-- PENDING_SITESTRIPE_LINK: Jacked: The Outlaw Story of Grand Theft Auto (Paperback) -->
-              <span class="gear-btn is-pending" aria-disabled="true">Check today's price on Amazon<br><small>Link activating soon</small></span>
+            <div class="gear-card" id="book">
+              <div class="gear-head"><span class="gear-icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span><div><p class="gear-tag">GTA History Read</p><h2><a class="gear-title-link" href="https://www.amazon.com/dp/B0FF15HB4C/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored">Jacked: The Outlaw Story of Grand Theft Auto</a></h2></div></div>
+              <p class="gear-spec">Author: David Kushner · Paperback · 306 pages · Gaming history</p>
+              <p class="gear-for">For the fan who wants the full story behind GTA.</p>
+              <p class="gear-desc">How a small Scottish studio turned Grand Theft Auto into a global phenomenon, including the controversies along the way. If you liked our <a href="articles/tech-gta-launch-history-1997-to-gta-6.html">GTA launch history</a>, this is the full story.</p>
+              <a class="gear-btn" href="https://www.amazon.com/dp/B0FF15HB4C/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check Jacked paperback seller and price on Amazon, paid link">Check today's price on Amazon<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
             </div>
           </div>
 
