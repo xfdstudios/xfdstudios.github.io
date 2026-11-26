@@ -37,6 +37,7 @@
   document.body.appendChild(modal);
 
   var panel = modal.querySelector(".search-modal-panel");
+  panel.setAttribute("tabindex", "-1");
   var termEl = modal.querySelector("#search-modal-term");
   var countEl = modal.querySelector("#search-modal-count");
   var listEl = modal.querySelector("#search-modal-results");
@@ -171,8 +172,10 @@
     loadData().then(function () {
       runSearch(query);
       modal.setAttribute("aria-hidden", "false");
-      var closeBtn = modal.querySelector(".search-modal-close");
-      if (closeBtn) closeBtn.focus();
+      // Focus the panel, not the × button: when results are cached this runs
+      // before Enter's keyup, and a keyup landing on the button would close
+      // the modal in the same keystroke.
+      panel.focus();
     });
   }
   function closeSearch() {
@@ -180,6 +183,7 @@
     modal.setAttribute("aria-hidden", "true");
     // Hand focus back to the box so a second search with Enter works right away.
     box.focus();
+    box.select(); // typing a new word replaces the old one
   }
 
   /* ── Wire up ──────────────────────────────────────────────────── */

@@ -355,7 +355,7 @@ img {
   top: 50%;
   color: var(--muted);
   transform: translateY(-50%);
-  pointer-events: none;
+  cursor: pointer;
 }
 
 .search-shell input {
@@ -3434,6 +3434,10 @@ main {
 
 .search-modal[aria-hidden="false"] {
   display: flex;
+}
+
+.search-modal-panel:focus {
+  outline: none;
 }
 
 .search-modal-panel {
