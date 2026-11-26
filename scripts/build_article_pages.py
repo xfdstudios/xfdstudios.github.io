@@ -57,6 +57,15 @@ MERCH = {
         "url": "https://xfd-shop.fourthwall.com/collections/physical-culture",
         "cta": "Shop Physical Culture",
     },
+    "side-mission-club": {
+        "name": "XFD Side Mission Club",
+        "line": "Side Mission Club",
+        "pitch": ("Tees for players who never finish the main story: "
+                  "Send It Anyway and Tiny Rotors."),
+        "collection": "side-mission-club",
+        "url": "https://xfd-shop.fourthwall.com/collections/side-mission-club",
+        "cta": "Shop Side Mission Club",
+    },
 }
 YOUTUBE_CHANNEL = "https://www.youtube.com/@Xenofinaldawn"
 ORGANIZATION = {
