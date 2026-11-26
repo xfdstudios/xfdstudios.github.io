@@ -365,7 +365,7 @@
         } else {
           // Text/Threads posts (no video): link out to Threads instead.
           const threadLink = document.querySelector('#article-thread-link');
-          threadLink.href = article.tiktokUrl || article.facebookUrl || article.instagramUrl || article.threadsUrl || THREADS_PROFILE;
+          threadLink.href = article.tiktokUrl || article.facebookUrl || article.instagramUrl || article.threadsUrl || '';
           if (article.tiktokUrl) {
             threadLink.innerHTML = '<i class="fa-brands fa-tiktok" aria-hidden="true"></i> See it on TikTok';
           } else if (article.facebookUrl) {
@@ -373,7 +373,8 @@
           } else if (article.instagramUrl) {
             threadLink.innerHTML = '<i class="fa-brands fa-instagram" aria-hidden="true"></i> See it on Instagram';
           }
-          threadLink.hidden = false;
+          // Website-only articles have no matching post, so the button stays hidden.
+          threadLink.hidden = !threadLink.getAttribute('href');
         }
 
         const bodyEl = document.querySelector('#article-body');

@@ -438,13 +438,15 @@ def main_content(a: dict, portal: tuple[str, str], video: dict | None) -> str:
             "          See it on Instagram\n"
             "        </a>\n"
         )
-    else:
+    elif a.get("threadsUrl"):
         media = (
-            f'        <a class="article-thread-btn" id="article-thread-link" href="{attr(a.get("threadsUrl") or THREADS_PROFILE)}" target="_blank" rel="noopener">\n'
+            f'        <a class="article-thread-btn" id="article-thread-link" href="{attr(a["threadsUrl"])}" target="_blank" rel="noopener">\n'
             '          <i class="fa-brands fa-threads" aria-hidden="true"></i>\n'
             "          Read more on Threads\n"
             "        </a>\n"
         )
+    else:
+        media = ""  # website-only article: no matching social post, so no outbound button
     body = with_merch(render_body(a.get("body") or a.get("summary") or ""), a.get("merch"))
     if a["id"] == "tech-gta-6-box-has-no-disc-212-gb-pre-load":
         # Trusted local presentation partial; never interpret article text as HTML.
