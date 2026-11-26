@@ -104,12 +104,22 @@
         font-weight: 600;
       }
       /* design pass 2026-11-26 */
+      .gear-group { margin: 0 0 1.8rem; }
+      .gear-group-title { display:flex; align-items:center; gap:.6rem; font-size:1.25rem; margin:0 0 .9rem; padding-bottom:.5rem; border-bottom:1px solid var(--line); color:var(--text); }
+      .gear-group-title i { color:#b98cff; }
+      .gear-oc { margin:0 0 1rem; padding:.6rem .8rem; border-left:3px solid #39d5ff; background:rgba(57,213,255,.07); border-radius:0 8px 8px 0; font-style:italic; color:var(--text); }
+      .gear-oc span { font-style:normal; font-weight:800; color:#39d5ff; margin-right:.25rem; }
+
       .quick-picks { margin:0 0 1.4rem; padding:1rem 1.1rem; border:1px solid #b98cff; border-radius:14px; background:linear-gradient(135deg, rgba(138,53,255,.16), rgba(138,53,255,.04)); }
       .quick-picks h2 { font-size:1.05rem; margin:0 0 .7rem; color:var(--text); }
       .qp-list { list-style:none; margin:0; padding:0; display:grid; gap:.5rem; }
       .qp-row { display:grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1.4fr) auto; gap:.8rem; align-items:center; padding:.55rem .2rem; border-top:1px solid var(--line); }
       .qp-row:first-child { border-top:0; }
-      .qp-name { color:var(--text); font-weight:700; text-decoration:none; display:flex; flex-wrap:wrap; align-items:center; gap:.45rem; }
+      .qp-name { color:var(--text); font-weight:700; text-decoration:none; display:block; }
+      .qp-name i { margin-right:.45rem; }
+      .qp-name .qp-badge { display:inline-block; margin-left:.35rem; vertical-align:middle; }
+      .gear-card[hidden], .gear-group[hidden] { display:none !important; }
+      .gear-page .matrix-heading { margin-top:1.5rem; }
       .qp-name i { color:#b98cff; width:1.1em; }
       .qp-who { color:var(--muted); font-size:.9rem; }
       .qp-btn { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:.45rem 1rem; border-radius:8px; background:#8a35ff; color:#fff; font-weight:700; text-decoration:none; white-space:nowrap; }
@@ -227,40 +237,92 @@
             </ul>
           </section>
 
-          <div class="gear-grid">
-            <div class="gear-card is-top" id="charging">
+          <section class="gear-group" aria-labelledby="g-ps5">
+            <h2 class="gear-group-title" id="g-ps5"><i class="fa-solid fa-gamepad" aria-hidden="true"></i>For the PS5 player</h2>
+            <div class="gear-grid">
+<div class="gear-card is-top" id="charging">
               <span class="gear-ribbon">XFD top gift pick</span>
               <div class="gear-head"><span class="gear-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span><div><p class="gear-tag">PS5 Charging</p><h2><a class="gear-title-link" href="https://www.amazon.com/dp/B0GDWQPVXF/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored">OIVO PS5 Controller Charging Station</a></h2></div></div>
               <p class="gear-spec">Third-party dock · Fits DualSense &amp; DualSense Edge · Charges 2 at once · USB-powered</p>
               <p class="gear-for">For the player whose controller dies mid-mission.</p>
               <p class="gear-desc">Drop two controllers in after a session and they're charged for the next one. A red light means charging and green means full, and RGB light modes match a gaming setup. An easy gift for anyone who got a PS5 for GTA 6.</p>
+              <p class="gear-oc"><span>OC's take:</span> Nothing kills a heist faster than the low-battery light.</p>
               <a class="gear-btn" href="https://www.amazon.com/dp/B0GDWQPVXF/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check OIVO PS5 Controller Charging Station seller and price on Amazon, paid link">Check today's price on Amazon<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
             </div>
-
-            <div class="gear-card" id="grip">
+<div class="gear-card" id="grip">
               <div class="gear-head"><span class="gear-icon"><i class="fa-solid fa-gamepad" aria-hidden="true"></i></span><div><p class="gear-tag">Controller Grip</p><h2><a class="gear-title-link" href="https://www.amazon.com/dp/B0GNNTYQGH/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored">KontrolFreek Performance Thumbsticks</a></h2></div></div>
               <p class="gear-spec">Heist Edition · Pink &amp; blue · Snap-on stick extenders for PS5 &amp; PS4 controllers</p>
               <p class="gear-for">For the player who keeps missing the shot.</p>
               <p class="gear-desc">Taller sticks mean a longer throw, so small thumb movements become finer aim. They snap on and off, so the controller isn't modified. A stocking-stuffer pick for shooter and open-world fans.</p>
+              <p class="gear-oc"><span>OC's take:</span> Same thumbs. Longer sticks. Fewer excuses.</p>
               <a class="gear-btn" href="https://www.amazon.com/dp/B0GNNTYQGH/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check KontrolFreek Heist Edition Thumbsticks seller and price on Amazon, paid link">Check today's price on Amazon<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
             </div>
-
-            <div class="gear-card" id="hdmi">
+<div class="gear-card" id="hdmi">
               <div class="gear-head"><span class="gear-icon"><i class="fa-solid fa-tv" aria-hidden="true"></i></span><div><p class="gear-tag">4K / 120Hz Display</p><h2><a class="gear-title-link" href="https://www.amazon.com/dp/B08TQTYCYS/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored">Zeskit Maya Certified Ultra High Speed HDMI 2.1 Cable</a></h2></div></div>
               <p class="gear-spec">Certified Ultra High Speed · 48 Gbps · 4K 120Hz, VRR &amp; eARC · 5 ft</p>
               <p class="gear-for">For the setup that isn't getting the 120Hz it paid for.</p>
               <p class="gear-desc">A certified 48 Gbps cable carries 4K at 120Hz, VRR and eARC between a PS5 or Series X and a capable TV. Other lengths are on the same Amazon page.</p>
+              <p class="gear-oc"><span>OC's take:</span> You paid for 120Hz. Don't let an old cable keep it from you.</p>
               <a class="gear-btn" href="https://www.amazon.com/dp/B08TQTYCYS/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check Zeskit Maya HDMI 2.1 Cable seller and price on Amazon, paid link">Check today's price on Amazon<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
             </div>
+            <div class="gear-card" id="storage">
+              <div class="gear-head"><span class="gear-icon"><i class="fa-solid fa-hard-drive" aria-hidden="true"></i></span><div><p class="gear-tag">PS5 Storage</p><h2><a class="gear-title-link" href="https://www.amazon.com/dp/B0C47ZX1WB/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored">WD_BLACK SN850P 2TB NVMe SSD with Heatsink</a></h2></div></div>
+              <p class="gear-spec">Officially licensed for PS5 · 2TB · factory heatsink · rated up to 7,300 MB/s read · model WDBBYV0020BNC-WRSN</p>
+              <p class="gear-for">For the PS5 that's out of room for the next big download.</p>
+              <p class="gear-desc">An internal M.2 drive made for the PS5's expansion slot, with the heatsink already fitted. Check your free space first in Settings → Storage. Our <a href="/storage/">PS5 storage guide</a> compares 2 more drives and walks through the install.</p>
+              <p class="gear-oc"><span>OC's take:</span> Stop deleting games to make room for new ones.</p>
+              <a class="gear-btn" href="https://www.amazon.com/dp/B0C47ZX1WB/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check WD_BLACK SN850P 2TB SSD seller and price on Amazon, paid link">Check today's price on Amazon<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+            </div>
+            </div>
+          </section>
 
-            <div class="gear-card" id="book">
+          <section class="gear-group" aria-labelledby="g-history">
+            <h2 class="gear-group-title" id="g-history"><i class="fa-solid fa-book-open" aria-hidden="true"></i>For the gaming-history reader</h2>
+            <div class="gear-grid">
+<div class="gear-card" id="book">
               <div class="gear-head"><span class="gear-icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span><div><p class="gear-tag">GTA History Read</p><h2><a class="gear-title-link" href="https://www.amazon.com/dp/B0FF15HB4C/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored">Jacked: The Outlaw Story of Grand Theft Auto</a></h2></div></div>
               <p class="gear-spec">Author: David Kushner · Paperback · 306 pages · Gaming history</p>
               <p class="gear-for">For the fan who wants the full story behind GTA.</p>
               <p class="gear-desc">How a small Scottish studio turned Grand Theft Auto into a global phenomenon, including the controversies along the way. If you liked our <a href="articles/tech-gta-launch-history-1997-to-gta-6.html">GTA launch history</a>, this is the full story.</p>
+              <p class="gear-oc"><span>OC's take:</span> The real-life story is as wild as the games.</p>
               <a class="gear-btn" href="https://www.amazon.com/dp/B0FF15HB4C/ref=nosim?tag=xfdstudios-20" target="_blank" rel="noopener sponsored" aria-label="Check Jacked paperback seller and price on Amazon, paid link">Check today's price on Amazon<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
             </div>
-          </div>
+            <div class="gear-card" id="doom" hidden>
+              <div class="gear-head"><span class="gear-icon"><i class="fa-solid fa-skull" aria-hidden="true"></i></span><div><p class="gear-tag">Gaming History Read</p><h2>Masters of Doom</h2></div></div>
+              <p class="gear-spec">Author: David Kushner · Paperback · Gaming history</p>
+              <p class="gear-for">For the fan who grew up on shooters.</p>
+              <p class="gear-desc">How John Carmack and John Romero built id Software and the games that made first-person shooters a genre. Same author as <em>Jacked</em>, so the two make a matching pair.</p>
+              <p class="gear-oc"><span>OC's take:</span> The story of the two Johns behind Doom.</p>
+              <!-- PENDING_SITESTRIPE_LINK: Masters of Doom paperback (ISBN 0812972155) -->
+              <span class="gear-btn is-pending" aria-disabled="true">Check today's price on Amazon<br><small>Link activating soon</small></span>
+            </div>
+            <div class="gear-card" id="console-wars" hidden>
+              <div class="gear-head"><span class="gear-icon"><i class="fa-solid fa-gamepad" aria-hidden="true"></i></span><div><p class="gear-tag">Gaming History Read</p><h2>Console Wars</h2></div></div>
+              <p class="gear-spec">Author: Blake J. Harris · Paperback · Sega vs. Nintendo</p>
+              <p class="gear-for">For the kid who picked a side in the '90s.</p>
+              <p class="gear-desc">The business story behind Sega's fight with Nintendo in the 16-bit era, told largely from inside Sega of America. A natural fit for anyone who still argues Genesis vs. Super Nintendo.</p>
+              <p class="gear-oc"><span>OC's take:</span> The playground fight, told from the boardroom.</p>
+              <!-- PENDING_SITESTRIPE_LINK: Console Wars paperback (ISBN 0062276700) -->
+              <span class="gear-btn is-pending" aria-disabled="true">Check today's price on Amazon<br><small>Link activating soon</small></span>
+            </div>
+            </div>
+          </section>
+
+          <section class="gear-group" aria-labelledby="g-horror" hidden><!-- unhide with the Evil Dead card once its SiteStripe link is in -->
+            <h2 class="gear-group-title" id="g-horror"><i class="fa-solid fa-ghost" aria-hidden="true"></i>For the horror fan</h2>
+            <div class="gear-grid">
+            <div class="gear-card" id="evil-dead" hidden>
+              <div class="gear-head"><span class="gear-icon"><i class="fa-solid fa-book-skull" aria-hidden="true"></i></span><div><p class="gear-tag">Horror Shelf</p><h2>Evil Dead 1 &amp; 2 Double Feature (4K UHD)</h2></div></div>
+              <p class="gear-spec">4K Ultra HD + Blu-ray · Sam Raimi · Bruce Campbell</p>
+              <p class="gear-for">For the horror fan with a 4K player.</p>
+              <p class="gear-desc">The first two Evil Dead films together in one set. If you read our <a href="articles/horror-book-of-the-dead.html">Book of the Dead</a> breakdown, this is where it all started.</p>
+              <p class="gear-oc"><span>OC's take:</span> Groovy.</p>
+              <!-- PENDING_SITESTRIPE_LINK: Evil Dead 1 & 2 Double Feature 4K UHD (B0BCHVL4Z5) - creator to confirm seller is Amazon/new -->
+              <span class="gear-btn is-pending" aria-disabled="true">Check today's price on Amazon<br><small>Link activating soon</small></span>
+            </div>
+            </div>
+          </section>
+
 
           <p class="gear-note">
             All recommendations on this page are specification-based picks, not hands-on reviews. Always confirm the exact model, platform compatibility, seller, and current price on Amazon before ordering.
@@ -290,7 +352,7 @@
       <p>© 2026 XenoFinalDawn (XFD). All rights reserved.</p>
     </footer>
     <script src="content-links.js?v=related-1"></script>
-    <script src="search.js?v=related-1"></script>
+    <script src="search.js?v=gear-1"></script>
     <script src="halloween.js?v=5" defer></script>
   </body>
 </html>

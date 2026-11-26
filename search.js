@@ -90,6 +90,19 @@
           text: ((a.title || "") + " " + (a.summary || "") + " " + (a.body || "")).toLowerCase()
         });
       });
+      // Standalone guide pages that aren't in articles.json.
+      items.push({
+        rank: 0,
+        category: "tech",
+        title: "Everyday Gamer Gear & Gift Guide",
+        date: "2026-11-26",
+        url: "gear.html",
+        external: false,
+        vid: null,
+        text: "gear gift guide gifts christmas setup ps5 playstation controller charging dock station " +
+              "thumbsticks kontrolfreek hdmi 2.1 cable 120hz tv ssd storage drive hard drive " +
+              "book books reading jacked gta grand theft auto"
+      });
       social.forEach(function (s) {
         var owner = owners.get(XFDContent.key(s.url));
         if (owner) {
@@ -163,7 +176,10 @@
     });
   }
   function closeSearch() {
+    if (modal.getAttribute("aria-hidden") === "true") return;
     modal.setAttribute("aria-hidden", "true");
+    // Hand focus back to the box so a second search with Enter works right away.
+    box.focus();
   }
 
   /* ── Wire up ──────────────────────────────────────────────────── */
