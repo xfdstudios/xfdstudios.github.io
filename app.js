@@ -351,7 +351,7 @@ async function loadAll() {
   }
 
   try {
-    const response = await fetch("articles.json");
+    const response = await fetch("articles.json", { cache: "no-cache" });
     if (!response.ok) throw new Error("Articles unavailable");
     articles = await response.json();
   } catch (error) {
